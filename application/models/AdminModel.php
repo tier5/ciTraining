@@ -10,16 +10,37 @@
      
         public function addEmployee($data)
         {
+          $data1=array(
+            'email'=>$data['email']
+
+            ); 
+            //email already exists or not
+         $result= $this->db->get_where('employee',$data1);
+         //print_r($result);
+         $abc=$result->row();
+         if($abc)
+         {
+          return false;
+
+         }
+         else
+         {
+          //return true;
           $res2=$this->db->insert('employee',$data);
-          if($res2)
-          {
-            return true;
-          }
-          else
-          {
-            return false;
-          }
-        }
+          //print_r($res2);
+          //die;
+           if($res2)
+            {
+              return true;
+            }
+            else
+            {
+              return false;
+            }
+
+         }
+        
+      }
       
        
    } 

@@ -42,7 +42,8 @@ class Admin extends CI_Controller {
 			}
 			else
 			{
-				echo "Cannot Add this employee";
+				echo "oops! Cant Add. Email address already exists!!";
+
 			}
 		}
 		else
@@ -51,10 +52,6 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function myfun()
-	{
-		echo "hello";
-	}
-
+	
 
 }
