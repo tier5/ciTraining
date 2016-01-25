@@ -27,6 +27,7 @@
          {
           //return true;
           $res2=$this->db->insert('employee',$data);
+
           //print_r($res2);
           //die;
            if($res2)
@@ -41,6 +42,22 @@
          }
         
       }
+          if($res2)
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+        }
+
+        public function ShowEmployee()
+        {
+          $result = $this->db->get('employee');
+          return $result->result();
+        }
+
       
        
    } 
