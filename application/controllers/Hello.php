@@ -140,6 +140,36 @@ class Hello extends CI_Controller {
            
 		
 	}
+	//this function in admin is adding employee
+	public function addEmp()
+	{
+		//$this->load->view('html/addRec');
+		extract($_POST);
+		if (isset($btn)) 
+		{
+			$data['name']=$name;
+			//echo "$name";
+			$data['email']=$email;
+			//echo "$email";
+			$data['password']=$pass;
+			//echo "$pass";
+			$this->load->model('FirstModel');
+			$add=$this->FirstModel->addEmployee($data);
+			if ($add) 
+			{
+				echo "Employee Added Sucessfully";
+			}
+			else
+			{
+				echo "Cannot Add this employee";
+			}
+
+		}
+		else
+		{
+			$this->load->view('html/addRec');
+		}
+	}
 }
 
 ?>
