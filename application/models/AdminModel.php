@@ -20,6 +20,12 @@
             return false;
           }
         }
+
+        public function ShowEmployee()
+        {
+          $result = $this->db->get('employee');
+          return $result->result();
+        }
       
        
    } 

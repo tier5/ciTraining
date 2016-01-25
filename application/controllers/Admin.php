@@ -8,20 +8,24 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->database();
+		$this->load->model('AdminModel');
 	}
 	
 	public function index()
 	{
 		$this->load->view('adminview');
-
-
-
+		
 	}
 
 
 	public function showAllEmployee()
 	{
-		echo "in show all employee";
+		$add=$this->AdminModel->ShowEmployee();
+
+		foreach ($add as $row) 
+		{
+			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
+		}
 	}
 
 	public function addEmp()
@@ -41,7 +45,7 @@ class Admin extends CI_Controller {
 			//echo "$email";
 			$data['password']=$pass;
 			//echo "$pass";
-			$this->load->model('AdminModel');
+			
 			$add=$this->AdminModel->addEmployee($data);
 			if ($add) 
 			{
@@ -58,11 +62,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function myfun()
-	{
-		echo "hello";
-	}
-
+	
 
 
 }
