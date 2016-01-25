@@ -12,7 +12,7 @@
     <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
 
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
     <!-- Custom CSS -->
     
 
@@ -32,5 +32,7 @@
     <!-- Scrolling Nav JavaScript -->
     <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
+
+     <script type="text/javascript" src="<?php echo base_url().'application/views/js/addemp.js';?>"></script>
 
 </head>
