@@ -91,7 +91,14 @@
                 <div class="col-lg-12">
                     <h1>Show all Employee</h1>
                     <div class="col-lg-4"></div>
-                    <div class="col-lg-4">hello</div>
+                    <div class="col-lg-4">
+
+
+                    	<div id="showallemployeeDiv"></div>
+
+
+
+                    </div>
                     <div class="col-lg-4"></div>
                 </div>
             </div>

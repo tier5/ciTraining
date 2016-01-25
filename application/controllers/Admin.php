@@ -13,4 +13,9 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('adminview');
 	}
+
+	public function showAllEmployee()
+	{
+		echo "in show all employee";
+	}
 }
