@@ -1,2 +1,0 @@
-# ciTraining
-codeignighter training
