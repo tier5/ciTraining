@@ -63,7 +63,14 @@
                 <div class="col-lg-12">
                     <h1>Add New Employee</h1>
                     <div class="col-lg-4"></div>
-                    <div class="col-lg-4">hello</div>
+                    <div class="col-lg-4">
+                    <input type='text' id='empname' name='empname' placeholder='employee Name'><span class="glyphicon glyphicon-pencil"></span><br/>
+                    <input type='text' id='empemail' name='empemail' placeholder='employee Email'><span class="glyphicon glyphicon-pencil"></span><br/>
+                    <input type='password' id='emppass' name='emppass' placeholder='Password'><span class="glyphicon glyphicon-pencil"></span><br/>
+                    <input type='submit' id='addemp' name='addemp' class='btn btn-default' value='Add Employee'>
+                    <br/>
+                    <div id="errorAdd" align="center" class='addemp'></div>
+                    </div>
                     <div class="col-lg-4"></div>
                 </div>
             </div>
