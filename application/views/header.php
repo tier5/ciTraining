@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tier5 Admin</title>
+    <title>Tier5</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
@@ -34,6 +34,8 @@
     <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/showallemployee.js'?>"></script>
 
-     <script type="text/javascript" src="<?php echo base_url().'application/views/js/addemp.js';?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/addemp.js';?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/buttons.js';?>"></script>
+
 
 </head>
