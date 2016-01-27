@@ -36,6 +36,12 @@
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/addemp.js';?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/buttons.js';?>"></script>
+
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/update.js';?>"></script>
+
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/clockin.js';?>"></script>
+
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/time.js';?>"></script>
+
 
 </head>

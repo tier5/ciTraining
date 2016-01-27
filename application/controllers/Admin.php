@@ -89,4 +89,13 @@ class Admin extends CI_Controller
 			$this->load->view('html/adminview');
 		}
 	}
+
+
+	public function myfun()
+	{
+		$this->load->view('testtimer');
+	}
+
+
+
 }
