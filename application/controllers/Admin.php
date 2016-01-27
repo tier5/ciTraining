@@ -53,7 +53,7 @@ class Admin extends CI_Controller {
 			}
 			else
 			{
-				echo "oops! Cant Add. Email address already exists!!";
+				echo "oops! Cant Add. Email already exists!!";
 
 			}
 		}
