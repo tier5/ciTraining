@@ -10,30 +10,30 @@
 
       public function updateEmp($data)
      {  
-            $data12= array('id'=>$data['id']);
-            $check= $this->db->get_where('employee',$data12);
-            if ($check) 
-            {
-              print_r($data);
-             /* $data= array(
-                'id'=>$data['id'],
-                'name'=>$data['name'],
-                'email'=>$data['email'],
-                'password'=>$data['password']
-                );*/
-              //$check13= $this->db->update('employee',$data);
-              //print_r($check13->row());
-              //if ($check13) 
-              //{
-                //return true;
-                //print_r($check13);
-              //}
-              //else
-              //{
-                //return false;
-              //}
-
-            }
+         
+          $dataset=array('id'=>$data['id']);
+      
+           $selectrow=$this->db->get_where('employee',$dataset);
+       
+       if ($selectrow->row()) 
+        {
+          
+          $dataset1=array('name'=>$data['name'], 'email'=>$data['email'], 'password'=>$data['password']);
+          $finalres=$this->db->update('employee', $dataset1);
+          if ($finalres) 
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+          
+        }
+        else
+        {
+          return false;
+        }
             
             
       }

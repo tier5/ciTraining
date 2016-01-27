@@ -22,27 +22,26 @@ class Admin extends CI_Controller
 	{
 		
       extract($_POST);
-      if(isset($updtemp1))
+      if (isset($updtemp1)) 
       {
+      	//echo "hello";
+      	$data['id']= $empid1;
+      	//echo $data['id'];
+      	$data['name']= $newname1;
+      	$data['email']= $newemail1;
+      	$data['password']= $newpass1;
+      	//print_r($data);
+      	$update=$this->AdminModel->updateEmp($data);
+      	if ($update) 
+			{
+				echo "Employee updated Sucessfully";
+			}
+			else
+			{
+				echo "oops! Cant update!!";
+			}
 
-        $data['id']=$empid1;
-        $data['name']=$newname1;
-        $data['email']=$newemail1;
-        $data['password']=$newpass1;
-      
-        //$this->load->model('AdminModel');
-
-        $valu=$this->AdminModel->updateEmp($data);
-        if($valu)
-        {
-        	echo "updated sucessfully";
-        }
-        else
-        {
-        	echo "Failed to update";
-        }
-
-	   }
+      }
      }
 
 	public function showAllEmployee()
