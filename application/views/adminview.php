@@ -66,15 +66,17 @@
                     <div class="col-lg-4">
                        
                         <input type='text' id='empname' name='empname' placeholder='employee Name'><br/>
-                        <br/>
+                        
                         <input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
-                        <span id="email_feedback"></span><br/>
+                        <div id="errorAdd1" align="center" class="error"></div>
+                        
                         <input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
-                        <br/>
+                        
                         <input type='submit' id='addemp' name='addemp' class='btn btn-default' value='Add Employee'>
-                        <br/>
+                        
                         <div id="errorAdd" align="center" class="error"></div>
                         <div id="confirmAdd" align="center" class="confirm"></div>
+
                         
                        
                     </div>
