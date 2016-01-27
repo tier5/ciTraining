@@ -93,8 +93,19 @@
                 <div class="col-lg-12">
                     <h1>Update Employee</h1>
                     <div class="col-lg-4"></div>
-                    <div class="col-lg-4">hello</div>
-                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4" >
+                    <input type="text" id="empid" name="empid" placeholder="Enter Old Employee Id">*
+                    </br>
+                    <input type="text" id="newname" name="newname" placeholder="Enter New Name">*
+                    </br>
+                    <input type="email" id="newemail" name="newemail" placeholder="Enter New Email Id">*
+                    </br>
+                    <input type="password" id="newpass" name="newpass" placeholder="Enter New Password">*
+                    </br>
+                    <input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
+                
+                    <div id="alartmsg"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,10 +119,6 @@
                     <h1>Show all Employee</h1>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-
-
-
-
 
                     	<div id="showallemployeeDiv"></div>
 

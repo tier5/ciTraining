@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller 
+{
 
 	public function __construct()
 	{
@@ -16,7 +17,33 @@ class Admin extends CI_Controller {
 		$this->load->view('adminview');
 		
 	}
+    
+    public function update()
+	{
+		
+      extract($_POST);
+      if(isset($updtemp1))
+      {
 
+        $data['id']=$empid1;
+        $data['name']=$newname1;
+        $data['email']=$newemail1;
+        $data['password']=$newpass1;
+      
+        //$this->load->model('AdminModel');
+
+        $valu=$this->AdminModel->updateEmp($data);
+        if($valu)
+        {
+        	echo "updated sucessfully";
+        }
+        else
+        {
+        	echo "Failed to update";
+        }
+
+	   }
+     }
 
 	public function showAllEmployee()
 	{
@@ -27,7 +54,7 @@ class Admin extends CI_Controller {
 			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
 		}
 	}
-
+    
 	public function addEmp()
 	{	
 		/*extract($_POST);
@@ -62,8 +89,4 @@ class Admin extends CI_Controller {
 			$this->load->view('html/adminview');
 		}
 	}
-
-	
-
-
 }
