@@ -23,6 +23,7 @@ class Admin extends CI_Controller
 	    if (isset($updtemp1)) 
 	    {
 	      	$data1=array('id'=>$empid1);
+	      	//$data2=array('email'=>$newemail1);
 			$data['name']= $newname1;
 			$data['email']= $newemail1;
 			$data['password']= $newpass1;
