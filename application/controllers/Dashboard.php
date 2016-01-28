@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('Dashboardmodel');
+		$this->load->library('session');
 	}
 
 	public function index()
@@ -29,6 +30,14 @@ class Dashboard extends CI_Controller {
 		
 		if($result)
 		{
+
+			//$this->load->view('adminview');
+			
+			$adminsession['adminid'] = $result['id'];
+
+			$this->session->set_userdata($adminsession);
+			header("location:".base_url()."index.php/Admin");
+
 			
 			header("Location:".base_url()."index.php/Admin");
 			
@@ -52,7 +61,21 @@ class Dashboard extends CI_Controller {
 		
 		if($result)
 		{
-			$this->load->view('employeeview');
+
+			//print_r($result);
+			//$sessionval['id'] = $result[0]->id;
+			//$sessionval['name'] = $result[0]->name;
+			
+			$empsession['empid'] = $result['id'];
+
+			$this->session->set_userdata($empsession);
+			//print_r($this->session->userdata('id'));
+
+			//$session_id = $this->session->userdata('id');
+
+			//print_r($this->session->userdata('id'));
+			
+			header("location:".base_url()."index.php/Employee");
 		}
 		else
 		{
@@ -103,5 +126,11 @@ class Dashboard extends CI_Controller {
 		}
 	}
 
+
+	public function chksession()
+	{
+		print_r($this->session->userdata('empid'));
+		
+	}
 
 }

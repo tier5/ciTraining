@@ -47,6 +47,7 @@ $(document).ready(function(){
                 $('#errorAdd').html('');
                 $('#errorAdd1').html('');
                 });
+                //alert(empname+""+empemail+""+emppass);
 	   					
 	   		}
 	   		else //if doesnot in proper manner

@@ -37,8 +37,8 @@
       }
       public function addEmployee($data)
       {
-          $data1=array(
-            'email'=>$data['email']); 
+         $data1=array(
+            'email'=>$data['email']);
             //email already exists or not
           $result= $this->db->get_where('employee',$data1);
            //print_r($result);

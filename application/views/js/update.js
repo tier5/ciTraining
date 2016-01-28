@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
   $('#updtemp').click(function()
 
       { 
@@ -31,4 +31,4 @@ $(document).ready(function(){
               $('#alartmsg').html('All * marked fields are required');
           }
       });
-});
+});*/

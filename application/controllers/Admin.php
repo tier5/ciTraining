@@ -10,11 +10,25 @@ class Admin extends CI_Controller
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('AdminModel');
+		$this->load->library('session');
 	}
 	
 	public function index()
 	{
-	    $this->load->view('adminview');
+
+		if ($this->session->userdata('adminid'))
+		{
+			$this->load->view('adminview');
+		}
+		
+		else
+		{
+			echo "session does not exist";
+			header("location:".base_url()."index.php/Dashboard");
+		}
+		
+
+	   
 	}
     
     public function update()
@@ -45,48 +59,52 @@ class Admin extends CI_Controller
 
 		foreach ($add as $row) 
 		{
-			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
+			echo "ID:\n ".$row->id." NAME:\n ".$row->name." EMAIL:\n ".$row->email."</br>";
 		}
 	}
     
 	public function addEmp()
-	{	
-		/*extract($_POST);
-		if (isset($btn)) 
-		{
-		echo "hi";
-		}*/
-		//$this->load->view('html/addRec');
-		extract($_POST);
-		if (isset($btn)) 
-		{
-			$data['name']=$name;
-			//echo "$name";
-			$data['email']=$email;
-			//echo "$email";
-			$data['password']=$pass;
-			//echo "$pass";
-			
-			$add=$this->AdminModel->addEmployee($data);
-			if ($add) 
-			{
-				echo "Employee Added Sucessfully";
-			}
-			else
-			{
-				echo "oops! Cant Add. Email already exists!!";
+    {   
+        /*extract($_POST);
+        if (isset($btn))
+        {
+        echo "hi";
+        }*/
+        //$this->load->view('html/addRec');
+        extract($_POST);
+        if (isset($btn))
+        {
+            $data['name']=$name;
+            //echo "$name";
+            $data['email']=$email;
+            //echo "$email";
+            $data['password']=$pass;
+            //echo "$pass";
+            //print_r($data);
+           
+            $add=$this->AdminModel->addEmployee($data);
+            if ($add)
+            {
+                echo "Employee Added Sucessfully";
+            }
+            else
+            {
+                echo "oops! Cant Add. Email already exists!!";
 
-			}
-		}
-		else
-		{
-			$this->load->view('html/adminview');
-		}
-	}
+            }
+        }
+        else
+        {
+            $this->load->view('html/adminview');
+        }
+    }
 
+	
 
-	public function myfun()
+	public function logout()
 	{
-		$this->load->view('testtimer');
+		$this->session->unset_userdata('adminid');
+
+		header("location:".base_url()."index.php/Dashboard");
 	}
 }
