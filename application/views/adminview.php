@@ -64,7 +64,7 @@
                     <h1>Add New Employee</h1>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-<<<<<<< HEAD
+
                        
                         <input type='text' id='empname' name='empname' placeholder='employee Name'><br/>
                         
@@ -79,20 +79,6 @@
                         <div id="confirmAdd" align="center" class="confirm"></div>
 
                         
-=======
-                      
-                        <input type='text' id='empname' name='empname' placeholder='employee Name'><br/>
->>>>>>> 3908e7d290b892de0402a64cc30de4c642af73ff
-                       
-                        <input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
-                        <div id="errorAdd1" align="center" class="error"></div>
-                       
-                        <input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
-                       
-                        <input type='submit' id='addemp' name='addemp' class='btn btn-default' value='Add Employee'>
-                       
-                        <div id="errorAdd" align="center" class="error"></div>
-                        <div id="confirmAdd" align="center" class="confirm"></div>
 
                        
                       
