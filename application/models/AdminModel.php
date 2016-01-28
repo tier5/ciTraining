@@ -8,25 +8,22 @@
          //$this->load->database();
       } 
 
-      public function updateEmp($data)
+      public function updateEmp($data1, $data)
      {  
          
-          $dataset=array('id'=>$data['id']);
-      
-           $selectrow=$this->db->get_where('employee',$dataset);
-       
-       if ($selectrow->row()) 
-        {
+
+        $finalres=$this->db->update('employee', $data, $data1);
+        
+          if ($finalres) 
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
           
-          $dataset1=array('name'=>$data['name'], 'email'=>$data['email'], 'password'=>$data['password']);
-          $this->db->where('id', $data['id']);
-          $this->db->update('employee', $dataset1);
-          return true;
-        }
-        else
-        {
-          return false;
-        }
+
             
             
       }

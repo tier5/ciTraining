@@ -25,13 +25,14 @@ class Admin extends CI_Controller
       if (isset($updtemp1)) 
       {
       	//echo "hello";
-      	$data['id']= $empid1;
+      	//$data['id']= $empid1;
+      	$data1=array('id'=>$empid1);
       	//echo $data['id'];
       	$data['name']= $newname1;
       	$data['email']= $newemail1;
       	$data['password']= $newpass1;
       	//print_r($data);
-      	$update=$this->AdminModel->updateEmp($data);
+      	$update=$this->AdminModel->updateEmp($data1, $data);
       	if ($update) 
 			{
 				echo "Employee updated Sucessfully";
