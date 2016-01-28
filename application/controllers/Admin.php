@@ -34,7 +34,7 @@ class Admin extends CI_Controller
 				}
 		    else
 				{
-					echo "Oops! Cant update!!";
+					echo "Opps Can't update!!";
 				}
 	    }
     }
@@ -43,10 +43,26 @@ class Admin extends CI_Controller
 	{
 		$add=$this->AdminModel->ShowEmployee();
 
-		foreach ($add as $row) 
-		{
-			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
-		}
+		//foreach ($add as $row) 
+		//{
+			//echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
+
+            echo "<table  border='1' align='center'>
+		              <tr>
+		                <th> Id </th>
+						<th> Name </th>
+						<th> Email </th>
+		             </tr>";
+		    foreach ($add as $row) 
+		    {
+					  echo "<tr align='left'>";
+						echo "<td>" .'&nbsp'. $row->id . "</td>";
+						echo "<td>" .'&nbsp'. $row->name . "</td>";
+						echo "<td>" .'&nbsp'. $row->email . "</td>";
+					  echo "</tr>";
+                    
+		    }
+		    echo "</table>";
 	}
     
 	public function addEmp()
