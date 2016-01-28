@@ -19,16 +19,9 @@
         {
           
           $dataset1=array('name'=>$data['name'], 'email'=>$data['email'], 'password'=>$data['password']);
-          $finalres=$this->db->update('employee', $dataset1);
-          if ($finalres) 
-          {
-            return true;
-          }
-          else
-          {
-            return false;
-          }
-          
+          $this->db->where('id', $data['id']);
+          $this->db->update('employee', $dataset1);
+          return true;
         }
         else
         {
