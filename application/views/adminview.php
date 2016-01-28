@@ -100,11 +100,13 @@
                     </br>
                     <input type="email" id="newemail" name="newemail" placeholder="Enter New Email Id">*
                     </br>
+
                     <input type="password" id="newpass" name="newpass" placeholder="Enter New Password">*
                     </br>
                     <input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
                 
-                    <div id="alartmsg"></div>
+                    <div id="alartmsg" class="confirm"></div>
+                    <div id="alartmsg1" class="error"></div>
                     </div>
                 </div>
             </div>
