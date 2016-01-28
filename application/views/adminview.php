@@ -103,7 +103,9 @@
                     <input type="password" id="newpass" name="newpass" placeholder="Enter New Password">*
                     </br>
                     <input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
-                
+                      </br>
+                    <div id="emailcheck"></div>
+                     </br>
                     <div id="alartmsg"></div>
                     </div>
                 </div>
