@@ -8,18 +8,11 @@
          //$this->load->database();
       } 
 
-      public function updateEmp($data)
+      public function updateEmp($data1, $data)
      {  
          
-          $dataset=array('id'=>$data['id']);
-      
-           $selectrow=$this->db->get_where('employee',$dataset);
-       
-       if ($selectrow->row()) 
-        {
-          
-          $dataset1=array('name'=>$data['name'], 'email'=>$data['email'], 'password'=>$data['password']);
-          $finalres=$this->db->update('employee', $dataset1);
+        $finalres=$this->db->update('employee', $data, $data1);
+        
           if ($finalres) 
           {
             return true;
@@ -29,11 +22,7 @@
             return false;
           }
           
-        }
-        else
-        {
-          return false;
-        }
+        
             
             
       }
