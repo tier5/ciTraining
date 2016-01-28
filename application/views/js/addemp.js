@@ -64,7 +64,7 @@ $(document).ready(function(){
 	   	else //if all fields doesnt exist
 	   	{	
 	   		$('#errorAdd1').html('');
-	   		$('#errorAdd').html('*All Fields are Mandetory');
+	   		$('#errorAdd').html('All (*) Fields are Required');
 	   	}
 
 	   		

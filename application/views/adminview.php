@@ -79,18 +79,19 @@
                     <h1>Add New Employee</h1>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-                       
-                        <input type='text' id='empname' name='empname' placeholder='employee Name'><br/>
                         
-                        <input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
-                        <div id="errorAdd1" align="center" class="error"></div>
+                        <span class="fieldset">*</span><input type='text' id='empname' name='empname' placeholder='Employee Name'>
+                        <br/>
                         
-                        <input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
+                        <span class="fieldset">*</span><input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
+                         <div id="errorAdd1" align="center" class="error"></div>
                         
-                        <input type='submit' id='addemp' name='addemp' class='btn btn-default' value='Add Employee'>
+                        <span class="fieldset">*</span><input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
                         
-                        <div id="errorAdd" align="center" class="error"></div>
-                        <div id="confirmAdd" align="center" class="confirm"></div>
+                         &nbsp<input type='submit' id='addemp' name='addemp' class='btn btn-info' value='Add Employee'>
+                        
+                         <div id="errorAdd" align="center" class="error"></div>
+                         <div id="confirmAdd" align="center" class="confirm"></div>
 
                         
                        
@@ -108,8 +109,29 @@
                 <div class="col-lg-12">
                     <h1>Update Employee</h1>
                     <div class="col-lg-4"></div>
-                    <div class="col-lg-4">hello</div>
-                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4" >
+                    <span class="fieldset">*</span><input type="text" id="empid" name="empid" placeholder="Enter Old Employee Id">
+                    </br>
+                    <span class="fieldset">*</span><input type="text" id="newname" name="newname" placeholder="Enter New Name">
+                    </br>
+                    <span class="fieldset">*</span><input type="text" id="newemail" name="newemail" placeholder="Enter New Email Id">
+                    </br>
+
+                    <span class="fieldset">*</span><input type="password" id="newpass" name="newpass" placeholder="Enter New Password">
+                    </br>
+<<<<<<< HEAD
+                    <input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
+                      </br>
+                    <div id="emailcheck"></div>
+                     </br>
+                    <div id="alartmsg"></div>
+=======
+                    &nbsp<input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
+                
+                    <div id="alartmsg" class="confirm"></div>
+                    <div id="alartmsg1" class="error"></div>
+>>>>>>> 8cf8a8b4655a54ee833026ffc7bbde6f3eeb3031
+                    </div>
                 </div>
             </div>
         </div>
@@ -123,10 +145,6 @@
                     <h1>Show all Employee</h1>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-
-
-
-
 
                     	<div id="showallemployeeDiv"></div>
 

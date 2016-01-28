@@ -9,8 +9,11 @@ class Employee extends CI_Controller
 
 		$this->load->helper('url');
 		$this->load->database();
+
 		$this->load->library('session');
-		
+
+		$this->load->model('EmployeeModel');
+	
 
 	}
 
@@ -36,5 +39,48 @@ class Employee extends CI_Controller
 		header("location:".base_url()."index.php/Dashboard");
 
 		//$this->session->sess_destroy();
+	}
+
+	public function clockin()
+	{
+		extract($_POST);
+		if (isset($btn)) 
+		{
+			//echo "hiii";
+			//$day=date('l');
+			$date=date('d-m-y');
+			$time= date('h:i:s');
+			$data['date']=$date;
+			$data['clockin']=$time;
+			$ctime=$this->EmployeeModel->clockintime($data);
+			//echo $data['date'].$data['time'];
+			if ($ctime) 
+			{
+				echo "Attendance marked @"."\n".$data['clockin'];
+			}
+			else
+			{
+				echo "error";
+			}
+		}
+	}
+	public function clockout()
+	{
+		extract($_POST);
+		if (isset($btn)) 
+		{
+			//echo "hi";
+			$time= date('h:i:s');
+			$data['clockout']=$time;
+			$couttime=$this->EmployeeModel->clockouttime($data);
+			if ($couttime) 
+			{
+				echo "Clocked out @"."\n".$data['clockout'];
+			}
+			else
+			{
+				echo "error";
+			}
+		}
 	}
 }

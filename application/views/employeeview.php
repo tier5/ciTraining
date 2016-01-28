@@ -18,6 +18,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
+                <br/>
+                <div id="clockintime"></div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,11 +58,20 @@
     <section id="intro" class="intro-section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    
-                    
-                    <button class="btn btn-primary" id="clockbtn">Clock In</button>
 
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <!---work------------------------------------>
+                    
+                    
+                    <button class="btn btn-primary" id="clockbtn" name="clockinbtn">Clock In</button>
+
+                    
+                    <!---work------------------------------------>
+                </div>
+
+                <div class="col-sm-4">
+                    <div id="clockintime1"></div>
                 </div>
             </div>
 
@@ -72,6 +83,7 @@
                 <div class="col-sm-4" >
 
                     <select class="btn btn-default" id="opt">
+                      <option value="" selected="selected"> Select a Break</option>
                       <option value="fbreak" id="fbreak">First Break</option>
                       <option value="sbreak" id="sbreak">Second Break</option>
                       <option value="lbreak" id="lbreak">Last Break</option>
@@ -81,12 +93,12 @@
                 
                 <div class="col-sm-4" >
 
-                    <button class="btn btn-primary" id="breakbtn">break</button>
+                    <button class="btn btn-primary" id="breakbtn" name="breakbtn">break</button>
                 
                 </div>
                 
                
-                <div class="col-sm-4">message</div>
+                <div class="col-sm-4" id="breakmsg"></div>
            
             </div>
         

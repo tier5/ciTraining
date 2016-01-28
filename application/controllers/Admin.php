@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller 
+{
 
 	public function __construct()
 	{
@@ -14,6 +15,7 @@ class Admin extends CI_Controller {
 	
 	public function index()
 	{
+
 		if ($this->session->userdata('adminid'))
 		{
 			$this->load->view('adminview');
@@ -25,8 +27,30 @@ class Admin extends CI_Controller {
 			header("location:".base_url()."index.php/Dashboard");
 		}
 		
-	}
 
+	    $this->load->view('adminview');
+	}
+    
+    public function update()
+	{
+	    extract($_POST);
+	    if (isset($updtemp1)) 
+	    {
+	      	$data1=array('id'=>$empid1);
+			$data['name']= $newname1;
+			$data['email']= $newemail1;
+			$data['password']= $newpass1;
+	      	$update=$this->AdminModel->updateEmp($data1, $data);
+	      	if ($update) 
+				{
+					echo "Employee updated Sucessfully!!";
+				}
+		    else
+				{
+					echo "Oops! Cant update!!";
+				}
+	    }
+    }
 
 	public function showAllEmployee()
 	{
@@ -37,7 +61,7 @@ class Admin extends CI_Controller {
 			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
 		}
 	}
-
+    
 	public function addEmp()
 	{	
 		/*extract($_POST);
@@ -73,12 +97,12 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	
+
 	public function logout()
 	{
 		$this->session->unset_userdata('adminid');
 
 		header("location:".base_url()."index.php/Dashboard");
 	}
-
-
 }
