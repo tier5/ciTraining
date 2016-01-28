@@ -10,40 +10,47 @@ class Admin extends CI_Controller
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('AdminModel');
+		$this->load->library('session');
 	}
 	
 	public function index()
 	{
-		$this->load->view('adminview');
+
+		if ($this->session->userdata('adminid'))
+		{
+			$this->load->view('adminview');
+		}
 		
+		else
+		{
+			echo "session does not exist";
+			header("location:".base_url()."index.php/Dashboard");
+		}
+		
+
+	   
 	}
     
     public function update()
 	{
-		
-      extract($_POST);
-      if (isset($updtemp1)) 
-      {
-      	//echo "hello";
-      	//$data['id']= $empid1;
-      	$data1=array('id'=>$empid1);
-      	//echo $data['id'];
-      	$data['name']= $newname1;
-      	$data['email']= $newemail1;
-      	$data['password']= $newpass1;
-      	//print_r($data);
-      	$update=$this->AdminModel->updateEmp($data1, $data);
-      	if ($update) 
-			{
-				echo "Employee updated Sucessfully";
-			}
-			else
-			{
-				echo "oops! Cant update!!";
-			}
-
-      }
-     }
+	    extract($_POST);
+	    if (isset($updtemp1)) 
+	    {
+	      	$data1=array('id'=>$empid1);
+			$data['name']= $newname1;
+			$data['email']= $newemail1;
+			$data['password']= $newpass1;
+	      	$update=$this->AdminModel->updateEmp($data1, $data);
+	      	if ($update) 
+				{
+					echo "Employee updated Sucessfully!!";
+				}
+		    else
+				{
+					echo "Oops! Cant update!!";
+				}
+	    }
+    }
 
 	public function showAllEmployee()
 	{
@@ -56,46 +63,47 @@ class Admin extends CI_Controller
 	}
     
 	public function addEmp()
-	{	
-		/*extract($_POST);
-		if (isset($btn)) 
-		{
-		echo "hi";
-		}*/
-		//$this->load->view('html/addRec');
-		extract($_POST);
-		if (isset($btn)) 
-		{
-			$data['name']=$name;
-			//echo "$name";
-			$data['email']=$email;
-			//echo "$email";
-			$data['password']=$pass;
-			//echo "$pass";
-			
-			$add=$this->AdminModel->addEmployee($data);
-			if ($add) 
-			{
-				echo "Employee Added Sucessfully";
-			}
-			else
-			{
-				echo "oops! Cant Add. Email already exists!!";
+    {   
+        /*extract($_POST);
+        if (isset($btn))
+        {
+        echo "hi";
+        }*/
+        //$this->load->view('html/addRec');
+        extract($_POST);
+        if (isset($btn))
+        {
+            $data['name']=$name;
+            //echo "$name";
+            $data['email']=$email;
+            //echo "$email";
+            $data['password']=$pass;
+            //echo "$pass";
+            //print_r($data);
+           
+            $add=$this->AdminModel->addEmployee($data);
+            if ($add)
+            {
+                echo "Employee Added Sucessfully";
+            }
+            else
+            {
+                echo "oops! Cant Add. Email already exists!!";
 
-			}
-		}
-		else
-		{
-			$this->load->view('html/adminview');
-		}
-	}
+            }
+        }
+        else
+        {
+            $this->load->view('html/adminview');
+        }
+    }
 
+	
 
-	public function myfun()
+	public function logout()
 	{
-		$this->load->view('testtimer');
+		$this->session->unset_userdata('adminid');
+
+		header("location:".base_url()."index.php/Dashboard");
 	}
-
-
-
 }

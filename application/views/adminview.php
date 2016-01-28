@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Employee On Break</h1>
-                    
+                   
                     <a class="btn btn-default page-scroll" href="#about">Go To Employee Management!</a>
                 </div>
             </div>
@@ -64,22 +64,21 @@
                     <h1>Add New Employee</h1>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
-                        
-                        <span class="fieldset">*</span><input type='text' id='empname' name='empname' placeholder='Employee Name'>
-                        <br/>
-                        
-                        <span class="fieldset">*</span><input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
-                         <div id="errorAdd1" align="center" class="error"></div>
-                        
-                        <span class="fieldset">*</span><input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
-                        
-                         &nbsp<input type='submit' id='addemp' name='addemp' class='btn btn-info' value='Add Employee'>
-                        
-                         <div id="errorAdd" align="center" class="error"></div>
-                         <div id="confirmAdd" align="center" class="confirm"></div>
-
-                        
+                      
+                        <input type='text' id='empname' name='empname' placeholder='employee Name'><br/>
                        
+                        <input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
+                        <div id="errorAdd1" align="center" class="error"></div>
+                       
+                        <input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
+                       
+                        <input type='submit' id='addemp' name='addemp' class='btn btn-default' value='Add Employee'>
+                       
+                        <div id="errorAdd" align="center" class="error"></div>
+                        <div id="confirmAdd" align="center" class="confirm"></div>
+
+                       
+                      
                     </div>
                     <div class="col-lg-4"></div>
                 </div>
@@ -95,19 +94,17 @@
                     <h1>Update Employee</h1>
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4" >
-                    <span class="fieldset">*</span><input type="text" id="empid" name="empid" placeholder="Enter Old Employee Id">
+                    <input type="text" id="empid" name="empid" placeholder="Enter Old Employee Id">*
                     </br>
-                    <span class="fieldset">*</span><input type="text" id="newname" name="newname" placeholder="Enter New Name">
+                    <input type="text" id="newname" name="newname" placeholder="Enter New Name">*
                     </br>
-                    <span class="fieldset">*</span><input type="text" id="newemail" name="newemail" placeholder="Enter New Email Id">
+                    <input type="email" id="newemail" name="newemail" placeholder="Enter New Email Id">*
                     </br>
-
-                    <span class="fieldset">*</span><input type="password" id="newpass" name="newpass" placeholder="Enter New Password">
+                    <input type="password" id="newpass" name="newpass" placeholder="Enter New Password">*
                     </br>
-                    &nbsp<input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
-                
-                    <div id="alartmsg" class="confirm"></div>
-                    <div id="alartmsg1" class="error"></div>
+                    <input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
+                      </br>
+                    <div id="alartmsg"></div>
                     </div>
                 </div>
             </div>
@@ -123,7 +120,7 @@
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">
 
-                    	<div id="showallemployeeDiv"></div>
+                        <div id="showallemployeeDiv"></div>
 
 
 
@@ -135,7 +132,7 @@
         </div>
     </section>
 
-    
+   
 
 </body>
 
