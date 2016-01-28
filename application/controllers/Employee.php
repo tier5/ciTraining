@@ -10,6 +10,7 @@ class Employee extends CI_Controller
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('EmployeeModel');
+		//$this->$data['clockin']=$time;
 		
 
 	}
@@ -44,6 +45,10 @@ class Employee extends CI_Controller
 	}
 	public function clockout()
 	{
+		//echo $data;
+		//$dataset=$this->$data;
+		//print_r($dataset['clockin']);
+		//die;
 		extract($_POST);
 		if (isset($btn)) 
 		{

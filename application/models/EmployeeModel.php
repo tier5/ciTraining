@@ -20,7 +20,8 @@ class EmployeeModel extends CI_model
 	}
 	public function clockouttime($data)
 	{
-
+        //print_r($data);
+        //print_r($dataset);
 		//$this->db->where('clockout', $data);
 		$result1=$this->db->update('attendance',$data);
 		if($result1)

@@ -51,7 +51,7 @@ class Admin extends CI_Controller
 
 		foreach ($add as $row) 
 		{
-			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
+			echo "ID:\n ".$row->id." NAME:\n ".$row->name." EMAIL:\n ".$row->email."</br>";
 		}
 	}
     
