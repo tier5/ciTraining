@@ -11,12 +11,12 @@
       public function adminlogin($data)
       {
       	$result= $this->db->get_where('admin',$data);
-      	return $result->result();
+      	return $result->row_array();
       }
 
       public function employeelogin($data)
       {
       	$result= $this->db->get_where('employee',$data);
-      	return $result->result();
+      	return $result->row_array();
       }
   }

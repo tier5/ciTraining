@@ -9,11 +9,21 @@ class Admin extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('AdminModel');
+		$this->load->library('session');
 	}
 	
 	public function index()
 	{
-		$this->load->view('adminview');
+		if ($this->session->userdata('adminid'))
+		{
+			$this->load->view('adminview');
+		}
+		
+		else
+		{
+			echo "session does not exist";
+			header("location:".base_url()."index.php/Dashboard");
+		}
 		
 	}
 
@@ -63,9 +73,11 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function myfun()
+	public function logout()
 	{
-		$this->load->view('testtimer');
+		$this->session->unset_userdata('adminid');
+
+		header("location:".base_url()."index.php/Dashboard");
 	}
 
 

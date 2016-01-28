@@ -38,6 +38,15 @@
 
                     </li>
                 </ul>
+                <ul>
+                     <li >
+                        <form action="Employee/logout" method="post">
+                
+                            <input type="submit" value="logout" class="btn btn-default pull-right">
+                        
+                        </form>
+                    </li>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>

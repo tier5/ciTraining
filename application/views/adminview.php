@@ -36,6 +36,17 @@
                     <li>
                         <a class="page-scroll" href="#contact">Show all Employee</a>
                     </li>
+                   
+                </ul>
+
+                <ul>
+                     <li>
+                        <form action="Admin/logout" method="post">
+                
+                            <input type="submit" value="logout" class="btn btn-default pull-right">
+                        
+                        </form>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -44,7 +55,11 @@
     </nav>
 
     <!-- Intro Section -->
+        <button class="btn btn-default page-scroll">Go To Employee Management!</button>
+
+
     <section id="intro" class="intro-section">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
