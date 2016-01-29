@@ -39,8 +39,6 @@
                    
                 </ul>
 
-                <ul>
-                     <li>
                         <form action="Admin/logout" method="post">
                 
                             <input type="submit" value="logout" class="btn btn-default pull-right">
