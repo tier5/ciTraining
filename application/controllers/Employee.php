@@ -88,6 +88,7 @@ class Employee extends CI_Controller
 
 		$this->EmployeeModel->endBreak($data);
 
+		
 
 	}
 
@@ -104,4 +105,76 @@ class Employee extends CI_Controller
 
 		print_r($return);
 	}
+
+	public function autoChangeButton()
+	{
+		$data['Eid'] = $this->session->userdata('empid');
+		$data['date'] = date("d/m/Y");
+
+		$res = $this->EmployeeModel->autoChangeButton($data);
+
+		if($res)
+		{
+			echo "Clock Out";
+		}
+		else
+		{
+			echo "Clock In";
+		}
+	}
+
+	public function autoChangeBreakButton()
+    {
+        $data['Eid'] = $this->session->userdata('empid');
+		$data['date'] = date("d/m/Y");
+
+		$res = $this->EmployeeModel->autoChangeButton($data);
+
+		if($res['breakstatus'])
+		{
+			echo "work";
+		}
+		else
+		{
+			echo "break";
+		}
+
+
+    }
+
+    public function showBreakName()
+    {
+    	$data['Eid'] = $this->session->userdata('empid');
+		$data['date'] = date("d/m/Y");
+
+		$res = $this->EmployeeModel->autoChangeButton($data);
+
+		echo $res['breakname'];
+    }
+
+    public function storeReturnTime()//store the return break time according to table whick will come as opt
+    {
+    	$storebreak['Eid'] = $this->session->userdata('empid');
+        $storebreak['date'] = date("d/m/Y");
+        $storebreak['endtime'] = date("H:i:s");
+
+        extract($_POST);
+
+        $storebreak['opt'] = $opt;
+
+        $res = $this->EmployeeModel->storeReturnTime($storebreak);
+
+        //print_r($res);
+
+    	
+    }
+
+    public function autoDisableOption()
+
+    {
+    	$data['Eid'] = $this->session->userdata('empid');
+    	$data['date'] = date("d/m/Y");
+
+    	$this->EmployeeModel->autoDisableOption($data);
+    }
 }

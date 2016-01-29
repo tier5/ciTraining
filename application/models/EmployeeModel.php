@@ -59,6 +59,7 @@ class EmployeeModel extends CI_model
         $d=$this->db->where($data);
         $result=$this->db->update('attendance',$data1);
 
+
        
 
 
@@ -72,7 +73,14 @@ class EmployeeModel extends CI_model
         $ifclockedin = $this->db->get_where('attendance',$ifclockedincheck);
         
         if($ifclockedin->result())
-        {
+        {   
+            $storebreak['Eid'] = $data['Eid'];
+            $storebreak['date'] = $data['date'];
+            $storebreak['starttime'] = date("H:i:s");
+
+            $breaktableres=$this->db->insert($data['opt'],$storebreak);
+
+
             //print_r($ifclockedin->result());
             $wheredata['Eid'] = $data['Eid'];
             $wheredata['date'] = $data['date'];
@@ -81,7 +89,7 @@ class EmployeeModel extends CI_model
 
             $d=$this->db->where($wheredata);
             $res=$this->db->update('attendance',$inputdata);
-            
+
             return "have a nice break";
             
         }
@@ -100,6 +108,59 @@ class EmployeeModel extends CI_model
         $result=$this->db->update('attendance',$inputdata);
         */
     }
+
+    public function autoChangeButton($data)
+    {
+        $res = $this->db->get_where('attendance',$data);
+
+        return $res->row_array();
+    }
+
+    public function storeReturnTime($data)
+    {
+            $storebreak['Eid'] = $data['Eid'];
+            $storebreak['date'] = $data['date'];
+            $storebreakvalue['endtime'] = date("H:i:s");
+
+            $tablename = $data['opt'];
+
+            $d=$this->db->where($storebreak);
+            $res=$this->db->update($tablename,$storebreakvalue);
+
+
+
+    }
+
+    public function autoDisableOption($data)
+    {
+        $fbreak = $this->db->get_where('fbreak',$data);
+        if($fbreak->row_array()['endtime'])
+        {
+            echo "#fbreak,";
+            //print_r($fbreak->row_array()['endtime']);
+        }
+        
+
+
+
+        $sbreak = $this->db->get_where('sbreak',$data);
+        if($sbreak->row_array()['endtime'])
+        {
+            echo "#sbreak,";
+        }
+        
+
+
+        $lbreak = $this->db->get_where('lbreak',$data);
+        if($lbreak->row_array()['endtime'])
+        {
+            echo "#lbreak,";
+        }
+        
+            
+    }
+
+
 }
 
 
