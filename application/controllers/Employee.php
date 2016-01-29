@@ -43,9 +43,7 @@ class Employee extends CI_Controller
 
 	public function clockin()
 	{
-		extract($_POST);
-		if (isset($btn)) 
-		{
+		
 			//echo "hiii";
 			//$day=date('l');
 			$date=date("d/m/Y");
@@ -63,26 +61,47 @@ class Employee extends CI_Controller
 			{
 				echo "error";
 			}
-		}
+		
 	}
 	public function clockout()
 	{
-		extract($_POST);
-		if (isset($btn)) 
-		{
+		
 			//echo "hi";
-			$time= date("H:i:s");
-			$data['clockout']=$time;
+			
 			$data['Eid'] = $this->session->userdata('empid');
 			$couttime=$this->EmployeeModel->clockouttime($data);
 			if ($couttime) 
 			{
-				echo "Clocked out @"."\n".$data['clockout'];
+				echo "you have clocked out";
 			}
 			else
 			{
 				echo "error";
 			}
-		}
+		
+	}
+
+	public function endBreak()
+	{
+		$data['Eid'] = $this->session->userdata('empid');
+		$data['date'] = date("d/m/Y");
+
+		$this->EmployeeModel->endBreak($data);
+
+
+	}
+
+	public function inBreak()
+	{
+		extract($_POST);
+
+		$data['Eid'] = $this->session->userdata('empid');
+		$data['opt'] = $opt;
+		//$data['fbreak'] = date("H:i:s");
+		$data['date'] = date("d/m/Y");
+
+		$return = $this->EmployeeModel->inBreak($data);
+
+		print_r($return);
 	}
 }

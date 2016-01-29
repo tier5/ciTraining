@@ -43,5 +43,6 @@
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/time.js';?>"></script>
 
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/breakbuttons.js';?>"></script>
 
 </head>

@@ -5,28 +5,32 @@
             //alert(btn);
             if (btn === 'Clock Out') 
             {
-                $.post('Employee/clockin', {btn: btn}, function(data){
+                $.post('Employee/clockin', function(data){
 
-                $('#clockintime').html(data);
-                $('#clockintime1').html('Hey! Guest, have a nice day!');
+                    $('#clockintime').html(data);
+                    $('#clockintime1').html('Hey! Guest, have a nice day!');
 
 
-           });
-        }
-        else
+                });
+            }
+            
+            else
             {
                 $('#clockintime1').html('Hope! You have enjoyed your office');
 
-                 $.post('Employee/clockout', {btn: btn}, function(data){
+                $.post('Employee/clockout', function(data){
 
-                $('#clockintime').html(data);
-                $('#clockintime1').html('Hey! Guest, see you tommorow');
+                    $('#clockintime').html(data);
+                    $('#clockintime1').html('Hey! Guest, see you tommorow');
 
 
-           });
-            }
-
+                });
+            }    
+    
         });
+
+
+        
 
 
     });
