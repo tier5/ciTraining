@@ -61,17 +61,17 @@
 
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <!---work------------------------------------>
+                    
                     
                     
                     <button class="btn btn-primary" id="clockbtn" name="clockinbtn">Clock In</button>
 
                     
-                    <!---work------------------------------------>
+                    
                 </div>
 
                 <div class="col-sm-4">
-                    <div id="clockintime1"></div>
+                    
                     <div id="clockintime"></div>
                 </div>
             </div>
