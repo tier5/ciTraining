@@ -85,4 +85,39 @@ class Employee extends CI_Controller
 			}
 		}
 	}
+	public function btnv()
+    {
+        $data['date']=date("d/m/Y");
+        $data['Eid']=$this->session->userdata('empid');
+        //print_r($data);
+        $result=$this->EmployeeModel->btnv($data);
+        //print_r($result);
+        if ($result) 
+        {
+        	echo "hi i am clocked in";
+        	//return true;
+        }
+        else
+        {
+        	//echo "no i am not clocked in";
+        	return false;
+        }
+    }
+    public function showclockin()
+    {
+    	//echo "check";
+    	$data['date']=date("d/m/Y");
+        $data['Eid']=$this->session->userdata('empid');
+    	$result=$this->EmployeeModel->showclockin($data);
+    	//print_r($result);
+    	if ($result) 
+    	{
+    		print_r($result);
+    	}
+    	else
+    	{
+    		//print_r("Please clock in");
+    		return false;
+    	}
+    }
 }

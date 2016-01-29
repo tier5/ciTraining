@@ -49,6 +49,35 @@ class EmployeeModel extends CI_model
         }
 
 	}
+    public function btnv($data)
+    {
+        //print_r($data);
+        $value=$this->db->get_where('attendance',$data);
+        //print_r($value->result());
+        if($value->result())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+     public function showclockin($data)
+    {
+       $value1=$this->db->get_where('attendance',$data);
+       if ($value1->row()) 
+       {
+           return $value1->row('clockin');
+       }
+       else
+       {
+        return false;
+       }
+       
+       //print_r($value1->result());
+       //die;
+    }
 }
 
 
