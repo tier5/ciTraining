@@ -105,4 +105,17 @@ class Admin extends CI_Controller
 
 		header("location:".base_url()."index.php/Dashboard");
 	}
+
+	public function clockInEmp()
+    {
+    	extract($_POST);
+    	
+    	$value=$this->AdminModel->clockInEmp();
+    	if(!$value)
+    	{
+    		echo "No Employees Has clocked in till now";
+    	}
+    	
+
+    }   
 }

@@ -40,6 +40,8 @@ $(document).ready(function(){
 	   		{
 	   			$.post('Admin/addEmp',{name: empname, email: empemail, pass: emppass, btn: submitadd}, function(data){
                 $('#confirmAdd').html(data);
+                //alert(data);
+
                 //making fileds blank after submit
                 $('#empname').val('');
                 $('#empemail').val('');
@@ -64,6 +66,7 @@ $(document).ready(function(){
 	   	else //if all fields doesnt exist
 	   	{	
 	   		$('#errorAdd1').html('');
+	   		$('#confirmAdd').html('');
 	   		$('#errorAdd').html('All (*) Fields are Required');
 	   	}
 

@@ -55,18 +55,39 @@
     </nav>
 
     <!-- Intro Section -->
-        <button class="btn btn-default page-scroll">Go To Employee Management!</button>
+     <!--  <button class="btn btn-default page-scroll">Go To Employee Management!</button>-->
 
 
     <section id="intro" class="intro-section">
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-sm-12">
                     <h1>Employee On Break</h1>
                     
                     <a class="btn btn-default page-scroll" href="#about">Go To Employee Management!</a>
                 </div>
+            </div>
+            <div class="row">
+                <br/>
+                <div class="col-sm-3">
+
+                    <strong>Employee Clocked In</strong>
+                    <div id="clockin"></div>
+                </div>
+                 <div class="col-sm-3">
+
+                    <strong>Employees on First Break @ 20 min</strong>
+                </div>
+                 <div class="col-sm-3">
+
+                   <strong>Employees on Lunch Break @ 1 hr</strong>
+                </div>
+                 <div class="col-sm-3">
+
+                   <strong>Employees on Last Break @ 20 min</strong>
+                </div>
+
             </div>
         </div>
     </section>
