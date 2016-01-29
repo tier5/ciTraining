@@ -19,7 +19,7 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
                 <br/>
-                
+                <div id="welcome">Hi</div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -40,8 +40,9 @@
 
                     </li>
                 </ul>
-                <ul>
-                     <li >
+
+
+                
                         <form action="Employee/logout" method="post">
                 
                             <input type="submit" value="logout" class="btn btn-default pull-right">
@@ -49,6 +50,7 @@
                         </form>
                     </li>
                 </ul>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -61,17 +63,17 @@
 
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
-                    <!---work------------------------------------>
                     
                     
-                    <button class="btn btn-primary" id="clockbtn" name="clockinbtn">Clock In</button>
+                    
+                    <button class="btn btn-primary" id="clockbtn" name="clockinbtn"></button>
 
                     
-                    <!---work------------------------------------>
+                    
                 </div>
 
                 <div class="col-sm-4">
-                    <div id="clockintime1"></div>
+                    
                     <div id="clockintime"></div>
                 </div>
             </div>
