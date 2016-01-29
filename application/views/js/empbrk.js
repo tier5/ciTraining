@@ -4,10 +4,15 @@ $(document).ready(function(){
 		if ($.trim(data)) 
 		{
 			$('#clockin').html(data);
+
 		}
 		else
 		{
-			$('#clockin').html('No employees clocked in till now');
+			//$('#clockin1').html('No employees Has clocked in till now');
+			//$("#foo").append(<div>No employees Has clocked in till now</div>);
+			$('#clockin').append('<div id="someid" class="alert alert-danger">No employees Has clocked in till now</div>');
+			//$('#someid').html('');
 		}
 	});
 });
+//============================================================

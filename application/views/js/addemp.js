@@ -67,7 +67,7 @@ $(document).ready(function(){
 	   	{	
 	   		$('#errorAdd1').html('');
 	   		$('#confirmAdd').html('');
-	   		$('#errorAdd').html('All (*) Fields are Required');
+	   		$('#errorAdd').html('Error! All (*) Fields are Required');
 	   	}
 
 	   		

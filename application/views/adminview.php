@@ -74,6 +74,7 @@
 
                     <strong>Employee Clocked In</strong>
                     <div id="clockin"></div>
+
                 </div>
                  <div class="col-sm-3">
 
