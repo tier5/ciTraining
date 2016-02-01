@@ -160,6 +160,28 @@ class EmployeeModel extends CI_model
             
     }
 
+    public function showTimerOnLoad($data)
+    {
+            $res = $this->db->get_where('attendance',$data);
+
+            $breakstatus = $res->row_array()['breakstatus'];
+
+            $breakname = $res->row_array()['breakname'];
+
+            if($breakstatus)
+            {
+                $breaktblres = $this->db->get_where($breakname,$data);//breakname is also the table name
+
+                $starttime['starttime'] = $breaktblres->row_array()['starttime'];
+                $starttime['breakname'] = $breakname;
+                return $starttime;
+               
+            }
+
+            
+          
+    }
+
 
 }
 

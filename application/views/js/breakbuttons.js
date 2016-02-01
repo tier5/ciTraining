@@ -1,6 +1,15 @@
 $(document).ready(function(){
     
-   
+   	$.getScript('http://localhost/ciproject/application/views/js/timerlib.js', function(){	
+
+		//calling the timer javascript library and it is available all over the script body
+		//the path needed to be specified manually as it was not taking, so it needs to be 
+		//changed if the folder name is changed
+    
+
+//==============================================================
+
+
 
     	$.post('Employee/autoChangeButton', function(data){
 
@@ -31,7 +40,32 @@ $(document).ready(function(){
     	});
     
 
+//===============================================================
+
+		$.post('Employee/showTimerOnLoad', function(data){
+
+			if(data)
+			{
+				$('#timer').timer({//timer starts
+            				
+            				duration: data,//time value returned from php file
+
+                            countdown: true,
+            				
+            				callback: function() {
+                				
+                				$("#timeinfo").html("YOU ARE LATE");
+
+                                //$('#timer').timer('remove');
+
+            				}
+        				});
+			}
+
 	
+				
+		});
+
 	
 //================================================================
 
@@ -58,6 +92,41 @@ $(document).ready(function(){
 						
 						
 					});
+
+					//time operation starts from here
+					var totaltime;
+					if(opt== 'fbreak')//setting the time according to the breakname
+					{
+						totaltime = '10s';
+					}
+					
+					if(opt=='sbreak')
+					{
+						totaltime = '20s';
+					}
+
+					if(opt== 'lbreak')
+					{
+						totaltime = '10s';
+					}
+
+					$('#timer').timer({//timer starts
+            				
+            				duration: totaltime,//time value
+
+                            countdown: true,
+            				
+            				callback: function() {
+                				
+                				$("#timeinfo").html("YOU ARE LATE");
+
+                                $('#timer').timer('remove');
+
+            				}
+        				});
+
+
+					
 					
 					//var opt= $('#opt').val();
 					//var opt= $('#opt1').val();
@@ -75,6 +144,7 @@ $(document).ready(function(){
 						 		$('#breakbtn').text("break");//changing the button value to break
 						 		$('#breakmsg').html('Hope You have enjoyed your break');
 						 		$("#"+opt).prop('disabled', true);
+						 		$('#timer').timer('remove');
 						 		
 					 		});
 
@@ -83,6 +153,10 @@ $(document).ready(function(){
 						 		
 						 		//alert(data);
 					 		});
+
+
+
+                                
 
 					 		
 						}
@@ -108,5 +182,7 @@ $(document).ready(function(){
 			$('#breakmsg').html('clockin first');
 		}
 	});
+
+  });
 
 });

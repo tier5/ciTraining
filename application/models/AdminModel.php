@@ -53,6 +53,14 @@
       {
           $result = $this->db->get('employee');
           return $result->result();
+      }
+
+      public function empClockIn($data)
+      {
+ 
+        $result = $this->db->get_where('attendance',$data);
+
+        return $result->result_array();
       }   
    } 
 ?> 

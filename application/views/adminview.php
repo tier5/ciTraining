@@ -60,7 +60,7 @@
 
     <section id="intro" class="intro-section">
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Employee On Break</h1>
@@ -68,6 +68,50 @@
                     <a class="btn btn-default page-scroll" href="#about">Go To Employee Management!</a>
                 </div>
             </div>
+        </br>
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <strong>Employee Clocked In</strong>
+                    
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                                <th>UserName</th>
+                                <th>ClockIn</th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody id="tablediv">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      
+
+                       
+                   </div>
+
+                </div>
+
+                <div class="col-sm-3">
+                    <strong>Employee On First Break</strong>
+                </div>
+
+                <div class="col-sm-3">
+                    <strong>Employee On Lunch Break</strong>
+                </div>
+
+                <div class="col-sm-3">
+                    <strong>Employee On Last Break</strong>
+                </div>
+            </div>
+
+
+
         </div>
     </section>
 

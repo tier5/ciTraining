@@ -177,4 +177,47 @@ class Employee extends CI_Controller
 
     	$this->EmployeeModel->autoDisableOption($data);
     }
+
+
+    public function showTimerOnLoad()
+    {
+
+    	$data['Eid'] = $this->session->userdata('empid');
+    	$data['date'] = date("d/m/Y");
+
+    	$res = $this->EmployeeModel->showTimerOnLoad($data);//returns the time that the break have started
+
+    	$nowtime = new DateTime('now');
+
+		$diff = $nowtime->diff(new DateTime($res['starttime']));
+		$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+
+
+		if($res)
+		{
+			
+			if($res['breakname']=='fbreak')
+			{
+				$totaltime = 1200;
+			}
+
+			else if($res['breakname']=='sbreak')
+			{
+				$totaltime = 3600;
+			}
+
+			if($res['breakname']=='lbreak')
+			{
+				$totaltime = 1200;
+			}
+
+			$remainingtime = $totaltime-$sum;
+
+			print_r($remainingtime);
+
+
+		}
+		    	   	
+    }
 }

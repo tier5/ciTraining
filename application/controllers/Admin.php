@@ -105,4 +105,15 @@ class Admin extends CI_Controller
 
 		header("location:".base_url()."index.php/Dashboard");
 	}
+
+	public function empClockIn()
+	{
+		$data['date'] = date("d/m/Y");
+
+		$res = $this->AdminModel->empClockIn($data);
+
+		$ret = json_encode($res);
+
+		print_r($ret);
+	}
 }

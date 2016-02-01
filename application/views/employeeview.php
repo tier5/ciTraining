@@ -97,7 +97,8 @@
                 
                 </div>
                 
-               
+                <div id="timer"></div>
+                <div id="timeinfo"></div>
                 <div class="col-sm-4" id="breakmsg"></div>
            
             </div>
