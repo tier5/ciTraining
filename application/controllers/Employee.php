@@ -1,18 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Employee extends CI_Controller 
 {
 //===================Constructer================
 	public function __construct()
 	{
 		parent::__construct();
-
 		$this->load->helper('url');
 		$this->load->database();
-
 		$this->load->library('session');
-
 		$this->load->model('EmployeeModel');
 	}
 //========================Index===================
@@ -45,7 +41,6 @@ class Employee extends CI_Controller
         {
 	          $data['Eid']= $this->session->userdata('empid');
 	          $data['date']= date("d/m/Y");
-
 	          $data1['breakname']=$brkval;
 	          $data1['breakstatus']=1;
 	          
@@ -63,7 +58,6 @@ class Employee extends CI_Controller
         {
       	echo "Choose The Proper Break";
         }
-
     }
 //=======================Set The Clock In Time======================
 	public function clockin()
@@ -116,7 +110,8 @@ class Employee extends CI_Controller
 	{    
       $data['Eid'] = $this->session->userdata('empid');
       $data['date']= date("d/m/Y");
-		$acc=$this->EmployeeModel->buttonvalue($data);
+	  $acc=$this->EmployeeModel->buttonvalue($data);
+
 		//print_r($acc);
 		if($acc)
 		{
@@ -126,7 +121,52 @@ class Employee extends CI_Controller
 		{
 			return false;
 		}
-
 	}
-//====================================================================================================================================
+//======================Stop The Break=================
+    public function breakstop()
+    {
+      extract($_POST);
+      $data['Eid']= $this->session->userdata('empid');
+	  $data['date']= date("d/m/Y");
+	  $data['breakname']=$brkval;
+	  $brkstp=$this->EmployeeModel->breakout($data);
+	          if ($brkstp)
+	          {
+                 echo "Break Stop";
+	          	//print_r($brkstp->result());
+	          }
+	          else
+	          {
+                  echo "not stoped";
+	          }
+    }
+//=================Changeing the value of break button=======
+    public function breakbutton()
+    {
+      $data['Eid'] = $this->session->userdata('empid');
+      $data['date']= date("d/m/Y");
+      $data['breakstatus']=1;
+      $bcd=$this->EmployeeModel->brkbtnval($data);
+		if($bcd)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+    }
+//======disable break=============================================================
+    public function breakdisable()
+    {
+    	//$dis=$this->EmployeeModel->breakdisable();
+    	//return $dis;
+    	$data['Eid'] = $this->session->userdata('empid');
+    	$data['date']= date("d/m/Y");
+    	//print_r($data);
+    	$dis=$this->EmployeeModel->breakdisable($data);
+    	//return $dis;
+    	print_r($dis);
+
+    }
 }
