@@ -112,8 +112,38 @@ class Admin extends CI_Controller
 
 		$res = $this->AdminModel->empClockIn($data);
 
-		$ret = json_encode($res);
+		//$ret = json_encode($res);
+		if($res)
+		{
+			foreach ($res as $key) {
+				
+				//print_r();
+				$data1['id'] = $key['Eid'];
+				$res1 = $this->AdminModel->showName($data1);
 
-		print_r($ret);
+				$clockintime = strtotime($key['clockin']);
+
+				$chktime = strtotime("19:07:00");
+
+				if($clockintime>$chktime)
+				{
+					$colorclass = "class='danger'";				
+				}
+
+				else
+				{
+					$colorclass = "class='info'";
+				}
+
+				echo "<tr ".$colorclass.">
+                <td>".$res1."</td>
+
+                <td>".$key['clockin']."</td>
+              		</tr>";
+
+			}
+			
+		}
+		
 	}
 }
