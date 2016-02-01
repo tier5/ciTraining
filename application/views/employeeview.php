@@ -20,7 +20,8 @@
                 <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
                 <br/><br/>
                 
-                
+                <div id="clockindiv" class="confirm"></div>
+                <div id="clockoutdiv" class="error"></div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

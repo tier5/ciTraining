@@ -78,6 +78,26 @@ class EmployeeModel extends CI_model
        //print_r($value1->result());
        //die;
     }
+    public function clockindata($data)
+    {
+      //echo "clockindata function";
+    $details=$this->db->get_where('attendance',$data);
+    //print_r($details->result());
+    if ($details) 
+    {
+       return $details->row_array();
+    }
+    else
+    {
+        return false;
+    }
+
+
+    }
+    public function clockoutdata()
+    {
+        
+    }
 }
 
 

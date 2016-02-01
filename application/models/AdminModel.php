@@ -62,23 +62,18 @@
 
         if ($resultClockIn) 
         {
-         //echo ;
+         echo"<table border =1> <th>ID</th>
+                 <th>Name</th>
+                 <th>ClockIn Time</th>
+                 <th>ClockOut Time</th>" ;
           foreach ($resultClockIn->result() as $row)
           {
             //echo "Employee Id: \n".$row->Eid."Clock in Time: \n".$row->clockin."<br/>";
             //$fetchname=$this->db->get('employee');
              $idEmp['id']= $row->Eid;
              $resultname= $this->db->get_where('employee',$idEmp);
-             
 
-            
-            echo "<table border =1>
-                <tr>
-                 <th>ID</th>
-                 <th>Name</th>
-                 <th>ClockIn Time</th>
-                 <th>ClockOut Time</th>
-                </tr>"."<tr>
+                echo "</tr>"."<tr>
                 <td>".$row->Eid."</td>
                 <td>".$resultname->row('name')."</td>
                 <td>".$row->clockin."</td>

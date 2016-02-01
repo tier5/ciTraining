@@ -36,22 +36,55 @@ $(document).ready(function(){
 	});
 });
 //=======================always show clockin time===========================
-$(document).ready(function(){
-	$.post('Employee/showclockin',function(data)
-	{
-		if (data) 
-		{
-			
-			$('#someid1').html('');
-			$('#run').append('<div id="someid1" class="confirm">Clocked In @'+data+'</div>');
 
-		}
-		else
+$(document).ready(function(){
+	//$('#clockoutdiv').html('Please clockin');
+
+	$.post('Employee/clockindata',function(data)
 		{
-			//alert('no data');
-			$('#run').append('<div id="someid1" class="error">Please clock in</div>');
-		}
-	//$('#run').append('<div id="someid1"><strong>Already Clocked In @'+data+'</strong></div>');
+			if (data) 
+			{
+				$('#clockoutdiv').html('');
+				$('#clockindiv').html('<br>Already Clocked In @'+data);
+			}
+			else
+			{
+				$('#clockindiv').html('');	
+				$('#clockoutdiv').html('Please clock in');
+			}
+
+			/*$('#clockbtn').click(function(){
+
+				//alert(data);
+				if (data) 
+					{
+						$('#clockoutdiv').html('Please clockin');
+					}
+					else
+					{
+						//alert('clock in fast');
+						
+						$('#clockoutdiv').html('');
+						$('#clockindiv').html('<br>Sucessfully clocked in');	
+					}
+			});*/
+
+		
+		});
+
 	});
-//});
-});
+
+
+//================
+
+			/*if (!data) 
+			{
+			$('#clockoutdiv').html('Please clockin');
+			$('#clockindiv').html('');
+			//exit(0);
+			}
+			else
+			{	
+				$('#clockoutdiv').html('');
+				$('#clockindiv').html('<br>Already Clocked In @'+data);
+			}*/

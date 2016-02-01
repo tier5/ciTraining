@@ -120,4 +120,24 @@ class Employee extends CI_Controller
     		return false;
     	}
     }
+    public function clockindata()
+    {
+    	$data['Eid']=$this->session->userdata('empid');
+    	$cintime=$this->EmployeeModel->clockindata($data);
+    	
+    	if ($cintime) 
+    	{
+    	 echo $cintime['clockin'];
+    	}
+    	else
+    	{
+    		return false;
+    	}
+    }
+
+
+    public function clockoutdata()
+    {
+    	
+    }
 }

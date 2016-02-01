@@ -58,7 +58,7 @@
 
     <section id="intro" class="intro-section">
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
                     <h1>Employee On Break</h1>
@@ -74,6 +74,7 @@
                     <div id="clockin"></div>
 
                 </div>
+
                  <div class="col-sm-3">
 
                     <strong>Employees on First Break @ 20 min</strong>

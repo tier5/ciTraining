@@ -7,7 +7,8 @@
             {
                 $.post('Employee/clockin', {btn: btn}, function(data){
 
-                $('#clockintime').html(data);
+                $('#clockindiv').html(data);
+                 $('#clockoutdiv').html('');
                 $('#clockintime1').html('Hey! Guest, have a nice day!');
 
 
@@ -19,7 +20,8 @@
 
                  $.post('Employee/clockout', {btn: btn}, function(data){
 
-                $('#clockintime').html(data);
+                $('#clockoutdiv').html(data);
+                 $('#clockindiv').html('');
                 $('#clockintime1').html('Hey! Guest, see you tommorow');
 
 
