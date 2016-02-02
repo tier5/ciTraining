@@ -9,6 +9,12 @@
     <title>Tier5</title>
 
     <!-- Bootstrap Core CSS -->
+    <script type="text/javascript">
+
+    var BASE_URL = '<?php echo base_url(); ?>';
+
+    </script>
+
     <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
 
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
@@ -46,5 +52,7 @@
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/breakbuttons.js';?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin.js';?>"></script>
+
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
 
 </head>

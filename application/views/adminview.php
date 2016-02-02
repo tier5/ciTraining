@@ -64,6 +64,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Employee On Break</h1>
+                    <div id="mydiv">hello</div>
                     
                     <a class="btn btn-default page-scroll" href="#about">Go To Employee Management!</a>
                 </div>
@@ -99,6 +100,25 @@
 
                 <div class="col-sm-3">
                     <strong>Employee On First Break</strong>
+
+                        <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                                <th>UserName</th>
+                                <th>Time </th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody id="fbreaktable">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      </div>
+
                 </div>
 
                 <div class="col-sm-3">

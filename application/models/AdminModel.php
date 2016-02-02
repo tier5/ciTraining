@@ -74,5 +74,21 @@
 
         return $res;
       }
+
+      public function empFbreak($data)
+      {
+        $result = $this->db->get_where('attendance',$data);
+
+        return $result->result_array();
+
+      }
+
+      public function empFclockin($data)
+      {
+        $result = $this->db->get_where('fbreak',$data);
+        
+        return $result->result_array();        
+      }
+      
    } 
 ?> 

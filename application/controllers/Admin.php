@@ -123,7 +123,7 @@ class Admin extends CI_Controller
 
 				$clockintime = strtotime($key['clockin']);
 
-				$chktime = strtotime("19:07:00");
+				$chktime = strtotime("11:00:00");
 
 				if($clockintime>$chktime)
 				{
@@ -144,6 +144,75 @@ class Admin extends CI_Controller
 			}
 			
 		}
+		
+	}
+
+	public function empFbreak()
+	{
+		$data['date'] = date("d/m/Y");
+		$data['breakname'] = "fbreak"; 
+
+		$nowtime = new DateTime('now');
+
+		$totaltime = 1300;
+
+		$res = $this->AdminModel->empFbreak($data);
+
+		foreach ($res as $key) 
+		{
+			//print_r($key);
+
+			$data1['Eid'] = $key['Eid'];
+			$data1['date'] = $key['date'];
+
+			$resclockin = $this->AdminModel->empFclockin($data1);
+
+			foreach ($resclockin as $val)
+			{
+				$data2['id'] = $val['Eid'];
+				$resname = $this->AdminModel->showName($data2);
+				
+				
+				$diff = $nowtime->diff(new DateTime($val['starttime']));
+
+				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+				$remainingtime = $totaltime - $sum;
+
+				echo $resname.",";
+
+				echo $remainingtime;
+
+				echo ".";
+			}
+
+			//
+		}
+
+		
+
+		/*if($res)
+		{
+			foreach ($res as $key) {
+			
+			$data1['id'] = $key['Eid'];
+			
+			$res1 = $this->AdminModel->showName($data1);
+
+			$diff = $nowtime->diff(new DateTime($key['starttime']));
+		
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$remainingtime = $totaltime - $sum;
+
+			echo $res1.",";
+
+			echo $remainingtime;
+
+			echo ".";
+			}
+		}*/
+
 		
 	}
 }
