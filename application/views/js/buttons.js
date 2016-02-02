@@ -58,9 +58,16 @@ $(document).ready(function(){
 
 			if($('#breakbtn').text()=="break")
 			{	
-				$('#breakmsg').html('Enjoy Your Break come back soon!');
+				$('#breakmsg1').html('Enjoy Your Break come back soon!');
 				$('#breakbtn').text("work");
 				var opt1 = $('#opt').val();
+				var btn= $('#breakbtn').text();
+				
+				$.post('Employee/breakload',{opt: opt1, btn: btn},function(data){
+					$('#breakmsg').html(data);
+					//alert(data);
+				});
+				
 				//var opt= $('#opt').val();
 				//var opt= $('#opt1').val();
 			}
@@ -70,9 +77,11 @@ $(document).ready(function(){
 				
 					$("#"+opt).prop('disabled', true);
 			 		$('#breakbtn').text("break");
-			 		$('#breakmsg').html('Hope You have enjoyed your break');
-			 		
-			 	
+			 		$('#breakmsg1').html('Hope You have enjoyed your break');
+			 		$.post('Employee/breakunload',{opt: opt}, function(data){
+			 			//alert(data);
+			 			$('#breakmsg1').html(data);
+			 		});
 			 	
 			}
 		}
@@ -82,5 +91,11 @@ $(document).ready(function(){
 		}
 
 	});
+	//================break selection after retrun from break=================
 
+	$('#breakbtn').click(function(){
+
+		//alert("test");
+
+	});
 });

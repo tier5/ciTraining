@@ -94,9 +94,55 @@ class EmployeeModel extends CI_model
 
 
     }
-    public function clockoutdata()
+    /*public function clockoutdata()
     {
         
+    }*/
+     public function breakload($data,$opt,$btn)
+    {
+        //print_r($data);
+        //print_r($data);
+        $a1 = $this->db->get_where('attendance',$data);
+        //print_r($a1->row());
+        if ($a1->row()) 
+        {
+            //print_r($btn);
+            if ($btn=='work') 
+            {
+                
+            
+                $data1['breakstatus']=1;
+                $data1['breakname']=$opt;
+                $this->db->where($data);
+                $fr=$this->db->update('attendance',$data1);
+            }
+            
+        }
+
+    }
+    public function breakunload($data, $opt)
+    {
+        //print_r($data);
+        //print_r($opt);
+        $a2 = $this->db->get_where('attendance',$data);
+        if ($a2->row('breakname')) 
+        {
+            if ($opt==$a2->row('breakname')) 
+            {
+                //echo $opt;
+                $data1['breakstatus']='';
+                $data1['breakname']='';
+                //print_r($data1);
+                $this->db->where($data);
+                $fr=$this->db->update('attendance',$data1);
+
+            }
+            else
+            {
+                echo "choose a correct option \n".$a2->row('breakname');
+            }
+        }
+
     }
 }
 

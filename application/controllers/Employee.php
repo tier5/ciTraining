@@ -136,8 +136,32 @@ class Employee extends CI_Controller
     }
 
 
-    public function clockoutdata()
+    public function breakload()
     {
+    	extract($_POST);
+    	//print_r($btn);
+
+    	$data['Eid']=$this->session->userdata('empid');
+    	$data['date']=date("d/m/Y");
+    	$breakinsert=$this->EmployeeModel->breakload($data,$opt,$btn);
+    	if ($breakinsert) 
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
     	
     }
+    public function breakunload()
+    {
+    	//echo "hio";
+    	extract($_POST);
+    	$data['Eid']=$this->session->userdata('empid');
+    	$data['date']=date("d/m/Y");
+    	$breakunset=$this->EmployeeModel->breakunload($data,$opt);
+
+    }
+
 }
