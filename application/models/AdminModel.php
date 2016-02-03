@@ -89,6 +89,29 @@
         
         return $result->result_array();        
       }
+
+      public function empSbreak($data)
+      {
+        $result = $this->db->get_where('attendance',$data);
+
+        return $result->result_array();
+
+      }
+
+      public function empSbreakstart($data)
+      {
+        $result = $this->db->get_where('sbreak',$data);
+        
+        return $result->result_array();
+      }
+
+       public function empLbreakstart($data)
+      {
+        $result = $this->db->get_where('lbreak',$data);
+        
+        return $result->result_array();
+      }
+      
       
    } 
 ?> 

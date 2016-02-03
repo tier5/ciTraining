@@ -58,7 +58,7 @@ class Admin extends CI_Controller
 
 		foreach ($add as $row) 
 		{
-			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
+			echo $row->id.",".$row->name.",".$row->email."/";
 		}
 	}
     
@@ -154,7 +154,7 @@ class Admin extends CI_Controller
 
 		$nowtime = new DateTime('now');
 
-		$totaltime = 1300;
+		$totaltime = 1200;
 
 		$res = $this->AdminModel->empFbreak($data);
 
@@ -215,4 +215,91 @@ class Admin extends CI_Controller
 
 		
 	}
+
+	public function empSbreak()
+	{
+		$data['date'] = date("d/m/Y");
+		$data['breakname'] = "Sbreak"; 
+
+		$nowtime = new DateTime('now');
+
+		$totaltime = 3600;
+
+		$res = $this->AdminModel->empSbreak($data);
+
+		if($res)
+		{
+			foreach ($res as $key)
+			{
+				$data1['Eid'] = $key['Eid'];
+				$data1['date'] = $key['date'];
+
+				$resbreakstart = $this->AdminModel->empSbreakstart($data1);
+
+				foreach ($resbreakstart as $val)
+				{
+					$data2['id'] = $val['Eid'];
+					$resname = $this->AdminModel->showName($data2);
+					
+					
+					$diff = $nowtime->diff(new DateTime($val['starttime']));
+
+					$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+					$remainingtime = $totaltime - $sum;
+
+					echo $resname.",";
+
+					echo $remainingtime;
+
+					echo ".";
+				}
+			}
+		}
+
+
+		
+	}
+	public function empLbreak()
+	{
+		$data['date'] = date("d/m/Y");
+		$data['breakname'] = "lbreak"; 
+
+		$nowtime = new DateTime('now');
+
+		$totaltime = 1200;
+
+		$res = $this->AdminModel->empFbreak($data);
+
+		if($res)
+		{
+			foreach ($res as $key)
+			{
+				$data1['Eid'] = $key['Eid'];
+				$data1['date'] = $key['date'];
+
+				$resbreakstart = $this->AdminModel->empLbreakstart($data1);
+
+				foreach ($resbreakstart as $val)
+				{
+					$data2['id'] = $val['Eid'];
+					$resname = $this->AdminModel->showName($data2);
+					
+					
+					$diff = $nowtime->diff(new DateTime($val['starttime']));
+
+					$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+					$remainingtime = $totaltime - $sum;
+
+					echo $resname.",";
+
+					echo $remainingtime;
+
+					echo ".";
+				}
+			}
+		}
+	}
+
 }

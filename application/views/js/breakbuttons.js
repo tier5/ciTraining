@@ -1,6 +1,5 @@
 $(document).ready(function(){
     
-   	$.getScript('http://localhost/ciproject/application/views/js/timerlib.js', function(){	
 
 		//calling the timer javascript library and it is available all over the script body
 		//the path needed to be specified manually as it was not taking, so it needs to be 
@@ -183,6 +182,6 @@ $(document).ready(function(){
 		}
 	});
 
-  });
+  
 
 });

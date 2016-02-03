@@ -7,6 +7,16 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+<script type="text/javascript">
+$(document).ready(function(){
+   
+    function deletecategory()
+    {
+        alert("hello");
+    }
+});
+
+</script>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -123,10 +133,44 @@
 
                 <div class="col-sm-3">
                     <strong>Employee On Lunch Break</strong>
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                                <th>UserName</th>
+                                <th>Time </th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody id="sbreaktable">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      </div>
                 </div>
 
                 <div class="col-sm-3">
                     <strong>Employee On Last Break</strong>
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                                <th>UserName</th>
+                                <th>Time </th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody id="lbreaktable">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      </div>
                 </div>
             </div>
 
@@ -200,21 +244,41 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="services-section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Show all Employee</h1>
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
+                    
+                    <div class="col-sm-12">
 
-                    	<div id="showallemployeeDiv"></div>
+                    <div class="row">
+                         <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                                <td><strong>ID</strong></td>
+                                <td><strong>USER NAME</strong></td>
+                                <td                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ><strong>EMAIL</strong></td>
+                                
+                              </tr>
+                            </thead>
+                            <tbody id="showallemployeeDiv">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+                    	
 
 
 
 
                     </div>
-                    <div class="col-lg-4"></div>
+                    
                 </div>
             </div>
         </div>
