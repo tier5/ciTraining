@@ -64,7 +64,7 @@
                     
                     
                     
-                    <button class="btn btn-primary" id="clockbtn" name="clockinbtn"></button>
+                    <button class="btn btn-primary" value="Clock In" id="clockbtn" name="clockinbtn">Clock In</button>
 
                     
                     
