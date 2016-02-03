@@ -56,9 +56,13 @@ class Admin extends CI_Controller
 	{
 		$add=$this->AdminModel->ShowEmployee();
 
+		$i=0;
+
 		foreach ($add as $row) 
 		{
-			echo "ID ".$row->id." NAME ".$row->name." EMAIL ".$row->email."</br>";
+			echo $row->id.",".$row->name.",".$row->email."/";
+			//echo "<br/>".$row->id."<br/>".$row->name."<br/>".$row->email;
+			
 		}
 	}
     

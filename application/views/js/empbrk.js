@@ -42,6 +42,7 @@ $(document).ready(function(){
 
 	$.post('Employee/clockindata',function(data)
 		{
+			//$('#clockindiv').html(data);
 			if (data) 
 			{
 				$('#clockoutdiv').html('');
@@ -53,7 +54,7 @@ $(document).ready(function(){
 				$('#clockoutdiv').html('Please clock in');
 			}
 
-			/*$('#clockbtn').click(function(){
+			$('#clockbtn').click(function(){
 
 				//alert(data);
 				if (data) 
@@ -67,7 +68,7 @@ $(document).ready(function(){
 						$('#clockoutdiv').html('');
 						$('#clockindiv').html('<br>Sucessfully clocked in');	
 					}
-			});*/
+			});
 
 		
 		});
@@ -77,14 +78,6 @@ $(document).ready(function(){
 
 //================
 
-			/*if (!data) 
-			{
-			$('#clockoutdiv').html('Please clockin');
-			$('#clockindiv').html('');
-			//exit(0);
-			}
-			else
-			{	
-				$('#clockoutdiv').html('');
-				$('#clockindiv').html('<br>Already Clocked In @'+data);
-			}*/
+	$(document).ready(function(){
+
+	});		

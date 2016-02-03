@@ -43,6 +43,15 @@
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/time.js';?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/empbrk.js';?>"></script>
+    <script type="text/javascript">
+    /*$(document).ready(function(){
+        $('#1247').click(function(){
+
+            alert('delete');
+        });
+    });
+*/
+    </script>
 
 
 </head>

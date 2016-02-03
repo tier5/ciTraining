@@ -82,7 +82,7 @@ class Dashboard extends CI_Controller {
 			echo "wrong name or password";
 		}
 	}
-	public function clockin()
+	/*public function clockin()
 	{
 		extract($_POST);
 		if (isset($btn)) 
@@ -95,6 +95,7 @@ class Dashboard extends CI_Controller {
 			$data['clockin']=$time;
 			$ctime=$this->EmployeeModel->clockintime($data);
 			//echo $data['date'].$data['time'];
+			//print_r($ctime);
 			if ($ctime) 
 			{
 				echo "Attendance marked @"."\n".$data['clockin'];
@@ -104,9 +105,9 @@ class Dashboard extends CI_Controller {
 				echo "error";
 			}
 		}
-	}
+	}*/
 
-	public function clockout()
+	/*public function clockout()
 	{
 		extract($_POST);
 		if (isset($btn)) 
@@ -124,7 +125,7 @@ class Dashboard extends CI_Controller {
 				echo "error";
 			}
 		}
-	}
+	}*/
 
 
 	public function chksession()

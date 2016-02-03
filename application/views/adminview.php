@@ -162,13 +162,31 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Show all Employee</h1>
-                    <div class="col-lg-4"></div>
                     <div class="col-lg-4">
+                    <div class="col-lg-4">
+                        
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <td class="bold">Employee ID</td>
+                                        <td class="bold">Employee Name</td>
+                                        <td class="bold">Employee Email</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="showallemployeeDiv">
 
-                    	<div id="showallemployeeDiv"></div>
-
-
-
+                                    <tr>
+                                       <td>
+                                       
+                                       </td>     
+                                    </tr>
+                                </tbody>
+                                
+                            </table>
+                        
+                    </div>
+   
+                   
 
                     </div>
                     <div class="col-lg-4"></div>

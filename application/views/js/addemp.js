@@ -75,4 +75,10 @@ $(document).ready(function(){
 
 		});
 });
-
+//===========================================
+/*$(document).ready(function(){
+	$('#del').click(function(){
+		alert('testing....');
+	});
+});
+*/

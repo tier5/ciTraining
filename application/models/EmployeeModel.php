@@ -6,14 +6,35 @@ class EmployeeModel extends CI_model
 	public function clockintime($data)
 	{
         $data2['Eid'] = $data['Eid'];
+        $data2['date'] = $data['date'];
+        //print_r($data2);
         $a = $this->db->get_where('attendance',$data2);
 
+
         //print_r($a->result());
+        if(!$a->result())
+        {
+            $result=$this->db->insert('attendance',$data);
+            if($result)
+            {
+                //print_r($data);
+                $res = $this->db->get_where('attendance',$data);
+                return $res->row();
+
+            }
+        }
+        else
+        {
+            echo "Already Clocked in";
+        }
+
         
+        /*
         if($a->result())
         {
-            echo "you have already clocked in today";
-            die;
+            echo "<br/>you have already clocked in today";
+            //return false;
+            //die;
         }
         else
         {
@@ -21,14 +42,16 @@ class EmployeeModel extends CI_model
             //print_r($result);
             if($result)
             {
-                return true;
+                //return true;
+                return ($result->row());
+                //die;
             }
             else
             {
                 return false;
             }
         }
-		//echo $data['date'].$data['time'];
+		//echo $data['date'].$data['time'];*/
 		
 
 	}

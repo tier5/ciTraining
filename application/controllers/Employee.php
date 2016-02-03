@@ -55,9 +55,12 @@ class Employee extends CI_Controller
 			$data['Eid'] = $this->session->userdata('empid');
 			$ctime=$this->EmployeeModel->clockintime($data);
 			//echo $data['date'].$data['time'];
+			//print_r($ctime->clockin);
+			//die;
 			if ($ctime) 
 			{
-				echo "Attendance marked @"."\n".$data['clockin'];
+				echo "Attendance marked @"."\n".$ctime->clockin;
+				//print_r($data);
 			}
 			else
 			{
@@ -123,6 +126,7 @@ class Employee extends CI_Controller
     public function clockindata()
     {
     	$data['Eid']=$this->session->userdata('empid');
+    	$data['date']=date("d/m/Y");
     	$cintime=$this->EmployeeModel->clockindata($data);
     	
     	if ($cintime) 
