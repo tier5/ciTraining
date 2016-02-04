@@ -94,6 +94,24 @@
             return false;
           }
         
+      }
+      public function updateEmpNew($data)
+      {
+       
+        $data2['id']=$data['id'];
+        $test=$this->db->update('employee', $data, $data2);
+        //print_r($data);
+        if ($test) 
+        {
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+
+       
+
       }   
    } 
 ?> 

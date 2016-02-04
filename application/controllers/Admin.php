@@ -121,5 +121,27 @@ class Admin extends CI_Controller
     	}
     	
 
+    }
+    public function updatenew()
+    {
+    	//echo "hi";
+    	extract($_POST);
+    	$data=array('id'=>$id, 'name'=>$name, 'email'=>$email);
+    	//print_r($data);
+    	$btn=$data['id'];
+    	//print_r($btn);
+    	if (isset($btn)) 
+    	{
+    		$output=$this->AdminModel->updateEmpNew($data);
+    		//print_r($output);
+    		if ($output) 
+    		{
+    			echo "Edited Sucessfully";
+    		}
+    		else
+    		{
+    			echo "Failed to edit";
+    		}
+    	}
     }   
 }

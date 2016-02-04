@@ -159,14 +159,11 @@
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Show all Employee</h1>
+             <div class="col-lg-12">
                     <div class="col-lg-4">
-                    <div class="col-lg-4">
-                        
-                            <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover">
                                 <thead>
+                                    <h2>To edit a record click on the coloumn you want</h2>
                                     <tr>
                                         <td class="bold">Employee ID</td>
                                         <td class="bold">Employee Name</td>
@@ -183,15 +180,10 @@
                                 </tbody>
                                 
                             </table>
-                        
                     </div>
-   
-                   
-
-                    </div>
+                    <div id="updatenew"></div>
                     <div class="col-lg-4"></div>
                 </div>
-            </div>
         </div>
     </section>
 
