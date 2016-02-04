@@ -19,129 +19,25 @@ $(document).ready(function(){
 		}
 		else
 		{
-			$('#breakbtn').text("break");
+			$('#breakbtn').text("Break");
 		}
 	});
-});
-//======================Clock Button Value On Click====================
-$(document).ready(function(){
-	$('#clockbtn').click(function(){
-	  	var clockbtn = $('#clockbtn').val();
-        //alert(clockbtn);
-		if($('#clockbtn').text()=="Clock In")
-		{
-			//alert(clockbtn);
-			$.post('Employee/clockin',{btn:clockbtn},function(data){
-            $('#clockintime').html(data)
-		    $('#clockbtn').text("Clock Out");
-			});
-		}
-		else
-		{   
-			//alert('CLOCK OUT');
-			$.post('Employee/clockout', {btn1:clockbtn},function(data){
-            $('#clockintime').html(data)
-		    $('#clockbtn').text("Clock In");
-			});
-		}
-     });
-//===========================Break Button==============================
-	$('#breakbtn').click(function(){
-		//alert('hey');
-		var opt = $('#opt').val();
-		if (opt) 
-		{
-			//alert(opt1);
-			if($('#breakbtn').text()=="break")
-			{	
-				$.post('Employee/breakstart', {brkval: opt}, function(data){
-                $('#breakmsg').html(data)
-				$('#breakbtn').text("Back To Work");
-				});
-			}
-
-			else
-			{	
-			  
-			  	//alert(opt);
-				$.post('Employee/breakstop', {brkval: opt}, function(data){
-                $('#breakmsg').html(data)
-				$('#breakbtn').text("break");
-				//$('#breakbtn').click(function(){
-					//alert(data);
-					/*if (data) 
-					{*/
-						//==disable fbreak on click========= 
-						if (opt=='fbreak') 
-						{
-							if (data) 
-							{
-								$("#fbreak").prop('disabled', true);
-							}
-							else
-							{
-								$("#fbreak").prop('disabled', false);
-							}
-						}
-						
-						//alert(opt);
-						//==disable sbreak on click========= 
-						/*if (opt=='sbreak') 
-						{
-							if (data) 
-							{
-								$("#sbreak").prop('disabled', true);
-							}
-							else
-							{
-								$("#sbreak").prop('disabled', false);
-							}
-						}
-						//==disable lbreak on click===========
-						if (opt=='lbreak') 
-						{
-							if (data) 
-							{
-								$("#lbreak").prop('disabled', true);
-							}
-							else
-							{
-								$("#lbreak").prop('disabled', false);
-							}
-						}*/
-						//====================disables break carry forward on page load=========
-						//alert(opt);
-						
-							//alert(data);
-							if (opt=='sbreak') 
-							{
-								if (data) {
-								$("#fbreak").prop('disabled', true);
-								$("#sbreak").prop('disabled', true);
-								}
-							}
-						
-							if (opt=='lbreak') 
-							{
-								if (data) {
-								$("#fbreak").prop('disabled', true);
-								$("#sbreak").prop('disabled', true);
-								$("#lbreak").prop('disabled', true);
-								}
-		     				}
-				});
-
-			}
-		}
-		else 
-		{
-			$('#breakmsg').html('If you want to go for a break, please choose the break first.');
-		}
-
+//====================On page LOad Brak Select=======================
+    $.post('Employee/breakbackpl', function(data){ 
+		//$('#breakbtn').text("break");
+	    //alert(data);
+	    var optval=data;
+        //alert(optval);
+        if (optval)
+        {
+	        $.post('Employee/breakstop', {brkval: optval}, function(data){
+	        
+			$('#breakbtn').text("Back To Work");
+	        //alert(data);
+	        });
+	    }
 	});
-});
 //==page load =====disable carry=========
-$(document).ready(function(){
 	$.post('Employee/carrydisable', function(data){
 		if (data=='lbreak') 
 		{
@@ -155,10 +51,7 @@ $(document).ready(function(){
 			$("#sbreak").prop('disabled', true);
 		}
 	});
-});
 //=======================page load fbreak disable===============
-$(document).ready(function(){
-	//alert(data);
 	$.post('Employee/breakdisable',function(data){
 
 		//alert(data);
@@ -169,6 +62,122 @@ $(document).ready(function(){
 	});
 
 });
+//======================Clock Button Value On Click====================
+$(document).ready(function(){
+	$('#clockbtn').click(function(){
+	  	var clockbtn = $('#clockbtn').text();
+        //alert(clockbtn);
+		if($('#clockbtn').text()=="Clock In")
+		{
+			//alert(clockbtn);
+			$.post('Employee/clockin',{btn:clockbtn},function(data){
+            $('#showattendance').html(data)
+		    $('#clockbtn').text("Clock Out");
+			});
+		}
+		else
+		{   
+			//alert('CLOCK OUT');
+			$.post('Employee/clockout', {btn1:clockbtn},function(data){
+            $('#clockintime').html(data)
+		    $('#clockbtn').text("Clock In");
+			});
+		}
+     });
+});
+//===========================Break Button==============================
+$(document).ready(function(){	
+	$('#breakbtn').click(function(){
+	var opt = $('#opt').val();
+		if($('#breakbtn').text()=="Break") 
+		{
+			if(opt)
+			{	
+			    $.post('Employee/breakstart', {brkval: opt}, function(data){
+                 //alert(data);
+                if (data=='Enjoy Your Break & come back soon!') 
+                {
+			                //==disable fbreak on click========= 
+							if (opt=='fbreak') 
+								{
+								if (data) 
+									{
+										$("#fbreak").prop('disabled', true);
+									}
+								}
+							if (opt=='sbreak') 
+								{
+									if (data)
+									{
+									    $("#fbreak").prop('disabled', true);
+									    $("#sbreak").prop('disabled', true);
+									}
+								}
+							if (opt=='lbreak') 
+								{
+									if (data) 
+									{
+										$("#fbreak").prop('disabled', true);
+										$("#sbreak").prop('disabled', true);
+										$("#lbreak").prop('disabled', true);
+									}
+					     		}
+                $('#breakmsg').html(data)
+				$('#breakbtn').text("Back To Work");
+				}    
+				else
+				{
+					$('#breakmsg').html(data)
+				}
+				});
+			}
+			else
+			{
+				$.post('Employee/breakstart',function(data){ 
+			    $('#breakmsg').html(data)	
+			    });
+			}
+	    }
+		else
+		{	
+			$.post('Employee/breakback', function(data){ 
+			$('#breakbtn').text("Break");
+			//alert(data);
+			var optval=data;
+			//alert(optval);
+				if (optval)
+			    {
+				     $.post('Employee/breakstop', {brkval: optval}, function(data){
+				     $('#breakmsg').html(data);
+				     });
+				
+			    }
+			});  	
+		}
+//================================================		
+	});
+});
+//==============================================
+/*$(document).ready(function(){	
+  if($('#breakbtn').text()=="Back To Work")
+  {
+    $.post('Employee/breakback', function(data){ 
+		$('#breakbtn').text("Break");
+		//alert(data);
+		var optval=data;
+		//alert(optval);
+		if (optval)
+			{
+				$.post('Employee/breakstop', {brkval: optval}, function(data){
+				$('#breakmsg').html(data);
+				});
+				
+			}
+	});  
+  } 
+});*/
+
+
 
 
 

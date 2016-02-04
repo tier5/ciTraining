@@ -1,10 +1,9 @@
 <?php
 class EmployeeModel extends CI_model
 {
-//======================Set ClockIn Time In Database=================
+//======================Insert ClockIn Time In Database=================
     public function clockintime($data)
     {
-        //echo"I am clock In model";
         $data2['Eid'] = $data['Eid'];
         $data2['date'] = $data['date'];
         $a = $this->db->get_where('attendance',$data2);
@@ -30,7 +29,7 @@ class EmployeeModel extends CI_model
         }
         //echo $data['date'].$data['time'];      
     }
-//======================Set Clockout Time In Database==============
+//======================Set Clockout Time In Database=====================
     public function clockouttime($data)
     {
         $data1['clockout'] = $data['clockout'];
@@ -46,7 +45,7 @@ class EmployeeModel extends CI_model
             return false;
         }
     }
-//======================Changing The Clock Button Value==============
+//======================Changing The Clock Button Value====================
     public function buttonvalue($data)
     {
         //print_r($data);
@@ -116,42 +115,56 @@ class EmployeeModel extends CI_model
             }
         }
     }
-//=========================================================================  
-public function breakout($data)
-    {
-        //print_r($data);
-        $data['Eid']=$data['Eid'];
-        $data['date']=$data['date'];
-        $data1['breakname']=Null;
-        $data1['breakstatus']=Null;
-        $brkout=$this->db->update('attendance', $data1, $data);
-        //print_r($brkout);
-        if ($this->db->affected_rows() > 0)
-        {
-            $selecttbl=$data['breakname'];
-            $insert['Eid']=$data['Eid'];
-            $insert['date']=$data['date'];
-            
-            $stotime['endtime']=date("H:i:s");
-
-            
-            $result=$this->db->update($selecttbl,$stotime,$insert);
-            if($result)
+//=============Select the break value when returning from break-=======
+    public function brkback($data)
+       {
+            $pqr=$this->db->get_where('attendance', $data);
+            if ($this->db->affected_rows() > 0)
             {    
-                return true;
-
+                
+                print_r($pqr->row('breakname'));
             }
             else
-            {   
+            {
                 return false;
             }
-        } 
-        else
+       }
+//======================Returning From the break============================  
+    public function breakout($data)
         {
-            return false;  
+            //print_r($data);
+            $data['Eid']=$data['Eid'];
+            $data['date']=$data['date'];
+            //$data1['breakname']='';
+            $data1['breakstatus']='';
+            $brkout=$this->db->update('attendance', $data1, $data);
+            //print_r($brkout);
+            if ($this->db->affected_rows() > 0)
+            {
+                $selecttbl=$data['breakname'];
+                $insert['Eid']=$data['Eid'];
+                $insert['date']=$data['date'];
+                
+                $stotime['endtime']=date("H:i:s");
+
+                
+                $result=$this->db->update($selecttbl,$stotime,$insert);
+                if($result)
+                {    
+                    return true;
+
+                }
+                else
+                {   
+                    return false;
+                }
+            } 
+            else
+            {
+                return false;  
+            } 
         } 
-    } 
-    //===================disable fbreak==================
+//===================disable fbreak==================
     public function breakdisable($data)
     {
         $result2=$this->db->get_where('fbreak',$data);
@@ -165,49 +178,7 @@ public function breakout($data)
             echo "some error occured";
         }       
     }
-/*//==============disbale sbreak==================
-     public function sbreak($data)
-    {
-        //echo "model sbreak";
-         $result3=$this->db->get_where('sbreak',$data);
-        //print_r($result2->row_array(0));
-        if ($result3) 
-        {
-           
-           $breakname1=$this->db->get_where('attendance');
-           if ($breakname1) 
-           {
-               print_r($breakname1->row());
-               print_r($result3->row_array(0));
-           }
-           else
-           {
-            echo "cannot fetch the break name";
-           }
-           return $result3->row_array(0);
-        }
-        else
-        {
-            echo "some error occured";
-        }
-    }
-    //====disable lbreak========================
-      public function lbreak($data)
-    {
-        
-         $result4=$this->db->get_where('lbreak',$data);
-        
-        if ($result4) 
-        {
-           
-           return $result4->row_array(0);
-        }
-        else
-        {
-            echo "some error occured";
-        }
-        //echo "hello model sbreak";
-    }*/
+//========================Carry break disable=====================
     public function carrydisable($data)
     {
          $result5=$this->db->get_where('attendance',$data);
@@ -219,11 +190,55 @@ public function breakout($data)
          {
             return false;
          }
-         
-        
-
     }
+//=============brkval on page load=================
+    public function brkbackpl($data)
+       {
+            $pqr=$this->db->get_where('attendance', $data);
+            if ($this->db->affected_rows() > 0)
+            {    
+                
+                print_r($pqr->row('breakname'));
+            }
+            else
+            {
+                return false;
+            }
+       }
+//==============Show Clock In Time On Page Load===================
+    public function showclkin($data)
+    {
+       //echo "I am in employeemodel";
+        $shw=$this->db->get_where('attendance', $data);
+        if ($this->db->affected_rows() > 0)
+            {    
+                
+                print_r($shw->row('clockin'));
+            }
+            else
+            {
+                return false;
+            }
+    }
+//===============Show Emp Name On Page Load=========================
+    public function showname($data)
+    {     
+       // print_r($data);
+        //print_r('Hey');
+        $data1['id']=$data['Eid'];
+         //print_r($data1);
 
+       $showname=$this->db->get_where('employee', $data1);
+
+       if ($showname->result()) 
+       {
+        print_r($showname->row()->name);   
+       }
+        else
+        {
+            print_r('there is no data associated with this id');
+        }
+    }
 
 }
 ?>

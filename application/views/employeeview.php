@@ -17,11 +17,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
-                <br/>
-                <div id="welcome">Hi</div>
+                <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>    
             </div>
-
+           
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
@@ -51,6 +49,9 @@
 
             </div>
             <!-- /.navbar-collapse -->
+            
+             <div id="welcome" class="confirm"></div>
+             <div id="showattendance" class="confirm"></div>
         </div>
         <!-- /.container -->
     </nav>
