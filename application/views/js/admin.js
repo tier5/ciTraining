@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+
 setInterval(function(){
     clockin();
     fbreak();
@@ -8,8 +10,12 @@ setInterval(function(){
 }, 100);
 //======================================================
 
-	
+	$.post('Admin/empLateFbreak', function(data){
 
+		alert(data);
+
+	});
+	
 
 
 //======================================================
@@ -47,6 +53,11 @@ function fbreak(){
 
 		var totaldiv = "";
 		
+		var sec;
+
+		var min;
+
+		var timeshow;
 
 		data = data.split(".");
 
@@ -78,11 +89,23 @@ function fbreak(){
 
 			value[0]=$.trim(value[0]);
 
-			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'></td></tr>";
+			sec = value[1];
+
+			sec = sec%60;
+
+			sec = properSec(sec);
+
+			min = Math.floor(value[1]/60);
+
+			timeshow=min+':'+sec+'m';
+
+
+
+			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'>"+timeshow+"</td></tr>";
 
 			$("#fbreaktable").html(totaldiv);
 			
-			$('#'+value[0]).timer({//timer starts
+			/*$('#'+value[0]).timer({//timer starts
             				
             	duration: value[1],//time value from the php page
 
@@ -96,7 +119,7 @@ function fbreak(){
             	},
 
             	repeat: false
-        	});
+        	});*/
 
 
 			//$('#'+value[0]).html('hh');
@@ -158,12 +181,24 @@ function sbreak(){
 			}
 
 			value[0]=$.trim(value[0]);
+			
+			sec = value[1];
 
-			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'></td></tr>";
+			sec = sec%60;
 
+			sec = properSec(sec);
+
+			min = Math.floor(value[1]/60);
+
+			timeshow=min+':'+sec+'m';
+
+
+
+			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'>"+timeshow+"</td></tr>";
+			
 			$("#sbreaktable").html(totaldiv);
 			
-			$('#'+value[0]).timer({//timer starts
+			/*$('#'+value[0]).timer({//timer starts
             				
             	duration: value[1],//time value from the php page
 
@@ -177,7 +212,7 @@ function sbreak(){
             	},
 
             	repeat: false
-        	});
+        	});*/
 
 
 			//$('#'+value[0]).html('hh');
@@ -237,11 +272,21 @@ function lbreak()
 
 			value[0]=$.trim(value[0]);
 
-			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'></td></tr>";
+			sec = value[1];
 
+			sec = sec%60;
+
+			min = Math.floor(value[1]/60);
+
+			timeshow=min+':'+sec+'m';
+
+
+
+			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'>"+timeshow+"</td></tr>";
+			
 			$("#lbreaktable").html(totaldiv);
 			
-			$('#'+value[0]).timer({//timer starts
+			/*$('#'+value[0]).timer({//timer starts
             				
             	duration: value[1],//time value from the php page
 
@@ -255,7 +300,7 @@ function lbreak()
             	},
 
             	repeat: false
-        	});
+        	});*/
 
 
 			//$('#'+value[0]).html('hh');
@@ -273,6 +318,20 @@ function lbreak()
 	});
 }
 
+function properSec(val)
+{
+	if(val<10)
+	{
+		val = "0"+val;
+
+		return val;
+	}
+
+	else
+	{
+		return val;
+	}
+}
 
 
 });

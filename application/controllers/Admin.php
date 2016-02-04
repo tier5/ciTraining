@@ -34,22 +34,24 @@ class Admin extends CI_Controller
     public function update()
 	{
 	    extract($_POST);
-	    if (isset($updtemp1)) 
-	    {
-	      	$data1=array('id'=>$empid1);
-			$data['name']= $newname1;
-			$data['email']= $newemail1;
-			$data['password']= $newpass1;
+	    
+	      	$data1=array('id'=>$id);
+			$data['name']= $newname;
+			$data['email']= $newemail;
+			$data['password']= $newpass;
+
+			//print_r($data1);
 	      	$update=$this->AdminModel->updateEmp($data1, $data);
 	      	if ($update) 
 				{
 					echo "Employee updated Sucessfully!!";
+					//print_r($update);
 				}
 		    else
 				{
 					echo "Oops! Cant update!!";
 				}
-	    }
+	    
     }
 
 	public function showAllEmployee()
@@ -58,7 +60,7 @@ class Admin extends CI_Controller
 
 		foreach ($add as $row) 
 		{
-			echo $row->id.",".$row->name.",".$row->email."/";
+			echo $row->id.",".$row->name.",".$row->email.",".$row->password."/";
 		}
 	}
     
@@ -123,7 +125,7 @@ class Admin extends CI_Controller
 
 				$clockintime = strtotime($key['clockin']);
 
-				$chktime = strtotime("11:00:00");
+				$chktime = strtotime(CLOCK_IN_TIME);
 
 				if($clockintime>$chktime)
 				{
@@ -154,7 +156,7 @@ class Admin extends CI_Controller
 
 		$nowtime = new DateTime('now');
 
-		$totaltime = 1200;
+		$totaltime = FBREAK_TIME;
 
 		$res = $this->AdminModel->empFbreak($data);
 
@@ -223,7 +225,7 @@ class Admin extends CI_Controller
 
 		$nowtime = new DateTime('now');
 
-		$totaltime = 3600;
+		$totaltime = SBREAK_TIME;
 
 		$res = $this->AdminModel->empSbreak($data);
 
@@ -267,7 +269,7 @@ class Admin extends CI_Controller
 
 		$nowtime = new DateTime('now');
 
-		$totaltime = 1200;
+		$totaltime = LBREAK_TIME;
 
 		$res = $this->AdminModel->empFbreak($data);
 
@@ -300,6 +302,38 @@ class Admin extends CI_Controller
 				}
 			}
 		}
+	}
+
+	public function empLateFbreak()
+	{
+		$breaktable = 'fbreak';
+		$totaltime = FBREAK_TIME;
+
+
+		$nowtime = new DateTime('now');
+
+		$data['date'] = date("d/m/Y");
+		$data['endtime'] = NULL;
+
+		$result = $this->AdminModel->checkEndTime($breaktable, $data);
+
+		foreach ($result as $key)
+		{
+			
+
+			$diff = $nowtime->diff(new DateTime($key['starttime']));
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+			$remainingtime = $totaltime - $sum;
+
+			if($remainingtime<0)
+			{
+				print_r($key['Eid']);
+			}
+			
+
+
+		}
+		
 	}
 
 }

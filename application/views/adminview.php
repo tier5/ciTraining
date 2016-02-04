@@ -7,16 +7,7 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-<script type="text/javascript">
-$(document).ready(function(){
-   
-    function deletecategory()
-    {
-        alert("hello");
-    }
-});
 
-</script>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -40,24 +31,22 @@ $(document).ready(function(){
                     <li>
                         <a class="page-scroll" href="#about">Add New Employee</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#services">Update Employee</a>
-                    </li>
+                    
                     <li>
                         <a class="page-scroll" href="#contact">Show all Employee</a>
                     </li>
                    
                 </ul>
 
-                <ul>
-                     <li>
+                
+                     
                         <form action="Admin/logout" method="post">
                 
                             <input type="submit" value="logout" class="btn btn-default pull-right">
                         
                         </form>
-                    </li>
-                </ul>
+                   
+                
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -211,37 +200,7 @@ $(document).ready(function(){
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Update Employee</h1>
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4" >
-                    <span class="fieldset">*</span><input type="text" id="empid" name="empid" placeholder="Enter Old Employee Id">
-                    </br>
-                    <span class="fieldset">*</span><input type="text" id="newname" name="newname" placeholder="Enter New Name">
-                    </br>
-                    <span class="fieldset">*</span><input type="text" id="newemail" name="newemail" placeholder="Enter New Email Id">
-                    </br>
-
-                    <span class="fieldset">*</span><input type="password" id="newpass" name="newpass" placeholder="Enter New Password">
-                    </br>
-
-                    <input type="submit" class="btn btn-info" id="updtemp" name="updtemp" value="Update Employee">
-                      </br>
-                    <div id="emailcheck"></div>
-                     </br>
-                    <div id="alartmsg"></div>
-                
-                    <div id="alartmsg" class="confirm"></div>
-                    <div id="alartmsg1" class="error"></div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Contact Section -->
     <section id="contact" class="services-section">
@@ -259,7 +218,8 @@ $(document).ready(function(){
                               <tr>
                                 <td><strong>ID</strong></td>
                                 <td><strong>USER NAME</strong></td>
-                                <td                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ><strong>EMAIL</strong></td>
+                                <td><strong>EMAIL</strong></td>
+                                <td><strong>PASSWORD</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                                 
                               </tr>
                             </thead>
@@ -285,6 +245,30 @@ $(document).ready(function(){
     </section>
 
     
+
+    <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+
+
 
 </body>
 

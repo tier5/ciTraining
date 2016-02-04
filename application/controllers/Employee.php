@@ -199,17 +199,17 @@ class Employee extends CI_Controller
 			
 			if($res['breakname']=='fbreak')
 			{
-				$totaltime = 1200;
+				$totaltime = FBREAK_TIME;
 			}
 
 			else if($res['breakname']=='sbreak')
 			{
-				$totaltime = 3600;
+				$totaltime = SBREAK_TIME;
 			}
 
 			if($res['breakname']=='lbreak')
 			{
-				$totaltime = 1200;
+				$totaltime = LBREAK_TIME;
 			}
 
 			$remainingtime = $totaltime-$sum;

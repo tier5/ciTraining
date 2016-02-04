@@ -10,15 +10,14 @@
 
       public function updateEmp($data1, $data)
       {  
-            $finalres=$this->db->update('employee', $data, $data1);
-            if ($this->db->affected_rows() > 0)
-            {
-              return true;
-            } 
-            else
-            {
-              return false;  
-            }         
+          $d=$this->db->where($data1);
+          $res=$this->db->update('employee',$data);
+
+          if($res)
+          {
+            return true;
+          }
+               
       }
       public function addEmployee($data)
       {
@@ -110,6 +109,16 @@
         $result = $this->db->get_where('lbreak',$data);
         
         return $result->result_array();
+      }
+
+      public function checkEndTime($breaktable, $data)
+      {
+        
+        $result = $this->db->get_where($breaktable,$data);
+
+        return $result->result_array();
+
+
       }
       
       

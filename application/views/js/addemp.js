@@ -40,12 +40,15 @@ $(document).ready(function(){
 	   		{
 	   			$.post('Admin/addEmp',{name: empname, email: empemail, pass: emppass, btn: submitadd}, function(data){
                 $('#confirmAdd').html(data);
+                allemployee();
+
                 //making fileds blank after submit
                 $('#empname').val('');
                 $('#empemail').val('');
                 $('#emppass').val('');
                 $('#errorAdd').html('');
                 $('#errorAdd1').html('');
+
                 });
 	   					
 	   		}

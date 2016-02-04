@@ -4,7 +4,14 @@ $(document).ready(function(){
 		//calling the timer javascript library and it is available all over the script body
 		//the path needed to be specified manually as it was not taking, so it needs to be 
 		//changed if the folder name is changed
-    
+
+		showTimeOnLoad();
+
+    setInterval(function(){
+
+    	showTimeOnLoad();
+
+    }, 1000);
 
 //==============================================================
 
@@ -40,14 +47,51 @@ $(document).ready(function(){
     
 
 //===============================================================
+	
 
+
+	function showTimeOnLoad()
+	{
 		$.post('Employee/showTimerOnLoad', function(data){
+			var totaltime;
+			var colorclass;
+			var timerinfo = "";
 
 			if(data)
 			{
-				$('#timer').timer({//timer starts
+				if(data<0)
+				{
+					colorclass = "class='text-danger'";
+					data = Math.abs(data);
+
+					timerinfo = "YOU ARE LATE";
+				}
+
+				else
+				{
+					colorclass = "class='text-primary'";
+				}
+				sec = data;
+
+				sec = sec%60;
+
+				sec = properSec(sec);
+
+				min = Math.floor(data/60);
+
+				totaltime = min+":"+sec+"min";
+				 
+					$('#timeinfo').html(timerinfo);
+					$('#timer').html("<div "+colorclass+">"+totaltime+"</div>");
+			//alert('hello');
+
+				
+
+				
+
+				/*$('#timer').timer({//timer starts
             				
-            				duration: data,//time value returned from php file
+            				duration: 10,//time value returned from php file
 
                             countdown: true,
             				
@@ -58,12 +102,15 @@ $(document).ready(function(){
                                 //$('#timer').timer('remove');
 
             				}
-        				});
+        				});*/
 			}
 
 	
 				
 		});
+	}
+		
+	
 
 	
 //================================================================
@@ -85,7 +132,7 @@ $(document).ready(function(){
 					$.post('Employee/inBreak',{opt: opt}, function(data){//inserting 1 in breakstatus and opt value in breakname
 					
 
-						$('#breakmsg').html(data);
+						
 						
 						$('#breakbtn').text("work");//changing the button value to work
 						
@@ -96,20 +143,22 @@ $(document).ready(function(){
 					var totaltime;
 					if(opt== 'fbreak')//setting the time according to the breakname
 					{
-						totaltime = '10s';
+						totaltime = '20:00min';
 					}
 					
 					if(opt=='sbreak')
 					{
-						totaltime = '20s';
+						totaltime = '60:00min';
 					}
 
 					if(opt== 'lbreak')
 					{
-						totaltime = '10s';
+						totaltime = '20:00min';
 					}
 
-					$('#timer').timer({//timer starts
+					$('#timer').html("<div class='text-primary'>"+totaltime+"</div>");
+
+					/*$('#timer').timer({//timer starts
             				
             				duration: totaltime,//time value
 
@@ -122,7 +171,7 @@ $(document).ready(function(){
                                 $('#timer').timer('remove');
 
             				}
-        				});
+        				});*/
 
 
 					
@@ -154,7 +203,7 @@ $(document).ready(function(){
 					 		});
 
 
-
+					 		
                                 
 
 					 		
@@ -182,6 +231,19 @@ $(document).ready(function(){
 		}
 	});
 
-  
+  function properSec(val)
+	{
+		if(val<10)
+		{
+			val = "0"+val;
+
+			return val;
+		}
+
+		else
+		{
+			return val;
+		}
+	}
 
 });
