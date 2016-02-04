@@ -6,7 +6,7 @@
 <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+   
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -17,7 +17,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>    
+                
+                <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee Dashboard</a>    
             </div>
            
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,13 +38,17 @@
                         <a class="page-scroll" href="#contact"></a>
 
                     </li>
-                </ul>
-
+                </ul>  
+                    
+                        </br>
                         <form action="Employee/logout" method="post">
                 
-                            <input type="submit" value="logout" class="btn btn-default pull-right">
+                            <input type="submit" value="Log Out" class="btn btn-danger pull-right">
                         
                         </form>
+
+
+
                     </li>
                 </ul>
 
@@ -65,7 +70,7 @@
                     
                     
                     
-                    <button class="btn btn-primary" value="Clock In" id="clockbtn" name="clockinbtn">Clock In</button>
+                    <button class="btn btn-success" value="Clock In" id="clockbtn" name="clockinbtn"></button>
 
                     
                     
@@ -95,7 +100,7 @@
                 
                 <div class="col-sm-4" >
 
-                    <button class="btn btn-primary" id="breakbtn" name="breakbtn">break</button>
+                    <button class="btn btn-success" id="breakbtn" name="breakbtn">break</button>
                 
                 </div>
                 

@@ -24,14 +24,14 @@ class Employee extends CI_Controller
 			header("location:".base_url()."index.php/Dashboard");
 		}
 	}
-//=======================Log Out======================
+//=======================Employee Logout==========================
 	public function logout()
 	{
 		$this->session->unset_userdata('empid');
 		header("location:".base_url()."index.php/Dashboard");
 		//$this->session->sess_destroy();
 	}
-//=======================Set The Break Value======================    
+//=======================Start The Break======================    
     public function breakstart()
     {
         extract($_POST);
@@ -59,7 +59,7 @@ class Employee extends CI_Controller
            print_r('Choose The Break First');
         }
     }
-//=======================Set The Clock In Time======================
+//==========================Clock In======================
 	public function clockin()
 	{
 		//echo "I am In Clock In";
@@ -86,7 +86,7 @@ class Employee extends CI_Controller
 		    }
 		}
 	}
-//=======================Set The Clock Out Time======================
+//=======================Clock Out================================
 	public function clockout()
 	{   //echo "I am In Clock Out";
 		extract($_POST);
@@ -107,42 +107,42 @@ class Employee extends CI_Controller
 			}
 		}
 	}
-//=======================Changeing the value of clock in button======================
+//=======================Clock Button Value On Page Load======================
 	public function buttonvalue()
 	{    
 		 //echo "I am in onload cotroller";
-      $data['Eid'] = $this->session->userdata('empid');
-      $data['date']= date("d/m/Y");
-      //print_r($data); 
-	  $acc=$this->EmployeeModel->buttonvalue($data);
-	   //print_r($acc);
-		if($acc)
-		{
-			echo "1";
-		}
-		else
-		{
-			echo "0";
-		}
+         $data['Eid'] = $this->session->userdata('empid'); //Taking the id from sessions
+         $data['date']= date("d/m/Y");//Taking the date
+         //print_r($data); 
+	     $acc=$this->EmployeeModel->buttonvalue($data); 
+	     //print_r($acc);
+		    if($acc)
+		    {
+			    echo "1";
+		    }
+		   else
+		    {
+			    echo "0";
+		    }
 	}
 //======================Stop The Break=================
     public function breakstop()
     {
        //echo "I am in employee controller";
-      extract($_POST);
-      $data['Eid']= $this->session->userdata('empid');
-	  $data['date']= date("d/m/Y");
-	  $data['breakname']=$brkval;
-	  $brkstp=$this->EmployeeModel->breakout($data);
-	          if ($brkstp)
-	          {
-                 echo "Hope you enjoyed your break time";
+        extract($_POST);
+        $data['Eid']= $this->session->userdata('empid');
+	    $data['date']= date("d/m/Y");
+	    $data['breakname']=$brkval;
+	    $brkstp=$this->EmployeeModel->breakout($data);
+	        if ($brkstp)
+	        {
+                echo "Hope you enjoyed your break time";
 	          	//print_r($brkstp->result());
-	          }
-	          else
-	          {
-                  echo "Some thing wrong.Try it again";
-	          }
+	        }
+	        else
+	        {
+                echo "Some thing wrong.Try it again";
+	        }
     }
 //=================Changeing the value of break button=======
     public function breakbutton()
@@ -167,61 +167,41 @@ class Employee extends CI_Controller
       $data['Eid'] = $this->session->userdata('empid');
       $data['date']= date("d/m/Y");
       $data['breakstatus']=1;
-
       $back=$this->EmployeeModel->brkback($data);
-
-    }
-
-//======disable fbreak=============================================================
-    public function breakdisable()
-    {
-    	//$dis=$this->EmployeeModel->breakdisable();
-    	//return $dis;
-    	$data['Eid'] = $this->session->userdata('empid');
-    	$data['date']= date("d/m/Y");
-    	//print_r($data);
-    	$dis=$this->EmployeeModel->breakdisable($data);
-    	//return $dis;
-    	print_r($dis);
-
     }
 //========================disable carry forward===========
-    public function carrydisable()
+    public function disablebrk()
     {
     	//echo "hii";
     	$data['Eid'] = $this->session->userdata('empid');
     	$data['date']= date("d/m/Y");
-    	$carry=$this->EmployeeModel->carrydisable($data);
+    	$carry=$this->EmployeeModel->disablebrk($data);
     	print_r($carry);
     }
 //==================break Button Value In Page LOad============
     public function breakbackpl()
     {
     //echo('I im back to work model');
-      $data['Eid']= $this->session->userdata('empid');
-      $data['date']= date("d/m/Y");
-      $data['breakstatus']=1;
-
-      $back=$this->EmployeeModel->brkbackpl($data);
-
+        $data['Eid']= $this->session->userdata('empid');
+        $data['date']= date("d/m/Y");
+	    $data['breakstatus']=1;
+        $back=$this->EmployeeModel->brkbackpl($data);
     }
-//===============Show Clock Time ===============================
+//===============Show Clock In Time On Employee===============================
     public function showclkin()
     {
       //echo "I am In cONTROLLER";
-      $data['Eid']= $this->session->userdata('empid');
-      $data['date']= date("d/m/Y");
-
-      $show=$this->EmployeeModel->showclkin($data);
-      print_r($show);
+        $data['Eid']= $this->session->userdata('empid');
+        $data['date']= date("d/m/Y");
+        $show=$this->EmployeeModel->showclkin($data);
+        print_r($show);
     }
 //=============Show Name On Empdashboard========================
     public function showname()
     {
       //echo "I am In cONTROLLER";
-      $data['Eid']= $this->session->userdata('empid');
-
-      $show=$this->EmployeeModel->showname($data);
-      print_r($show);
+        $data['Eid']= $this->session->userdata('empid');
+        $show=$this->EmployeeModel->showname($data);
+        print_r($show);
     }
 }

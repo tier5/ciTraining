@@ -1,5 +1,5 @@
 $(document).ready(function(){
-//======================Clock Button Value In Page Load====================
+//======================Clock Button Value On Page Load====================
 	$.post('Employee/buttonvalue',function(data){
         if (data=='1') 
         {
@@ -10,7 +10,7 @@ $(document).ready(function(){
         	$('#clockbtn').text("Clock In");
         }
     });
-//=====================Break Button On Page Load=======================
+//=====================Break Button On Page Load============================
     $.post('Employee/breakbutton',function(data){
        //alert(data);
 		if (data=='1') 
@@ -22,7 +22,7 @@ $(document).ready(function(){
 			$('#breakbtn').text("Break");
 		}
 	});
-//====================On page LOad Brak Select=======================
+//====================On page Load Break Select==============================
     $.post('Employee/breakbackpl', function(data){ 
 		//$('#breakbtn').text("break");
 	    //alert(data);
@@ -37,32 +37,26 @@ $(document).ready(function(){
 	        });
 	    }
 	});
-//==page load =====disable carry=========
-	$.post('Employee/carrydisable', function(data){
+//=====================Disable Breaks On Page Load===========================
+	$.post('Employee/disablebrk', function(data){
+        if (data=='fbreak') 
+		{
+			$("#fbreak").prop('disabled', true);
+		}
+        if (data=='sbreak') 
+		{
+			$("#fbreak").prop('disabled', true);
+			$("#sbreak").prop('disabled', true);
+		}
 		if (data=='lbreak') 
 		{
 			$("#fbreak").prop('disabled', true);
 			$("#sbreak").prop('disabled', true);
 			$("#lbreak").prop('disabled', true);
 		}
-		if (data=='sbreak') 
-		{
-			$("#fbreak").prop('disabled', true);
-			$("#sbreak").prop('disabled', true);
-		}
 	});
-//=======================page load fbreak disable===============
-	$.post('Employee/breakdisable',function(data){
-
-		//alert(data);
-		if (data) 
-		{
-			$("#fbreak").prop('disabled', true);
-		}
-	});
-
 });
-//======================Clock Button Value On Click====================
+//======================Clock Button Value On Click==========================
 $(document).ready(function(){
 	$('#clockbtn').click(function(){
 	  	var clockbtn = $('#clockbtn').text();
@@ -85,7 +79,7 @@ $(document).ready(function(){
 		}
      });
 });
-//===========================Break Button==============================
+//===========================Break Button On Clock===========================
 $(document).ready(function(){	
 	$('#breakbtn').click(function(){
 	var opt = $('#opt').val();
@@ -95,40 +89,40 @@ $(document).ready(function(){
 			{	
 			    $.post('Employee/breakstart', {brkval: opt}, function(data){
                  //alert(data);
-                if (data=='Enjoy Your Break & come back soon!') 
-                {
-			                //==disable fbreak on click========= 
-							if (opt=='fbreak') 
-								{
-								if (data) 
-									{
-										$("#fbreak").prop('disabled', true);
-									}
-								}
-							if (opt=='sbreak') 
-								{
-									if (data)
-									{
-									    $("#fbreak").prop('disabled', true);
-									    $("#sbreak").prop('disabled', true);
-									}
-								}
-							if (opt=='lbreak') 
-								{
-									if (data) 
-									{
-										$("#fbreak").prop('disabled', true);
-										$("#sbreak").prop('disabled', true);
-										$("#lbreak").prop('disabled', true);
-									}
-					     		}
-                $('#breakmsg').html(data)
-				$('#breakbtn').text("Back To Work");
-				}    
-				else
-				{
-					$('#breakmsg').html(data)
-				}
+	                if (data=='Enjoy Your Break & come back soon!') 
+	                {
+				      //==disable Breaks on click========= 
+						if (opt=='fbreak') 
+						{
+							if (data) 
+							{
+								$("#fbreak").prop('disabled', true);
+							}
+						}
+						if (opt=='sbreak') 
+						{
+							if (data)
+							{
+								$("#fbreak").prop('disabled', true);
+								$("#sbreak").prop('disabled', true);
+							}
+						}
+						if (opt=='lbreak') 
+						{
+						    if (data) 
+						    {
+						        $("#fbreak").prop('disabled', true);
+								$("#sbreak").prop('disabled', true);
+								$("#lbreak").prop('disabled', true);
+							}
+						}
+	                    $('#breakmsg').html(data)
+					    $('#breakbtn').text("Back To Work");
+					}    
+					else
+					{
+						$('#breakmsg').html(data)
+					}
 				});
 			}
 			else
@@ -153,29 +147,11 @@ $(document).ready(function(){
 				
 			    }
 			});  	
-		}
-//================================================		
+		}		
 	});
 });
 //==============================================
-/*$(document).ready(function(){	
-  if($('#breakbtn').text()=="Back To Work")
-  {
-    $.post('Employee/breakback', function(data){ 
-		$('#breakbtn').text("Break");
-		//alert(data);
-		var optval=data;
-		//alert(optval);
-		if (optval)
-			{
-				$.post('Employee/breakstop', {brkval: optval}, function(data){
-				$('#breakmsg').html(data);
-				});
-				
-			}
-	});  
-  } 
-});*/
+
 
 
 
