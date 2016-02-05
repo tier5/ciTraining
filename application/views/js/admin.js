@@ -8,7 +8,7 @@ setInterval(function(){
     sbreak();
     lbreak();
     
-}, 100);
+}, 1000);
 
 	employeeLate();
 
