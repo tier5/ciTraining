@@ -13,7 +13,7 @@ $(document).ready(function(){
 			allemployee();
 			//alert('hello');
 
-		}, 1000);
+		}, 2000);
 
 		
 

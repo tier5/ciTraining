@@ -16,7 +16,7 @@ setInterval(function(){
 
 	employeeLate();
 
-	}, 1000);
+	}, 10000);
 
 window.deleteLateRow = function(id)
 {
