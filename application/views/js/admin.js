@@ -2,21 +2,21 @@ $(document).ready(function(){
 
 
 
-//setInterval(function(){
+setInterval(function(){
     clockin();
     fbreak();
     sbreak();
     lbreak();
     
-//}, 100);
+}, 100);
 
 	employeeLate();
 
-//setInterval(function(){
+setInterval(function(){
 
 	employeeLate();
 
-	//}, 1000);
+	}, 1000);
 
 window.deleteLateRow = function(id)
 {
