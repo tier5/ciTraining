@@ -7,12 +7,22 @@ class Employee extends CI_Controller
 	{
 		parent::__construct();
 
+		$this->load->library('session');
 		$this->load->helper('url');
 		$this->load->database();
 
-		$this->load->library('session');
+		
 
 		$this->load->model('EmployeeModel');
+
+		if (!$this->session->userdata('empid'))
+		{
+			redirect("Dashboard");
+			exit(0);
+		}
+
+		
+
 	
 
 	}
@@ -27,7 +37,9 @@ class Employee extends CI_Controller
 		else
 		{
 			echo "Session Does not exists";
-			header("location:".base_url()."index.php/Dashboard");
+			//header("location:".base_url()."index.php/Dashboard");
+			redirect("Dashboard");
+			exit(0);
 
 		}
 		
@@ -220,4 +232,92 @@ class Employee extends CI_Controller
 		}
 		    	   	
     }
+
+    public function lateInBreak()
+    {
+    	
+    	extract($_POST);
+
+    		if($opt=='fbreak')
+			{
+				$totaltime = FBREAK_TIME;
+			}
+
+			else if($opt=='sbreak')
+			{
+				$totaltime = SBREAK_TIME;
+			}
+
+			if($opt=='lbreak')
+			{
+				$totaltime = LBREAK_TIME;
+			}
+
+    	//echo $opt;
+    	$data['Eid'] = $this->session->userdata('empid');
+    	$data['date'] = date("d/m/Y");
+
+    	$nowtime = new DateTime('now');
+
+    	$res = $this->EmployeeModel->lateInBreak($data ,$opt);
+
+    	if($res)
+    	{
+    		foreach ($res as $key)
+	    	{
+	    		$diff = $nowtime->diff(new DateTime($key['starttime']));
+				
+				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+				$remainingtime = $totaltime-$sum;
+
+				if($remainingtime<0)
+				{
+					$remainingtime = abs($remainingtime);
+
+					$data['late_in'] = $opt;
+					$data['late_time'] = $remainingtime;
+
+			    	$result = $this->EmployeeModel->storeInLateTable($data);
+
+			    	print_r($result);
+
+				}
+	    		
+	    	}
+    	}
+    	
+
+    }
+
+    public function clockinLateChk()
+    {
+    	$timenow = new DateTime('now');
+
+    	$nowtime= date("H:i:s");
+
+    	$now = strtotime($nowtime);
+
+    	$clockintime = strtotime(CLOCK_IN_TIME);
+
+    	//print_r($clockintime);
+    	if($clockintime<$now)
+    	{
+    		$diff = $timenow->diff(new DateTime(CLOCK_IN_TIME));
+				
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data['late_time']=$sum;
+
+			$data['Eid'] = $this->session->userdata('empid');
+    		$data['date'] = date("d/m/Y");
+    		$data['late_in'] = "Clock In";
+
+    		$result = $this->EmployeeModel->storeInLateTable($data);
+
+    		print_r("You Are Late");
+    	}
+    	
+    }
+
 }

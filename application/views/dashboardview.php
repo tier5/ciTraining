@@ -83,7 +83,7 @@
               
                     <form action="<?php echo base_url().'index.php/Dashboard/adminlogin'; ?>" method="post">
                         <div class="form-group">
-                            <input id="adminname" name="name" type="text" class="form-control input-lg" placeholder="name">
+                            <input id="adminname" name="name" type="text" class="form-control input-lg" placeholder="user_name">
                         </div>
                         <div class="form-group">
                             <input id="adminpassword" type="password" name="password" class="form-control input-lg" placeholder="Password">
@@ -124,7 +124,7 @@
                 
                     <form action="<?php echo base_url().'index.php/Dashboard/employeelogin'; ?>" method="post">
                         <div class="form-group">
-                            <input id="employeename" name="name" type="text" class="form-control input-lg" placeholder="name">
+                            <input id="employeename" name="name" type="text" class="form-control input-lg" placeholder="user_name">
                         </div>
                         <div class="form-group">
                             <input password="employeepassword" name="password" type="password" class="form-control input-lg" placeholder="Password">

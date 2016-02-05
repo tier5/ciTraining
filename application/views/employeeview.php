@@ -72,6 +72,8 @@
                 <div class="col-sm-4">
                     
                     <div id="clockintime"></div>
+                    <div id="clockintime1"></div>
+                    <div id="clockintimeLate"></div>
                 </div>
             </div>
 
@@ -99,7 +101,7 @@
                 
                 <div id="timer"></div>
                 <div id="timeinfo"></div>
-                <div class="col-sm-4" id="breakmsg"></div>
+                <div class="col-sm-4" id="msgbreak"></div>
            
             </div>
         

@@ -11,6 +11,12 @@ class Admin extends CI_Controller
 		$this->load->database();
 		$this->load->model('AdminModel');
 		$this->load->library('session');
+
+		if (!$this->session->userdata('adminid'))
+		{
+			redirect("Dashboard");
+		}
+
 	}
 	
 	public function index()
@@ -24,7 +30,7 @@ class Admin extends CI_Controller
 		else
 		{
 			echo "session does not exist";
-			header("location:".base_url()."index.php/Dashboard");
+			redirect("Dashboard");
 		}
 		
 
@@ -336,4 +342,38 @@ class Admin extends CI_Controller
 		
 	}
 
+	public function employeeLate()
+	{
+		$result = $this->AdminModel->employeeLate();
+
+		foreach ($result as $key)
+		{
+			
+			$data2['id'] = $key['Eid'];
+			$resname = $this->AdminModel->showName($data2);
+
+			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id'].".";
+
+		}
+
+	}
+
+	public function deleteEmpLate()
+	{
+		extract($_POST);
+
+		$data['tbl_id'] = $tbl_id;
+
+		$result = $this->AdminModel->deleteEmpLate($data);
+
+
+
+	}
+
+	public function lateTblTruncate()
+	{
+		$data = "tbl_late_emp";
+		$result = $this->AdminModel->lateTblTruncate($data);
+		
+	}
 }

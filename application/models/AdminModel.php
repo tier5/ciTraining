@@ -120,6 +120,27 @@
 
 
       }
+
+      public function employeeLate()
+      {
+          $result = $this->db->get('tbl_late_emp');
+
+          return $result->result_array();
+
+      }
+
+      public function deleteEmpLate($data)
+      {
+          $result = $this->db->delete('tbl_late_emp',$data);
+
+
+
+      }
+
+      public function lateTblTruncate($data)
+      {
+          $this->db->truncate($data);
+      }
       
       
    } 

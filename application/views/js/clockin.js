@@ -8,10 +8,24 @@
                 $.post('Employee/clockin', function(data){
 
                     $('#clockintime').html(data);
-                    $('#clockintime1').html('Hey! Guest, have a nice day!');
+                    $('#clockintime1').html('');
 
 
                 });
+
+                $.post('Employee/clockinLateChk', function(data){
+
+                        //alert(data);
+                        if($.trim(data))
+                        {
+                             //$('body').html(data);
+                             $('#clockintime').html(data);
+
+                        }
+                       
+                });
+
+
             }
             
             else
@@ -21,7 +35,7 @@
                 $.post('Employee/clockout', function(data){
 
                     $('#clockintime').html(data);
-                    $('#clockintime1').html('Hey! Guest, see you tommorow');
+                    $('#clockintime1').html('see you tommorow');
 
 
                 });

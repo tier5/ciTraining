@@ -7,14 +7,118 @@ setInterval(function(){
     fbreak();
     sbreak();
     lbreak();
+    
 }, 100);
-//======================================================
 
-	$.post('Admin/empLateFbreak', function(data){
+	employeeLate();
 
-		alert(data);
+setInterval(function(){
+
+	employeeLate();
+
+	}, 1000);
+
+window.deleteLateRow = function(id)
+{
+	$.post('Admin/deleteEmpLate', {tbl_id: id}, function(data){
+
+		//alert(data);
+		employeeLate();
 
 	});
+}
+//=====================================================
+
+	$('#delAllLateTbl').click(function(){
+
+		$.post('Admin/lateTblTruncate', function(data){
+
+			
+		});
+
+	});
+
+//======================================================
+function employeeLate()
+{
+	$.post('Admin/employeeLate', function(data){
+
+		var totaldiv="";
+		var breakname="";
+		var latetime="";
+
+		if($.trim(data))
+		{
+			//alert(data);
+			data = data.split(".");
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				/*if(value[3]=="fbreak")
+				{
+					breakname = "First Break";
+				}
+				else if(value[3]=="sbreak")
+				{
+					breakname = "Lunch Break";
+				}
+				else
+				{
+					breakname = "Last Break";
+				}*/
+
+				switch (value[3])
+				{
+					case "fbreak": 
+						breakname = "First Break";
+						break;
+
+					case "sbreak":
+						breakname = "Lunch Break";
+						break;
+
+					case "lbreak":
+						breakname = "Last Break";
+						break;
+
+					case "Clock In":
+						breakname = "Clock In";
+						break;
+
+					default:
+						breakname = "Default";
+				}
+				//alert(value[4]);
+
+				sec = value[4];
+
+				sec = sec%60;
+
+				sec = properSec(sec);
+
+				min = Math.floor(value[4]/60);
+
+				min = properMin(min);
+
+				min = properSec(min);
+
+				hour = Math.floor(value[4]/3600);
+
+				latetime = hour+":"+min+":"+sec;
+
+				totaldiv += "<tr><td>"+value[0]+"</td><td>"+value[1]+"</td><td>"+value[2]+"</td><td>"+breakname+"</td><td>"+latetime+"</td><td><button class='btn btn-danger glyphicon glyphicon-trash' onclick='deleteLateRow("+$.trim(value[5])+")'></button></td></tr>";
+
+				$('#latetable').html(totaldiv);
+			}
+			//$('#latetable').html(data);
+		}
+		
+
+	});
+}
+	
 	
 
 
@@ -332,6 +436,22 @@ function properSec(val)
 		return val;
 	}
 }
+
+function properMin(val)
+{
+	if(val>60)
+	{
+		val=Math.floor(val/60);
+		return val;
+	}
+
+	else
+	{
+		return val;
+	}
+}
+
+
 
 
 });

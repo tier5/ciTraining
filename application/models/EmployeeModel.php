@@ -182,6 +182,27 @@ class EmployeeModel extends CI_model
           
     }
 
+    public function lateInBreak($data, $tablename)
+    {
+
+        $res = $this->db->get_where($tablename,$data);
+
+        return $res->result_array();
+
+    }
+
+    public function storeInLateTable($data)
+    {
+        $result=$this->db->insert('tbl_late_emp',$data);
+
+        
+
+    }
+
+
+    
+
+
 
 }
 

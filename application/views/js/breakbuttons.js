@@ -190,7 +190,7 @@ $(document).ready(function(){
 							$.post('Employee/endBreak', function(data){//inserting 0 in breakstatus column in attendence table
 
 						 		$('#breakbtn').text("break");//changing the button value to break
-						 		$('#breakmsg').html('Hope You have enjoyed your break');
+						 		//$('#breakmsg').html('Hope You have enjoyed your break');
 						 		$("#"+opt).prop('disabled', true);
 						 		$('#timer').timer('remove');
 						 		
@@ -198,13 +198,21 @@ $(document).ready(function(){
 
 					 		$.post('Employee/storeReturnTime',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
 
-						 		
 						 		//alert(data);
 					 		});
 
+						 	$.post('Employee/lateInBreak',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
+
+						 		if($.trim(data))
+						 		{
+						 			$('body').html(data);
+						 			//alert(data);
+						 		}
+						 		
+					 		});
 
 					 		
-                                
+                                $('#msgbreak').html('');
 
 					 		
 						}
@@ -212,7 +220,7 @@ $(document).ready(function(){
 				 		else
 				 		{
 
-						 	$('#breakmsg').html('You have not taken that break Choose Properly');
+						 	$('#msgbreak').html('You have not taken that break Choose Properly');
 				 		}
 					 	
 				 		
@@ -222,7 +230,7 @@ $(document).ready(function(){
 			}
 			else 
 			{
-				$('#breakmsg').html('Choose a break');
+				$('#msgbreak').html('Choose a break');
 			}
 		}
 		else
