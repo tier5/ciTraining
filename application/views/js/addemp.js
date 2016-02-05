@@ -31,7 +31,7 @@ $(document).ready(function(){
 	   				
 	   				
 	   				$('#errorAdd1').html('*invalid email format, email should be like email@domain.com');
-	   				
+	   				//$('#empemail').focus();
 	   		}
 	   	
 	   		
@@ -56,7 +56,7 @@ $(document).ready(function(){
 	   			
 	   				$('#confirmAdd').html('');
 	   				
-	   				$('#empname').focus();
+	   				$('#empemail').focus();
 
 	   			
 
