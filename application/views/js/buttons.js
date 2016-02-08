@@ -1,6 +1,10 @@
 $(document).ready(function(){
     
-   
+   	$.post('Employee/showUserName', function(data){
+
+   		$('#username').html(data);
+
+	});
 	
 	$('#clockbtn').click(function(){
 

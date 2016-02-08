@@ -3,6 +3,14 @@
 	   	color: red;
 	   	font-style: italic;
 	   }
+.deleteconfirm
+{
+    color: #666;
+}
+#username
+{
+    color: #666 !important;
+}
 .confirm
 {
 	color: green;
@@ -18,6 +26,13 @@
 	border-radius:10px;
 	height: 22px;
 	width: 230px;
+}
+
+.modal-footer {
+ 
+    padding: 15px;
+    text-align: right;
+    border-top: none !important;
 }
 
 input {

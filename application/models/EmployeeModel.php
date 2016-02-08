@@ -199,6 +199,16 @@ class EmployeeModel extends CI_model
 
     }
 
+    public function showName($data)
+    {
+        //return $data;
+        $result = $this->db->get_where('employee',$data);
+
+        $res = $result->row_array()['name'];
+
+        return $res;
+    }
+
 
     
 

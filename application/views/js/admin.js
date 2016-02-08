@@ -1,39 +1,49 @@
 $(document).ready(function(){
 
-
+clockin();
+employeeLate();
+fbreak();
+sbreak();
+lbreak();
 
 setInterval(function(){
-    clockin();
+    
     fbreak();
     sbreak();
     lbreak();
     
 }, 1000);
 
-	employeeLate();
+	
 
 setInterval(function(){
 
+	clockin();
 	employeeLate();
 
-	}, 10000);
+	}, 60000);
 
 window.deleteLateRow = function(id)
 {
-	$.post('Admin/deleteEmpLate', {tbl_id: id}, function(data){
+	var emp_id=id;
+	$.post('Admin/deleteEmpLate', {tbl_id: emp_id}, function(data){
 
 		//alert(data);
 		employeeLate();
 
 	});
 }
+//====================================================
+
+	
+
 //=====================================================
 
 	$('#delAllLateTbl').click(function(){
 
 		$.post('Admin/lateTblTruncate', function(data){
 
-			
+			employeeLate();
 		});
 
 	});
@@ -110,12 +120,13 @@ function employeeLate()
 
 				totaldiv += "<tr><td>"+value[0]+"</td><td>"+value[1]+"</td><td>"+value[2]+"</td><td>"+breakname+"</td><td>"+latetime+"</td><td><button class='btn btn-danger glyphicon glyphicon-trash' onclick='deleteLateRow("+$.trim(value[5])+")'></button></td></tr>";
 
-				$('#latetable').html(totaldiv);
+				
 			}
 			//$('#latetable').html(data);
+
 		}
 		
-
+				$('#latetable').html(totaldiv);
 	});
 }
 	
@@ -200,6 +211,10 @@ function fbreak(){
 			sec = properSec(sec);
 
 			min = Math.floor(value[1]/60);
+
+			min = properMin(min);
+
+			min = properSec(min);
 
 			timeshow=min+':'+sec+'m';
 
@@ -294,6 +309,10 @@ function sbreak(){
 
 			min = Math.floor(value[1]/60);
 
+			min = properMin(min);
+
+			min = properSec(min);
+
 			timeshow=min+':'+sec+'m';
 
 
@@ -380,7 +399,13 @@ function lbreak()
 
 			sec = sec%60;
 
+			sec = properSec(sec);
+
 			min = Math.floor(value[1]/60);
+
+			min = properMin(min);
+
+			min = properSec(min);
 
 			timeshow=min+':'+sec+'m';
 
@@ -450,6 +475,8 @@ function properMin(val)
 		return val;
 	}
 }
+
+
 
 
 

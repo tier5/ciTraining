@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'header.php';?>
+<?php include 'employeeheader.php';?>
 
 <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
@@ -19,6 +19,7 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
                 <br/>
+                <br/><div class="glyphicon glyphicon-user username" id="username"></div> 
                 
             </div>
 

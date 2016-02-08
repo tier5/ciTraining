@@ -28,9 +28,7 @@
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#about">Add New Employee</a>
-                    </li>
+                    
                     
                     <li>
                         <a class="page-scroll" href="#employeelate">Employee Late</a>
@@ -58,7 +56,6 @@
     </nav>
 
     <!-- Intro Section -->
-        <button class="btn btn-default page-scroll">Go To Employee Management!</button>
 
 
     <section id="intro" class="intro-section">
@@ -67,9 +64,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Employee On Break</h1>
-                    <div id="mydiv">hello</div>
                     
-                    <a class="btn btn-default page-scroll" href="#about">Go To Employee Management!</a>
+                    
+                    <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
                 </div>
             </div>
         </br>
@@ -173,35 +170,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Add New Employee</h1>
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        
-                        <span class="fieldset">*</span><input type='text' id='empname' name='empname' placeholder='Employee User_Name'>
-                        <br/>
-                        
-                        <span class="fieldset">*</span><input type='text' id='empemail' name='empemail' placeholder='employee@domain.com'><br/>
-                         <div id="errorAdd1" align="center" class="error"></div>
-                        
-                        <span class="fieldset">*</span><input type='password' id='emppass' name='emppass' placeholder='Password'><br/>
-                        
-                         <input type='submit' id='addemp' name='addemp' class='btn btn-info' value='Add Employee'>
-                        
-                         <div id="errorAdd" align="center" class="error"></div>
-                         <div id="confirmAdd" align="center" class="confirm"></div>
-
-                        
-                       
-                    </div>
-                    <div class="col-lg-4"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
     <!-- Services Section -->
 
@@ -222,7 +191,7 @@
                                 <td><strong>USER NAME</strong></td>
                                 <td><strong>LATE ON</strong></td>
                                 <td><strong>Time</strong></td>
-                                <td><button id="delAllLateTbl" class="btn btn-danger">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                             </tr>
                             </thead>
                             <tbody id="latetable">
@@ -255,12 +224,14 @@
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
+                    
                                 <td><strong>ID</strong></td>
                                 <td><strong>USER NAME</strong></td>
                                 <td><strong>EMAIL</strong></td>
-                                <td><strong>PASSWORD</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                
-                              </tr>
+                                <td><strong>PASSWORD</strong></td>
+                               <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                    
+                             </tr>
                             </thead>
                             <tbody id="showallemployeeDiv">
                            
@@ -286,25 +257,89 @@
     
 
     <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  <div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="addEmpModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add New Employee</h4>
+            </div>
+            <div class="modal-body">
+              
+                        <div class="form-group">
+                            <input id="empusername" name="name" type="text" class="form-control input-lg" placeholder="user_name">
+                        </div>
+                        <div class="form-group">
+                            <input id="empuseremail" type="email" name="email" class="form-control input-lg" placeholder="email@domain.com">
+                        </div>
+                        <div class="error" id="improperemail"></div>
+                        <div class="form-group">
+                            <input id="empuserpass" type="password" name="password" class="form-control input-lg" placeholder="Password">
+                        </div>
+                        
+                        <div class="form-group">
+                            <button id="addNewEmp" class="btn btn-primary btn-lg btn-block">ADD</button>
+                            
+                        </div>
+                        <div id="confirmAdd" align="center" class="confirm"></div>
+                    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
         </div>
       </div>
-      
-    </div>
-  </div>
+  
+</div>
+
+
+ <div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="deleteAllLate" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Delete All Late Records</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div class="col-sm-4">
+                
+                <button id="delAllLateTbl" class="btn btn-danger" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
 
 
 

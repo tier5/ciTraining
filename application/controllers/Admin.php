@@ -29,7 +29,7 @@ class Admin extends CI_Controller
 		
 		else
 		{
-			echo "session does not exist";
+			//echo "session does not exist";
 			redirect("Dashboard");
 		}
 		
@@ -111,7 +111,7 @@ class Admin extends CI_Controller
 	{
 		$this->session->unset_userdata('adminid');
 
-		header("location:".base_url()."index.php/Dashboard");
+		redirect('Dashboard');
 	}
 
 	public function empClockIn()

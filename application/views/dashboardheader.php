@@ -7,6 +7,7 @@
     <meta name="author" content="">
 
     <title>Tier5</title>
+    <link rel=icon href="http://tier5.us/images/favicon.ico">
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">

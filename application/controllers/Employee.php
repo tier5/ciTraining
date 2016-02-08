@@ -48,8 +48,7 @@ class Employee extends CI_Controller
 	public function logout()
 	{
 		$this->session->unset_userdata('empid');
-		header("location:".base_url()."index.php/Dashboard");
-
+		redirect('Dashboard');
 		//$this->session->sess_destroy();
 	}
 
@@ -318,6 +317,16 @@ class Employee extends CI_Controller
     		print_r("You Are Late");
     	}
     	
+    }
+
+    public function showUserName()
+    {
+    	$data['id'] = $this->session->userdata('empid');
+
+    	if($result = $this->EmployeeModel->showName($data))
+    	{
+    		print_r($result);
+    	}
     }
 
 }

@@ -13,7 +13,7 @@ $(document).ready(function(){
 			allemployee();
 			//alert('hello');
 
-		}, 2000);
+		}, 10000);
 
 		
 
@@ -77,6 +77,53 @@ $(document).ready(function(){
 		
 		
 	}
+
+	$('#addNewEmp').click(function(){
+
+		//alert('hello');
+		var username = $('#empusername').val();
+		var useremail = $('#empuseremail').val();
+		var userpassword = $('#empuserpass').val();
+		/*alert(username);
+		alert(useremail);
+		alert(userpassword);*/
+		useremail = validateEmail(useremail);
+		
+		if(useremail && userpassword && username)
+		{
+			$.post('Admin/addEmp',{name: username, email: useremail, pass: userpassword, btn: "submit"}, function(data)
+			{
+                $('#confirmAdd').html(data);
+                allemployee();
+			});
+		}
+
+		else
+		{
+			$('#improperemail').html('all fields are needed & a proper email');
+		}
+
+		
+
+
+	});
+//=================================================
+
+	function validateEmail(email) {
+    var x = email;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) 
+    {
+        //alert("Not a valid e-mail address");
+        return false;
+    }
+    else
+    {
+    	return email;
+    }
+}
+
 
 
 
