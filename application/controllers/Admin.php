@@ -45,6 +45,7 @@ class Admin extends CI_Controller
 			$data['name']= $newname;
 			$data['email']= $newemail;
 			$data['password']= $newpass;
+			$data['points'] = $points;
 
 			//print_r($data1);
 	      	$update=$this->AdminModel->updateEmp($data1, $data);
@@ -66,7 +67,7 @@ class Admin extends CI_Controller
 
 		foreach ($add as $row) 
 		{
-			echo $row->id.",".$row->name.",".$row->email.",".$row->password."/";
+			echo $row->id.",".$row->name.",".$row->email.",".$row->password.",".$row->points."/";
 		}
 	}
     
@@ -375,5 +376,54 @@ class Admin extends CI_Controller
 		$data = "tbl_late_emp";
 		$result = $this->AdminModel->lateTblTruncate($data);
 		
+	}
+
+	public function resetPoints()
+	{
+		$data['points'] = 3000;
+		$result = $this->AdminModel->resetPoints($data);
+		print_r($result);
+	}
+
+	/*public function calculatePoint()
+	{
+		$result = $this->AdminModel->employeeLate();
+
+		foreach ($result as $key)
+		{
+			//print_r($key['Eid']);
+			//print_r($key['late_time']);
+			$points=$this->deductPointBySec($key['late_time']);
+			$data['id']=$key['Eid'];
+
+			$result1=$this->AdminModel->ShowEmpCurrentPoint($data);
+
+			//print_r($result1);
+
+			$data1['points']= $result1-$points;
+			
+			$result2 = $this->AdminModel->updateEmployeeTbl($data, $data1);
+
+			print_r($result2);
+
+		}
+	}*/
+
+	public function deductPointBySec($time)
+	{
+		if($time<=7200)
+		{
+			return 250;
+		}
+
+		else if($time>=7201 && $time<=14400)
+		{
+			return 500;
+		}
+
+		else
+		{
+			return 1000;
+		}
 	}
 }

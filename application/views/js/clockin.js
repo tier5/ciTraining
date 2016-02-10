@@ -25,6 +25,20 @@
                        
                 });
 
+                $.post('Employee/clockinLatePoints', function(data){
+
+
+                        if($.trim(data))
+                        {
+                             //$('body').html(data);
+                             //alert(data);
+                             $("#latePoint").modal("show");
+                            $("#pointMsg").html(data);
+
+                        }
+
+                });
+
 
             }
             

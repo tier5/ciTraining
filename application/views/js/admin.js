@@ -34,7 +34,12 @@ window.deleteLateRow = function(id)
 	});
 }
 //====================================================
+	
+	/*$.post('Admin/calculatePoint',function(data){
 
+		alert(data);
+
+	});*/
 	
 
 //=====================================================
@@ -108,7 +113,7 @@ function employeeLate()
 
 				sec = properSec(sec);
 
-				min = Math.floor(value[4]/60);
+				min = Math.floor(value[4]%3600);
 
 				min = properMin(min);
 
@@ -206,17 +211,21 @@ function fbreak(){
 
 			sec = value[1];
 
+			hour = Math.floor(value[1]/3600);
+
 			sec = sec%60;
 
 			sec = properSec(sec);
 
-			min = Math.floor(value[1]/60);
+			min = Math.floor(value[1]%3600);
 
 			min = properMin(min);
 
 			min = properSec(min);
 
-			timeshow=min+':'+sec+'m';
+			
+
+			timeshow=hour+":"+min+':'+sec+'m';
 
 
 
@@ -303,17 +312,19 @@ function sbreak(){
 			
 			sec = value[1];
 
+			hour = Math.floor(value[1]/3600);
+
 			sec = sec%60;
 
 			sec = properSec(sec);
 
-			min = Math.floor(value[1]/60);
+			min = Math.floor(value[1]%3600);
 
 			min = properMin(min);
 
 			min = properSec(min);
 
-			timeshow=min+':'+sec+'m';
+			timeshow=hour+":"+min+':'+sec+'m';
 
 
 
@@ -397,17 +408,19 @@ function lbreak()
 
 			sec = value[1];
 
+			hour = Math.floor(value[1]/3600);
+
 			sec = sec%60;
 
 			sec = properSec(sec);
 
-			min = Math.floor(value[1]/60);
+			min = Math.floor(value[1]%3600);
 
 			min = properMin(min);
 
 			min = properSec(min);
 
-			timeshow=min+':'+sec+'m';
+			timeshow=hour+":"+min+':'+sec+'m';
 
 
 

@@ -6,19 +6,19 @@ $(document).ready(function(){
 
  
 	
-  	$('#addemp').click(function(){
 
-		setTimeout(function(){ 
+  	$('#resetEveryPoints').click(function(){
 
-			allemployee();
-			//alert('hello');
+  		$.post('Admin/resetPoints', function(data){
 
-		}, 10000);
+  			if($.trim(data))
+  			{
+  				allemployee();
+  			}
 
-		
+  		});
 
-		
-	});
+  	});
 
 
  function allemployee()
@@ -42,10 +42,10 @@ $(document).ready(function(){
 
 			
 
-			totaldiv += "<tr><td id='id_"+$.trim(value[0])+"'>"+value[0]+"</td><td contenteditable='true' id='name_"+$.trim(value[0])+"'>"+value[1]+"</td><td id='email_"+$.trim(value[0])+"' contenteditable='true'>"+value[2]+"</td><td contenteditable='true' id='password_"+$.trim(value[0])+"'>"+value[3]+"</td><td><button onclick='myFunction("+$.trim(value[0])+")' class='btn btn-primary btn-sm glyphicon glyphicon-floppy-saved'></button></td></tr>";
+			totaldiv += "<tr><td id='id_"+$.trim(value[0])+"'>"+value[0]+"</td><td contenteditable='true' id='name_"+$.trim(value[0])+"'>"+value[1]+"</td><td id='email_"+$.trim(value[0])+"' contenteditable='true'>"+value[2]+"</td><td contenteditable='true' id='password_"+$.trim(value[0])+"'>"+value[3]+"</td><td contenteditable='true' id='points_"+$.trim(value[0])+"'>"+value[4]+"</td><td><button onclick='myFunction("+$.trim(value[0])+")' class='btn btn-primary btn-sm glyphicon glyphicon-floppy-saved'></button></td></tr>";
 
 			$("#showallemployeeDiv").html(totaldiv);
-			console.log(totaldiv);
+			//console.log(totaldiv);
 
 
 
@@ -62,12 +62,13 @@ $(document).ready(function(){
 		var password = $('#password_'+id).text();
 		var email = $('#email_'+id).text();
 		var name = $('#name_'+id).text();
+		var points = $('#points_'+id).text();
 		var id = $('#id_'+id).text();
 		
 		if(id && name && email && password)
 		{
 			
-			$.post('Admin/update',{id: id, newname: name,newemail: email,newpass: password} ,function(data){
+			$.post('Admin/update',{id: id, newname: name,newemail: email,newpass: password,points :points} ,function(data){
 
 				//alert(data);
 				allemployee();

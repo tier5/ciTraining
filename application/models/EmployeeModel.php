@@ -209,9 +209,28 @@ class EmployeeModel extends CI_model
         return $res;
     }
 
+    public function ShowEmpCurrentPoint($data)
+    {
+        $result = $this->db->get_where('employee',$data);
+        return $result->row_array()['points'];
+    }
 
-    
 
+    public function updateEmployeePoints($id, $points)
+    {
+        $this->db->where($id);
+        if($this->db->update('employee',$points))
+        {
+          return true;
+        }
+    }
+
+    public function showClockinTime($id)
+    {
+        $result = $this->db->get_where('attendance',$id);
+
+        return $result->row_array()['clockin'];
+    }
 
 
 }

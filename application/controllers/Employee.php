@@ -291,13 +291,25 @@ class Employee extends CI_Controller
 
     public function clockinLateChk()
     {
-    	$timenow = new DateTime('now');
 
-    	$nowtime= date("H:i:s");
+    	$id['Eid'] = $this->session->userdata('empid');
+    	$id['date'] = date("d/m/Y");
 
-    	$now = strtotime($nowtime);
+    	$clockin = $this->EmployeeModel->showClockinTime($id);
+
+    	//print_r($clockin);
+
+
+
+    	$timenow = new DateTime($clockin);
+
+    	//$nowtime= date("H:i:s");
+
+    	$now = strtotime($clockin);
 
     	$clockintime = strtotime(CLOCK_IN_TIME);
+
+
 
     	//print_r($clockintime);
     	if($clockintime<$now)
@@ -328,5 +340,141 @@ class Employee extends CI_Controller
     		print_r($result);
     	}
     }
+
+    public function clockinLatePoints()
+    {
+    	$id['Eid'] = $this->session->userdata('empid');
+    	$id['date'] = date("d/m/Y");
+
+    	$clockin = $this->EmployeeModel->showClockinTime($id);
+
+    	//print_r($clockin);
+
+
+
+    	$timenow = new DateTime($clockin);
+
+    	//$nowtime= date("H:i:s");
+
+    	$now = strtotime($clockin);
+
+    	$clockintime = strtotime(CLOCK_IN_TIME);
+
+    	//print_r($clockintime);
+    	if($clockintime<$now)
+    	{
+    		$diff = $timenow->diff(new DateTime(CLOCK_IN_TIME));
+				
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$pointdeduct = $this->deductPointBySec($sum);
+
+			$empid['id'] = $this->session->userdata('empid');
+
+			$currpoint = $this->EmployeeModel->ShowEmpCurrentPoint($empid);
+
+			//print_r($result);
+
+			$newpoint['points'] = $currpoint - $pointdeduct;
+
+			$res = $this->EmployeeModel->updateEmployeePoints($empid, $newpoint);
+
+			if($res)
+			{
+				echo "Your ".$pointdeduct." points are deducted for late  Clock In";
+			}
+
+    	}
+    }
+
+    public function breakLatePoints()
+    {
+
+    	
+    	extract($_POST);
+    		$lateBreak="";
+    		if($opt=='fbreak')
+			{
+				$totaltime = FBREAK_TIME;
+				$lateBreak = "First Break";
+			}
+
+			else if($opt=='sbreak')
+			{
+				$totaltime = SBREAK_TIME;
+				$lateBreak = "Lunch Break";
+			}
+
+			if($opt=='lbreak')
+			{
+				$totaltime = LBREAK_TIME;
+				$lateBreak = "Last Break";
+			}
+
+    	//echo $opt;
+    	$data['Eid'] = $this->session->userdata('empid');
+    	$data['date'] = date("d/m/Y");
+
+    	$nowtime = new DateTime('now');
+
+    	$res = $this->EmployeeModel->lateInBreak($data ,$opt);
+
+    	if($res)
+    	{
+    		foreach ($res as $key)
+	    	{
+	    		$diff = $nowtime->diff(new DateTime($key['starttime']));
+				
+				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+				$remainingtime = $totaltime-$sum;
+
+				if($remainingtime<0)
+				{
+					$remainingtime = abs($remainingtime);
+
+					$pointdeduct = $this->deductPointBySec($remainingtime);
+
+					$empid['id'] = $this->session->userdata('empid');
+
+					$currpoint = $this->EmployeeModel->ShowEmpCurrentPoint($empid);
+
+					//print_r($result);
+
+					$newpoint['points'] = $currpoint - $pointdeduct;
+
+					$res = $this->EmployeeModel->updateEmployeePoints($empid, $newpoint);
+
+					if($res)
+					{
+						echo "Your ".$pointdeduct." points are deducted for late in  ".$lateBreak;
+					}
+
+				}
+	    		
+	    	}
+    	}
+    	
+
+    
+    }
+
+    public function deductPointBySec($time)
+	{
+		if($time<=7200)
+		{
+			return 250;
+		}
+
+		else if($time>=7201 && $time<=14400)
+		{
+			return 500;
+		}
+
+		else
+		{
+			return 1000;
+		}
+	}
 
 }

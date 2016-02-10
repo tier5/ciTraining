@@ -229,6 +229,7 @@
                                 <td><strong>USER NAME</strong></td>
                                 <td><strong>EMAIL</strong></td>
                                 <td><strong>PASSWORD</strong></td>
+                                <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints">RESET</button></div></td>
                                <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     
                              </tr>
@@ -317,6 +318,47 @@
               <div class="col-sm-4">
                 
                 <button id="delAllLateTbl" class="btn btn-danger" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="resetPoints" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Reset Everyone's Point</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div class="col-sm-4">
+                
+                <button id="resetEveryPoints" class="btn btn-warning" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
 
               </div>

@@ -207,8 +207,23 @@ $(document).ready(function(){
 						 		{
 						 			$('body').html(data);
 						 			//alert(data);
+
 						 		}
 						 		
+					 		});
+
+					 		$.post('Employee/breakLatePoints',{opt: opt},function(data){
+
+					 			if($.trim(data))
+					 			{
+					 				//alert(data);
+
+
+
+					 				$("#latePoint").modal("show");
+					 				$("#pointMsg").html(data);
+					 			}
+
 					 		});
 
 					 		

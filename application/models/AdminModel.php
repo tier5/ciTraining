@@ -141,6 +141,27 @@
       {
           $this->db->truncate($data);
       }
+
+      public function resetPoints($data)
+      {
+        $hello=$this->db->update('employee',$data);
+        return $hello;
+      }
+
+      public function updateEmployeeTbl($data, $data1)
+      {
+        $this->db->where($data);
+        if($this->db->update('employee',$data1))
+        {
+          return true;
+        }
+      }
+
+      public function ShowEmpCurrentPoint($data)
+      {
+        $result = $this->db->get_where('employee',$data);
+        return $result->row_array()['points'];
+      }
       
       
    } 
