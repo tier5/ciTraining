@@ -477,4 +477,26 @@ class Employee extends CI_Controller
 		}
 	}
 
+	public function selectBreakname()
+	{
+		$data['Eid']= $this->session->userdata('empid');
+		$data['date']= date("d/m/Y");
+
+		$result = $this->EmployeeModel->returnBreakName($data);
+
+		if(($result['breakname']))
+		{
+			echo $result['breakname'];
+		}
+	}
+
+	public function showPointsOnLoad()
+	{
+		$data['id']=$this->session->userdata('empid');
+
+		$result = $this->EmployeeModel->ShowEmpCurrentPoint($data);
+
+		echo $result;
+	}
+
 }

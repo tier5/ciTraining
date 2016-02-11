@@ -18,37 +18,24 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
-                <br/>
-                <br/><div class="glyphicon glyphicon-user username" id="username"></div> 
+                
+                </br><div class="glyphicon glyphicon-user username" id="username"></div>
+                 
                 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-
-                    </li>
-                </ul>
+                
                 
                         <form action="Employee/logout" method="post">
                 
                             <input type="submit" value="logout" class="btn btn-default pull-right">
                         
                         </form>
+
                     
-                </ul>
+                </br></br><div class="pull-right"><span><strong>POINTS : </strong></span><button id="pointbutton" class="btn btn-danger"></button></div>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -121,6 +108,23 @@
         </div>
         <div class="modal-body">
           <strong id="pointMsg"></strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="returnbreakModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title error">Break Message</h4>
+        </div>
+        <div class="modal-body">
+          <strong id="returnbreakMsg"></strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

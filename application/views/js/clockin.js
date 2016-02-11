@@ -1,4 +1,15 @@
  $(document).ready(function(){
+
+    function showPointsOnLoad()
+    {
+    $.post('Employee/showPointsOnLoad', function(data){
+
+
+        $('#pointbutton').text(data);
+
+    });
+    }
+
         $("#clockbtn").click(function(){
 
             var btn=$('#clockbtn').text();
@@ -34,6 +45,7 @@
                              //alert(data);
                              $("#latePoint").modal("show");
                             $("#pointMsg").html(data);
+                            showPointsOnLoad();
 
                         }
 

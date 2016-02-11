@@ -31,11 +31,11 @@
                     
                     
                     <li>
-                        <a class="page-scroll" href="#employeelate">Employee Late</a>
+                        <a class="page-scroll" href="#employeelate">Show all Employee</a>
                     </li>
 
                     <li>
-                        <a class="page-scroll" href="#contact">Show all Employee</a>
+                        <a class="page-scroll" href="#contact">Employee Late</a>
                     </li>
                    
                 </ul>
@@ -75,7 +75,7 @@
 
                     <strong>Employee Clocked In</strong>
                     
-                    <div class="col-sm-12 table-responsive">
+                    <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
@@ -101,7 +101,7 @@
                 <div class="col-sm-3">
                     <strong>Employee On First Break</strong>
 
-                        <div class="col-sm-12 table-responsive">
+                        <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
@@ -123,7 +123,7 @@
 
                 <div class="col-sm-3">
                     <strong>Employee On Lunch Break</strong>
-                    <div class="col-sm-12 table-responsive">
+                    <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
@@ -144,7 +144,7 @@
 
                 <div class="col-sm-3">
                     <strong>Employee On Last Break</strong>
-                    <div class="col-sm-12 table-responsive">
+                    <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
@@ -175,7 +175,58 @@
     <!-- Services Section -->
 
      <section id="employeelate" class="about-section">
+        
+
+
+
         <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Show all Employee</h1>
+                    
+                    <div class="col-sm-12">
+
+                    <div class="row">
+                         <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                    
+                                <td><strong>ID</strong></td>
+                                <td><strong>USER NAME</strong></td>
+                                <td><strong>EMAIL</strong></td>
+                                <td><strong>PASSWORD</strong></td>
+                                <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints">RESET</button></div></td>
+                               <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>
+                               <td><strong>Mark As</br> Absent</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                    
+                             </tr>
+                            </thead>
+                            <tbody id="showallemployeeDiv">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+                      
+
+
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+    <section id="contact" class="services-section">
+          <div class="container">
             <div class="row">
                 <h1>Employee Late</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                 <div class="col-lg-12">
@@ -204,52 +255,6 @@
                       </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </section>
-    
-
-    <!-- Contact Section -->
-    <section id="contact" class="services-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1>Show all Employee</h1>
-                    
-                    <div class="col-sm-12">
-
-                    <div class="row">
-                         <div class="col-sm-12 table-responsive">
-                        <table class="table table-bordered" >
-                            <thead>
-                              <tr>
-                    
-                                <td><strong>ID</strong></td>
-                                <td><strong>USER NAME</strong></td>
-                                <td><strong>EMAIL</strong></td>
-                                <td><strong>PASSWORD</strong></td>
-                                <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints">RESET</button></div></td>
-                               <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                    
-                             </tr>
-                            </thead>
-                            <tbody id="showallemployeeDiv">
-                           
-                              
-
-                          
-                            </tbody>
-                          </table>
-                      </div>
-                    </div>
-                    	
-
-
-
-
-                    </div>
-                    
                 </div>
             </div>
         </div>
@@ -372,6 +377,43 @@
               </div>
 
             <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="absentModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Absent</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div align='center'><strong>He is Marked as Absent</strong></div>
+
+
+              </div>
+
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+            </div>
             </div>
                         
             </div>

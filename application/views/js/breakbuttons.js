@@ -7,11 +7,35 @@ $(document).ready(function(){
 
 		showTimeOnLoad();
 
+		showPointsOnLoad();
+
     setInterval(function(){
 
     	showTimeOnLoad();
 
     }, 1000);
+
+
+//==============================================================
+function showPointsOnLoad()
+{
+	$.post('Employee/showPointsOnLoad', function(data){
+
+
+		$('#pointbutton').text(data);
+
+	});
+}
+	
+
+
+//==============================================================
+
+	$('#pointbutton').click(function(){
+
+		alert('hello');
+
+	});
 
 //==============================================================
 
@@ -114,12 +138,30 @@ $(document).ready(function(){
 
 	
 //================================================================
-
+	var opt;
+	var properbreakname;
 	$('#breakbtn').click(function(){
 		//alert('hey');
+
+			$.post('Employee/selectBreakname', function(data){
+
+				if($.trim(data))
+				{
+					opt = data;
+					
+				}
+				else
+				{
+					opt = $('#opt').val();
+				}
+				
+
+			
+
+
 		if($('#clockbtn').text()=="Clock Out")//checking if he clocked in today or not
 		{
-			var opt = $('#opt').val();
+			//opt = $('#opt').val();
 
 			if (opt)//while taking break any proper option is selected or not 
 			{
@@ -199,6 +241,22 @@ $(document).ready(function(){
 					 		$.post('Employee/storeReturnTime',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
 
 						 		//alert(data);
+						 		if(opt=="fbreak")
+						 		{
+						 			properbreakname="First Break";
+						 		}
+						 		else if(opt="sbreak")
+						 		{
+						 			properbreakname="Second Break";
+						 		}
+						 		else
+						 		{
+						 			properbreakname="Last Break";
+						 		}
+
+						 		//alert('you have successfully return from '+properbreakname);
+						 		$('#returnbreakMsg').html('you have successfully return from '+properbreakname);
+						 		$('#returnbreakModal').modal('show');
 					 		});
 
 						 	$.post('Employee/lateInBreak',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
@@ -222,12 +280,15 @@ $(document).ready(function(){
 
 					 				$("#latePoint").modal("show");
 					 				$("#pointMsg").html(data);
+					 				showPointsOnLoad();
+
 					 			}
 
 					 		});
 
 					 		
                                 $('#msgbreak').html('');
+
 
 					 		
 						}
@@ -252,7 +313,9 @@ $(document).ready(function(){
 		{
 			$('#breakmsg').html('clockin first');
 		}
+
 	});
+});
 
   function properSec(val)
 	{

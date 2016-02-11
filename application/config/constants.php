@@ -86,7 +86,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('DATE_DISPLAY_FORMAT',"d/m/Y");
 define('TIME_DISPLAY_FORMAT',"H:i:s");
-define('SBREAK_TIME',3);
+define('SBREAK_TIME',6);
 define('FBREAK_TIME',1);
 define('LBREAK_TIME',1);
 define('CLOCK_IN_TIME',"11:00:00");

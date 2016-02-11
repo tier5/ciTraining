@@ -232,6 +232,12 @@ class EmployeeModel extends CI_model
         return $result->row_array()['clockin'];
     }
 
+    public function returnBreakName($data)
+    {
+        $result = $this->db->get_where('attendance',$data);
+        return $result->row_array();
+    }
+
 
 }
 

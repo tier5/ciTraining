@@ -385,6 +385,39 @@ class Admin extends CI_Controller
 		print_r($result);
 	}
 
+	public function markAbsent()
+	{
+		extract($_POST);
+
+		$data['Eid'] = $Eid;
+		$data['date']= date("d/m/Y");
+		
+		$data['late_time'] = 28800;
+		$data['late_in'] = "Absent";
+
+		$result = $this->AdminModel->markAbsent($data);
+
+		if($result)
+		{
+			$id['id'] = $Eid;
+			$currpoint=$this->AdminModel->ShowEmpCurrentPoint($id);
+			
+
+			$data1['points']= $currpoint - 1000;
+			
+			$result2 = $this->AdminModel->updateEmployeeTbl($id, $data1);
+
+			print_r($result2);
+
+
+
+
+			//$result1 = $this->AdminModel->deductPoint();
+		}
+
+		//print_r($result);
+	}
+
 	/*public function calculatePoint()
 	{
 		$result = $this->AdminModel->employeeLate();

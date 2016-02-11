@@ -162,6 +162,14 @@
         $result = $this->db->get_where('employee',$data);
         return $result->row_array()['points'];
       }
+
+      public function markAbsent($data)
+      {
+        if($this->db->insert('tbl_late_emp',$data))
+        {
+          return true;
+        }
+      }
       
       
    } 
