@@ -238,6 +238,24 @@ class EmployeeModel extends CI_model
         return $result->row_array();
     }
 
+    public function fetchBreaktbl($data,$tblname)
+    {
+        $result=$this->db->get_where($tblname,$data);
+
+        return $result->row_array();
+
+    }
+
+    public function insertNonTakenBreaktbl($data,$tablename)
+    {
+        if($this->db->insert($tablename,$data))
+        {
+            return true;
+        }
+        
+
+    }
+
 
 }
 

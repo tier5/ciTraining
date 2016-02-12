@@ -303,7 +303,21 @@ function showPointsOnLoad()
 
 					 		$.post('Employee/markPreviousBreak',{opt: opt},function(data){
 
-					 			//alert(data);
+					 			if(opt=="sbreak")
+					 			{
+					 				$('#fbreak').prop('disabled', true);
+					 			}
+
+					 			else if(opt=="lbreak")
+					 			{
+					 				$('#fbreak').prop('disabled', true);
+					 				$('#sbreak').prop('disabled', true);
+					 			}
+					 			
+					 			if($.trim(data))
+					 			{
+					 				alert(data);
+					 			}
 
 							});					 		
                                 $('#msgbreak').html('');
