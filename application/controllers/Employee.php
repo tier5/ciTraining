@@ -499,4 +499,14 @@ class Employee extends CI_Controller
 		echo $result;
 	}
 
+	public function markPreviousBreak()
+	{
+		extract($_POST);
+
+		if($opt=="sbreak")
+		{
+			
+		}
+	}
+
 }

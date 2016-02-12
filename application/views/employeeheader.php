@@ -20,7 +20,9 @@
 
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
     <!-- Custom CSS -->
-    
+    <link href="<?php echo base_url().'application/views/css/landing-page.css'?>" rel="stylesheet">
+ 
+    <link href="<?php echo base_url().'application/views/css/addemp.css'?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

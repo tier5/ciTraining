@@ -30,7 +30,7 @@
                 
                         <form action="Employee/logout" method="post">
                 
-                            <input type="submit" value="logout" class="btn btn-default pull-right">
+                            <input type="submit" value="logout" class="btn btn-primary pull-right">
                         
                         </form>
 
@@ -42,60 +42,84 @@
         <!-- /.container -->
     </nav>
 
-    <section id="intro" class="intro-section">
+<div class="intro-header">
         <div class="container">
+
             <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <div class="row">
 
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                    
-                    
-                    
-                    <button class="btn btn-primary" id="clockbtn" name="clockinbtn">Clock In</button>
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                
+                                
+                                
+                                <button class="btn btn-default btn-lg" id="clockbtn" name="clockinbtn">Clock In</button>
 
-                    
-                    
-                </div>
+                                
+                                
+                            </div>
 
-                <div class="col-sm-4">
-                    
-                    <div id="clockintime"></div>
-                    <div id="clockintime1"></div>
-                    <div id="clockintimeLate"></div>
+                            <div class="col-sm-4">
+                                
+                                <div id="clockintime"></div>
+                                <div id="clockintime1"></div>
+                                <div id="clockintimeLate"></div>
+                            </div>
+                        </div>
+                        
+                         <br><br><br><br>
+
+                          <hr class="intro-divider">
+
+                         <br><br><br><br>
+                        
+                        <div class="row">
+                
+                            <div class="col-sm-4" >
+
+                                <select class="btn btn-default" id="opt">
+                                  <option value="" selected="selected"> Select a Break</option>
+                                  <option value="fbreak" id="fbreak">First Break</option>
+                                  <option value="sbreak" id="sbreak">Second Break</option>
+                                  <option value="lbreak" id="lbreak">Last Break</option>
+                                </select>
+
+                            </div>
+                            
+                            <div class="col-sm-4" >
+
+                                <button class="btn btn-default btn-lg" id="breakbtn" name="breakbtn">break</button>
+                            
+                            </div>
+                            
+                            
+                            
+                            <div class="col-sm-4">
+
+                              <div id="timer"></div>
+                            
+                              <div id="timeinfo"></div>
+                              <div id="msgbreak"></div>
+                              <div id="breakmsg"></div>
+
+                            </div>
+                       
+                        </div><!--/row-->
+
+                    </div>
                 </div>
             </div>
 
-            <br><br><br><br><br><br><br>
-
-
-            <div class="row">
-                
-                <div class="col-sm-4" >
-
-                    <select class="btn btn-default" id="opt">
-                      <option value="" selected="selected"> Select a Break</option>
-                      <option value="fbreak" id="fbreak">First Break</option>
-                      <option value="sbreak" id="sbreak">Second Break</option>
-                      <option value="lbreak" id="lbreak">Last Break</option>
-                    </select>
-
-                </div>
-                
-                <div class="col-sm-4" >
-
-                    <button class="btn btn-primary" id="breakbtn" name="breakbtn">break</button>
-                
-                </div>
-                
-                <div id="timer"></div>
-                <div id="timeinfo"></div>
-                <div class="col-sm-4" id="msgbreak"></div>
-           
-            </div>
-        
         </div>
-        
-    </section>
+        <!-- /.container -->
+
+    </div>
+
+
+
+    
 
    <!-- Modal -->
   <!-- Modal -->

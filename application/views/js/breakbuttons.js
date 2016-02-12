@@ -241,17 +241,32 @@ function showPointsOnLoad()
 					 		$.post('Employee/storeReturnTime',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
 
 						 		//alert(data);
-						 		if(opt=="fbreak")
+						 		/*if(opt=="fbreak")
 						 		{
 						 			properbreakname="First Break";
 						 		}
-						 		else if(opt="sbreak")
+						 		else if(opt="lbreak")
 						 		{
-						 			properbreakname="Second Break";
+						 			properbreakname="Last Break";
 						 		}
 						 		else
 						 		{
 						 			properbreakname="Last Break";
+						 		}*/
+
+						 		switch(opt)
+						 		{
+						 			case "fbreak":
+						 				properbreakname="First Break";
+						 				break;
+						 			case "sbreak":
+						 				properbreakname="Lunch Break";
+						 				break;
+						 			case "lbreak":
+						 				properbreakname="Last Break";
+						 				break;
+						 			default:
+						 				properbreakname="default";
 						 		}
 
 						 		//alert('you have successfully return from '+properbreakname);
@@ -286,7 +301,11 @@ function showPointsOnLoad()
 
 					 		});
 
-					 		
+					 		$.post('Employee/markPreviousBreak',{opt: opt},function(data){
+
+					 			//alert(data);
+
+							});					 		
                                 $('#msgbreak').html('');
 
 

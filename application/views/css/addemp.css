@@ -35,6 +35,11 @@
     border-top: none !important;
 }
 
+#timer
+{
+    font-size: 40px;
+}
+
 input {
     border: 1px solid black;
     
