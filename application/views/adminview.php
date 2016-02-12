@@ -196,7 +196,7 @@
                                 <td><strong>USER NAME</strong></td>
                                 <td><strong>EMAIL</strong></td>
                                 <td><strong>PASSWORD</strong></td>
-                                <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints">RESET</button></div></td>
+                                <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints" data-toggle='tooltip' title='Reset Points For Everyone'>RESET</button></div></td>
                                <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>
                                <td><strong>Mark As</br> Absent</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     

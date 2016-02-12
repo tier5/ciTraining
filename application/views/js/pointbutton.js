@@ -6,7 +6,7 @@ $(document).ready(function(){
       });
 
 	});*/
-var totaldiv;
+var totaldiv="";
 var breakname;
 var pointsdeducted;
   $('#pointbutton').click(function(){
@@ -66,9 +66,12 @@ var pointsdeducted;
 				pointsdeducted=deductPointBySec(data2[1]);
 	    	//alert(data2[0]);
 	    	totaldiv += "<tr><td>"+data2[0]+"</td><td>"+latetime+"</td><td>"+breakname+"</td><td>"+pointsdeducted+"</td></tr>";
-	    	$('#pointtblMsg').html(totaldiv);
+	    	
+	    	$('#nolaterecords').html('');
 
 	    }
+	    $('#pointtblMsg').html('');
+	    $('#pointtblMsg').html(totaldiv);
 	    /*var data2=data1.split(",");
          $('#pointtblMsg').html(data2);*/
 
