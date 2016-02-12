@@ -16,6 +16,7 @@
             //alert(btn);
             if (btn === 'Clock Out') 
             {
+                $('#breakmsg').html('');
                 $.post('Employee/clockin', function(data){
 
                     $('#clockintime').html(data);

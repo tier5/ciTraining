@@ -505,7 +505,69 @@ class Employee extends CI_Controller
 
 		if($opt=="sbreak")
 		{
-			
+			$data['Eid']= $this->session->userdata('empid');
+			$data['date']= date("d/m/Y");
+			//$updatedata['endtime'] = 1;
+			$tblname="fbreak";
+
+			$result = $this->EmployeeModel->fetchBreaktbl($data,$tblname);
+
+			if(!$result)
+			{
+				$tblname="fbreak";
+				$data['Eid']= $this->session->userdata('empid');
+				$data['date']= date("d/m/Y");
+				$data['starttime'] = 1;
+				$data['endtime'] = 1;
+
+				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//print_r($result);
+
+
+			}
+
+		}
+
+		if($opt=="lbreak")
+		{
+			$data['Eid']= $this->session->userdata('empid');
+			$data['date']= date("d/m/Y");
+			//$updatedata['endtime'] = 1;
+			$tblname="fbreak";
+
+			$result = $this->EmployeeModel->fetchBreaktbl($data,$tblname);
+
+			if(!$result)
+			{
+				$tblname="fbreak";
+				$data['Eid']= $this->session->userdata('empid');
+				$data['date']= date("d/m/Y");
+				$data['starttime'] = 1;
+				$data['endtime'] = 1;
+
+				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//print_r($result);
+
+
+			}
+
+			$tblname="sbreak";
+
+			$result = $this->EmployeeModel->fetchBreaktbl($data,$tblname);
+
+			if(!$result)
+			{
+				$tblname="sbreak";
+				$data['Eid']= $this->session->userdata('empid');
+				$data['date']= date("d/m/Y");
+				$data['starttime'] = 1;
+				$data['endtime'] = 1;
+
+				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//print_r($result);
+
+
+			}
 		}
 	}
 	public function pointalt()
