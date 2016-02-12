@@ -52,5 +52,5 @@
 
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
-
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/pointbutton.js';?>"></script>
 </head>

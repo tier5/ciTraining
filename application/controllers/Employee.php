@@ -508,5 +508,24 @@ class Employee extends CI_Controller
 			
 		}
 	}
+	public function pointalt()
+	{
+	  $data['Eid']=$this->session->userdata('empid');
+	  $result = $this->EmployeeModel->pointalt($data);
+	  if ($result)
+	  {
+		  foreach($result as $row)
+		  {
+		  	echo $row['date'].",".$row['late_time'].",".$row['late_in']."?";
+		  }
+	  }
+	  else
+	  {
+	  	return false;
+	  }
+	  //print_r($result);
+
+	}
+
 
 }

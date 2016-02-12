@@ -35,7 +35,7 @@
                         </form>
 
                     
-                </br></br><div class="pull-right"><span><strong>POINTS : </strong></span><button id="pointbutton" class="btn btn-danger"></button></div>
+                </br></br><div class="pull-right"><span><strong>POINTS:</strong></span><button id="pointbutton" class="btn btn-danger"></button></div>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -103,7 +103,7 @@
                               <div id="timeinfo"></div>
                               <div id="msgbreak"></div>
                               <div id="breakmsg"></div>
-
+                          
                             </div>
                        
                         </div><!--/row-->
@@ -156,6 +156,55 @@
       </div>
     </div>
   </div>
+
+  
+
+    <div class="modal fade" id="pointtblModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title error">Point Deduction Status</h4>
+        </div>
+        <div class="modal-body">
+          <div id="emplatetbl">
+          <table class="table table-bordered" >
+
+                            <thead>
+                              <tr>
+                    
+                                <td><strong>Date</strong></td>
+                                <td><strong>Duration</strong></td>
+                                <td><strong>Late On</strong></td>
+                                <td><strong>Deducted Points</strong></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                    
+                             </tr>
+                            </thead>
+                            <tbody id="pointtblMsg">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+            </div>
+            <div id="nolaterecords"></div>
+
+         
+          
+            
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   
+  
 
 </body>
 </html>

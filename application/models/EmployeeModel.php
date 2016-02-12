@@ -237,6 +237,19 @@ class EmployeeModel extends CI_model
         $result = $this->db->get_where('attendance',$data);
         return $result->row_array();
     }
+    public function pointalt($data)
+    {
+        $result= $this->db->get_where('tbl_late_emp',$data);
+        //print_r($result->row_array());
+        if ($result->num_rows() > 0)
+        {
+            return $result->result_array();
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 
 }
