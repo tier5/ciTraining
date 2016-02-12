@@ -85,7 +85,7 @@ function showPointsOnLoad()
 			{
 				if(data<0)
 				{
-					colorclass = "class='text-danger'";
+					colorclass = "class='error'";
 					data = Math.abs(data);
 
 					timerinfo = "YOU ARE LATE";
@@ -93,7 +93,7 @@ function showPointsOnLoad()
 
 				else
 				{
-					colorclass = "class='text-primary'";
+					colorclass = "class='text-default'";
 				}
 				sec = data;
 
@@ -103,7 +103,7 @@ function showPointsOnLoad()
 
 				min = Math.floor(data/60);
 
-				totaltime = min+":"+sec+"min";
+				totaltime = min+":"+sec+" min";
 				 
 					$('#timeinfo').html(timerinfo);
 					$('#timer').html("<div "+colorclass+">"+totaltime+"</div>");
@@ -185,20 +185,20 @@ function showPointsOnLoad()
 					var totaltime;
 					if(opt== 'fbreak')//setting the time according to the breakname
 					{
-						totaltime = '20:00min';
+						totaltime = '20:00 min';
 					}
 					
 					if(opt=='sbreak')
 					{
-						totaltime = '60:00min';
+						totaltime = '60:00 min';
 					}
 
 					if(opt== 'lbreak')
 					{
-						totaltime = '20:00min';
+						totaltime = '20:00 min';
 					}
 
-					$('#timer').html("<div class='text-primary'>"+totaltime+"</div>");
+					$('#timer').html("<div class='text-default'>"+totaltime+"</div>");
 
 					/*$('#timer').timer({//timer starts
             				
@@ -344,7 +344,7 @@ function showPointsOnLoad()
 		}
 		else
 		{
-			$('#breakmsg').html('clockin first');
+			$('#breakmsg').html('Clock In First');
 		}
 
 	});

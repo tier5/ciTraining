@@ -30,8 +30,8 @@
                 
                         <form action="Employee/logout" method="post">
                 
-                            <input type="submit" value="logout" class="btn btn-primary pull-right">
-                        
+                            <input type="submit" value="logout" class="btn btn-primary pull-right"></input>
+                         
                         </form>
 
                     

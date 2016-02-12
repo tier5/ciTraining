@@ -1,7 +1,7 @@
  .error
 	   {
 	   	color: red;
-	   	font-style: italic;
+	   	
 	   }
 .deleteconfirm
 {
@@ -40,22 +40,6 @@
     font-size: 40px;
 }
 
-input {
-    border: 1px solid black;
-    
- 
-    
-    height: 30px;
-    width: 200px;
-    padding: 5px;
-    border-radius: 5px;
-    
-    font-size: 15px;
-    
-    transition:.2s linear;
-    -webkit-transition:.2s linear;
-    -moz-transition:.2s linear;
-}
 
 
 
