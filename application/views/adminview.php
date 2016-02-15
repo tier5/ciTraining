@@ -7,7 +7,9 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-
+  
+  
+  
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -29,13 +31,17 @@
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
                     
+                    <li>
+                        <a class="page-scroll" href="#contact">Employee Late</a>
+                    </li>
                     
                     <li>
                         <a class="page-scroll" href="#employeelate">Show all Employee</a>
                     </li>
 
+                    
                     <li>
-                        <a class="page-scroll" href="#contact">Employee Late</a>
+                        <a  href="Admin/showAllLateview">Employee All Late Information</a>
                     </li>
                    
                 </ul>
@@ -66,7 +72,23 @@
                     <h1>Employee On Break</h1>
                     
                     
-                    <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
+                         <div class="row">
+
+                          <div class="col-sm-4"></div>
+                          <div class="col-sm-4">
+
+                              <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
+
+
+                          </div>
+                          <div class="col-sm-4">
+
+                            
+                            <!--<input type="button" value="Change Date" id="datepicker" class="btn btn-warning">-->
+
+                          </div>
+
+                         </div>           
                 </div>
             </div>
         </br>
@@ -171,7 +193,40 @@
 
     <!-- About Section -->
    
+    <section id="contact" class="services-section">
+          <div class="container">
+            <div class="row">
+                <h1>Employee Late</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                <div class="col-lg-12">
+                   
+                   <div class="row">
+                         <div class="col-sm-12">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
 
+                                <td><strong>DATE</strong></td>
+                                <td><strong>ID</strong></td>
+                                <td><strong>USER NAME</strong></td>
+                                <td><strong>LATE ON</strong></td>
+                                <td><strong>DURATION</strong></td>
+                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                            </tr>
+                            </thead>
+                            <tbody id="latetable">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Services Section -->
 
      <section id="employeelate" class="about-section">
@@ -187,7 +242,7 @@
                     <div class="col-sm-12">
 
                     <div class="row">
-                         <div class="col-sm-12 table-responsive">
+                         <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
@@ -232,7 +287,7 @@
                 <div class="col-lg-12">
                    
                    <div class="row">
-                         <div class="col-sm-12 table-responsive">
+                         <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
