@@ -11,19 +11,25 @@ class Admin extends CI_Controller
 		$this->load->database();
 		$this->load->model('AdminModel');
 		$this->load->library('session');
+		extract($_POST);
+		$q=$this->input->post('datepicker');
+		//print_r($q);
+		//$this->date= "12/02/2016";
 
 		if (!$this->session->userdata('adminid'))
 		{
 			redirect("Dashboard");
 		}
-
 	}
+
+	
 	
 	public function index()
 	{
 
 		if ($this->session->userdata('adminid'))
 		{
+
 			$this->load->view('adminview');
 		}
 		
@@ -117,7 +123,7 @@ class Admin extends CI_Controller
 
 	public function empClockIn()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] =$this->date; //date("d/m/Y");
 
 		$res = $this->AdminModel->empClockIn($data);
 

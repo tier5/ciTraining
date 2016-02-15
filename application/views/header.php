@@ -20,6 +20,7 @@
 
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <!-- Custom CSS -->
     
 
@@ -31,6 +32,7 @@
     <![endif]-->
 
     <!-- jQuery -->
+
     <script src="<?php echo base_url().'application/views/js/jquery.js'?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -51,5 +53,7 @@
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin.js';?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/datepick.js';?>"></script>
+     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 </head>

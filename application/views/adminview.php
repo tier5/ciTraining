@@ -70,6 +70,12 @@
                 </div>
             </div>
         </br>
+    
+        <input type="submit" name="datepicker" id="datepicker" value="Choose Date">
+      
+        
+        </br>
+        </br>
             <div class="row">
                 <div class="col-sm-3">
 
