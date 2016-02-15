@@ -279,41 +279,7 @@
     </section>
     
 
-    <!-- Contact Section -->
-    <section id="contact" class="services-section">
-          <div class="container">
-            <div class="row">
-                <h1>Employee Late</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                <div class="col-lg-12">
-                   
-                   <div class="row">
-                         <div class="col-sm-12">
-                        <table class="table table-bordered" >
-                            <thead>
-                              <tr>
-
-                                <td><strong>DATE</strong></td>
-                                <td><strong>ID</strong></td>
-                                <td><strong>USER NAME</strong></td>
-                                <td><strong>LATE ON</strong></td>
-                                <td><strong>DURATION</strong></td>
-                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                            </tr>
-                            </thead>
-                            <tbody id="latetable">
-                           
-                              
-
-                          
-                            </tbody>
-                          </table>
-                      </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     
 
