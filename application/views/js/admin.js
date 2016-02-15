@@ -50,11 +50,11 @@ window.deleteLateRow = function(id)
         // Your CSS changes, just in case you still need them
         $('a.ui-state-default').removeClass('ui-state-highlight');
         $(this).addClass('ui-state-highlight');
-        //alert(date);
-        $.post('Admin',{optdate: date}, function(data){
+        alert(date);
+       /* $.post('Admin',{optdate: date}, function(data){
 
 			$('body').html(data);
-		});
+		});*/
     }
     });
 	

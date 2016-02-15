@@ -84,7 +84,7 @@
                           <div class="col-sm-4">
 
                             
-                            <!--<input type="button" value="Change Date" id="datepicker" class="btn btn-warning">-->
+                            <input type="button" value="Change Date" id="datepicker" class="btn btn-warning">
 
                           </div>
 

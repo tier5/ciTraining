@@ -90,3 +90,4 @@ define('SBREAK_TIME',3600);
 define('FBREAK_TIME',1200);
 define('LBREAK_TIME',1200);
 define('CLOCK_IN_TIME',"11:00:00");
+define('CLOCK_OUT_TIME',"20:00:00");
