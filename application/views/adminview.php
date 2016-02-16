@@ -68,6 +68,7 @@
                     
                     <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
                 </div>
+              <input type="button" id="datepicker" name="datepicker" value="Choose Date"/>
             </div>
         </br>
             <div class="row">
