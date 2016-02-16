@@ -156,10 +156,13 @@ class Admin extends CI_Controller
 					$colorclass = "class='info'";
 				}
 
+				$time_in_12_hour_format  = date("g:i:sa", strtotime($key['clockin']));
+
+
 				echo "<tr ".$colorclass.">
                 <td>".$res1."</td>
 
-                <td>".$key['clockin']."</td>
+                <td>".$time_in_12_hour_format."</td>
               		</tr>";
 
 			}
