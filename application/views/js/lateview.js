@@ -37,6 +37,9 @@ function allLateRecords()
 					case "Absent":
 						breakname = "Absent";
 						break;
+					case "Early Clock Out":
+						breakname = "Early Clock Out";
+						break;
 
 					default:
 						breakname = "Default";

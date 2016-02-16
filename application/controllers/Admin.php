@@ -22,6 +22,7 @@ class Admin extends CI_Controller
 		if($this->input->post('optdate'))
 		{
 			$this->date=$this->input->post('optdate');
+			/*$this->empClockIn();*/
 		}
 		else
 		{
@@ -169,7 +170,7 @@ class Admin extends CI_Controller
 
 	public function empFbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "fbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -238,7 +239,7 @@ class Admin extends CI_Controller
 
 	public function empSbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "Sbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -282,7 +283,7 @@ class Admin extends CI_Controller
 	}
 	public function empLbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "lbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -356,7 +357,7 @@ class Admin extends CI_Controller
 
 	public function employeeLate()
 	{	
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$result = $this->AdminModel->employeeLate($data);
 
 		foreach ($result as $key)
@@ -501,9 +502,29 @@ class Admin extends CI_Controller
 	}
 
 	
-public function chkdate()
+public function empClockInDateChk()
 {
-	echo $this->date;
+		$this->empClockIn();
+}
+
+public function empSbreakDateChk()
+{
+	$this->empSbreak();
+}
+
+public function empFbreakDateChk()
+{
+	$this->empFbreak();
+}
+
+public function empLbreakDateChk()
+{
+	$this->empLbreak();
+}
+
+public function employeeLateDateChk()
+{
+	$this->employeeLate();
 }
 
 }

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+var a=0;
 
 $('[data-toggle="tooltip"]').tooltip();
 clockin();
@@ -8,20 +9,38 @@ sbreak();
 lbreak();
 allemployee();
 
-setInterval(function(){
+var breakfunctions=setInterval(function(){
+    if(a==1)
+    {
+    	clearInterval(breakfunctions);
+    	//exit(0);
+    }
+    else
+    {
+    	fbreak();
+    	sbreak();
+    	lbreak();
+    }
     
-    fbreak();
-    sbreak();
-    lbreak();
+    
     
 }, 1000);
 
 	
 
-setInterval(function(){
+var empinfofunctions=setInterval(function(){
 
-	clockin();
-	employeeLate();
+	if(a==1)
+    {
+    	clearInterval(empinfofunctions);
+    	//exit(0);
+    }
+    else
+    {
+    	clockin();
+		employeeLate();
+    }
+	
 
 	}, 60000);
 
@@ -47,14 +66,389 @@ window.deleteLateRow = function(id)
     // The format the user actually sees
     dateFormat: "dd/mm/yy",
     onSelect: function (date) {
+
+    	//a=1;
+
+    	var fullDate = new Date()
+		/*console.log(fullDate);*/
+		//Thu May 19 2011 17:25:38 GMT+1000 {}
+		 
+		//convert month to 2 digits
+		var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
+		 
+		var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+		/*console.log(currentDate);
+		console.log(date);*/
+
+		if(currentDate==date)
+		{
+			location.reload();
+		}
+		else
+		{
+			a=1;
+			//b=1;
+		}
+		console.log(a);
+
+    	$('#sbreaktable').html('');
+    	//alert(a);
         // Your CSS changes, just in case you still need them
         $('a.ui-state-default').removeClass('ui-state-highlight');
         $(this).addClass('ui-state-highlight');
-        alert(date);
-       /* $.post('Admin',{optdate: date}, function(data){
+        
+        
+        $.post('Admin/empClockInDateChk',{optdate: date}, function(data){
 
-			$('body').html(data);
-		});*/
+			$('#tablediv').html(data);
+		});
+
+
+		$.post('Admin/empSbreakDateChk',{optdate: date}, function(data){
+
+			if($.trim(data))
+		{
+
+		var totaldiv = "";
+		
+
+		data = data.split(".");
+
+		//alert(data.length-1);
+
+		for(i=0;i<data.length-1;i++)
+		{
+			var value = data[i].split(",");
+
+			//alert(value[1]);
+			var colorclass;
+
+			var countdownval;
+			if(value[1]<0)
+			{
+				colorclass = "class = 'danger'";
+
+				value[1] = Math.abs(value[1]);
+
+				countdownval = false;
+
+			}
+			else
+			{
+				colorclass = "class = 'info'";
+
+				countdownval = true;
+			}
+
+			value[0]=$.trim(value[0]);
+			
+			sec = value[1];
+
+			hour = Math.floor(value[1]/3600);
+
+			sec = sec%60;
+
+			sec = properSec(sec);
+
+			if(value[1]<=60)
+			{
+				min = Math.floor(value[1]/60);
+			}
+			else
+			{
+				min = Math.floor(value[1]%3600);
+			}
+
+			min = properMin(min);
+
+			min = properSec(min);
+
+			timeshow=hour+":"+min+':'+sec+'m';
+
+
+
+			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'>"+timeshow+"</td></tr>";
+			
+			$("#sbreaktable").html(totaldiv);
+			
+			
+		}
+
+		
+		
+		}
+
+		else
+		{
+			$("#sbreaktable").html('');
+		}
+		});
+
+
+		$.post('Admin/empFbreakDateChk',{optdate: date}, function(data){
+
+			if($.trim(data))
+		{
+
+		var totaldiv = "";
+		
+		var sec;
+
+		var min;
+
+		var timeshow;
+
+		data = data.split(".");
+
+		//alert(data.length-1);
+
+		for(i=0;i<data.length-1;i++)
+		{
+			var value = data[i].split(",");
+
+			//alert(value[1]);
+			var colorclass;
+
+			var countdownval;
+			if(value[1]<0)
+			{
+				colorclass = "class = 'danger'";
+
+				value[1] = Math.abs(value[1]);
+
+				countdownval = false;
+
+			}
+			else
+			{
+				colorclass = "class = 'info'";
+
+				countdownval = true;
+			}
+
+			value[0]=$.trim(value[0]);
+
+			sec = value[1];
+
+			hour = Math.floor(value[1]/3600);
+
+			sec = sec%60;
+
+			sec = properSec(sec);
+
+			if(value[1]<=60)
+			{
+				min = Math.floor(value[1]/60);
+			}
+			else
+			{
+				min = Math.floor(value[1]%3600);
+			}
+
+			min = properMin(min);
+
+			min = properSec(min);
+
+			
+
+			timeshow=hour+":"+min+':'+sec+'m';
+
+
+
+			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'>"+timeshow+"</td></tr>";
+
+			$("#fbreaktable").html(totaldiv);
+			
+			
+				
+		}
+
+		
+		
+		}
+
+		else
+		{
+			$("#fbreaktable").html('');
+		}
+
+
+		});
+
+
+		$.post('Admin/empFbreakDateChk',{optdate: date}, function(data){
+
+			if($.trim(data))
+		{
+
+		var totaldiv = "";
+		
+
+		data = data.split(".");
+
+		//alert(data.length-1);
+
+		for(i=0;i<data.length-1;i++)
+		{
+			var value = data[i].split(",");
+
+			//alert(value[1]);
+			var colorclass;
+
+			var countdownval;
+			if(value[1]<0)
+			{
+				colorclass = "class = 'danger'";
+
+				value[1] = Math.abs(value[1]);
+
+				countdownval = false;
+
+			}
+			else
+			{
+				colorclass = "class = 'info'";
+
+				countdownval = true;
+			}
+
+			value[0]=$.trim(value[0]);
+
+			sec = value[1];
+
+			hour = Math.floor(value[1]/3600);
+
+			sec = sec%60;
+
+			sec = properSec(sec);
+
+			if(value[1]<=60)
+			{
+				min = Math.floor(value[1]/60);
+			}
+			else
+			{
+				min = Math.floor(value[1]%3600);
+			}
+			
+
+			min = properMin(min);
+
+			min = properSec(min);
+
+			timeshow=hour+":"+min+':'+sec+'m';
+
+
+
+			totaldiv += "<tr "+colorclass+"><td >"+value[0]+"</td><td id='"+value[0]+"'>"+timeshow+"</td></tr>";
+			
+			$("#lbreaktable").html(totaldiv);
+			
+			/*$('#'+value[0]).timer({//timer starts
+            				
+            	duration: value[1],//time value from the php page
+
+                countdown: true,
+            				
+            	callback: function() {
+                				
+                	$('#'+value[0]).timer('remove');
+                	$('#'+value[0]).html('LATE');
+
+            	},
+
+            	repeat: false
+        	});*/
+
+
+			//$('#'+value[0]).html('hh');
+				
+		}
+
+		
+		
+		}
+
+		else
+		{
+			$("#lbreaktable").html('');
+		}
+
+		$.post('Admin/employeeLateDateChk',{optdate: date}, function(data){
+
+			var totaldiv="";
+		var breakname="";
+		var latetime="";
+
+		if($.trim(data))
+		{
+			//alert(data);
+			data = data.split(".");
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				
+
+				switch (value[3])
+				{
+					case "fbreak": 
+						breakname = "First Break";
+						break;
+
+					case "sbreak":
+						breakname = "Lunch Break";
+						break;
+
+					case "lbreak":
+						breakname = "Last Break";
+						break;
+
+					case "Clock In":
+						breakname = "Clock In";
+						break;
+					case "Absent":
+						breakname = "Absent";
+						break;
+					case "Early Clock Out":
+						breakname = "Early Clock Out";
+						break;
+
+					default:
+						breakname = "Default";
+				}
+				//alert(value[4]);
+
+				sec = value[4];
+
+				sec = sec%60;
+
+				sec = properSec(sec);
+
+				min = Math.floor(value[4]%3600);
+
+				min = properMin(min);
+
+				min = properSec(min);
+
+				hour = Math.floor(value[4]/3600);
+
+				latetime = hour+":"+min+":"+sec;
+
+				totaldiv += "<tr><td>"+value[0]+"</td><td>"+value[1]+"</td><td>"+value[2]+"</td><td>"+breakname+"</td><td>"+latetime+"</td><td><button class='btn btn-danger glyphicon glyphicon-trash' onclick='deleteLateRow("+$.trim(value[5])+")'></button></td></tr>";
+
+				
+			}
+			//$('#latetable').html(data);
+
+		}
+		
+				$('#latetable').html(totaldiv);
+
+		});
+		
+		});
     }
     });
 	
@@ -109,6 +503,9 @@ function employeeLate()
 						break;
 					case "Absent":
 						breakname = "Absent";
+						break;
+					case "Early Clock Out":
+						breakname = "Early Clock Out";
 						break;
 
 					default:
@@ -384,6 +781,7 @@ function sbreak(){
 		{
 			$("#sbreaktable").html('');
 		}
+
 				
 			});
 }
