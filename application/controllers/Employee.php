@@ -589,5 +589,19 @@ class Employee extends CI_Controller
 
 	}
 
+	public function earlyClockOut()
+	{
+		$nowtime = new DateTime('now');
+		$clockouttime = new DateTime('CLOCK_OUT_TIME');
+
+		echo "hello";
+
+		$diff = $nowtime->diff(new DateTime('CLOCK_OUT_TIME'));
+				
+		$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+
+	}
+
 
 }

@@ -35,13 +35,28 @@ window.deleteLateRow = function(id)
 
 	});
 }
-//====================================================
-	
-	/*$.post('Admin/calculatePoint',function(data){
 
-		alert(data);
 
-	});*/
+
+//=======================DATEPICKER=============================
+	 $("#datepicker").datepicker({
+    // The hidden field to receive the date
+    altField: "#dateHidden",
+    // The format you want
+    altFormat: "yy-mm-dd",
+    // The format the user actually sees
+    dateFormat: "dd/mm/yy",
+    onSelect: function (date) {
+        // Your CSS changes, just in case you still need them
+        $('a.ui-state-default').removeClass('ui-state-highlight');
+        $(this).addClass('ui-state-highlight');
+        alert(date);
+       /* $.post('Admin',{optdate: date}, function(data){
+
+			$('body').html(data);
+		});*/
+    }
+    });
 	
 
 //=====================================================
@@ -647,6 +662,11 @@ function properMin(val)
 }
 
 
+	$("#showalldaylate").click(function(){
 
+		alert('hiiii');
+
+
+	});
 
 });

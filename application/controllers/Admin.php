@@ -16,10 +16,23 @@ class Admin extends CI_Controller
 		//print_r($q);
 		//$this->date= "12/02/2016";
 
+		
+
 		if (!$this->session->userdata('adminid'))
 		{
 			redirect("Dashboard");
 		}
+
+
+		if($this->input->post('optdate'))
+		{
+			$this->date=$this->input->post('optdate');
+		}
+		else
+		{
+			$this->date = $this->date = date("d/m/Y");
+		}
+
 	}
 
 	
@@ -123,7 +136,11 @@ class Admin extends CI_Controller
 
 	public function empClockIn()
 	{
+
 		$data['date'] =$this->date; //date("d/m/Y");
+
+		$data['date'] = $this->date;
+
 
 		$res = $this->AdminModel->empClockIn($data);
 
@@ -350,8 +367,9 @@ class Admin extends CI_Controller
 	}
 
 	public function employeeLate()
-	{
-		$result = $this->AdminModel->employeeLate();
+	{	
+		$data['date'] = date("d/m/Y");
+		$result = $this->AdminModel->employeeLate($data);
 
 		foreach ($result as $key)
 		{
@@ -372,6 +390,8 @@ class Admin extends CI_Controller
 		$data['tbl_id'] = $tbl_id;
 
 		$result = $this->AdminModel->deleteEmpLate($data);
+
+		print_r($result);
 
 
 
@@ -465,4 +485,37 @@ class Admin extends CI_Controller
 			return 1000;
 		}
 	}
+
+	public function showAllLateview()
+	{
+		$this->load->view('employeelateview');
+	}
+	public function allLateRecord()
+	{
+		$res = $this->AdminModel->allLateRecord();
+		//print_r($result);
+		//$result['result'] = $res;
+
+		
+
+		foreach ($res as $key)
+		{
+			
+			$data2['id'] = $key['Eid'];
+			$resname = $this->AdminModel->showName($data2);
+
+			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id']."?";
+
+
+		}
+
+		//$this->load->view('employeelateview',$result);
+	}
+
+	
+public function chkdate()
+{
+	echo $this->date;
+}
+
 }

@@ -9,6 +9,7 @@
 
     });
     }
+//================================================================
 
         $("#clockbtn").click(function(){
 
@@ -64,6 +65,12 @@
                     $('#clockintime').html(data);
                     $('#clockintime1').html('see you tommorow');
 
+
+                });
+
+                $.post('Employee/earlyClockOut',function(data){
+
+                    alert(data);
 
                 });
             }    
