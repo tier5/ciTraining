@@ -70,9 +70,13 @@
 
                 $.post('Employee/earlyClockOut',function(data){
 
-                    $('#earlyclockoutMsg').html(data);
+                if($.trim(data))
+                {
+                     $('#earlyclockoutMsg').html(data);
                     $("#earlyclockoutModal").modal("show");
                     showPointsOnLoad();
+                }
+                   
 
                 });
             }    
