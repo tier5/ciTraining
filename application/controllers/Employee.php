@@ -603,7 +603,7 @@ class Employee extends CI_Controller
 		{
 			$nowtime = new DateTime('now');
 
-			$diff = $nowtime->diff(new DateTime('20:00:00'));
+			$diff = $nowtime->diff(new DateTime(CLOCK_OUT_TIME));
 					
 			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
 

@@ -539,4 +539,120 @@ public function employeeLateDateChk()
 	$this->employeeLate();
 }
 
+public function shoEmpFcompleteDateChk()
+{
+	$this->shoEmpFcomplete();
+}
+
+public function shoEmpScompleteDateChk()
+{
+	$this->shoEmpScomplete();
+}
+
+public function shoEmpLcompleteDateChk()
+{
+	$this->shoEmpLcomplete();
+}
+
+public function shoEmpFcomplete()
+{
+	$tbl_name="fbreak";
+
+	$data['date'] = $this->date;
+
+	$result = $this->AdminModel->empFclockin($data);
+
+	foreach ($result as $key)
+	{
+		if($key['endtime'] && $key['endtime']!=1)
+		{
+			//echo $key['endtime'];
+			//echo $key['starttime'];
+
+			$nowtime = new DateTime($key['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($key['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data2['id'] = $key['Eid'];
+
+			$name = $this->AdminModel->showName($data2);
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $name.",".$time.",".$sum."?";
+
+		}
+	}
+}
+
+public function shoEmpScomplete()
+{
+	$tbl_name="sbreak";
+
+	$data['date'] = $this->date;
+
+	$result = $this->AdminModel->empSbreakstart($data);
+
+	foreach ($result as $key)
+	{
+		if($key['endtime'] && $key['endtime']!=1)
+		{
+			//echo $key['endtime'];
+			//echo $key['starttime'];
+
+			$nowtime = new DateTime($key['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($key['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data2['id'] = $key['Eid'];
+
+			$name = $this->AdminModel->showName($data2);
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $name.",".$time.",".$sum."?";
+
+		}
+	}
+}
+
+public function shoEmpLcomplete()
+{
+	$tbl_name="lbreak";
+
+	$data['date'] = $this->date;
+
+	$result = $this->AdminModel->empLbreakstart($data);
+
+	foreach ($result as $key)
+	{
+		if($key['endtime'] && $key['endtime']!=1)
+		{
+			//echo $key['endtime'];
+			//echo $key['starttime'];
+
+			$nowtime = new DateTime($key['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($key['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data2['id'] = $key['Eid'];
+
+			$name = $this->AdminModel->showName($data2);
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $name.",".$time.",".$sum."?";
+
+		}
+	}
+}
+
+
+
 }

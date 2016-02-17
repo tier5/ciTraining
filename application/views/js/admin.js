@@ -8,6 +8,9 @@ fbreak();
 sbreak();
 lbreak();
 allemployee();
+showEmpFcomplete();
+showEmpScomplete();
+showEmpLcomplete();
 
 var breakfunctions=setInterval(function(){
     if(a==1)
@@ -20,6 +23,7 @@ var breakfunctions=setInterval(function(){
     	fbreak();
     	sbreak();
     	lbreak();
+    	
     }
     
     
@@ -39,6 +43,9 @@ var empinfofunctions=setInterval(function(){
     {
     	clockin();
 		employeeLate();
+		showEmpFcomplete();
+		showEmpScomplete();
+		showEmpLcomplete();
     }
 	
 
@@ -54,6 +61,126 @@ window.deleteLateRow = function(id)
 
 	});
 }
+//==============================================================
+
+function showEmpFcomplete()
+{
+	
+	$.post('Admin/shoEmpFcomplete', function(data){
+
+		var totaldiv2 = "";
+		if($.trim(data))
+		{
+			data = data.split('?');
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				if(value[2]>1200)
+				{
+					colorclasscomplete = "class='warning'";
+				}
+
+				else
+				{
+					colorclasscomplete = "class='success'";
+				}
+
+				totaldiv2 += "<tr "+colorclasscomplete+"><td>"+value[0]+"</td><td>"+value[1]+"</td></tr>";
+
+			}
+
+			$("#fbreaktablecomplete").html(totaldiv2);
+		}
+		else
+		{
+			$("#fbreaktablecomplete").html("");
+		}
+
+	});
+}
+
+//=============================================================
+
+function showEmpScomplete()
+{
+	
+	$.post('Admin/shoEmpScomplete', function(data){
+
+		var totaldiv2 = "";
+		if($.trim(data))
+		{
+			data = data.split('?');
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				if(value[2]>3600)
+				{
+					colorclasscomplete = "class='warning'";
+				}
+
+				else
+				{
+					colorclasscomplete = "class='success'";
+				}
+
+				totaldiv2 += "<tr "+colorclasscomplete+"><td>"+value[0]+"</td><td>"+value[1]+"</td></tr>";
+
+			}
+
+			$("#sbreaktablecomplete").html(totaldiv2);
+		}
+		else
+		{
+			$("#sbreaktablecomplete").html("");
+		}
+
+	});
+}
+//=============================================================
+
+	function showEmpLcomplete()
+{
+	
+	$.post('Admin/shoEmpLcomplete', function(data){
+
+		var totaldiv2 = "";
+		if($.trim(data))
+		{
+			data = data.split('?');
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				if(value[2]>1200)
+				{
+					colorclasscomplete = "class='warning'";
+				}
+
+				else
+				{
+					colorclasscomplete = "class='success'";
+				}
+
+				totaldiv2 += "<tr "+colorclasscomplete+"><td>"+value[0]+"</td><td>"+value[1]+"</td></tr>";
+
+			}
+
+			$("#lbreaktablecomplete").html(totaldiv2);
+		}
+		else
+		{
+			$("#lbreaktablecomplete").html("");
+		}
+
+	});
+}
+
+	
 
 
 
@@ -344,25 +471,7 @@ window.deleteLateRow = function(id)
 			
 			$("#lbreaktable").html(totaldiv);
 			
-			/*$('#'+value[0]).timer({//timer starts
-            				
-            	duration: value[1],//time value from the php page
-
-                countdown: true,
-            				
-            	callback: function() {
-                				
-                	$('#'+value[0]).timer('remove');
-                	$('#'+value[0]).html('LATE');
-
-            	},
-
-            	repeat: false
-        	});*/
-
-
-			//$('#'+value[0]).html('hh');
-				
+			
 		}
 
 		
@@ -426,7 +535,14 @@ window.deleteLateRow = function(id)
 
 				sec = properSec(sec);
 
-				min = Math.floor(value[4]%3600);
+				if(value[4]<=60)
+				{
+					min = Math.floor(value[4]/60);
+				}
+				else
+				{
+					min = Math.floor(value[4]%3600);
+				}
 
 				min = properMin(min);
 
@@ -447,7 +563,107 @@ window.deleteLateRow = function(id)
 				$('#latetable').html(totaldiv);
 
 		});
-		
+
+		$.post('Admin/shoEmpFcompleteDateChk',{optdate: date}, function(data){
+
+			var totaldiv2 = "";
+		if($.trim(data))
+		{
+			data = data.split('?');
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				if(value[2]>1200)
+				{
+					colorclasscomplete = "class='warning'";
+				}
+
+				else
+				{
+					colorclasscomplete = "class='success'";
+				}
+
+				totaldiv2 += "<tr "+colorclasscomplete+"><td>"+value[0]+"</td><td>"+value[1]+"</td></tr>";
+
+			}
+
+			$("#fbreaktablecomplete").html(totaldiv2);
+		}
+		else
+		{
+			$("#fbreaktablecomplete").html("");
+		}
+	});
+
+		$.post('Admin/shoEmpScompleteDateChk',{optdate: date}, function(data){
+
+			var totaldiv2 = "";
+		if($.trim(data))
+		{
+			data = data.split('?');
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				if(value[2]>3600)
+				{
+					colorclasscomplete = "class='warning'";
+				}
+
+				else
+				{
+					colorclasscomplete = "class='success'";
+				}
+
+				totaldiv2 += "<tr "+colorclasscomplete+"><td>"+value[0]+"</td><td>"+value[1]+"</td></tr>";
+
+			}
+
+			$("#sbreaktablecomplete").html(totaldiv2);
+		}
+		else
+		{
+			$("#sbreaktablecomplete").html("");
+		}
+	});
+
+		$.post('Admin/shoEmpLcompleteDateChk',{optdate: date}, function(data){
+
+			var totaldiv2 = "";
+		if($.trim(data))
+		{
+			data = data.split('?');
+
+			for(i=0;i<data.length-1;i++)
+			{
+				value = data[i].split(',');
+
+				if(value[2]>1200)
+				{
+					colorclasscomplete = "class='warning'";
+				}
+
+				else
+				{
+					colorclasscomplete = "class='success'";
+				}
+
+				totaldiv2 += "<tr "+colorclasscomplete+"><td>"+value[0]+"</td><td>"+value[1]+"</td></tr>";
+
+			}
+
+			$("#lbreaktablecomplete").html(totaldiv2);
+		}
+		else
+		{
+			$("#lbreaktablecomplete").html("");
+		}
+	});
+			
+
 		});
     }
     });
@@ -519,7 +735,15 @@ function employeeLate()
 
 				sec = properSec(sec);
 
-				min = Math.floor(value[4]%3600);
+				if(value[4]<=60)
+				{
+					min = Math.floor(value[4]/60);
+				}
+				else
+				{
+					min = Math.floor(value[4]%3600);
+				}
+
 
 				min = properMin(min);
 

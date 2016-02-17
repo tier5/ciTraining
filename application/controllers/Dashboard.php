@@ -147,10 +147,7 @@ class Dashboard extends CI_Controller {
 	}
 
 
-	public function chksession()
-	{
-		print_r($this->session->userdata('empid'));
-		
-	}
+	
+
 
 }
