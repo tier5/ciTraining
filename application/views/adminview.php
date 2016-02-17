@@ -93,16 +93,18 @@
             </div>
         </br>
             <div class="row">
+              <div class="container-fluid">
                 <div class="col-sm-3">
 
                     <strong>Employee Clocked In</strong>
                     
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 table-responsive">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
                                 <th>UserName</th>
                                 <th>ClockIn</th>
+                                <th>ClockOut</th>
                                 
                               </tr>
                             </thead>
@@ -184,6 +186,7 @@
                           </table>
                       </div>
                 </div>
+              </div>
             </div>
 
 
