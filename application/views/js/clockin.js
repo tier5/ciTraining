@@ -1,10 +1,23 @@
  $(document).ready(function(){
+
+    function showPointsOnLoad()
+    {
+    $.post('Employee/showPointsOnLoad', function(data){
+
+
+        $('#pointbutton').text(data);
+
+    });
+    }
+//================================================================
+
         $("#clockbtn").click(function(){
 
             var btn=$('#clockbtn').text();
             //alert(btn);
             if (btn === 'Clock Out') 
             {
+                $('#breakmsg').html('');
                 $.post('Employee/clockin', function(data){
 
                     $('#clockintime').html(data);
@@ -34,6 +47,7 @@
                              //alert(data);
                              $("#latePoint").modal("show");
                             $("#pointMsg").html(data);
+                            showPointsOnLoad();
 
                         }
 
@@ -51,6 +65,12 @@
                     $('#clockintime').html(data);
                     $('#clockintime1').html('see you tommorow');
 
+
+                });
+
+                $.post('Employee/earlyClockOut',function(data){
+
+                    alert(data);
 
                 });
             }    

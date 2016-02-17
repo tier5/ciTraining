@@ -18,97 +18,113 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Tier5 Employee</a>
-                <br/>
-                <br/><div class="glyphicon glyphicon-user username" id="username"></div> 
+                
+                </br><div class="glyphicon glyphicon-user username" id="username"></div>
+                 
                 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#services"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact"></a>
-
-                    </li>
-                </ul>
+                
                 
                         <form action="Employee/logout" method="post">
                 
-                            <input type="submit" value="logout" class="btn btn-default pull-right">
-                        
+                            <input type="submit" value="logout" class="btn btn-primary pull-right"></input>
+                         
                         </form>
+
                     
-                </ul>
+                </br></br><div class="pull-right"><span><strong>POINTS:</strong></span><button id="pointbutton" class="btn btn-danger"></button></div>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
 
-    <section id="intro" class="intro-section">
+<div class="intro-header">
         <div class="container">
+
             <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <div class="row">
 
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                    
-                    
-                    
-                    <button class="btn btn-primary" id="clockbtn" name="clockinbtn">Clock In</button>
+                            <div class="col-sm-4">
 
-                    
-                    
-                </div>
+                               <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder">Lunch Order</button>
 
-                <div class="col-sm-4">
-                    
-                    <div id="clockintime"></div>
-                    <div id="clockintime1"></div>
-                    <div id="clockintimeLate"></div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                
+                                
+                                
+                                <button class="btn btn-default btn-lg" id="clockbtn" name="clockinbtn">Clock In</button>
+
+                                
+                                
+                            </div>
+
+                            <div class="col-sm-4">
+                                
+                                <div id="clockintime"></div>
+                                <div id="clockintime1"></div>
+                                <div id="clockintimeLate"></div>
+                            </div>
+                        </div>
+                        
+                         <br><br><br><br>
+
+                          <hr class="intro-divider">
+
+                         <br><br><br><br>
+                        
+                        <div class="row">
+                
+                            <div class="col-sm-4" >
+                               
+                                <select class="btn btn-default" id="opt">
+                                  <option value="" selected="selected"> Select a Break</option>
+                                  <option value="fbreak" id="fbreak">First Break</option>
+                                  <option value="sbreak" id="sbreak">Second Break</option>
+                                  <option value="lbreak" id="lbreak">Last Break</option>
+                                </select>
+
+                            </div>
+                            
+                            <div class="col-sm-4" >
+
+                                <button class="btn btn-default btn-lg" id="breakbtn" name="breakbtn">break</button>
+                            
+                            </div>
+                            
+                            
+                            
+                            <div class="col-sm-4">
+
+                              <div id="timer"></div>
+                            
+                              <div id="timeinfo"></div>
+                              <div id="msgbreak"></div>
+                              <div id="breakmsg"></div>
+                          
+                            </div>
+                       
+                        </div><!--/row-->
+
+                    </div>
                 </div>
             </div>
 
-            <br><br><br><br><br><br><br>
-
-
-            <div class="row">
-                
-                <div class="col-sm-4" >
-
-                    <select class="btn btn-default" id="opt">
-                      <option value="" selected="selected"> Select a Break</option>
-                      <option value="fbreak" id="fbreak">First Break</option>
-                      <option value="sbreak" id="sbreak">Second Break</option>
-                      <option value="lbreak" id="lbreak">Last Break</option>
-                    </select>
-
-                </div>
-                
-                <div class="col-sm-4" >
-
-                    <button class="btn btn-primary" id="breakbtn" name="breakbtn">break</button>
-                
-                </div>
-                
-                <div id="timer"></div>
-                <div id="timeinfo"></div>
-                <div class="col-sm-4" id="msgbreak"></div>
-           
-            </div>
-        
         </div>
-        
-    </section>
+        <!-- /.container -->
+
+    </div>
+
+
+
+    
 
    <!-- Modal -->
   <!-- Modal -->
@@ -128,6 +144,102 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="returnbreakModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title error">Break Message</h4>
+        </div>
+        <div class="modal-body">
+          <strong id="returnbreakMsg"></strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+    <div class="modal fade" id="pointtblModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title error">Point Deduction Status</h4>
+        </div>
+        <div class="modal-body">
+          <div id="emplatetbl">
+          <table class="table table-bordered" >
+
+                            <thead>
+                              <tr>
+                    
+                                <td><strong>Date</strong></td>
+                                <td><strong>Duration</strong></td>
+                                <td><strong>Late On</strong></td>
+                                <td><strong>Deducted Points</strong></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                    
+                             </tr>
+                            </thead>
+                            <tbody id="pointtblMsg">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+            </div>
+            <div id="nolaterecords"></div>
+
+         
+          
+            
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="lunchModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          
+          <h4 class="modal-title">Place Your Lunch Order</h4>
+        </div>
+        <div class="modal-body-tab1">
+                Select The Shop
+            
+        </div>
+        <div class="modal-body-tab2">
+                Select The Menu
+
+              
+                <button type="submit" class="btn btn-link pull-left" id="prev">Prev</button>
+                <button type="submit" class="btn btn-link pull-right" id="next1">Next</button>
+            
+                
+        </div>
+        
+      </br>
+      </br>
+        <div class="modal-footer">
+          <button type="button" id="closelunch" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   
+  
 
 </body>
 </html>

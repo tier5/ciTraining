@@ -7,11 +7,26 @@ $(document).ready(function(){
 
 		showTimeOnLoad();
 
+		showPointsOnLoad();
+
     setInterval(function(){
 
     	showTimeOnLoad();
 
     }, 1000);
+
+
+//==============================================================
+function showPointsOnLoad()
+{
+	$.post('Employee/showPointsOnLoad', function(data){
+
+
+		$('#pointbutton').text(data);
+
+	});
+}
+
 
 //==============================================================
 
@@ -61,7 +76,7 @@ $(document).ready(function(){
 			{
 				if(data<0)
 				{
-					colorclass = "class='text-danger'";
+					colorclass = "class='error'";
 					data = Math.abs(data);
 
 					timerinfo = "YOU ARE LATE";
@@ -69,7 +84,7 @@ $(document).ready(function(){
 
 				else
 				{
-					colorclass = "class='text-primary'";
+					colorclass = "class='text-default'";
 				}
 				sec = data;
 
@@ -79,7 +94,7 @@ $(document).ready(function(){
 
 				min = Math.floor(data/60);
 
-				totaltime = min+":"+sec+"min";
+				totaltime = min+":"+sec+" min";
 				 
 					$('#timeinfo').html(timerinfo);
 					$('#timer').html("<div "+colorclass+">"+totaltime+"</div>");
@@ -114,12 +129,30 @@ $(document).ready(function(){
 
 	
 //================================================================
-
+	var opt;
+	var properbreakname;
 	$('#breakbtn').click(function(){
 		//alert('hey');
+
+			$.post('Employee/selectBreakname', function(data){
+
+				if($.trim(data))
+				{
+					opt = data;
+					
+				}
+				else
+				{
+					opt = $('#opt').val();
+				}
+				
+
+			
+
+
 		if($('#clockbtn').text()=="Clock Out")//checking if he clocked in today or not
 		{
-			var opt = $('#opt').val();
+			//opt = $('#opt').val();
 
 			if (opt)//while taking break any proper option is selected or not 
 			{
@@ -143,20 +176,20 @@ $(document).ready(function(){
 					var totaltime;
 					if(opt== 'fbreak')//setting the time according to the breakname
 					{
-						totaltime = '20:00min';
+						totaltime = '20:00 min';
 					}
 					
 					if(opt=='sbreak')
 					{
-						totaltime = '60:00min';
+						totaltime = '60:00 min';
 					}
 
 					if(opt== 'lbreak')
 					{
-						totaltime = '20:00min';
+						totaltime = '20:00 min';
 					}
 
-					$('#timer').html("<div class='text-primary'>"+totaltime+"</div>");
+					$('#timer').html("<div class='text-default'>"+totaltime+"</div>");
 
 					/*$('#timer').timer({//timer starts
             				
@@ -199,6 +232,37 @@ $(document).ready(function(){
 					 		$.post('Employee/storeReturnTime',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
 
 						 		//alert(data);
+						 		/*if(opt=="fbreak")
+						 		{
+						 			properbreakname="First Break";
+						 		}
+						 		else if(opt="lbreak")
+						 		{
+						 			properbreakname="Last Break";
+						 		}
+						 		else
+						 		{
+						 			properbreakname="Last Break";
+						 		}*/
+
+						 		switch(opt)
+						 		{
+						 			case "fbreak":
+						 				properbreakname="First Break";
+						 				break;
+						 			case "sbreak":
+						 				properbreakname="Lunch Break";
+						 				break;
+						 			case "lbreak":
+						 				properbreakname="Last Break";
+						 				break;
+						 			default:
+						 				properbreakname="default";
+						 		}
+
+						 		//alert('you have successfully return from '+properbreakname);
+						 		$('#returnbreakMsg').html('you have successfully return from '+properbreakname);
+						 		$('#returnbreakModal').modal('show');
 					 		});
 
 						 	$.post('Employee/lateInBreak',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
@@ -222,12 +286,33 @@ $(document).ready(function(){
 
 					 				$("#latePoint").modal("show");
 					 				$("#pointMsg").html(data);
+					 				showPointsOnLoad();
+
 					 			}
 
 					 		});
 
-					 		
+					 		$.post('Employee/markPreviousBreak',{opt: opt},function(data){
+
+					 			if(opt=="sbreak")
+					 			{
+					 				$('#fbreak').prop('disabled', true);
+					 			}
+
+					 			else if(opt=="lbreak")
+					 			{
+					 				$('#fbreak').prop('disabled', true);
+					 				$('#sbreak').prop('disabled', true);
+					 			}
+					 			
+					 			if($.trim(data))
+					 			{
+					 				alert(data);
+					 			}
+
+							});					 		
                                 $('#msgbreak').html('');
+
 
 					 		
 						}
@@ -250,9 +335,11 @@ $(document).ready(function(){
 		}
 		else
 		{
-			$('#breakmsg').html('clockin first');
+			$('#breakmsg').html('Clock In First');
 		}
+
 	});
+});
 
   function properSec(val)
 	{

@@ -232,6 +232,55 @@ class EmployeeModel extends CI_model
         return $result->row_array()['clockin'];
     }
 
+    public function returnBreakName($data)
+    {
+        $result = $this->db->get_where('attendance',$data);
+        return $result->row_array();
+    }
+    public function pointalt($data)
+    {
+        $result= $this->db->get_where('tbl_late_emp',$data);
+        //print_r($result->row_array());
+        if ($result->num_rows() > 0)
+        {
+            return $result->result_array();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function fetchBreaktbl($data,$tblname)
+    {
+        $result=$this->db->get_where($tblname,$data);
+
+        return $result->row_array();
+
+    }
+
+    public function insertNonTakenBreaktbl($data,$tablename)
+    {
+        if($this->db->insert($tablename,$data))
+        {
+            return true;
+        }
+        
+
+    }
+    public function shopoption($data)
+    { 
+      $result=$this->db->get_where('items',$data);
+      return $result->result_array();
+      
+    }
+    public function itemoption($data)
+    {
+        $result=$this->db->get_where('items',$data);
+        return $result->result_array();
+
+    }
+
 
 }
 

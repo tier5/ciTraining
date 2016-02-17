@@ -11,19 +11,36 @@ class Admin extends CI_Controller
 		$this->load->database();
 		$this->load->model('AdminModel');
 		$this->load->library('session');
+		//$this->date;
+
+		
 
 		if (!$this->session->userdata('adminid'))
 		{
 			redirect("Dashboard");
 		}
 
+
+		if($this->input->post('optdate'))
+		{
+			$this->date=$this->input->post('optdate');
+		    //print_r($this->date);
+		}
+		else
+		{
+		    $this->date=date("d/m/Y");
+		}
+
 	}
+
+	
 	
 	public function index()
 	{
 
 		if ($this->session->userdata('adminid'))
 		{
+
 			$this->load->view('adminview');
 		}
 		
@@ -117,7 +134,11 @@ class Admin extends CI_Controller
 
 	public function empClockIn()
 	{
-		$data['date'] = date("d/m/Y");
+
+		$data['date'] =$this->date;  //date("d/m/Y");
+
+		//$data['date'] = $this->date;
+
 
 		$res = $this->AdminModel->empClockIn($data);
 
@@ -344,8 +365,9 @@ class Admin extends CI_Controller
 	}
 
 	public function employeeLate()
-	{
-		$result = $this->AdminModel->employeeLate();
+	{	
+		$data['date'] = $this->date;
+		$result = $this->AdminModel->employeeLate($data);
 
 		foreach ($result as $key)
 		{
@@ -367,6 +389,8 @@ class Admin extends CI_Controller
 
 		$result = $this->AdminModel->deleteEmpLate($data);
 
+		print_r($result);
+
 
 
 	}
@@ -383,6 +407,39 @@ class Admin extends CI_Controller
 		$data['points'] = 3000;
 		$result = $this->AdminModel->resetPoints($data);
 		print_r($result);
+	}
+
+	public function markAbsent()
+	{
+		extract($_POST);
+
+		$data['Eid'] = $Eid;
+		$data['date']= date("d/m/Y");
+		
+		$data['late_time'] = 28800;
+		$data['late_in'] = "Absent";
+
+		$result = $this->AdminModel->markAbsent($data);
+
+		if($result)
+		{
+			$id['id'] = $Eid;
+			$currpoint=$this->AdminModel->ShowEmpCurrentPoint($id);
+			
+
+			$data1['points']= $currpoint - 1000;
+			
+			$result2 = $this->AdminModel->updateEmployeeTbl($id, $data1);
+
+			print_r($result2);
+
+
+
+
+			//$result1 = $this->AdminModel->deductPoint();
+		}
+
+		//print_r($result);
 	}
 
 	/*public function calculatePoint()
@@ -425,5 +482,31 @@ class Admin extends CI_Controller
 		{
 			return 1000;
 		}
+	}
+
+	public function showAllLateview()
+	{
+		$this->load->view('employeelateview');
+	}
+	public function allLateRecord()
+	{
+		$res = $this->AdminModel->allLateRecord();
+		//print_r($result);
+		//$result['result'] = $res;
+		foreach ($res as $key)
+		{
+			
+			$data2['id'] = $key['Eid'];
+			$resname = $this->AdminModel->showName($data2);
+
+			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id']."?";
+		}
+
+		//$this->load->view('employeelateview',$result);
+	}
+
+	public function checkdateonclock()
+	{
+		$this->empClockIn();
 	}
 }

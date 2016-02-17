@@ -19,10 +19,9 @@
     <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
 
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
     <!-- Custom CSS -->
-    <link href="<?php echo base_url().'application/views/css/landing-page.css'?>" rel="stylesheet">
- 
-    <link href="<?php echo base_url().'application/views/css/addemp.css'?>" rel="stylesheet">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,17 +40,8 @@
     <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
 
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/buttons.js';?>"></script>
+    <script src="<?php echo base_url().'application/views/js/lateview.js'?>"></script>
 
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/clockin.js';?>"></script>
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/time.js';?>"></script>
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/breakbuttons.js';?>"></script>
-
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/pointbutton.js';?>"></script>
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/lunchorder.js';?>"></script>
+  
+    
 </head>

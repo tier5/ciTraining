@@ -121,9 +121,9 @@
 
       }
 
-      public function employeeLate()
+      public function employeeLate($data)
       {
-          $result = $this->db->get('tbl_late_emp');
+          $result = $this->db->get_where('tbl_late_emp',$data);
 
           return $result->result_array();
 
@@ -162,7 +162,22 @@
         $result = $this->db->get_where('employee',$data);
         return $result->row_array()['points'];
       }
+
+      public function markAbsent($data)
+      {
+        if($this->db->insert('tbl_late_emp',$data))
+        {
+          return true;
+        }
+      }
       
+      public function allLateRecord()
+      {
+          $result = $this->db->get('tbl_late_emp');
+
+          return $result->result_array();
+
+      }
       
    } 
 ?> 
