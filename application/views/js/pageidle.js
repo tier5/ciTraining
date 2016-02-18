@@ -25,13 +25,13 @@ $(document).ready(function () {
 
         console.log(idleTime);
 
-        if (idleTime > 28 && idleTime < 29) 
+        if (idleTime > 30 && idleTime < 31) 
         { // 20 minutes
             //window.location.reload();
             $('#idlechkModal').modal('show');
         }
 
-        else if(idleTime > 30)
+        else if(idleTime > 59)
         {
             $.post('Employee/idleDestroySession', function(data){
 

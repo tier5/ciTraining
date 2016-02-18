@@ -6,10 +6,11 @@ $(document).ready(function(){
       });
 
 	});*/
-var totaldiv="";
+
 var breakname;
 var pointsdeducted;
   $('#pointbutton').click(function(){
+  	var totaldiv="";
   $('#pointtblModal').modal('show');
   $.post('Employee/pointalt', function(data){
 
