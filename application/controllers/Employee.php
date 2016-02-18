@@ -52,6 +52,13 @@ class Employee extends CI_Controller
 		//$this->session->sess_destroy();
 	}
 
+	public function idleDestroySession()
+	{
+		$this->session->unset_userdata('empid');
+		redirect('Dashboard');
+		
+	}
+
 	public function clockin()
 	{
 		
