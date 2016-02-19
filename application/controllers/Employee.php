@@ -21,7 +21,15 @@ class Employee extends CI_Controller
 			exit(0);
 		}
 
-		
+		if($this->input->post('optdate'))
+		{
+			$this->todaydate=$this->input->post('optdate');
+			/*$this->empClockIn();*/
+		}
+		else
+		{
+			$this->todaydate = $this->date = date("d/m/Y");
+		}
 
 	
 
@@ -669,6 +677,186 @@ class Employee extends CI_Controller
 			return 750;
 		}
 	}
+
+	public function calenderclockin()
+	{	
+		$clock = $this->input->post('clock');
+
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+
+		$result = $this->EmployeeModel->autoChangeButton($data);
+
+		$clockintime = strtotime($result[$clock]);
+
+		$properclockintime = strtotime(CLOCK_IN_TIME);
+
+		if($result[$clock])
+		{
+			if($clockintime>$properclockintime)
+			{
+				$colorclass = "error";
+			}
+
+			else
+			{
+				$colorclass = "";
+			}
+
+			echo $result[$clock].",".$colorclass;
+		}
+
+		
+
+		
+
+	}
+
+	public function calenderclockout()
+	{
+		$clock = $this->input->post('clock');
+
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+
+		$result = $this->EmployeeModel->autoChangeButton($data);
+
+		$clockouttime = strtotime($result[$clock]);
+
+		$properclockintime = strtotime(CLOCK_OUT_TIME);
+
+		if($result[$clock])
+		{
+			if($clockouttime<$properclockintime)
+			{
+				$colorclass = "error";
+			}
+
+			else
+			{
+				$colorclass = "";
+			}
+
+			echo $result[$clock].",".$colorclass;
+		}
+	}
+
+	public function calenderFbreak()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+		$tblname = 'fbreak';
+		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
+
+		if($result['endtime'] && $result['endtime']!=1)
+		{
+			$nowtime = new DateTime($result['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($result['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			if($sum>1200)
+			{
+				$class = "error";
+			}
+			else
+			{
+				$class = "";
+			}
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $time.",".$class;
+		}
+	}
+
+	public function calenderSbreak()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+		$tblname = 'sbreak';
+		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
+
+		if($result['endtime'] && $result['endtime']!=1)
+		{
+			$nowtime = new DateTime($result['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($result['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			if($sum>3600)
+			{
+				$class = "error";
+			}
+			else
+			{
+				$class = "";
+			}
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $time.",".$class;
+		}
+	}
+
+	public function calenderLbreak()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+		$tblname = 'lbreak';
+		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
+
+		if($result['endtime'] && $result['endtime']!=1)
+		{
+			$nowtime = new DateTime($result['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($result['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			if($sum>1200)
+			{
+				$class = "error";
+			}
+			else
+			{
+				$class = "";
+			}
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $time.",".$class;
+		}
+	}
+
+	public function calenderclockinDateChk()
+	{
+
+		$this->calenderclockin();
+	}
+
+	public function calenderclockoutDateChk()
+	{
+		$this->calenderclockout();
+	}
+
+	public function calenderFbreakDateChk()
+	{
+		$this->calenderFbreak();
+	}
+
+	public function calenderSbreakDateChk()
+	{
+		$this->calenderSbreak();
+	}
+
+	public function calenderLbreakDateChk()
+	{
+		$this->calenderLbreak();
+	}
+
 
 
 }

@@ -40,6 +40,36 @@
     font-size: 40px;
 }
 
+.calendername
+{
+	font-size: 18px;
+	color: rgba(202, 205, 208, 0.95);
+	
+}
+
+.calendervalue
+{
+	font-size: 15px;
+}
+
+.calenderbox
+{
+	    border: 2px solid #ffffff;
+	    padding: 15px;
+	    border-radius: 10px;
+	    margin-top: 20px;
+	   -webkit-box-shadow: 28px 27px 30px 2px rgba(12,13,12,0.87);
+-moz-box-shadow: 28px 27px 30px 2px rgba(12,13,12,0.87);
+box-shadow: 28px 27px 30px 2px rgba(12,13,12,0.87);
+
+}
+
+nav
+{
+	-webkit-box-shadow: 10px 10px 26px 12px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 26px 12px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 26px 12px rgba(0,0,0,0.75);
+}
 
 
 

@@ -269,6 +269,17 @@ class EmployeeModel extends CI_model
 
     }
 
+    public function allBreakTableInfo($data, $tablename)
+    {
+
+        $res = $this->db->get_where($tablename,$data);
+
+        return $res->row_array();
+
+    }
+
+
+
 
 }
 

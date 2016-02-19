@@ -7,6 +7,10 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -107,15 +111,92 @@
                             </div>
                        
                         </div><!--/row-->
+                        
+                      <div class='container-fluid calenderbox'>
+                        <div class='row'>
+
+                            <div class="col-sm-3"></div>
+
+                            <div class="col-sm-3"></div>
+
+                            <div class="col-sm-3"></div>
+
+                            <div class="col-sm-3">
+
+                                <input type="button" value="Change Date" id="calender" class="btn btn-warning">
+
+
+                            </div>
+
+
+
+                        </div>
+
+                          <br>
+
+
+                        <div class='row'>
+
+                            <div class="col-sm-3">
+                             <div class="row">
+                              <div class="col-sm-6">
+                                <div class='row calendername'>Clock In</div>
+                                <div class='row calendervalue' id="clockintimeshow"></div>
+                              </div>
+
+                               <div class="col-sm-6">
+                                <div class='row calendername'>Clock Out</div>
+                                <div class='row calendervalue' id="clockouttimeshow"></div>
+                              </div>
+                             </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="col-sm-12">
+                                <div class='row calendername'>First Break</div>
+                                <div class='row calendervalue' id="fbreaktime"></div>
+                              </div>
+
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="col-sm-12">
+                                <div class='row calendername'>Lunch Break</div>
+                                <div class='row calendervalue' id="sbreaktime"></div>
+                              </div>
+
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="col-sm-12">
+                                <div class='row calendername'>Last Break</div>
+                                <div class='row calendervalue' id="lbreaktime"></div>
+                              </div>
+
+                            </div>
+
+
+                        </div>
+
+                      </div>
 
                     </div>
                 </div>
             </div>
 
+
+
         </div>
         <!-- /.container -->
 
     </div>
+
+
+
+    
 
 
 
