@@ -178,6 +178,19 @@
           return $result->result_array();
 
       }
+
+      public function deleteEmp($data)
+      {
+          $this->db->where($data);
+          $this->db->delete('employee');
+      }
+
+      public function deleteEmpFromAllTbl($data)
+      {
+        $table = array('fbreak','sbreak','attendance', 'lbreak', 'tbl_late_emp');
+          $this->db->where($data);
+          $this->db->delete($table);
+      }
       
    } 
 ?> 

@@ -653,6 +653,20 @@ public function shoEmpLcomplete()
 	}
 }
 
+public function deleteEmp()
+{
+	$data['id']=$this->input->post('id');
+	$data1['Eid']=$this->input->post('id');
+	
+	//$data['id'] = $id;
+
+	$result = $this->AdminModel->deleteEmp($data);
+
+	$result1 = $this->AdminModel->deleteEmpFromAllTbl($data1);
+
+
+}
+
 
 
 }
