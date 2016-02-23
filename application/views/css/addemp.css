@@ -8,6 +8,10 @@
 {
     color: #666;
 }
+#totalcost
+{
+	font-size: 20px;
+}
 #username
 {
     color: #666 !important;

@@ -899,8 +899,5 @@ class Employee extends CI_Controller
 		$result=$this->EmployeeModel->submitorder($data);
         print_r($result);
 	}
-
-
-
 }
 ?>

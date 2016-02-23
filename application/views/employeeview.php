@@ -371,7 +371,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title error">Place Your Lunch Order</h4>   
+          <h4 class="modal-title deleteconfirm" align="center">Place Your Lunch Order</h4>   
         </div>
         <div class="modal-body-tab1" align="center">
 
@@ -379,21 +379,24 @@
          
         <div class="modal-body-tab2" align="center">
             <div class="row">
-               <div class="col-sm-3" ></div>
-               <div class="col-sm-6" >
-                    Shop Name: <span id="shpname"></span>
-                    </br>
-                    Lunch Items:<span id="totalitem"></span>
-                    </br>
-                    Total Cost:<span id="totalcost">00</span>
-                    </br>
+               <div class="col-sm-4" >
                </div>
-               <div class="col-sm-3" ></div>
+               <div class="col-sm-4" >
+                Shop Name: <span id="shpname"></span>
+               </div>
+               <div class="col-sm-4" >
+               </div>
             </div>
-               </br>
-               </br>
+            <div class="row">
+               <div class="col-sm-9" align="left" >
+               &nbsp;Lunch Items:<span id="totalitem"></span>
+               </div>
     
-                </br>
+               <div class="col-sm-3" >
+               Total Cost:<span id="totalcost">00</span>
+               </div>
+            </div>
+            </br>
                 <table class="table table-bordered"  >
                   <thead>
                     <tr>
@@ -407,24 +410,131 @@
                   </tbody>
                 </table>
                 </br>
-                <button type="submit" class="btn btn-link pull-left" id="prev"><span><<</span> Prev</button>
-                <button type="submit" class="btn btn-danger btn-sm pull-right" id="suborder">Submit Order</button>                    
+               <div class="row" align="center">
+                    <div class="col-sm-4">
+                        <button type="submit" class="btn btn-link pull-left" id="prev"><span><<</span> Prev</button>
+
+                    </div>
+                    
+                    <div class="col-sm-7">
+                        <button type="submit" class="btn btn-primary btn-sm pull-right" id="suborder">Submit Order</button>                   
+
+                    </div>
+                    <div class="col-sm-1"></div>
+
+
+                </div>
         </div>
         <div class="modal-body-tab3">
-          <div id="confirmorder">
+        </br>
+          <div id="confirmorder" align="center">
 
           </div>
 
         </div>
-        
-      </br>
-      </br>
         <div class="modal-footer">
          
         </div>
       </div>
     </div>
   </div>
+
+
+
+
+  <div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="existcost" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title error " align="center"><strong>Invalid Order Cost</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <p align='center'>Your Order Cost Cannot Be More Than 100/-</p>
+              
+              <div class="col-sm-4">
+                
+                
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+
+
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="emptyorder" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title error " align="center"><strong>Item Status</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <p align='center'>Atleast Select One Item</p>
+              
+              <div class="col-sm-4">
+                
+                
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+
+
+  
+
+
+
+
+
 
 </body>
 </html>
