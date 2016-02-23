@@ -92,8 +92,6 @@
                 </div>
             </div>
         </br>
-    
-        <input type="submit" name="datepicker" id="datepicker" value="Choose Date">
       
         
         </br>
