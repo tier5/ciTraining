@@ -619,10 +619,30 @@ class Employee extends CI_Controller
 		//print_r($result);
 		foreach($result as $row)
         {
-         echo $row['Lnid'].",".$row['item'].",".$row['cost']."/";
+         echo $row['Lnid'].",".$row['item'].",".$row['cost'].",".$row['limit']."/";
         }
 		//echo "Hello";
 
+	}
+	public function shopname()
+	{
+		extract($_POST);
+		$data['Lnid']=$shopopt;
+		$result=$this->EmployeeModel->shopname($data);
+		print_r($result);
+	}
+
+	public function submitorder()
+	{
+
+		extract($_POST);
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date']=date("d/m/Y");
+		$data['shopname']=$shopname;
+		$data['items']=$lunchitm;
+		$data['cost']=$finalcost;
+		$result=$this->EmployeeModel->submitorder($data);
+        print_r($result);
 	}
 
 

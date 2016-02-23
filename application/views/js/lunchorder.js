@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	var selectedshopid="";
-	var dbstring="";
-	var dbstring1="";
+	var arr="";
+	
 	//var totaldiv="";
 
 //=======================firstdiv Show=====================
@@ -13,13 +13,10 @@ function shawfirstdiv()
 			for (i = 0; i < newdata.length-1; i++)
 			{
 				data1 = newdata[i].split(',');
-				//var array=[data1[0],data1[1]];
+				//var arry=[data1[0],data1[1]];
 				$('.modal-body-tab1').append("<br/>"+'<input type="radio" id="selectshop_'+$.trim(data1[0])+'" onclick="a('+data1[0]+')" name="selectshop">'+data1[1]);
+			    
 			}
-	});
-		
-    $('#closelunch').click(function(){
-	  $('.modal-body-tab1').html("");
 	});
 }
 //=================="Lunch Order" button click======================
@@ -33,9 +30,10 @@ function shawfirstdiv()
 //==========================Onclick for Shop option=======================================================================================================
 	window.a = function(shopid)
 	{
-	    selectedshopid=shopid;
         var totaldiv="";
-	    $.post('Employee/itemoption',{shopopt:selectedshopid},function(data){  	
+        
+        //var shopName=$('#selectshop_'+id).text();
+	    $.post('Employee/itemoption',{shopopt:shopid},function(data){  	
           	$('.modal-body-tab1').hide();
           	$('.modal-body-tab2').show();
           	var data1=data.split("/");
@@ -44,84 +42,96 @@ function shawfirstdiv()
           		data2= data1[i].split(',');
           		//alert(data2);
           		var arr = [data2[0],data2[2]];
-
           		console.log(arr);
-
-          		totaldiv +='<tr><td><input value="Add" type="button" id="btnadd_'+$.trim(data2[0])+'" onclick="b('+arr+')"></td><td id="itemname_'+$.trim(data2[0])+'">'+data2[1]+'</td><td id="itemcost_'+$.trim(data2[0])+'">'+data2[2]+'</td><td><input type="text" value=1 id="itemquantity_'+$.trim(data2[0])+'"></td></tr>';
+                
+                
+                 var limit=data2[3];
+                 //alert(limit);
+                 var options="";
+                 for(y=1;y<=limit;y++)
+                 {
+                 	//console.log(limit);
+                 	options+='<option>'+y+'</option>';
+                 	//limit--;
+                 }
+                 console.log('finished');
+          		totaldiv +='<tr><td><input value="Add" type="button" id="btnadd_'+$.trim(data2[0])+'" onclick="b('+arr+')"></td><td id="itemname_'+$.trim(data2[0])+'">'+data2[1]+'</td><td id="itemcost_'+$.trim(data2[0])+'">'+data2[2]+'</td><td><select id="itemquantity_'+$.trim(data2[0])+'">'+options+'</select></td></tr>';
           	    $('#orderbody').html(totaldiv);
+      
           	}
-          });	
+          });
+	    $.post('Employee/shopname',{shopopt:shopid},function(data){ 
+        //alert(data);
+        $('#shpname').text(data);
+	    });	
+
 	}
 //================================Onclick of "Add/Remove" Button======================================================================================================================================================================================================
 	window.b = function(id,cost)
 	{
-		if($('#itemquantity_'+id).val())
-		{
-			var ItemName=$('#itemname_'+id).text();
+			var itemname=$('#itemname_'+id).text();
 			var btnvalue=$('#btnadd_'+id).val();
-			
-			
-			//alert(dbstring1);
-			//alert(ItemName);
-
-			if(btnvalue=='Add')
-			{
-				$('#btnadd_'+id).val('Remove');
-				//predbstring1=dbstring1;
-				//dbstring1=dbstring1+ItemName;
-
-			}
-			else
-			{
-				$('#btnadd_'+id).val('Add');
-				//dbstring1=predbstring1;
-			}
-
 			var itemquantity = $('#itemquantity_'+id).val();
 			var itemcost = cost;
-			
+           
 			newcost = itemquantity*itemcost;
-
 			totalcost = $('#totalcost').text();
-
 			totalcost = parseInt(totalcost);
+			itemquantity=parseInt(itemquantity);
+			totalitem = $('#totalitem').text();
 
 			if(btnvalue=='Add')
 			{
-				totalcost = totalcost + newcost;
-
+                    totalcost = totalcost + newcost;
+					$('#totalcost').text(totalcost);
+				    $('#btnadd_'+id).val('Remove');
+				    $('#totalitem').append('<span id="itm_'+id+'">'+itemname+'</span><span id="itemqty_'+id+'">['+itemquantity+']</span>');
+				    $('#itemquantity_'+id).prop('disabled', true);
 			}
 
 			else
 			{
-				totalcost = totalcost - newcost;
-			}
-			
+                   totalcost = totalcost - newcost;
+                   $('#itm_'+id).remove();
+                   $('#itemqty_'+id).remove();
+                   $('#btnadd_'+id).val('Add');
+				   $('#totalcost').text(totalcost);
+				   $('#itemquantity_'+id).prop('disabled', false);
 
-			$('#totalcost').text(totalcost);
-			//$('#totalitem').text(dbstring1);
-		}
+			}	
 	}
 //================================On "Prev" button Click===============
-    $('#next').click(function(){
-    	$('.modal-body-tab3').show();
-    	$('.modal-body-tab2').hide();
-
-		//shawfirstdiv();
-		//$('.modal-body-tab2').hide();
-
-    
-
-	});
 	 $('#prev').click(function(){
-  
         $('.modal-body-tab1').show();
 		shawfirstdiv();
-
+		$('#totalitem').empty();
+		$('#totalcost').html("00");
+		
 		$('.modal-body-tab2').hide();
+	});
+	$('#suborder').click(function(){
+		   var shopname=$('#shpname').text();
+		   var lunchitm=$('#totalitem').text();
+		   var finalcost=$('#totalcost').text();
+		    if($.trim(lunchitm))
+		    {
+		       $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost },function(data){
+		       //alert(data);
+		         if ($.trim(data))
+		         {
+		            $('.modal-body-tab3').show();
+				    $('.modal-body-tab2').hide();
+				    $('#confirmorder').html("Lunch Order Placed Successfully!!!!!");	
+		         }
+		         else
+		         {
+		            $('.modal-body-tab3').show();
+				    $('.modal-body-tab2').hide();
+				    $('#confirmorder').html("You Have Already Placed Your Lunch Order!!!! ");	
+		         }
 
-    
-
+		      });
+		    }
 	});
 //================================================================================ 
 });

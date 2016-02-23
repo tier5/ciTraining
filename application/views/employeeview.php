@@ -215,21 +215,24 @@
           
           <h4 class="modal-title">Place Your Lunch Order</h4>
         </div>
+
         <div class="modal-body-tab1">
-                Select The Shop
-          <div id="orderfirstdiv">
-          </div>  
+                
+    
         </div>
          
         <div class="modal-body-tab2">
+                <div id="errororder">
+                    </br>
+                    Shop Name: <span id="shpname"></span>
+                    </br>
+                    Lunch Items:<span id="totalitem"></span>
+                    </br>
+                    Total Cost:<span id="totalcost">00</span>
+                    </br>
+                    <div id="errorlunch"></div>
+                  </div>
                 Select The Menu
-                </br>
-                Shop Name:<span id="shpname"></span>
-                </br>
-                Lunch Items:<span id="totalitem"></span>
-                </br>
-                Total Cost:<span id="totalcost">00</span>
-                </br>
                 </br>
                 <table class="table table-bordered" >
                   <thead>
@@ -240,27 +243,18 @@
                         <td><strong>Quantity</strong></td>
                     </tr>
                   </thead>
-                  <tbody id="orderbody">
-                           
-                              
-
-                          
+                  <tbody id="orderbody">        
                   </tbody>
                 </table>
                 </br>
                 <button type="submit" class="btn pull-left" id="prev">Prev</button>
-                <button type="submit" class="btn pull-right" id="next">Next</button>                    
+                <button type="submit" class="btn pull-right" id="suborder">Submit Order</button>                    
         </div>
         <div class="modal-body-tab3">
-                Submit the lunch order!
-          <div id="oredrsubmission">
-         
-          </div> 
-          <div>
-              <button type="submit" class="btn pull-left" id="prev1">Prev</button>
-              <button type="submit" class="btn pull-right" id="Suborder">Submit</button>                    
+          <div id="confirmorder">
+
           </div>
-            
+
         </div>
         
       </br>
