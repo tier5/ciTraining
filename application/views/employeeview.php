@@ -212,29 +212,31 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          
-          <h4 class="modal-title">Place Your Lunch Order</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title error">Place Your Lunch Order</h4>   
         </div>
+        <div class="modal-body-tab1" align="center">
 
-        <div class="modal-body-tab1">
-                
-    
         </div>
          
-        <div class="modal-body-tab2">
-                <div id="errororder">
-                    </br>
+        <div class="modal-body-tab2" align="center">
+            <div class="row">
+               <div class="col-sm-3" ></div>
+               <div class="col-sm-6" >
                     Shop Name: <span id="shpname"></span>
                     </br>
                     Lunch Items:<span id="totalitem"></span>
                     </br>
                     Total Cost:<span id="totalcost">00</span>
                     </br>
-                    <div id="errorlunch"></div>
-                  </div>
-                Select The Menu
+               </div>
+               <div class="col-sm-3" ></div>
+            </div>
+               </br>
+               </br>
+    
                 </br>
-                <table class="table table-bordered" >
+                <table class="table table-bordered"  >
                   <thead>
                     <tr>
                         <td><strong>Select</strong></td>
@@ -247,8 +249,8 @@
                   </tbody>
                 </table>
                 </br>
-                <button type="submit" class="btn pull-left" id="prev">Prev</button>
-                <button type="submit" class="btn pull-right" id="suborder">Submit Order</button>                    
+                <button type="submit" class="btn btn-link pull-left" id="prev"><span><<</span> Prev</button>
+                <button type="submit" class="btn btn-danger btn-sm pull-right" id="suborder">Submit Order</button>                    
         </div>
         <div class="modal-body-tab3">
           <div id="confirmorder">
@@ -260,7 +262,7 @@
       </br>
       </br>
         <div class="modal-footer">
-          <button type="button" id="closelunch" class="btn btn-default" data-dismiss="modal">Close</button>
+         
         </div>
       </div>
     </div>
