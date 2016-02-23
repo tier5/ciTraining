@@ -37,6 +37,9 @@ function allLateRecords()
 					case "Absent":
 						breakname = "Absent";
 						break;
+					case "Early Clock Out":
+						breakname = "Early Clock Out";
+						break;
 
 					default:
 						breakname = "Default";
@@ -48,7 +51,15 @@ function allLateRecords()
 
 				sec = properSec(sec);
 
-				min = Math.floor(value[4]%3600);
+				if(value[4]<=60)
+				{
+					min = Math.floor(value[4]/60);
+				}
+				else
+				{
+					min = Math.floor(value[4]%3600);
+				}
+
 
 				min = properMin(min);
 

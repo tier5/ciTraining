@@ -7,6 +7,10 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -50,7 +54,9 @@
                     <div class="intro-message">
                         <div class="row">
 
-                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder">Lunch Order</button>
+                            </div>
                             <div class="col-sm-4">
                                 
                                 
@@ -107,15 +113,92 @@
                             </div>
                        
                         </div><!--/row-->
+                        
+                      <div class='container-fluid calenderbox'>
+                        <div class='row'>
+
+                            <div class="col-sm-3"></div>
+
+                            <div class="col-sm-3"></div>
+
+                            <div class="col-sm-3"></div>
+
+                            <div class="col-sm-3">
+
+                                <input type="button" value="Change Date" id="calender" class="btn btn-warning">
+
+
+                            </div>
+
+
+
+                        </div>
+
+                          <br>
+
+
+                        <div class='row'>
+
+                            <div class="col-sm-3">
+                             <div class="row">
+                              <div class="col-sm-6">
+                                <div class='row calendername'>Clock In</div>
+                                <div class='row calendervalue' id="clockintimeshow"></div>
+                              </div>
+
+                               <div class="col-sm-6">
+                                <div class='row calendername'>Clock Out</div>
+                                <div class='row calendervalue' id="clockouttimeshow"></div>
+                              </div>
+                             </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="col-sm-12">
+                                <div class='row calendername'>First Break</div>
+                                <div class='row calendervalue' id="fbreaktime"></div>
+                              </div>
+
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="col-sm-12">
+                                <div class='row calendername'>Lunch Break</div>
+                                <div class='row calendervalue' id="sbreaktime"></div>
+                              </div>
+
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <div class="col-sm-12">
+                                <div class='row calendername'>Last Break</div>
+                                <div class='row calendervalue' id="lbreaktime"></div>
+                              </div>
+
+                            </div>
+
+
+                        </div>
+
+                      </div>
 
                     </div>
                 </div>
             </div>
 
+
+
         </div>
         <!-- /.container -->
 
     </div>
+
+
+
+    
 
 
 
@@ -128,9 +211,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title error">Late Message</h4>
+          <h4 class="modal-title error" align="center">Late Message</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body deleteconfirm" align="center">
           <strong id="pointMsg"></strong>
         </div>
         <div class="modal-footer">
@@ -145,9 +228,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title error">Break Message</h4>
+          <h4 class="modal-title deleteconfirm" align="center">Break Message</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body deleteconfirm" align="center">
           <strong id="returnbreakMsg"></strong>
         </div>
         <div class="modal-footer">
@@ -164,9 +247,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title error">Point Deduction Status</h4>
+          <h4 class="modal-title error" align="center">Point Deduction Status</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" align="center">
           <div id="emplatetbl">
           <table class="table table-bordered" >
 
@@ -203,8 +286,145 @@
     </div>
   </div>
 
+
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="earlyclockoutModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Early Clock Out</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div id="earlyclockoutMsg" align='center'><strong></strong></div>
+
+
+              </div>
+
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+            </div>
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+  </div>
    
   
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="idlechkModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>No Activity For More Than 20 minutes</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <p align='center'>ARE YOU THERE</p>
+              
+              <div class="col-sm-4">
+                
+                
+
+                <button id="idlechkYES" class="btn btn-warning" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+<div class="modal fade" id="lunchModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title error">Place Your Lunch Order</h4>   
+        </div>
+        <div class="modal-body-tab1" align="center">
+
+        </div>
+         
+        <div class="modal-body-tab2" align="center">
+            <div class="row">
+               <div class="col-sm-3" ></div>
+               <div class="col-sm-6" >
+                    Shop Name: <span id="shpname"></span>
+                    </br>
+                    Lunch Items:<span id="totalitem"></span>
+                    </br>
+                    Total Cost:<span id="totalcost">00</span>
+                    </br>
+               </div>
+               <div class="col-sm-3" ></div>
+            </div>
+               </br>
+               </br>
+    
+                </br>
+                <table class="table table-bordered"  >
+                  <thead>
+                    <tr>
+                        <td><strong>Select</strong></td>
+                        <td><strong>Items</strong></td>
+                        <td><strong>Cost</strong></td>
+                        <td><strong>Quantity</strong></td>
+                    </tr>
+                  </thead>
+                  <tbody id="orderbody">        
+                  </tbody>
+                </table>
+                </br>
+                <button type="submit" class="btn btn-link pull-left" id="prev"><span><<</span> Prev</button>
+                <button type="submit" class="btn btn-danger btn-sm pull-right" id="suborder">Submit Order</button>                    
+        </div>
+        <div class="modal-body-tab3">
+          <div id="confirmorder">
+
+          </div>
+
+        </div>
+        
+      </br>
+      </br>
+        <div class="modal-footer">
+         
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

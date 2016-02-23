@@ -24,6 +24,7 @@
  
     <link href="<?php echo base_url().'application/views/css/addemp.css'?>" rel="stylesheet">
 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -53,4 +54,11 @@
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/pointbutton.js';?>"></script>
+
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/pageidle.js';?>"></script>
+
+    
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/usercalender.js';?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/lunchorder.js';?>"></script>
+
 </head>

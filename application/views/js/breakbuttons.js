@@ -313,7 +313,9 @@ function showPointsOnLoad()
 							});					 		
                                 $('#msgbreak').html('');
 
-
+                                calenderFbreak();
+								calenderSbreak();
+								calenderLbreak();
 					 		
 						}
 				 	
@@ -355,5 +357,128 @@ function showPointsOnLoad()
 			return val;
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//==============================================================
+function calenderclockin()
+{
+      $.post('Employee/calenderclockin',{clock: 'clockin'}, function(data){
+
+        if($.trim(data))
+        {
+            changeCalenderInfo(data,'#clockintimeshow');
+
+        }
+    });
+}
+  
+
+
+
+//==============================================================
+function calenderclockout()
+{
+    $.post('Employee/calenderclockout',{clock: 'clockout'}, function(data){
+
+        if($.trim(data))
+        {
+            changeCalenderInfo(data,'#clockouttimeshow');
+
+        }
+    });
+}
+    
+//==============================================================
+function calenderFbreak()
+{
+    $.post('Employee/calenderFbreak', function(data){
+        
+        if($.trim(data))
+        {
+            changeCalenderInfo(data,'#fbreaktime'); 
+        }
+        else
+        {
+            $('#fbreaktime').html('');
+        }
+        
+
+    }); 
+
+}
+    
+//==================================================================
+function calenderSbreak()
+{
+    $.post('Employee/calenderSbreak', function(data){
+        
+        if($.trim(data))
+        {
+            changeCalenderInfo(data,'#sbreaktime'); 
+        }
+        else
+        {
+            $('#sbreaktime').html('');
+        }
+        
+
+    }); 
+}
+    
+
+//==================================================================
+function calenderLbreak()
+{
+    $.post('Employee/calenderLbreak', function(data){
+        
+        if($.trim(data))
+        {
+            changeCalenderInfo(data,'#lbreaktime'); 
+        }
+        else
+        {
+            $('#lbreaktime').html('');
+        }
+        
+
+    }); 
+}
+    
+
+//===================================================================
+
+function changeCalenderInfo(data,id)
+    {
+        data = data.split(",");
+        $(id).html("<span class="+data[1]+">"+data[0]+"</span>");
+
+    }
 
 });

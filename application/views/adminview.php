@@ -99,16 +99,18 @@
         </br>
         </br>
             <div class="row">
+              <div class="container-fluid">
                 <div class="col-sm-3">
 
                     <strong>Employee Clocked In</strong>
                     
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 table-responsive">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
                                 <th>UserName</th>
                                 <th>ClockIn</th>
+                                <th>ClockOut</th>
                                 
                               </tr>
                             </thead>
@@ -118,6 +120,7 @@
 
                           
                             </tbody>
+
                           </table>
                       
 
@@ -138,12 +141,19 @@
                                 
                               </tr>
                             </thead>
+                            <tbody id="fbreaktablecomplete">
+                           
+                              
+
+                          
+                            </tbody>
                             <tbody id="fbreaktable">
                            
                               
 
                           
                             </tbody>
+                            
                           </table>
                       </div>
 
@@ -160,12 +170,19 @@
                                 
                               </tr>
                             </thead>
+                            <tbody id="sbreaktablecomplete">
+                           
+                              
+
+                          
+                            </tbody>
                             <tbody id="sbreaktable">
                            
                               
 
                           
                             </tbody>
+                            
                           </table>
                       </div>
                 </div>
@@ -181,15 +198,23 @@
                                 
                               </tr>
                             </thead>
+                            <tbody id="lbreaktablecomplete">
+                           
+                              
+
+                          
+                            </tbody>
                             <tbody id="lbreaktable">
                            
                               
 
                           
                             </tbody>
+                            
                           </table>
                       </div>
                 </div>
+              </div>
             </div>
 
 
@@ -216,8 +241,8 @@
                                 <td><strong>USER NAME</strong></td>
                                 <td><strong>LATE ON</strong></td>
                                 <td><strong>DURATION</strong></td>
-                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                            </tr>
+<!--                                 <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+ -->                            </tr>
                             </thead>
                             <tbody id="latetable">
                            
@@ -259,7 +284,8 @@
                                 <td><strong>PASSWORD</strong></td>
                                 <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints" data-toggle='tooltip' title='Reset Points For Everyone'>RESET</button></div></td>
                                <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>
-                               <td><strong>Mark As</br> Absent</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                               <td><strong>Mark As</br> Absent</strong></td>
+                               <td><strong>Delete</br> Employee</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     
                              </tr>
                             </thead>
@@ -391,6 +417,47 @@
               <div class="col-sm-4">
                 
                 <button id="resetEveryPoints" class="btn btn-warning" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="deleteEmpModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Are You Sure You Want To Delete This Employee</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div class="col-sm-4">
+                
+                <button id="deleteEmpYes" class="btn btn-warning" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
 
               </div>

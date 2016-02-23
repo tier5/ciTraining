@@ -27,6 +27,7 @@ class Admin extends CI_Controller
 		if($this->input->post('optdate'))
 		{
 			$this->date=$this->input->post('optdate');
+			/*$this->empClockIn();*/
 		}
 		else
 		{
@@ -167,10 +168,22 @@ class Admin extends CI_Controller
 					$colorclass = "class='info'";
 				}
 
+				$clockinTime  = date("g:i:sa", strtotime($key['clockin']));
+				if($key['clockout'])
+				{
+					$clockoutTime = date("g:i:sa", strtotime($key['clockout']));
+				}
+				else
+				{
+					$clockoutTime = "";
+				}
+				
+
 				echo "<tr ".$colorclass.">
                 <td>".$res1."</td>
 
-                <td>".$key['clockin']."</td>
+                <td>".$clockinTime."</td>
+                <td>".$clockoutTime."</td>
               		</tr>";
 
 			}
@@ -181,7 +194,7 @@ class Admin extends CI_Controller
 
 	public function empFbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "fbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -250,7 +263,7 @@ class Admin extends CI_Controller
 
 	public function empSbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "Sbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -294,7 +307,7 @@ class Admin extends CI_Controller
 	}
 	public function empLbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "lbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -368,7 +381,7 @@ class Admin extends CI_Controller
 
 	public function employeeLate()
 	{	
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$result = $this->AdminModel->employeeLate($data);
 
 		foreach ($result as $key)
@@ -513,9 +526,159 @@ class Admin extends CI_Controller
 	}
 
 	
-public function chkdate()
+public function empClockInDateChk()
 {
-	echo $this->date;
+		$this->empClockIn();
 }
+
+public function empSbreakDateChk()
+{
+	$this->empSbreak();
+}
+
+public function empFbreakDateChk()
+{
+	$this->empFbreak();
+}
+
+public function empLbreakDateChk()
+{
+	$this->empLbreak();
+}
+
+public function employeeLateDateChk()
+{
+	$this->employeeLate();
+}
+
+public function shoEmpFcompleteDateChk()
+{
+	$this->shoEmpFcomplete();
+}
+
+public function shoEmpScompleteDateChk()
+{
+	$this->shoEmpScomplete();
+}
+
+public function shoEmpLcompleteDateChk()
+{
+	$this->shoEmpLcomplete();
+}
+
+public function shoEmpFcomplete()
+{
+	$tbl_name="fbreak";
+
+	$data['date'] = $this->date;
+
+	$result = $this->AdminModel->empFclockin($data);
+
+	foreach ($result as $key)
+	{
+		if($key['endtime'] && $key['endtime']!=1)
+		{
+			//echo $key['endtime'];
+			//echo $key['starttime'];
+
+			$nowtime = new DateTime($key['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($key['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data2['id'] = $key['Eid'];
+
+			$name = $this->AdminModel->showName($data2);
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $name.",".$time.",".$sum."?";
+
+		}
+	}
+}
+
+public function shoEmpScomplete()
+{
+	$tbl_name="sbreak";
+
+	$data['date'] = $this->date;
+
+	$result = $this->AdminModel->empSbreakstart($data);
+
+	foreach ($result as $key)
+	{
+		if($key['endtime'] && $key['endtime']!=1)
+		{
+			//echo $key['endtime'];
+			//echo $key['starttime'];
+
+			$nowtime = new DateTime($key['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($key['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data2['id'] = $key['Eid'];
+
+			$name = $this->AdminModel->showName($data2);
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $name.",".$time.",".$sum."?";
+
+		}
+	}
+}
+
+public function shoEmpLcomplete()
+{
+	$tbl_name="lbreak";
+
+	$data['date'] = $this->date;
+
+	$result = $this->AdminModel->empLbreakstart($data);
+
+	foreach ($result as $key)
+	{
+		if($key['endtime'] && $key['endtime']!=1)
+		{
+			//echo $key['endtime'];
+			//echo $key['starttime'];
+
+			$nowtime = new DateTime($key['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($key['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$data2['id'] = $key['Eid'];
+
+			$name = $this->AdminModel->showName($data2);
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $name.",".$time.",".$sum."?";
+
+		}
+	}
+}
+
+public function deleteEmp()
+{
+	$data['id']=$this->input->post('id');
+	$data1['Eid']=$this->input->post('id');
+	
+	//$data['id'] = $id;
+
+	$result = $this->AdminModel->deleteEmp($data);
+
+	$result1 = $this->AdminModel->deleteEmpFromAllTbl($data1);
+
+
+}
+
+
 
 }
