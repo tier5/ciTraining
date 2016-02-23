@@ -388,27 +388,36 @@
                </div>
             </div>
             <div class="row">
-               <div class="col-sm-9" align="left" >
-               &nbsp;Lunch Items:<span id="totalitem"></span>
+              <div class="col-sm-1"></div>
+               <div class="col-sm-8" align="left" >
+               Lunch Items:<span id="totalitem"></span>
                </div>
     
-               <div class="col-sm-3" >
+               <div class="col-sm-3" align="left" >
                Total Cost:<span id="totalcost">00</span>
                </div>
             </div>
-            </br>
-                <table class="table table-bordered"  >
-                  <thead>
-                    <tr>
-                        <td><strong>Select</strong></td>
-                        <td><strong>Items</strong></td>
-                        <td><strong>Cost</strong></td>
-                        <td><strong>Quantity</strong></td>
-                    </tr>
-                  </thead>
-                  <tbody id="orderbody">        
-                  </tbody>
-                </table>
+          </br>
+             <div class="row">
+               <div class="col-sm-1"></div>
+               <div class="col-sm-10">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                          <td><strong>Select</strong></td>
+                          <td><strong>Items</strong></td>
+                          <td><strong>Cost</strong></td>
+                          <td><strong>Quantity</strong></td>
+                      </tr>
+                    </thead>
+                    <tbody id="orderbody">        
+                    </tbody>
+                  </table>
+               </div>
+               <div class="col-sm-1"></div>
+            </div>
+  
+                
                 </br>
                <div class="row" align="center">
                     <div class="col-sm-4">
