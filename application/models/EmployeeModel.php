@@ -6,28 +6,39 @@ class EmployeeModel extends CI_model
 	public function clockintime($data)
 	{
         $data2['Eid'] = $data['Eid'];
-        $data2['date'] = date("d/m/Y");
+        $data2['date'] = $data['date'];
+        $this->db->trans_start();
         $a = $this->db->get_where('attendance',$data2);
-
+        $this->db->trans_complete();
         //print_r($a->result());
-        
-        if($a->result())
+        if($this->db->trans_status() === FALSE)
         {
-            echo "you have already clocked in today";
-            die;
+            return false;
         }
+        
         else
         {
-            $result=$this->db->insert('attendance',$data);
-            //print_r($result);
-            if($result)
+            if($a->result())
             {
-                return true;
+                echo "you have already clocked in today";
+                die;
             }
             else
             {
-                return false;
+                $this->db->trans_start();
+                $result=$this->db->insert('attendance',$data);
+                $this->db->trans_complete();
+            
+                if($result)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
+            
         }
 		//echo $data['date'].$data['time'];
 		

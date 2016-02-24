@@ -5,7 +5,7 @@ $(document).ready(function(){
    		$('#username').html(data);
 
 	});
-	
+	/*
 	$('#clockbtn').click(function(){
 
 		
@@ -21,7 +21,7 @@ $(document).ready(function(){
 			 $('#clockbtn').text("Clock In");
 		}
 
-	});
+	});*/
 
 //====================================================
 

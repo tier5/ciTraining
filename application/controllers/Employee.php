@@ -69,6 +69,7 @@ class Employee extends CI_Controller
 
 	public function clockin()
 	{
+
 		
 			//echo "hiii";
 			//$day=date('l');
@@ -81,12 +82,14 @@ class Employee extends CI_Controller
 			//echo $data['date'].$data['time'];
 			if ($ctime) 
 			{
-				echo "Attendance marked @"."\n".$data['clockin'];
+				echo "Attendance marked @"."\n".$data['clockin'].",";
+				$this->clockinLateChk();
+				$this->clockinLatePoints();
+				
+
+
 			}
-			else
-			{
-				echo "error";
-			}
+			
 		
 	}
 	public function clockout()
@@ -341,7 +344,11 @@ class Employee extends CI_Controller
 
     		$result = $this->EmployeeModel->storeInLateTable($data);
 
-    		print_r("You Are Late");
+    		print_r("You Are Late,");
+    	}
+    	else
+    	{
+    		echo "Attendance marked @"."\n".$date('H:i:s').",";
     	}
     	
     }
@@ -396,7 +403,7 @@ class Employee extends CI_Controller
 
 			if($res)
 			{
-				echo "Your ".$pointdeduct." points are deducted for late  Clock In";
+				echo "Your ".$pointdeduct." points are deducted for late  Clock In,";
 			}
 
     	}

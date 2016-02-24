@@ -20,18 +20,38 @@
 
             var btn=$('#clockbtn').text();
             //alert(btn);
-            if (btn === 'Clock Out') 
+            if (btn === 'Clock In') 
             {
                 $('#breakmsg').html('');
                 $.post('Employee/clockin', function(data){
 
-                    $('#clockintime').html(data);
-                    $('#clockintime1').html('');
+                    /*$('#clockintime').html(data);
+                    $('#clockintime1').html('');*/
+                    if($.trim(data))
+                    {
+
+                        data = data.split(',');
+
+                        $('#clockintime').html(data[0]);
+                        $('#clockintime1').html('');
+                        $('#clockintime').html(data[1]);
+
+                        if(data[2])
+                        {
+                            
+                            $("#latePoint").modal("show");
+                            $("#pointMsg").html(data[2]);
+                            showPointsOnLoad();
+                        }
+
+                        
+                    }
+                    
 
 
                 });
 
-                $.post('Employee/clockinLateChk', function(data){
+               /* $.post('Employee/clockinLateChk', function(data){
 
                         //alert(data);
                         if($.trim(data))
@@ -56,7 +76,8 @@
 
                         }
 
-                });
+                });*/
+                $('#clockbtn').text("Clock Out");
                 calenderclockin();
 
             }
@@ -69,6 +90,7 @@
 
                     $('#clockintime').html(data);
                     $('#clockintime1').html('see you tommorow');
+                    $('#clockbtn').text("Clock In");
 
 
                 });
