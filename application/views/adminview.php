@@ -22,6 +22,11 @@
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Home</a>
             </div>
+            <form action="Admin/logout" method="post">
+                
+                            <input type="submit" value="logout" class="btn btn-default pull-right">
+                        
+                        </form>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -43,16 +48,16 @@
                     <li>
                         <a  href="Admin/showAllLateview">Employee All Late Information</a>
                     </li>
+
+                    <li>
+                        <a  href="Admin/lunchorderview">Lunch Order</a>
+                    </li>
                    
                 </ul>
 
                 
                      
-                        <form action="Admin/logout" method="post">
-                
-                            <input type="submit" value="logout" class="btn btn-default pull-right">
                         
-                        </form>
                    
                 
             </div>

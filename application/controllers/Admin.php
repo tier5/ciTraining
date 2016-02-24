@@ -503,6 +503,11 @@ class Admin extends CI_Controller
 	{
 		$this->load->view('employeelateview');
 	}
+
+	public function lunchorderview()
+	{
+		$this->load->view('lunchorderview');
+	}
 	public function allLateRecord()
 	{
 		$res = $this->AdminModel->allLateRecord();
