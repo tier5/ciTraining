@@ -57,6 +57,7 @@ window.deleteLateRow = function(id)
 	$.post('Admin/deleteEmpLate', {tbl_id: emp_id}, function(data){
 
 		//alert(data);
+		
 		employeeLate();
 
 	});

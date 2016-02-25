@@ -595,6 +595,7 @@ class Employee extends CI_Controller
 	public function pointalt()
 	{
 	  $data['Eid']=$this->session->userdata('empid');
+	  $data['status']=0;
 	  $result = $this->EmployeeModel->pointalt($data);
 	  if ($result)
 	  {
@@ -609,6 +610,24 @@ class Employee extends CI_Controller
 	  }
 	  //print_r($result);
 
+	}
+
+	public function pointaltdeleted()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		  $data['status']=1;
+		  $result = $this->EmployeeModel->pointalt($data);
+		  if ($result)
+		  {
+			  foreach($result as $row)
+			  {
+			  	echo $row['date'].",".$row['late_time'].",".$row['late_in']."?";
+			  }
+		  }
+		  else
+		  {
+		  	return false;
+		  }
 	}
 
 	public function earlyClockOut()

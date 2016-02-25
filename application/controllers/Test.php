@@ -20,6 +20,6 @@ class Test extends CI_Controller
 
 	public function index()
 	{
-		echo $this->date;
+		$this->load->view('employeeview2');
 	}
 }

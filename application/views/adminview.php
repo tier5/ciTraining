@@ -37,7 +37,7 @@
                     </li>
                     
                     <li>
-                        <a class="page-scroll" href="#contact">Employee Late</a>
+                        <a class="page-scroll" href="#contact">Employee's Late</a>
                     </li>
                     
                     <li>
@@ -46,7 +46,7 @@
 
                     
                     <li>
-                        <a  href="Admin/showAllLateview">Employee All Late Information</a>
+                        <a  href="Admin/showAllLateview">Employee's All Late Information</a>
                     </li>
 
                     <li>
@@ -74,7 +74,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Employee On Break</h1>
+                    <h1>Employee's On Break</h1>
                     
                     
                          <div class="row">
@@ -105,7 +105,7 @@
               <div class="container-fluid">
                 <div class="col-sm-3">
 
-                    <strong>Employee Clocked In</strong>
+                    <strong>Employee's Clocked In</strong>
                     
                     <div class="col-sm-12 table-responsive">
                         <table class="table table-bordered" >
@@ -230,7 +230,7 @@
     <section id="contact" class="services-section">
           <div class="container">
             <div class="row">
-                <h1>Employee Late</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                <h1>Employee's Late</h1>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                 <div class="col-lg-12">
                    
                    <div class="row">

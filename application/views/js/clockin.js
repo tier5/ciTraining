@@ -18,97 +18,126 @@
 
         $("#clockbtn").click(function(){
 
+            //$('#spinner').append("<i align='center' class='fa fa-spinner fa-pulse fa-5x'></i>");
+            $(this).prop('disabled', true);
+
             var btn=$('#clockbtn').text();
-            //alert(btn);
-            if (btn === 'Clock In') 
-            {
-                $('#breakmsg').html('');
-                $.post('Employee/clockin', function(data){
+            
+                console.log('button disabled');
+                if (btn === 'Clock In') 
+                {
+                    $('#breakmsg').html('');
+                    $.post('Employee/clockin', function(data){
 
-                    /*$('#clockintime').html(data);
-                    $('#clockintime1').html('');*/
-                    if($.trim(data))
-                    {
-
-                        data = data.split(',');
-
-                        $('#clockintime').html(data[0]);
-                        $('#clockintime1').html('');
-                        $('#clockintime').html(data[1]);
-
-                        if(data[2])
+                        /*$('#clockintime').html(data);
+                        $('#clockintime1').html('');*/
+                        if($.trim(data))
                         {
+
+                            data = data.split(',');
+
+                            $('#clockintime').html(data[0]);
+                            $('#clockintime1').html('');
+                            $('#clockintime').html(data[1]);
+
+                            if(data[2])
+                            {
+                                
+                                $("#latePoint").modal("show");
+                                $("#pointMsg").html(data[2]);
+                                showPointsOnLoad();
+                            }
+
                             
-                            $("#latePoint").modal("show");
-                            $("#pointMsg").html(data[2]);
-                            showPointsOnLoad();
                         }
-
                         
-                    }
+
+
+                    });
+
+                   /* $.post('Employee/clockinLateChk', function(data){
+
+                            //alert(data);
+                            if($.trim(data))
+                            {
+                                 //$('body').html(data);
+                                 $('#clockintime').html(data);
+
+                            }
+                           
+                    });
+
+                    $.post('Employee/clockinLatePoints', function(data){
+
+
+                            if($.trim(data))
+                            {
+                                 //$('body').html(data);
+                                 //alert(data);
+                                 $("#latePoint").modal("show");
+                                $("#pointMsg").html(data);
+                                showPointsOnLoad();
+
+                            }
+
+                    });*/
+                    $('#clockbtn').text("Clock Out");
+                    calenderclockin();
                     
+                    /*$('#spinner').remove();
+                    console.log('spinner removed');*/
+                    $('#clockbtn').prop('disabled', false);
+                    console.log('button enabled');
 
-
-                });
-
-               /* $.post('Employee/clockinLateChk', function(data){
-
-                        //alert(data);
-                        if($.trim(data))
-                        {
-                             //$('body').html(data);
-                             $('#clockintime').html(data);
-
-                        }
-                       
-                });
-
-                $.post('Employee/clockinLatePoints', function(data){
-
-
-                        if($.trim(data))
-                        {
-                             //$('body').html(data);
-                             //alert(data);
-                             $("#latePoint").modal("show");
-                            $("#pointMsg").html(data);
-                            showPointsOnLoad();
-
-                        }
-
-                });*/
-                $('#clockbtn').text("Clock Out");
-                calenderclockin();
-
-            }
+                }
             
             else
             {
-                $('#clockintime1').html('Hope! You have enjoyed your office');
+                $('#clockoutModal').modal('show');
 
-                $.post('Employee/clockout', function(data){
+                $('#clockoutYes').click(function(){
 
-                    $('#clockintime').html(data);
-                    $('#clockintime1').html('see you tommorow');
-                    $('#clockbtn').text("Clock In");
+                    $('#clockintime1').html('Hope! You have enjoyed your office');
 
+                    $.post('Employee/clockout', function(data){
+
+                        $('#clockintime').html(data);
+                        $('#clockintime1').html('see you tommorow');
+                        $('#clockbtn').text("Clock In");
+
+
+                    });
+
+                    $.post('Employee/earlyClockOut',function(data){
+
+                    if($.trim(data))
+                    {
+                         $('#earlyclockoutMsg').html(data);
+                        $("#earlyclockoutModal").modal("show");
+                        showPointsOnLoad();
+                    }
+                       
+
+                    });
+
+                    calenderclockout();
+                     /*$('#spinner').remove();*/
+                     //console.log('spinner removed');
+                     $('#clockbtn').prop('disabled', false);
+                     console.log('button enabled');
 
                 });
 
-                $.post('Employee/earlyClockOut',function(data){
+                $('#clockoutNo').click(function(){
 
-                if($.trim(data))
-                {
-                     $('#earlyclockoutMsg').html(data);
-                    $("#earlyclockoutModal").modal("show");
-                    showPointsOnLoad();
-                }
-                   
+                    $('#clockbtn').prop('disabled', false);
 
                 });
-
-                calenderclockout();
-            }    
+                
+            }
+            
+            //alert(btn);
+                
     
         });
 

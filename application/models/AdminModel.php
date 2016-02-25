@@ -129,9 +129,15 @@
 
       }
 
-      public function deleteEmpLate($data)
+      public function deleteEmpLate($data,$update)
       {
-          $result = $this->db->delete('tbl_late_emp',$data);
+          //$result = $this->db->delete('tbl_late_emp',$data);
+        $this->db->where($data);
+        if($this->db->update('tbl_late_emp',$update))
+        {
+          return true;
+        }
+        
 
 
 
@@ -171,9 +177,10 @@
         }
       }
       
-      public function allLateRecord()
+      public function allLateRecord($data)
       {
-          $result = $this->db->get('tbl_late_emp');
+
+          $result = $this->db->get_where('tbl_late_emp',$data);
 
           return $result->result_array();
 

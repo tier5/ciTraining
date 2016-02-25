@@ -382,6 +382,7 @@ class Admin extends CI_Controller
 	public function employeeLate()
 	{	
 		$data['date'] = $this->date;
+		$data['status'] = 0;
 		$result = $this->AdminModel->employeeLate($data);
 
 		foreach ($result as $key)
@@ -402,7 +403,9 @@ class Admin extends CI_Controller
 
 		$data['tbl_id'] = $tbl_id;
 
-		$result = $this->AdminModel->deleteEmpLate($data);
+		$update['status'] = 1;
+
+		$result = $this->AdminModel->deleteEmpLate($data,$update);
 
 		print_r($result);
 
@@ -510,7 +513,8 @@ class Admin extends CI_Controller
 	}
 	public function allLateRecord()
 	{
-		$res = $this->AdminModel->allLateRecord();
+		$data['status']=0;
+		$res = $this->AdminModel->allLateRecord($data);
 		//print_r($result);
 		//$result['result'] = $res;
 

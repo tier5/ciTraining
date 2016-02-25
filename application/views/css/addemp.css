@@ -8,6 +8,29 @@
 {
     color: #666;
 }
+.fa-spinner
+{
+
+	color:white;
+
+
+}
+#spinner
+{
+	/*vertical-align: center;
+	margin: 0px auto;*/
+	 width: 100px;
+    height: 100px;
+    
+    opacity: 1;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+}
 #totalcost
 {
 	font-size: 20px;

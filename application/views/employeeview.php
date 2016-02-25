@@ -7,9 +7,14 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
+  <div id='spinner'>
+
+  </div>
+
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -47,7 +52,9 @@
     </nav>
 
 <div class="intro-header">
+
         <div class="container">
+
 
             <div class="row">
                 <div class="col-lg-12">
@@ -119,7 +126,10 @@
 
                             <div class="col-sm-3"></div>
 
-                            <div class="col-sm-3"></div>
+                            <div class="col-sm-3">
+
+
+                            </div>
 
                             <div class="col-sm-3"></div>
 
@@ -273,6 +283,34 @@
                           </table>
             </div>
             <div id="nolaterecords"></div>
+            
+
+            
+            <div id="emplatetbldeleted">
+              <h4 align="center">Point Adjusted By The Admin</h4>
+          <table class="table table-bordered" >
+
+                            <thead>
+                              <tr>
+                    
+                                <td><strong>Date</strong></td>
+                                <td><strong>Duration</strong></td>
+                                <td><strong>Late On</strong></td>
+                                <td><strong>Adjusted Points</strong></td>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                    
+                             </tr>
+                            </thead>
+                            <tbody id="pointtblMsgdeleted">
+                           
+                              
+
+                          
+                            </tbody>
+                          </table>
+            </div>
+            <div id="nolaterecordsdeleted"></div>
+
 
          
           
@@ -521,6 +559,48 @@
               <div class="col-sm-4">
 
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+              </div>
+
+            <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="clockoutModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Are You Sure You Want To Clock Out</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div class="col-sm-4">
+                
+                <button id="clockoutYes" class="btn btn-warning" data-dismiss="modal">Yes</button>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+
+              </div>
+              <div class="col-sm-4"></div>
+              
+
+              <div class="col-sm-4">
+
+                <button type="button" id="clockoutNo" class="btn btn-default" data-dismiss="modal">Close</button>
 
               </div>
 
