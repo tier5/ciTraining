@@ -20,7 +20,7 @@
 
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/i18n/jquery-ui-i18n.min.js"></script>
     <!-- Custom CSS -->
     
 
@@ -32,7 +32,6 @@
     <![endif]-->
 
     <!-- jQuery -->
-
     <script src="<?php echo base_url().'application/views/js/jquery.js'?>"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -41,19 +40,9 @@
     <!-- Scrolling Nav JavaScript -->
     <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
-    <script src="<?php echo base_url().'application/views/js/showallemployee.js'?>"></script>
 
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/addemp.js';?>"></script>
-
-
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/time.js';?>"></script>
-
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin.js';?>"></script>
-
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
-     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="<?php echo base_url().'application/views/js/lateview.js'?>"></script>
+    <script src="<?php echo base_url().'application/views/js/lunchorderadmin.js'?>"></script>
+  
+    
 </head>

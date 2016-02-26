@@ -21,7 +21,15 @@ class Employee extends CI_Controller
 			exit(0);
 		}
 
-		
+		if($this->input->post('optdate'))
+		{
+			$this->todaydate=$this->input->post('optdate');
+			/*$this->empClockIn();*/
+		}
+		else
+		{
+			$this->todaydate = $this->date = date("d/m/Y");
+		}
 
 	
 
@@ -50,6 +58,13 @@ class Employee extends CI_Controller
 		$this->session->unset_userdata('empid');
 		redirect('Dashboard');
 		//$this->session->sess_destroy();
+	}
+
+	public function idleDestroySession()
+	{
+		$this->session->unset_userdata('empid');
+		redirect('Dashboard');
+		
 	}
 
 	public function clockin()
@@ -477,4 +492,430 @@ class Employee extends CI_Controller
 		}
 	}
 
+	public function selectBreakname()
+	{
+		$data['Eid']= $this->session->userdata('empid');
+		$data['date']= date("d/m/Y");
+
+		$result = $this->EmployeeModel->returnBreakName($data);
+
+		if(($result['breakname']))
+		{
+			echo $result['breakname'];
+		}
+	}
+
+	public function showPointsOnLoad()
+	{
+		$data['id']=$this->session->userdata('empid');
+
+		$result = $this->EmployeeModel->ShowEmpCurrentPoint($data);
+
+		echo $result;
+	}
+
+	public function markPreviousBreak()
+	{
+		extract($_POST);
+
+		if($opt=="sbreak")
+		{
+			$data['Eid']= $this->session->userdata('empid');
+			$data['date']= date("d/m/Y");
+			//$updatedata['endtime'] = 1;
+			$tblname="fbreak";
+
+			$result = $this->EmployeeModel->fetchBreaktbl($data,$tblname);
+
+			if(!$result)
+			{
+				$tblname="fbreak";
+				$data['Eid']= $this->session->userdata('empid');
+				$data['date']= date("d/m/Y");
+				$data['starttime'] = 1;
+				$data['endtime'] = 1;
+
+				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//print_r($result);
+
+
+			}
+
+		}
+
+		if($opt=="lbreak")
+		{
+			$data['Eid']= $this->session->userdata('empid');
+			$data['date']= date("d/m/Y");
+			//$updatedata['endtime'] = 1;
+			$tblname="fbreak";
+
+			$result = $this->EmployeeModel->fetchBreaktbl($data,$tblname);
+
+			if(!$result)
+			{
+				$tblname="fbreak";
+				$data['Eid']= $this->session->userdata('empid');
+				$data['date']= date("d/m/Y");
+				$data['starttime'] = 1;
+				$data['endtime'] = 1;
+
+				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//print_r($result);
+
+
+			}
+
+			$tblname="sbreak";
+
+			$result = $this->EmployeeModel->fetchBreaktbl($data,$tblname);
+
+			if(!$result)
+			{
+				$tblname="sbreak";
+				$data['Eid']= $this->session->userdata('empid');
+				$data['date']= date("d/m/Y");
+				$data['starttime'] = 1;
+				$data['endtime'] = 1;
+
+				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//print_r($result);
+
+
+			}
+		}
+	}
+	public function pointalt()
+	{
+	  $data['Eid']=$this->session->userdata('empid');
+	  $result = $this->EmployeeModel->pointalt($data);
+	  if ($result)
+	  {
+		  foreach($result as $row)
+		  {
+		  	echo $row['date'].",".$row['late_time'].",".$row['late_in']."?";
+		  }
+	  }
+	  else
+	  {
+	  	return false;
+	  }
+	  //print_r($result);
+
+	}
+
+	public function earlyClockOut()
+	{	
+		
+
+		$nowtimestr = strtotime(date('H:i:s'));
+
+		$clockoutstr = strtotime(CLOCK_OUT_TIME);
+
+		$timediffstr =$nowtimestr - $clockoutstr;
+
+		if($timediffstr<0)
+		{
+			$nowtime = new DateTime('now');
+
+			$diff = $nowtime->diff(new DateTime(CLOCK_OUT_TIME));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			$pointdeduct = $this->EarlyColockoutPointDeduct($sum);
+
+			$empid['id'] = $this->session->userdata('empid');
+
+			$currpoint = $this->EmployeeModel->ShowEmpCurrentPoint($empid);
+
+					//print_r($result);
+
+			$newpoint['points'] = $currpoint - $pointdeduct;
+
+			$res = $this->EmployeeModel->updateEmployeePoints($empid, $newpoint);
+
+			$latetbldata['Eid'] = $this->session->userdata('empid');
+
+			$latetbldata['date'] = date("d/m/Y");
+
+			$latetbldata['late_time'] = $sum;
+
+			$latetbldata['late_in'] = "Early Clock Out";
+
+			$storeInLateTable=$this->EmployeeModel->storeInLateTable($latetbldata);
+
+			if($res)
+			{
+				echo "Your ".$pointdeduct." points are deducted for early Clock Out";
+			}
+		}
+
+		/*$nowtime = new DateTime('now');
+
+		$diff = $nowtime->diff(new DateTime('20:00:00'));
+				
+		$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+		echo $sum;*/
+	}
+
+
+	 public function EarlyColockoutPointDeduct($time)
+	{
+		if($time<=7200)
+		{
+			return 250;
+		}
+
+		else if($time>=7201 && $time<=14400)
+		{
+			return 500;
+		}
+
+		else
+		{
+			return 750;
+		}
+	}
+
+	public function calenderclockin()
+	{	
+		$clock = $this->input->post('clock');
+
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+
+		$result = $this->EmployeeModel->autoChangeButton($data);
+
+		$clockintime = strtotime($result[$clock]);
+
+		$properclockintime = strtotime(CLOCK_IN_TIME);
+
+		if($result[$clock])
+		{
+			if($clockintime>$properclockintime)
+			{
+				$colorclass = "error";
+			}
+
+			else
+			{
+				$colorclass = "";
+			}
+
+			echo $result[$clock].",".$colorclass;
+		}
+
+		
+
+		
+
+	}
+
+	public function calenderclockout()
+	{
+		$clock = $this->input->post('clock');
+
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+
+		$result = $this->EmployeeModel->autoChangeButton($data);
+
+		$clockouttime = strtotime($result[$clock]);
+
+		$properclockintime = strtotime(CLOCK_OUT_TIME);
+
+		if($result[$clock])
+		{
+			if($clockouttime<$properclockintime)
+			{
+				$colorclass = "error";
+			}
+
+			else
+			{
+				$colorclass = "";
+			}
+
+			echo $result[$clock].",".$colorclass;
+		}
+	}
+
+	public function calenderFbreak()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+		$tblname = 'fbreak';
+		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
+
+		if($result['endtime'] && $result['endtime']!=1)
+		{
+			$nowtime = new DateTime($result['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($result['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			if($sum>1200)
+			{
+				$class = "error";
+			}
+			else
+			{
+				$class = "";
+			}
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $time.",".$class;
+		}
+	}
+
+	public function calenderSbreak()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+		$tblname = 'sbreak';
+		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
+
+		if($result['endtime'] && $result['endtime']!=1)
+		{
+			$nowtime = new DateTime($result['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($result['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			if($sum>3600)
+			{
+				$class = "error";
+			}
+			else
+			{
+				$class = "";
+			}
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $time.",".$class;
+		}
+	}
+
+	public function calenderLbreak()
+	{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = $this->todaydate;
+		$tblname = 'lbreak';
+		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
+
+		if($result['endtime'] && $result['endtime']!=1)
+		{
+			$nowtime = new DateTime($result['starttime']);
+
+			$diff = $nowtime->diff(new DateTime($result['endtime']));
+					
+			$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+			if($sum>1200)
+			{
+				$class = "error";
+			}
+			else
+			{
+				$class = "";
+			}
+
+			$time = gmdate("H:i:s", $sum);
+
+			echo $time.",".$class;
+		}
+	}
+
+	public function calenderclockinDateChk()
+	{
+
+		$this->calenderclockin();
+	}
+
+	public function calenderclockoutDateChk()
+	{
+		$this->calenderclockout();
+	}
+
+	public function calenderFbreakDateChk()
+	{
+		$this->calenderFbreak();
+	}
+
+	public function calenderSbreakDateChk()
+	{
+		$this->calenderSbreak();
+	}
+
+	public function calenderLbreakDateChk()
+	{
+		$this->calenderLbreak();
+	}
+	public function shopoption()
+	{ 
+	  $data['parent_id']="0";
+	  $result=$this->EmployeeModel->shopoption($data);
+		  
+      foreach ($result as $key)
+      {
+      	echo $key['Lnid'].",".$key['item']."/";
+      }
+	}
+	public function itemoption()
+	{
+		extract($_POST);
+		$data['parent_id']=$shopopt;
+		$result=$this->EmployeeModel->itemoption($data);
+		//print_r($result);
+		foreach($result as $row)
+        {
+         echo $row['Lnid'].",".$row['item'].",".$row['cost'].",".$row['limit']."/";
+        }
+		//echo "Hello";
+
+	}
+	public function shopname()
+	{
+		extract($_POST);
+		$data['Lnid']=$shopopt;
+		$result=$this->EmployeeModel->shopname($data);
+		print_r($result);
+	}
+
+	public function submitorder()
+	{
+		extract($_POST);
+		$data1['Eid']=$this->session->userdata('empid');
+		$data1['date']=$this->date;
+        
+        $chkclkin=$this->EmployeeModel->chkclkin($data1);
+		if($chkclkin)
+		{
+			$data['Eid']=$this->session->userdata('empid');
+			$data['date']=$this->date;
+			$data['shopname']=$shopname;
+			$data['items']=$lunchitm;
+			$data['cost']=$finalcost;
+			$data['status']=0;
+			$result=$this->EmployeeModel->submitorder($data);
+	        if ($result)
+	        {
+	        	print_r("Lunch Order Placed Successfully!!!!!");	
+	        }
+	        else
+	        {
+	        	print_r("You Have Already Placed Your Lunch Order!!!! ");	
+	        }
+        }
+        else
+        {
+           print_r("Clock In First!!!!!");	
+        }
+	}
 }
+?>

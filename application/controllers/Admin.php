@@ -11,19 +11,39 @@ class Admin extends CI_Controller
 		$this->load->database();
 		$this->load->model('AdminModel');
 		$this->load->library('session');
+		extract($_POST);
+		$q=$this->input->post('datepicker');
+		//print_r($q);
+		//$this->date= "12/02/2016";
+
+		
 
 		if (!$this->session->userdata('adminid'))
 		{
 			redirect("Dashboard");
 		}
 
+
+		if($this->input->post('optdate'))
+		{
+			$this->date=$this->input->post('optdate');
+			/*$this->empClockIn();*/
+		}
+		else
+		{
+			$this->date = $this->date = date("d/m/Y");
+		}
+
 	}
+
+	
 	
 	public function index()
 	{
 
 		if ($this->session->userdata('adminid'))
 		{
+
 			$this->load->view('adminview');
 		}
 		
@@ -117,7 +137,11 @@ class Admin extends CI_Controller
 
 	public function empClockIn()
 	{
-		$data['date'] = date("d/m/Y");
+
+		$data['date'] =$this->date; //date("d/m/Y");
+
+		$data['date'] = $this->date;
+
 
 		$res = $this->AdminModel->empClockIn($data);
 
@@ -144,10 +168,22 @@ class Admin extends CI_Controller
 					$colorclass = "class='info'";
 				}
 
+				$clockinTime  = date("g:i:sa", strtotime($key['clockin']));
+				if($key['clockout'])
+				{
+					$clockoutTime = date("g:i:sa", strtotime($key['clockout']));
+				}
+				else
+				{
+					$clockoutTime = "";
+				}
+				
+
 				echo "<tr ".$colorclass.">
                 <td>".$res1."</td>
 
-                <td>".$key['clockin']."</td>
+                <td>".$clockinTime."</td>
+                <td>".$clockoutTime."</td>
               		</tr>";
 
 			}
@@ -158,7 +194,7 @@ class Admin extends CI_Controller
 
 	public function empFbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "fbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -227,7 +263,7 @@ class Admin extends CI_Controller
 
 	public function empSbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "Sbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -271,7 +307,7 @@ class Admin extends CI_Controller
 	}
 	public function empLbreak()
 	{
-		$data['date'] = date("d/m/Y");
+		$data['date'] = $this->date;
 		$data['breakname'] = "lbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -344,8 +380,9 @@ class Admin extends CI_Controller
 	}
 
 	public function employeeLate()
-	{
-		$result = $this->AdminModel->employeeLate();
+	{	
+		$data['date'] = $this->date;
+		$result = $this->AdminModel->employeeLate($data);
 
 		foreach ($result as $key)
 		{
@@ -367,6 +404,8 @@ class Admin extends CI_Controller
 
 		$result = $this->AdminModel->deleteEmpLate($data);
 
+		print_r($result);
+
 
 
 	}
@@ -383,6 +422,39 @@ class Admin extends CI_Controller
 		$data['points'] = 3000;
 		$result = $this->AdminModel->resetPoints($data);
 		print_r($result);
+	}
+
+	public function markAbsent()
+	{
+		extract($_POST);
+
+		$data['Eid'] = $Eid;
+		$data['date']= date("d/m/Y");
+		
+		$data['late_time'] = 28800;
+		$data['late_in'] = "Absent";
+
+		$result = $this->AdminModel->markAbsent($data);
+
+		if($result)
+		{
+			$id['id'] = $Eid;
+			$currpoint=$this->AdminModel->ShowEmpCurrentPoint($id);
+			
+
+			$data1['points']= $currpoint - 1000;
+			
+			$result2 = $this->AdminModel->updateEmployeeTbl($id, $data1);
+
+			print_r($result2);
+
+
+
+
+			//$result1 = $this->AdminModel->deductPoint();
+		}
+
+		//print_r($result);
 	}
 
 	/*public function calculatePoint()
@@ -426,4 +498,242 @@ class Admin extends CI_Controller
 			return 1000;
 		}
 	}
+
+	public function showAllLateview()
+	{
+		$this->load->view('employeelateview');
+	}
+
+	public function lunchorderview()
+	{
+		$this->load->view('lunchorderview');
+	}
+	public function allLateRecord()
+	{
+		$res = $this->AdminModel->allLateRecord();
+		//print_r($result);
+		//$result['result'] = $res;
+
+		
+
+		foreach ($res as $key)
+		{
+			
+			$data2['id'] = $key['Eid'];
+			$resname = $this->AdminModel->showName($data2);
+
+			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id']."?";
+
+
+		}
+
+		//$this->load->view('employeelateview',$result);
+	}
+
+	
+	public function empClockInDateChk()
+	{
+			$this->empClockIn();
+	}
+
+	public function empSbreakDateChk()
+	{
+		$this->empSbreak();
+	}
+
+	public function empFbreakDateChk()
+	{
+		$this->empFbreak();
+	}
+
+	public function empLbreakDateChk()
+	{
+		$this->empLbreak();
+	}
+
+	public function employeeLateDateChk()
+	{
+		$this->employeeLate();
+	}
+
+	public function shoEmpFcompleteDateChk()
+	{
+		$this->shoEmpFcomplete();
+	}
+
+	public function shoEmpScompleteDateChk()
+	{
+		$this->shoEmpScomplete();
+	}
+
+	public function shoEmpLcompleteDateChk()
+	{
+		$this->shoEmpLcomplete();
+	}
+
+	public function shoEmpFcomplete()
+	{
+		$tbl_name="fbreak";
+
+		$data['date'] = $this->date;
+
+		$result = $this->AdminModel->empFclockin($data);
+
+		foreach ($result as $key)
+		{
+			if($key['endtime'] && $key['endtime']!=1)
+			{
+				//echo $key['endtime'];
+				//echo $key['starttime'];
+
+				$nowtime = new DateTime($key['starttime']);
+
+				$diff = $nowtime->diff(new DateTime($key['endtime']));
+						
+				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+				$data2['id'] = $key['Eid'];
+
+				$name = $this->AdminModel->showName($data2);
+
+				$time = gmdate("H:i:s", $sum);
+
+				echo $name.",".$time.",".$sum."?";
+
+			}
+		}
+	}
+
+	public function shoEmpScomplete()
+	{
+		$tbl_name="sbreak";
+
+		$data['date'] = $this->date;
+
+		$result = $this->AdminModel->empSbreakstart($data);
+
+		foreach ($result as $key)
+		{
+			if($key['endtime'] && $key['endtime']!=1)
+			{
+				//echo $key['endtime'];
+				//echo $key['starttime'];
+
+				$nowtime = new DateTime($key['starttime']);
+
+				$diff = $nowtime->diff(new DateTime($key['endtime']));
+						
+				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+				$data2['id'] = $key['Eid'];
+
+				$name = $this->AdminModel->showName($data2);
+
+				$time = gmdate("H:i:s", $sum);
+
+				echo $name.",".$time.",".$sum."?";
+
+			}
+		}
+	}
+
+	public function shoEmpLcomplete()
+	{
+		$tbl_name="lbreak";
+
+		$data['date'] = $this->date;
+
+		$result = $this->AdminModel->empLbreakstart($data);
+
+		foreach ($result as $key)
+		{
+			if($key['endtime'] && $key['endtime']!=1)
+			{
+				//echo $key['endtime'];
+				//echo $key['starttime'];
+
+				$nowtime = new DateTime($key['starttime']);
+
+				$diff = $nowtime->diff(new DateTime($key['endtime']));
+						
+				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+
+				$data2['id'] = $key['Eid'];
+
+				$name = $this->AdminModel->showName($data2);
+
+				$time = gmdate("H:i:s", $sum);
+
+				echo $name.",".$time.",".$sum."?";
+
+			}
+		}
+	}
+
+	public function deleteEmp()
+	{
+		$data['id']=$this->input->post('id');
+		$data1['Eid']=$this->input->post('id');
+		
+		//$data['id'] = $id;
+
+		$result = $this->AdminModel->deleteEmp($data);
+
+		$result1 = $this->AdminModel->deleteEmpFromAllTbl($data1);
+
+
+	}
+
+    public function showorder()
+    {
+       $data['date']=$this->date;
+       $data['status']=0;
+       $result = $this->AdminModel->showorder($data);
+       foreach ($result as $row) 
+       {
+       	$data1['id']=$row->Eid;
+       	$name = $this->AdminModel->showName($data1);
+       	//print_r($name);
+       	echo $row->Liid.",".$row->Eid.",".$name.",".$row->date.",".$row->shopname.",".$row->items.",".$row->cost."?";
+       }
+    }
+
+    public function dltordr()
+    {
+        extract($_POST);
+    	$data['Liid']=$orderid1;
+    	$data['status']=0;
+    	$data1['status']=1;
+    	$result=$this->AdminModel->dltordr($data,$data1);
+    	if($result)
+    	{
+           print_r("Lunch Order Deleted Sucessfully");
+    	}
+    	else
+    	{
+          print_r("Something Wrong!!!!");
+    	}
+    }
+
+    public function dltallordr()
+    {
+    	extract($_POST);
+    	$data['date']=$this->date;
+    	$result=$this->AdminModel->dltallordr($data);
+    	return $result;
+    }
+    
+    public function emplunchorder()
+	{
+
+		$this->load->view('emplunchorder');
+	}
+
+	public function hi()
+    {
+    	$data= date("m-y");
+		print_r($data);
+	}
+
+
 }

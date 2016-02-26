@@ -69,7 +69,7 @@
         //return $data;
         $result = $this->db->get_where('employee',$data);
 
-        $res = $result->row_array()['name'];
+        $res = $result->row_array()['propname'];
 
         return $res;
       }
@@ -121,9 +121,9 @@
 
       }
 
-      public function employeeLate()
+      public function employeeLate($data)
       {
-          $result = $this->db->get('tbl_late_emp');
+          $result = $this->db->get_where('tbl_late_emp',$data);
 
           return $result->result_array();
 
@@ -162,7 +162,66 @@
         $result = $this->db->get_where('employee',$data);
         return $result->row_array()['points'];
       }
+
+      public function markAbsent($data)
+      {
+        if($this->db->insert('tbl_late_emp',$data))
+        {
+          return true;
+        }
+      }
       
+      public function allLateRecord()
+      {
+          $result = $this->db->get('tbl_late_emp');
+
+          return $result->result_array();
+
+      }
+
+      public function deleteEmp($data)
+      {
+          $this->db->where($data);
+          $this->db->delete('employee');
+      }
+
+      public function deleteEmpFromAllTbl($data)
+      {
+        $table = array('fbreak','sbreak','attendance', 'lbreak', 'tbl_late_emp');
+          $this->db->where($data);
+          $this->db->delete($table);
+      }
+
+      public function showorder($data)
+      {
+          $result = $this->db->get_where('lunchorder',$data);
+          return $result->result();
+      }
+
+      public function dltordr($data, $data1)
+      {
+        $d=$this->db->where($data);
+          $res=$this->db->update('lunchorder',$data1);
+          if($res)
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          } 
+      }
+
+      public function dltallordr($data)
+      {
+         $this->db->where($data);
+         
+         if($this->db->delete('lunchorder'))
+          {
+            return true;
+          }
+
+      }
       
    } 
 ?> 
