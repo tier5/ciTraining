@@ -268,7 +268,7 @@
                     
                                 <td><strong>Date</strong></td>
                                 <td><strong>Duration</strong></td>
-                                <td><strong>Late On</strong></td>
+                                <td><strong>Late On/Reason</strong></td>
                                 <td><strong>Deducted Points</strong></td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     
@@ -295,7 +295,7 @@
                     
                                 <td><strong>Date</strong></td>
                                 <td><strong>Duration</strong></td>
-                                <td><strong>Late On</strong></td>
+                                <td><strong>Late On/Reason</strong></td>
                                 <td><strong>Adjusted Points</strong></td>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     

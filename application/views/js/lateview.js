@@ -42,7 +42,7 @@ function allLateRecords()
 						break;
 
 					default:
-						breakname = "Default";
+						breakname = value[3];
 				}
 
 				sec = value[4];

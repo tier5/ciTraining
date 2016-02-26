@@ -726,7 +726,7 @@ function employeeLate()
 						break;
 
 					default:
-						breakname = "Default";
+						breakname = value[3];
 				}
 				//alert(value[4]);
 
@@ -1183,7 +1183,7 @@ function properMin(val)
 
 			
 
-			totaldiv += "<tr><td id='id_"+$.trim(value[0])+"'>"+value[0]+"</td><td contenteditable='true' id='name_"+$.trim(value[0])+"'>"+value[1]+"</td><td id='email_"+$.trim(value[0])+"' contenteditable='true'>"+value[2]+"</td><td contenteditable='true' id='password_"+$.trim(value[0])+"'>"+value[3]+"</td><td contenteditable='true' id='points_"+$.trim(value[0])+"'>"+value[4]+"</td><td><button onclick='myFunction("+$.trim(value[0])+")' class='btn-primary btn-sm glyphicon glyphicon-floppy-saved' data-toggle='tooltip' title='Save This Row'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-warning btn-sm glyphicon glyphicon-copy' onclick='markAbsent("+$.trim(value[0])+")' data-toggle='tooltip' title='Mark Absent'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-danger btn-sm glyphicon glyphicon-trash' onclick='deleteEmp("+$.trim(value[0])+")' data-toggle='tooltip' title='Delete This Employee'></button></td></tr>";
+			totaldiv += "<tr><td id='id_"+$.trim(value[0])+"'>"+value[0]+"</td><td contenteditable='true' id='name_"+$.trim(value[0])+"'>"+value[1]+"</td><td id='email_"+$.trim(value[0])+"' contenteditable='true'>"+value[2]+"</td><td contenteditable='true' id='password_"+$.trim(value[0])+"'>"+value[3]+"</td><td contenteditable='true' id='points_"+$.trim(value[0])+"'>"+value[4]+"</td><td><button onclick='myFunction("+$.trim(value[0])+")' class='btn-primary btn-sm glyphicon glyphicon-floppy-saved' data-toggle='tooltip' title='Save This Row'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-warning btn-sm glyphicon glyphicon-copy' onclick='markAbsent("+$.trim(value[0])+")' data-toggle='tooltip' title='Mark Absent'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-danger btn-sm glyphicon glyphicon-trash' onclick='deleteEmp("+$.trim(value[0])+")' data-toggle='tooltip' title='Delete This Employee'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-default btn-sm glyphicon glyphicon-scissors' onclick='deductPointCustomReason("+$.trim(value[0])+")' data-toggle='tooltip' title='Delete This Employee'></button></td></tr>";
 
 			$("#showallemployeeDiv").html(totaldiv);
 			//console.log(totaldiv);
@@ -1218,6 +1218,37 @@ function properMin(val)
 			
 		
 		
+	}
+
+	window.deductPointCustomReason = function(id)
+	{
+		//alert(id);
+		$('#showiddeductModal').text(id);
+		$('#customPointDeductModal').modal('show');
+
+		$('#custompointdeductbutton').click(function(){
+
+			var point = $('#custompointdeductPoint').val();
+			var pointisnum = isNaN(point);
+			var msg = $('#custompointdeductMsg').val();
+			
+			if(point && msg && !pointisnum)
+			{
+				$.post('Admin/deductPointCustomReason',{point: point, msg: msg, id: id},function(data){
+
+					employeeLate();
+					allemployee();
+					
+
+
+				});
+
+			}
+			$('#custompointdeductPoint').val("");
+			$('#custompointdeductMsg').val("");
+
+		});
+
 	}
 
 	window.deleteEmp = function(id)

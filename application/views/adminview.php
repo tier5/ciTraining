@@ -242,7 +242,7 @@
                                 <td><strong>DATE</strong></td>
                                 <td><strong>ID</strong></td>
                                 <td><strong>USER NAME</strong></td>
-                                <td><strong>LATE ON</strong></td>
+                                <td><strong>LATE ON/REASON</strong></td>
                                 <td><strong>DURATION</strong></td>
 <!--                                 <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
  -->                            </tr>
@@ -288,7 +288,8 @@
                                 <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints" data-toggle='tooltip' title='Reset Points For Everyone'>RESET</button></div></td>
                                <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>
                                <td><strong>Mark As</br> Absent</strong></td>
-                               <td><strong>Delete</br> Employee</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                               <td><strong>Delete</br> Employee</strong></td>
+                               <td><strong>Deduct</br> Point</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
                     
                              </tr>
                             </thead>
@@ -518,6 +519,78 @@
           </div>
           
         </div>
+
+
+        <div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="customPointDeductModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Give A Reason For The Point Deduction For ID <div id="showiddeductModal"></div></strong></h4>
+            </div>
+            <div class="modal-body" align="center">
+
+
+              
+              <div class="col-sm-12">
+
+                <div class="row">
+
+                    <div class="col-sm-4"></div>
+
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="custompointdeductPoint" placeholder="Points To Deduct"/>
+                    </div>
+
+                    <div class="col-sm-4"></div>
+
+                </div>
+              </br>
+            </br>
+                <div class="row">
+
+                    <div class="col-sm-2"></div>
+
+                    <div class="col-sm-8">
+                        <textarea class="form-control" id="custompointdeductMsg" placeholder="Reason"/></textarea>
+                    </div>
+
+                    <div class="col-sm-2"></div>
+
+
+                </div>
+                </br>
+                </br>
+                <div class="row">
+
+                    <button class="btn btn-danger" id="custompointdeductbutton" data-dismiss="modal">Deduct</button>
+
+                </div>
+              </div>
+
+
+              </div>
+
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+            </div>
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+
+
       </div>
   
 </div>

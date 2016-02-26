@@ -198,6 +198,8 @@
           $this->db->where($data);
           $this->db->delete($table);
       }
+
+      
       
    } 
 ?> 

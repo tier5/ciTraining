@@ -48,7 +48,7 @@ var pointsdeducted;
 						breakname = "Early Clock Out";
 						break;
 					default:
-						breakname = "Default";
+						breakname = data2[2];
 				}
 				sec = data2[1];
 
@@ -137,7 +137,7 @@ var latetime1="";
 						breakname1 = "Early Clock Out";
 						break;
 					default:
-						breakname1 = "Default";
+						breakname1 = data2[2];
 				}
 				sec = data2[1];
 

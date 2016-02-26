@@ -688,6 +688,51 @@ public function deleteEmp()
 
 }
 
+public function deductPointCustomReason()
+{
+	$data3['points']=$this->input->post('point');
+
+	$data['late_in']=$this->input->post('msg');
+	$data['Eid']=$this->input->post('id');
+	$data['date'] = $this->date;
+	$data['late_time']="0000";
+	$data2['id'] = $data['Eid'];
+
+	$currpoint = $this->AdminModel->ShowEmpCurrentPoint($data2);
+
+	if($currpoint)
+	{
+		$data4['points'] = $currpoint - $data3['points'];
+
+		$result1 = $this->AdminModel->updateEmployeeTbl($data2,$data4);
+
+		if($result1)
+		{
+			$result = $this->AdminModel->markAbsent($data);
+
+			if($result)
+			{
+					print_r($result);
+
+			}
+		}
+	}
+
+	
+
+	
+
+	/*$result = $this->AdminModel->markAbsent($data);
+
+	if($result)
+	{
+			print_r($result);
+
+	}*/
+
+
+}
+
 
 
 }

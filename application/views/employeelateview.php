@@ -29,7 +29,7 @@
                                 <td><strong>DATE</strong></td>
                                 <td><strong>ID</strong></td>
                                 <td><strong>USER NAME</strong></td>
-                                <td><strong>LATE ON</strong></td>
+                                <td><strong>LATE ON/REASON</strong></td>
                                 <td><strong>DURATION</strong></td>
                                 <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                             </tr>
