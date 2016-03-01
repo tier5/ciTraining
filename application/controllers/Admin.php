@@ -21,6 +21,7 @@ class Admin extends CI_Controller
 		if (!$this->session->userdata('adminid'))
 		{
 			redirect("Dashboard");
+			exit(0);
 		}
 
 

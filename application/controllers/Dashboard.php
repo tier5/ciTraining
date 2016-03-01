@@ -10,6 +10,17 @@ class Dashboard extends CI_Controller {
 		$this->load->database();
 		$this->load->model('Dashboardmodel');
 		$this->load->library('session');
+		
+		if ($this->session->userdata('adminid'))
+		{
+			redirect("Admin");
+			exit(0);
+		}
+		if ($this->session->userdata('empid'))
+		{
+			redirect("Employee");
+			exit(0);
+		}
 	}
 
 	public function index()
