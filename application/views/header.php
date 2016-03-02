@@ -56,4 +56,11 @@
      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<style>
+    table.ui-datepicker-calendar tbody td.highlight > a {
+   background: url("images/ui-bg_inset-hard_55_ffeb80_1x100.png") repeat-x scroll 50% bottom #FF9780;
+    color: #363636;
+    border: 1px solid #FFDE2E;
+}
+</style>
 </head>
