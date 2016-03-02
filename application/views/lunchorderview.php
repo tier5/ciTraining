@@ -39,45 +39,45 @@
         </div>
 </nav>
 
- <section id="todaysorder" class="intro-section">
-    <div class="container-fluid">
-        <div class='row'>
-            <div class="col-sm-8"></div>
-            <div class="col-sm-3">
-              <input type="button" value="Change Date" id="datepicker" class="btn btn-warning">
+ <div class="intro-section">
+        <div class="container-fluid">
+            <div class='row'>
+                <div class="col-sm-8"></div>
+                <div class="col-sm-3">
+                  <input type="button" value="Change Date" id="selectdate" class="btn btn-warning">
+                </div>
+                <div class="col-sm-1"></div>
             </div>
-            <div class="col-sm-1"></div>
         </div>
-    </div>
-   </br>
-    <div class="container-fluid">
-    	 <div class='row'>
-    		 <div class="col-sm-1"></div>
-         <div class="col-sm-10" id="placedordr" align="center">
-              <table class="table table-bordered" >
-                  <thead>
-                    <tr>
-      	              <td><strong>Date</strong></td>
-      	              <td><strong>Employee Id</strong></td>
-      	              <td><strong>Employee Name</strong></td>
-      	              <td><strong>Shop Name</strong></td>
-      	              <td><strong>Lunch Item</strong></td>
-      	              <td><strong>Cost</strong></td>
-      	              <td><strong><button id="deletallorder" class="btn btn-danger btn-md glyphicon glyphicon-trash" >Delete All</button></strong></th>
-      	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print">Print All</button></strong></th>
-                    </tr>
-                  </thead>
-                  <tbody id="lunchlist" align="center">
-                  <tbody>
-              </table>   
-         </div>
-         <div class="col-sm-1"></div>
-    	</div> 
-     </div>
 
+        </br>
 
-
-      <div class="modal fade" id="deletelunch" role="dialog">
+          <div class="container-fluid">
+          	<div class='row'>
+          		 <div class="col-sm-1"></div>
+               <div class="col-sm-10" id="placedordr" align="center">
+                    <table class="table table-bordered" >
+                        <thead>
+                          <tr>
+            	              <td><strong>Date</strong></td>
+            	              <td><strong>Employee Id</strong></td>
+            	              <td><strong>Employee Name</strong></td>
+            	              <td><strong>Shop Name</strong></td>
+            	              <td><strong>Lunch Item</strong></td>
+            	              <td><strong>Cost</strong></td>
+            	              <td><strong><button id="deletallorder" class="btn btn-danger btn-md glyphicon glyphicon-trash" data-target="#cnfrmdltlunchorder" data-toggle="modal" >Delete All</button></strong></th>
+            	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print">Print All</button></strong></th>
+                          </tr>
+                        </thead>
+                        <tbody id="lunchlist" align="center">
+                        </tbody>
+                    </table>   
+               </div>
+               <div class="col-sm-1"></div>
+          	</div> 
+          </div>
+ </div>
+      <div class="modal fade" id="deletelunchorder" role="dialog">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
               <div class="modal-header">
@@ -104,8 +104,8 @@
             <div class="modal-body">
               <div class="col-sm-1"></div>
               <div class="col-sm-10">
-                    <button type="submit" class="btn btn-danger pull-left" id="yesdltall">Yes</button>
-                    <button type="submit" class="btn btn-danger pull-right" id="nodltall">No</button>
+                    <button type="submit" class="btn btn-danger pull-left" id="yesdltall" data-dismiss="modal" >Yes</button>
+                    <button type="submit" class="btn btn-danger pull-right" id="nodltall" data-dismiss="modal">No</button>
               </div>
               <div class="col-sm-1"></div>
             </div>
@@ -113,6 +113,6 @@
           </div>  
         </div>
       </div>
-    </section>
+    
 </body>
 </html>

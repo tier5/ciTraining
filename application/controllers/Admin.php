@@ -686,6 +686,8 @@ class Admin extends CI_Controller
 
     public function showorder()
     {
+    	extract($_POST);
+    	//echo $optdate;
        $data['date']=$this->date;
        $data['status']=0;
        $result = $this->AdminModel->showorder($data);
@@ -717,6 +719,7 @@ class Admin extends CI_Controller
 
     public function dltallordr()
     {
+    	//echo 'Hello';
     	extract($_POST);
     	$data['date']=$this->date;
     	$result=$this->AdminModel->dltallordr($data);
@@ -727,12 +730,6 @@ class Admin extends CI_Controller
 	{
 
 		$this->load->view('emplunchorder');
-	}
-
-	public function hi()
-    {
-    	$data= date("m-y");
-		print_r($data);
 	}
 
 

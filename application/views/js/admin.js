@@ -24,9 +24,7 @@ var breakfunctions=setInterval(function(){
     	sbreak();
     	lbreak();
     	
-    }
-    
-    
+    }    
     
 }, 1000);
 
