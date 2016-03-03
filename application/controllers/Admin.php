@@ -563,6 +563,9 @@ class Admin extends CI_Controller
 	{
 		$this->load->view('lunchorderview');
 	}
+
+	
+
 	public function allLateRecord()
 	{
 		$data['status']=0;
@@ -790,6 +793,68 @@ public function deductPointCustomReason()
 
 
 }
+
+	public function addEventview()
+	{
+		//$this->load->view('eventview');
+		$result['info_event'] = $this->AdminModel->FngetAlldata('tbl_event_informations','','asc');
+		//print_r($result);
+		$result['employeeinfo'] =$this->AdminModel->fetch_data('employee');
+		$this->load->view('eventview',$result);
+	}
+
+	public function newEventInsert()
+	{
+
+		//$this->form_validation->set_rules('empId', 'Employee Name', 'required');
+		$this->form_validation->set_rules('event_info', 'Event', 'required');
+		$this->form_validation->set_rules('date', 'Date', 'required');
+
+		if ($this->form_validation->run() == TRUE)
+		{
+			if($_POST)
+			{
+				//echo'<pre>';print_r($_POST);exit;
+				$emp_id=$this->input->post('empId');
+				for($i=0;$i<count($emp_id);$i++)
+				{
+				$insert['Eid']=$emp_id[$i];
+				$insert['event_informations']=$this->input->post('event_info');
+				$insert['date']=date('Y-m-d',strtotime($this->input->post('date')));
+
+				$result = $this->AdminModel->insert('tbl_event_informations',$insert);
+                
+                }
+                if($result)
+                {
+                	$this->session->set_userdata('s_message','New Event Added');
+                	redirect('Admin/addEventview');
+                }
+
+			}
+			else
+			{
+				redirect('Admin/addEventview');
+			}
+		}
+		else
+		{
+			$this->session->set_userdata('e_message','Sorry Not Added');
+			redirect('Admin/addEventview');
+		}
+
+
+	}
+
+	public function delete_event($id)
+	{
+		//$where=array('EventId'=>$id);
+		$where['EventId'] = $id;
+		$result = $this->AdminModel->delete('tbl_event_informations',$where);
+		$this->session->set_userdata('s_message','Event Has Been Deleted');
+			redirect('Admin/addEventview');
+
+	}
 
 
 

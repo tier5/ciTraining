@@ -53,7 +53,7 @@
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin.js';?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
-     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <style>

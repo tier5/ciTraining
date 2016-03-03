@@ -47,6 +47,11 @@
               }
           }
       }
+      public function insert($tbl,$data)
+      {
+        $this->db->insert($tbl,$data);
+        return $this->db->affected_rows();
+      }
 
       public function ShowEmployee()
       {
@@ -185,6 +190,12 @@
           return $result->result_array();
 
       }
+        public function delete($tbl,$data)
+      {
+          $this->db->where($data);
+          $this->db->delete($tbl);
+          return $this->db->affected_rows();
+      }
 
       public function deleteEmp($data)
       {
@@ -200,22 +211,37 @@
       }
       public function fetch_data($tbl,$where=null)
       {
+        if($where)
+        {
+          $this->db->where($where);
+        }
        $result = $this->db->get($tbl);
+
           return $result->result_array();
        // echo $this->db->last_query();exit;
       }
       
-       public function FngetAlldata($tbl,$where=null)
+       public function FngetAlldata($tbl,$where=null,$orderby=null)
       {
         $this->db->select('tbl_event_informations.*,employee.name');
-        $this->db->where($where);
+       if($where)
+        {
+          $this->db->where($where);
+        }
+        if($orderby)
+        {
+          $this->db->order_by('date',$orderby);
+        }
         $this->db->join('employee','employee.id =tbl_event_informations.Eid','inner');
         $result=$this->db->get($tbl);
         return $result->result_array();
       // echo $this->db->last_query();exit;
       }
 
-      
+      /*public function showAllEvents()
+      {
+          $result = $this->db->get('tbl_event_informations');
+      }*/
       
    } 
 ?> 

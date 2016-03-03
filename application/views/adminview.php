@@ -53,6 +53,9 @@
                     <li>
                         <a  href="Admin/lunchorderview">Lunch Order</a>
                     </li>
+                    <li>
+                        <a  href="Admin/addEventview">Event</a>
+                    </li>
                    
                 </ul>
 

@@ -319,6 +319,8 @@ class EmployeeModel extends CI_model
             return $result;
         } 
     }
+
+    
 }
 
 
