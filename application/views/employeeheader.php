@@ -23,7 +23,10 @@
     <link href="<?php echo base_url().'application/views/css/landing-page.css'?>" rel="stylesheet">
  
     <link href="<?php echo base_url().'application/views/css/addemp.css'?>" rel="stylesheet">
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,6 +57,7 @@
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/pointbutton.js';?>"></script>
+<<<<<<< HEAD
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/pageidle.js';?>"></script>
 
@@ -61,4 +65,7 @@
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/usercalender.js';?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/lunchorder.js';?>"></script>
 
+=======
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/lunchorder.js';?>"></script>
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 </head>

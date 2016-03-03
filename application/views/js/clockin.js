@@ -9,11 +9,14 @@
 
     });
     }
+<<<<<<< HEAD
 
 //===============================================================
 
     
         
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 //================================================================
 
         $("#clockbtn").click(function(){
@@ -75,6 +78,7 @@
 
                 $.post('Employee/earlyClockOut',function(data){
 
+<<<<<<< HEAD
                 if($.trim(data))
                 {
                      $('#earlyclockoutMsg').html(data);
@@ -86,6 +90,11 @@
                 });
 
                 calenderclockout();
+=======
+                    alert(data);
+
+                });
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
             }    
     
         });

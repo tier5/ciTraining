@@ -11,10 +11,14 @@ class Admin extends CI_Controller
 		$this->load->database();
 		$this->load->model('AdminModel');
 		$this->load->library('session');
+<<<<<<< HEAD
 		extract($_POST);
 		$q=$this->input->post('datepicker');
 		//print_r($q);
 		//$this->date= "12/02/2016";
+=======
+		//$this->date;
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
 		
 
@@ -27,11 +31,19 @@ class Admin extends CI_Controller
 		if($this->input->post('optdate'))
 		{
 			$this->date=$this->input->post('optdate');
+<<<<<<< HEAD
 			/*$this->empClockIn();*/
 		}
 		else
 		{
 			$this->date = $this->date = date("d/m/Y");
+=======
+		    //print_r($this->date);
+		}
+		else
+		{
+		    $this->date=date("d/m/Y");
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 		}
 
 	}
@@ -138,9 +150,15 @@ class Admin extends CI_Controller
 	public function empClockIn()
 	{
 
+<<<<<<< HEAD
 		$data['date'] =$this->date; //date("d/m/Y");
 
 		$data['date'] = $this->date;
+=======
+		$data['date'] =$this->date;  //date("d/m/Y");
+
+		//$data['date'] = $this->date;
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
 
 		$res = $this->AdminModel->empClockIn($data);
@@ -503,19 +521,25 @@ class Admin extends CI_Controller
 	{
 		$this->load->view('employeelateview');
 	}
+<<<<<<< HEAD
 
 	public function lunchorderview()
 	{
 		$this->load->view('lunchorderview');
 	}
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 	public function allLateRecord()
 	{
 		$res = $this->AdminModel->allLateRecord();
 		//print_r($result);
 		//$result['result'] = $res;
+<<<<<<< HEAD
 
 		
 
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 		foreach ($res as $key)
 		{
 			
@@ -523,13 +547,17 @@ class Admin extends CI_Controller
 			$resname = $this->AdminModel->showName($data2);
 
 			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id']."?";
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 		}
 
 		//$this->load->view('employeelateview',$result);
 	}
 
+<<<<<<< HEAD
 	
 	public function empClockInDateChk()
 	{
@@ -805,4 +833,10 @@ class Admin extends CI_Controller
 
     }
 
+=======
+	public function checkdateonclock()
+	{
+		$this->empClockIn();
+	}
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 }

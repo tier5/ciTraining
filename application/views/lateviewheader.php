@@ -15,6 +15,7 @@
     var BASE_URL = '<?php echo base_url(); ?>';
 
     </script>
+
     
 
     <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
@@ -30,6 +31,12 @@
 
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/i18n/jquery-ui-i18n.min.js"></script>
+
+
+    <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
+
+    <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
     <!-- Custom CSS -->
     
 
@@ -54,6 +61,7 @@
     <script src="<?php echo base_url().'application/views/js/lunchorderadmin.js'?>"></script>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
   
     
 </head>

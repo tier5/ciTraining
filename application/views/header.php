@@ -21,6 +21,10 @@
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<<<<<<< HEAD
+=======
+
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
     <!-- Custom CSS -->
     
 
@@ -53,6 +57,10 @@
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin.js';?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
+<<<<<<< HEAD
+=======
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/datepick.js';?>"></script>
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
      <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

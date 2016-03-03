@@ -48,6 +48,7 @@
 
 <div class="intro-header">
         <div class="container">
+<<<<<<< HEAD
 
             <div class="row">
                 <div class="col-lg-12">
@@ -96,6 +97,59 @@
                             
                             <div class="col-sm-4" >
 
+=======
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <div class="row">
+
+                            <div class="col-sm-4">
+
+                               <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder">Lunch Order</button>
+
+
+                            </div>
+                            <div class="col-sm-4">
+                                
+                                
+                                
+                                <button class="btn btn-default btn-lg" id="clockbtn" name="clockinbtn">Clock In</button>
+
+                                
+                                
+                            </div>
+
+                            <div class="col-sm-4">
+                                
+                                <div id="clockintime"></div>
+                                <div id="clockintime1"></div>
+                                <div id="clockintimeLate"></div>
+                            </div>
+                        </div>
+                        
+                         <br><br><br><br>
+
+                          <hr class="intro-divider">
+
+                         <br><br><br><br>
+                        
+                        <div class="row">
+                
+                            <div class="col-sm-4" >
+                               
+                                <select class="btn btn-default" id="opt">
+                                  <option value="" selected="selected"> Select a Break</option>
+                                  <option value="fbreak" id="fbreak">First Break</option>
+                                  <option value="sbreak" id="sbreak">Second Break</option>
+                                  <option value="lbreak" id="lbreak">Last Break</option>
+                                </select>
+
+                            </div>
+                            
+                            <div class="col-sm-4" >
+
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                                 <button class="btn btn-default btn-lg" id="breakbtn" name="breakbtn">break</button>
                             
                             </div>
@@ -113,6 +167,7 @@
                             </div>
                        
                         </div><!--/row-->
+<<<<<<< HEAD
                         
                       <div class='container-fluid calenderbox'>
                         <div class='row'>
@@ -184,13 +239,18 @@
                         </div>
 
                       </div>
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
                     </div>
                 </div>
             </div>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
         </div>
         <!-- /.container -->
 
@@ -199,10 +259,13 @@
 
 
     
+<<<<<<< HEAD
 
 
 
     
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
    <!-- Modal -->
   <!-- Modal -->
@@ -228,9 +291,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
+<<<<<<< HEAD
           <h4 class="modal-title deleteconfirm" align="center">Break Message</h4>
         </div>
         <div class="modal-body deleteconfirm" align="center">
+=======
+          <h4 class="modal-title error">Break Message</h4>
+        </div>
+        <div class="modal-body">
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
           <strong id="returnbreakMsg"></strong>
         </div>
         <div class="modal-footer">
@@ -247,9 +316,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
+<<<<<<< HEAD
           <h4 class="modal-title error" align="center">Point Deduction Status</h4>
         </div>
         <div class="modal-body" align="center">
+=======
+          <h4 class="modal-title error">Point Deduction Status</h4>
+        </div>
+        <div class="modal-body">
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
           <div id="emplatetbl">
           <table class="table table-bordered" >
 
@@ -286,6 +361,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
 
 
 <div class="container">
@@ -367,11 +443,18 @@
   
 </div>
 <div class="modal fade" id="lunchModal" role="dialog">
+=======
+  <div class="modal fade" id="lunchModal" role="dialog">
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
+<<<<<<< HEAD
           <h4 class="modal-title deleteconfirm" align="center">Place Your Lunch Order</h4>   
+=======
+          <h4 class="modal-title error">Place Your Lunch Order</h4>   
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
         </div>
         <div class="modal-body-tab1" align="center">
 
@@ -379,6 +462,7 @@
          
         <div class="modal-body-tab2" align="center">
             <div class="row">
+<<<<<<< HEAD
                <div class="col-sm-4" >
                </div>
                <div class="col-sm-4" >
@@ -437,10 +521,51 @@
         <div class="modal-body-tab3">
         </br>
           <div id="confirmorder" align="center">
+=======
+               <div class="col-sm-3" ></div>
+               <div class="col-sm-6" >
+                    Shop Name: <span id="shpname"></span>
+                    </br>
+                    Lunch Items:<span id="totalitem"></span>
+                    </br>
+                    Total Cost:<span id="totalcost">00</span>
+                    </br>
+               </div>
+               <div class="col-sm-3" ></div>
+            </div>
+               </br>
+               </br>
+    
+                </br>
+                <table class="table table-bordered"  >
+                  <thead>
+                    <tr>
+                        <td><strong>Select</strong></td>
+                        <td><strong>Items</strong></td>
+                        <td><strong>Cost</strong></td>
+                        <td><strong>Quantity</strong></td>
+                    </tr>
+                  </thead>
+                  <tbody id="orderbody">        
+                  </tbody>
+                </table>
+                </br>
+                <button type="submit" class="btn btn-link pull-left" id="prev"><span><<</span> Prev</button>
+                <button type="submit" class="btn btn-danger btn-sm pull-right" id="suborder">Submit Order</button>                    
+        </div>
+        <div class="modal-body-tab3">
+          <div id="confirmorder">
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
           </div>
 
         </div>
+<<<<<<< HEAD
+=======
+        
+      </br>
+      </br>
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
         <div class="modal-footer">
          
         </div>
@@ -448,6 +573,7 @@
     </div>
   </div>
 
+<<<<<<< HEAD
 
 
 
@@ -545,5 +671,10 @@
 
 
 
+=======
+   
+  
+
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 </body>
 </html>

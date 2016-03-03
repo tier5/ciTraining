@@ -8,6 +8,7 @@ fbreak();
 sbreak();
 lbreak();
 allemployee();
+<<<<<<< HEAD
 showEmpFcomplete();
 showEmpScomplete();
 showEmpLcomplete();
@@ -491,11 +492,14 @@ function showEmpScomplete()
 		{
 			//alert(data);
 			data = data.split(".");
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
 			for(i=0;i<data.length-1;i++)
 			{
 				value = data[i].split(',');
 
+<<<<<<< HEAD
 				
 
 				switch (value[3])
@@ -503,6 +507,9 @@ function showEmpScomplete()
 					case "fbreak": 
 						breakname = "First Break";
 						break;
+=======
+setInterval(function(){
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
 					case "sbreak":
 						breakname = "Lunch Break";
@@ -594,6 +601,7 @@ function showEmpScomplete()
 			$("#fbreaktablecomplete").html("");
 		}
 	});
+<<<<<<< HEAD
 
 		$.post('Admin/shoEmpScompleteDateChk',{optdate: date}, function(data){
 
@@ -663,6 +671,30 @@ function showEmpScomplete()
 			
 
 		});
+=======
+}
+
+
+
+//=======================DATEPICKER=============================
+	 $("#datepicker").datepicker({
+    // The hidden field to receive the date
+    altField: "#dateHidden",
+    // The format you want
+    altFormat: "yy-mm-dd",
+    // The format the user actually sees
+    dateFormat: "dd/mm/yy",
+    onSelect: function (date) {
+        // Your CSS changes, just in case you still need them
+        $('a.ui-state-default').removeClass('ui-state-highlight');
+        $(this).addClass('ui-state-highlight');
+        //alert(date);
+        //var date=date;
+        $.post('Admin/checkdateonclock',{optdate: date},function(data){
+		$('#tablediv').html(data);
+		});
+		
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
     }
     });
 	
@@ -718,9 +750,12 @@ function employeeLate()
 					case "Absent":
 						breakname = "Absent";
 						break;
+<<<<<<< HEAD
 					case "Early Clock Out":
 						breakname = "Early Clock Out";
 						break;
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
 					default:
 						breakname = "Default";
@@ -1180,6 +1215,7 @@ function properMin(val)
 
 			
 
+<<<<<<< HEAD
 			totaldiv += "<tr><td id='id_"+$.trim(value[0])+"'>"+value[0]+"</td><td contenteditable='true' id='name_"+$.trim(value[0])+"'>"+value[1]+"</td><td id='email_"+$.trim(value[0])+"' contenteditable='true'>"+value[2]+"</td><td contenteditable='true' id='password_"+$.trim(value[0])+"'>"+value[3]+"</td><td contenteditable='true' id='points_"+$.trim(value[0])+"'>"+value[4]+"</td><td><button onclick='myFunction("+$.trim(value[0])+")' class='btn-primary btn-sm glyphicon glyphicon-floppy-saved' data-toggle='tooltip' title='Save This Row'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-warning btn-sm glyphicon glyphicon-copy' onclick='markAbsent("+$.trim(value[0])+")' data-toggle='tooltip' title='Mark Absent'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-danger btn-sm glyphicon glyphicon-trash' onclick='deleteEmp("+$.trim(value[0])+")' data-toggle='tooltip' title='Delete This Employee'></button></td></tr>";
 
 			$("#showallemployeeDiv").html(totaldiv);
@@ -1303,7 +1339,110 @@ function properMin(val)
 	$("#showalldaylate").click(function(){
 
 		alert('hiiii');
+=======
+			totaldiv += "<tr><td id='id_"+$.trim(value[0])+"'>"+value[0]+"</td><td contenteditable='true' id='name_"+$.trim(value[0])+"'>"+value[1]+"</td><td id='email_"+$.trim(value[0])+"' contenteditable='true'>"+value[2]+"</td><td contenteditable='true' id='password_"+$.trim(value[0])+"'>"+value[3]+"</td><td contenteditable='true' id='points_"+$.trim(value[0])+"'>"+value[4]+"</td><td><button onclick='myFunction("+$.trim(value[0])+")' class='btn-primary btn-sm glyphicon glyphicon-floppy-saved' data-toggle='tooltip' title='Save This Row'></button></td><td><button id='absent_"+$.trim(value[0])+"' class='btn btn-warning btn-sm glyphicon glyphicon-copy' onclick='markAbsent("+$.trim(value[0])+")' data-toggle='tooltip' title='Mark Absent'></button></td></tr>";
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
+			$("#showallemployeeDiv").html(totaldiv);
+			//console.log(totaldiv);
+
+
+
+			
+		}
+		//alert(data);
+
+	});
+ }
+
+	window.myFunction = function(id)
+	{
+		/**/
+		var password = $('#password_'+id).text();
+		var email = $('#email_'+id).text();
+		var name = $('#name_'+id).text();
+		var points = $('#points_'+id).text();
+		var id = $('#id_'+id).text();
+		
+		if(id && name && email && password)
+		{
+			
+			$.post('Admin/update',{id: id, newname: name,newemail: email,newpass: password,points :points} ,function(data){
+
+				//alert(data);
+				allemployee();
+			});
+		}
+			
+		
+		
+	}
+
+	window.markAbsent = function(id)
+	{
+		var Eid = id;
+
+		$.post('Admin/markAbsent', {Eid: Eid}, function(data){
+
+				if($.trim(data))
+				{
+					//alert(data);
+
+					$('#absentModal').modal('show');
+					employeeLate();
+					allemployee();
+				}
+
+		});
+	}
+
+	$('#addNewEmp').click(function(){
+
+		//alert('hello');
+		var username = $('#empusername').val();
+		var useremail = $('#empuseremail').val();
+		var userpassword = $('#empuserpass').val();
+		/*alert(username);
+		alert(useremail);
+		alert(userpassword);*/
+		useremail = validateEmail(useremail);
+		
+		if(useremail && userpassword && username)
+		{
+			$.post('Admin/addEmp',{name: username, email: useremail, pass: userpassword, btn: "submit"}, function(data)
+			{
+                $('#confirmAdd').html(data);
+                allemployee();
+			});
+		}
+
+		else
+		{
+			$('#improperemail').html('all fields are needed & a proper email');
+		}
+
+		
+
+
+	});
+//=================================================
+
+	function validateEmail(email) {
+    var x = email;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+	    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) 
+	    {
+	        //alert("Not a valid e-mail address");
+	        return false;
+	    }
+	    else
+	    {
+	    	return email;
+	    }
+    }
+
+    
 
 	});
 

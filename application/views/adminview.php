@@ -39,6 +39,7 @@ t<!DOCTYPE html>
                     <li>
                         <a class="page-scroll" href="#contact">Employee Late</a>
                     </li>
+<<<<<<< HEAD
                     
                     <li>
                         <a class="page-scroll" href="#employeelate">Show all Employee</a>
@@ -47,10 +48,20 @@ t<!DOCTYPE html>
                     
                     <li>
                         <a  href="Admin/showAllLateview">Employee All Late Information</a>
+=======
+                    
+                    <li>
+                        <a class="page-scroll" href="#employeelate">Show all Employee</a>
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                     </li>
 
+                    
                     <li>
+<<<<<<< HEAD
                         <a  href="Admin/lunchorderview">Lunch Order</a>
+=======
+                        <a  href="Admin/showAllLateview">Employee All Late Information</a>
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                     </li>
                    
                 </ul>
@@ -80,11 +91,18 @@ t<!DOCTYPE html>
                          <div class="row">
 
                           <div class="col-sm-4"></div>
+<<<<<<< HEAD
                           <div class="col-sm-4">
 
                               <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
 
 
+=======
+            
+                        
+                          <div class="col-sm-4">
+                              <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                           </div>
                           <div class="col-sm-4">
 
@@ -107,7 +125,7 @@ t<!DOCTYPE html>
 
                     <strong>Employee Clocked In</strong>
                     
-                    <div class="col-sm-12 table-responsive">
+                    <div class="col-sm-12">
                         <table class="table table-bordered" >
                             <thead>
                               <tr>
@@ -244,8 +262,14 @@ t<!DOCTYPE html>
                                 <td><strong>USER NAME</strong></td>
                                 <td><strong>LATE ON</strong></td>
                                 <td><strong>DURATION</strong></td>
+<<<<<<< HEAD
 <!--                                 <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
  -->                            </tr>
+=======
+                                <td><button class="btn btn-danger" data-toggle="modal" data-target="#deleteAllLate">Delete All</button></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                            </tr>
+                          
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                             </thead>
                             <tbody id="latetable">
                            
@@ -262,12 +286,17 @@ t<!DOCTYPE html>
         </div>
     </section>
     <!-- Services Section -->
+<<<<<<< HEAD
 
      <section id="employeelate" class="about-section">
         
 
 
 
+=======
+
+     <section id="employeelate" class="about-section">
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -287,25 +316,29 @@ t<!DOCTYPE html>
                                 <td><strong>PASSWORD</strong></td>
                                 <td><strong>POINTS</strong><div><button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#resetPoints" data-toggle='tooltip' title='Reset Points For Everyone'>RESET</button></div></td>
                                <td><button id="adminlog" class="btn btn-primary" data-toggle="modal" data-target="#addEmpModal">Add New</button></td>
+<<<<<<< HEAD
                                <td><strong>Mark As</br> Absent</strong></td>
                                <td><strong>Delete</br> Employee</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+=======
+                               <td><strong>Mark As</br> Absent</strong></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                     
                              </tr>
                             </thead>
                             <tbody id="showallemployeeDiv">
-                           
-                              
 
-                          
                             </tbody>
                           </table>
                       </div>
                     </div>
+<<<<<<< HEAD
                       
 
 
 
 
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
                     </div>
                     
                 </div>
@@ -474,6 +507,43 @@ t<!DOCTYPE html>
               </div>
 
             <div class="modal-footer">
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+  
+</div>
+
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="absentModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Absent</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div align='center'><strong>He is Marked as Absent</strong></div>
+
+
+              </div>
+
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+            </div>
             </div>
                         
             </div>

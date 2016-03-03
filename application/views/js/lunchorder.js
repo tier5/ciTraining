@@ -127,6 +127,7 @@ function showfirstdiv()
 		   var finalcost=$('#totalcost').text();
 		    if($.trim(lunchitm))
 		    {
+<<<<<<< HEAD
 		    	if(finalcost>100)
 		    	{
                     $('#existcost').modal('show');
@@ -158,6 +159,28 @@ function showfirstdiv()
 		    else
 		    {
 		    	$('#emptyorder').modal('show');
+=======
+		       $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost },function(data){
+		       //alert(data);
+		         if ($.trim(data))
+		         {
+		            $('.modal-body-tab3').show();
+				    $('.modal-body-tab2').hide();
+				    $('#confirmorder').html("Lunch Order Placed Successfully!!!!!");
+				    $('#totalitem').empty();
+				    $('#totalcost').html("00");	
+		         }
+		         else
+		         {
+		            $('.modal-body-tab3').show();
+				    $('.modal-body-tab2').hide();
+				    $('#confirmorder').html("You Have Already Placed Your Lunch Order!!!! ");	
+		            $('#totalitem').empty();
+				    $('#totalcost').html("00");	
+		         }
+
+		      });
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 		    }
 	});
 //================================================================================ 

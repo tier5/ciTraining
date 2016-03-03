@@ -605,6 +605,7 @@ class Employee extends CI_Controller
 	}
 
 	public function earlyClockOut()
+<<<<<<< HEAD
 	{	
 		
 
@@ -856,6 +857,19 @@ class Employee extends CI_Controller
 	{
 		$this->calenderLbreak();
 	}
+=======
+	{
+		$nowtime = new DateTime('now');
+		$clockouttime = new DateTime('CLOCK_OUT_TIME');
+
+		echo "hello";
+
+		$diff = $nowtime->diff(new DateTime('CLOCK_OUT_TIME'));
+				
+		$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
+	}
+
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 	public function shopoption()
 	{ 
 	  $data['parent_id']="0";
@@ -889,6 +903,7 @@ class Employee extends CI_Controller
 
 	public function submitorder()
 	{
+<<<<<<< HEAD
 		extract($_POST);
 		$data1['Eid']=$this->session->userdata('empid');
 		$data1['date']=$this->date;
@@ -919,3 +934,18 @@ class Employee extends CI_Controller
 	}
 }
 ?>
+=======
+
+		extract($_POST);
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date']=date("d/m/Y");
+		$data['shopname']=$shopname;
+		$data['items']=$lunchitm;
+		$data['cost']=$finalcost;
+		$result=$this->EmployeeModel->submitorder($data);
+        print_r($result);
+	}
+
+
+}
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb

@@ -4,7 +4,10 @@ $(document).ready(function(){
 	   $.post('Employee/pointalt' function(data){
         
       });
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 	});*/
 
 var breakname;

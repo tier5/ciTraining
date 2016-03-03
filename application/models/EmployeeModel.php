@@ -250,6 +250,63 @@ class EmployeeModel extends CI_model
             return false;
         }
     }
+<<<<<<< HEAD
+=======
+
+    public function fetchBreaktbl($data,$tblname)
+    {
+        $result=$this->db->get_where($tblname,$data);
+
+        return $result->row_array();
+
+    }
+
+    public function insertNonTakenBreaktbl($data,$tablename)
+    {
+        if($this->db->insert($tablename,$data))
+        {
+            return true;
+        }
+        
+
+    }
+    public function shopoption($data)
+    { 
+      $result=$this->db->get_where('items',$data);
+      return $result->result_array();
+      
+    }
+    public function itemoption($data)
+    {
+        $result=$this->db->get_where('items',$data);
+        return $result->result_array();
+
+    }
+    public function shopname($data)
+    {
+     $result=$this->db->get_where('items',$data);
+     return $result->row_array()['item'];
+    }
+    public function submitorder($data)
+    {
+        $data1['Eid']=$data['Eid'];
+        $data1['date']= $data['date'];
+        $res=$this->db->get_where('lunchorder',$data1);
+        if ($res->num_rows() > 0)
+        {
+            return false;
+        }
+        {
+            $result=$this->db->insert('lunchorder',$data);
+            return $result;
+        }
+    
+      
+       
+    }
+
+
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 
     public function fetchBreaktbl($data,$tblname)
     {

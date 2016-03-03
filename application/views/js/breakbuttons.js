@@ -313,9 +313,13 @@ function showPointsOnLoad()
 							});					 		
                                 $('#msgbreak').html('');
 
+<<<<<<< HEAD
                                 calenderFbreak();
 								calenderSbreak();
 								calenderLbreak();
+=======
+
+>>>>>>> dbb86bf90c4ec609038235eb55762e3f34ef5edb
 					 		
 						}
 				 	
