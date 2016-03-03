@@ -3,6 +3,7 @@
 
 <?php include 'header.php';?>
 
+
 <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -21,7 +22,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">Home</a>
-            </div>
+            </div>  
             <form action="Admin/logout" method="post">
                 
                             <input type="submit" value="logout" class="btn btn-default pull-right">
@@ -70,6 +71,14 @@
 
 
     <section id="intro" class="intro-section">
+<!-- get the selected date for events -->
+
+<input type='hidden' value='<?php echo $str;?>' id='event_date'>
+
+<!-- get the selected date for events -->
+
+
+
 
         <div class="container-fluid">
             <div class="row">
@@ -84,15 +93,20 @@
 
                               <a class="btn btn-default page-scroll" href="#employeelate">Go To Employee Management!</a>
 
-
+                            
                           </div>
                           <div class="col-sm-4">
 
-                            
+                             <?php if(!empty($event_info_tm)) 
+                            {
+                              echo '<img src="'.base_url().'application/views/img/bell_icon.jpg" alt=" " title="Tomorrow A new Event There!! check On the calendar!!">';
+                            }
+
+                            ?>
                             <input type="button" value="Change Date" id="datepicker" class="btn btn-warning">
-
+                            
                           </div>
-
+                           
                          </div>           
                 </div>
             </div>
@@ -101,6 +115,54 @@
         
         </br>
         </br>
+                <!-- event notifications -->
+               
+                <div class="container-fluid">
+                <div class="row">
+
+                      <div class="col-sm-12">
+                     <div id='event_spcl' <?php if(empty($event_info)) { ?> style='display:none;' <?php } ?> >
+                    <strong>Today's Events</strong>
+                    
+                    <div class="col-sm-12 table-responsive">
+                        <table class="table table-bordered" >
+                            <thead>
+                              <tr>
+                                <th>Employee Name</th>
+                                <th>Date</th>
+                                <th>Event</th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody id="eventdiv">
+                           
+                              
+                            <?php  if(!empty($event_info)) {
+
+                              foreach($event_info as $results)
+                              {
+                                echo "<tr class='info'>
+                <td>".$results['name']."</td>
+
+                <td>".date('d/m/Y',strtotime($results['date']))."</td>
+                <td>".$results['event_informations']."</td>
+                  </tr>";
+                              }
+                            }?>
+                          
+                            </tbody>
+
+                          </table>
+                      
+
+                       
+                   </div>
+                </div>
+                </div>  </div>
+                    
+                <!-- event notifications -->
+        <br>
+        <br>        
             <div class="row">
               <div class="container-fluid">
                 <div class="col-sm-3">

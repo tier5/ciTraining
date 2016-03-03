@@ -182,12 +182,17 @@ function showEmpScomplete()
 }
 
 	
+var get_date=$('#event_date').val();
+var array = get_date.split(",");
 
-var events = [ 
-    { Title: "Five K for charity", Date: new Date("03/04/2016") }, 
-    { Title: "Dinner", Date: new Date("03/25/2016") }, 
-    { Title: "Meeting with manager", Date: new Date("03/01/2016") }
-];
+var disabledDays = [];
+    for (var i = 0; i < array.length; i++) {
+
+      disabledDays.push(array[i]);
+    }
+
+
+
 
 //=======================DATEPICKER=============================
 	 $("#datepicker").datepicker({
@@ -198,38 +203,43 @@ var events = [
     // The format the user actually sees
     dateFormat: "dd/mm/yy",
 
-     beforeShowDay: function(date) {
-        var result = [true, '', null];
-        var matching = $.grep(events, function(event) {
-            return event.Date.valueOf() === date.valueOf();
-        });
-        
-        if (matching.length) {
-            result = [true, 'highlight', null];
-        }
-        return result;
-    },
-    onSelect: function(dateText) {
-        var date,
-            selectedDate = new Date(dateText),
-            i = 0,
-            event = null;
-        
-        while (i < events.length && !event) {
-            date = events[i].Date;
+   
 
-            if (selectedDate.valueOf() === date.valueOf()) {
-                event = events[i];
+         beforeShowDay: function(date) {
+            var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+            for (i = 0; i < disabledDays.length; i++) {
+                if($.inArray(y + '-' + (m+1) + '-' + d,disabledDays) != -1) {
+                    //return [false];
+                    return [true, 'highlight', ''];
+                }
             }
-            i++;
-        }
-        if (event) {
-            alert(event.Title);
-        }
-    },
+            return [true];
+
+        },
 
 
     onSelect: function (date) {
+
+
+    	/* 03.03.2016 */
+
+            $.post('Admin/empEventcheck',{optdate: date}, function(data){
+            
+            if(data.length>1)
+            {
+			$('#event_spcl').show();
+			$('#eventdiv').html(data);
+		    }
+		    else
+		    {
+		    	
+		    	$('#event_spcl').hide();
+		    	$('#eventdiv').html('');
+		    }
+		});
+
+
+    	/* 03.03.2016 */
 
     	//a=1;
 

@@ -44,8 +44,28 @@ class Admin extends CI_Controller
 
 		if ($this->session->userdata('adminid'))
 		{
+			$data=array();
+			$event_date=array();
+			$event_info=$this->AdminModel->fetch_data('tbl_event_informations');
+			/* events data */
+            foreach($event_info as $infos)
+            {
+            	$date=date('Y-n-j',strtotime($infos['date']));
+                array_push($event_date,$date);
+            }
+            /* events data */
+            $select_date=date('Y-m-d');
+            $tomorrow=time()+(24*3600);
+            $date_tomorrow=date('Y-m-d',$tomorrow);
 
-			$this->load->view('adminview');
+            $where_tm=array('tbl_event_informations.date'=>$date_tomorrow);
+            $data['event_info_tm']=$this->AdminModel->FngetAlldata('tbl_event_informations',$where_tm);
+
+
+            $where=array('tbl_event_informations.date'=>$select_date);
+            $data['event_info']=$this->AdminModel->FngetAlldata('tbl_event_informations',$where);
+            $data['str']=implode(',',$event_date);
+			$this->load->view('adminview',$data);
 		}
 		
 		else
@@ -191,6 +211,37 @@ class Admin extends CI_Controller
 			
 		}
 		
+	}
+
+
+	public function empEventChk()
+	{
+		 //$select_date=date('Y-m-d',strtotime($this->date));
+		//11/03/2016
+		 $get_date=$this->date;
+		
+		 $exp_dat=explode('/',$get_date);
+		// echo '<pre>';print_r($exp_dat);
+		 
+		 $select_date=$exp_dat[2].'-'.$exp_dat[1].'-'.$exp_dat[0];
+		 $next_d=strtotime($select_date)+(24*3600);
+		 $date_tomorrow=date('Y-m-d',$next_d);
+         $where_tm=array('tbl_event_informations.date'=>$date_tomorrow);
+         $event_tomorrow=$this->AdminModel->FngetAlldata('tbl_event_informations',$where_tm);
+		 $where=array('tbl_event_informations.date'=>$select_date);
+		 $get_all_events=$this->AdminModel->FngetAlldata('tbl_event_informations',$where);
+		 //echo '<pre>';print_r($get_all_events);
+		 $result='';
+		       foreach($get_all_events as $results)
+		       {
+				$result.= "<tr class='info'>
+                <td>".$results['name']."</td>
+
+                <td>".date('d/m/Y',strtotime($results['date']))."</td>
+                <td>".$results['event_informations']."</td>
+              		</tr>";
+              	}
+              	echo $result;
 	}
 
 	public function empFbreak()
@@ -540,6 +591,12 @@ public function empClockInDateChk()
 {
 		$this->empClockIn();
 }
+
+public function empEventcheck()
+{
+	$this->empEventChk();	
+}
+
 
 public function empSbreakDateChk()
 {

@@ -198,6 +198,22 @@
           $this->db->where($data);
           $this->db->delete($table);
       }
+      public function fetch_data($tbl,$where=null)
+      {
+       $result = $this->db->get($tbl);
+          return $result->result_array();
+       // echo $this->db->last_query();exit;
+      }
+      
+       public function FngetAlldata($tbl,$where=null)
+      {
+        $this->db->select('tbl_event_informations.*,employee.name');
+        $this->db->where($where);
+        $this->db->join('employee','employee.id =tbl_event_informations.Eid','inner');
+        $result=$this->db->get($tbl);
+        return $result->result_array();
+      // echo $this->db->last_query();exit;
+      }
 
       
       
