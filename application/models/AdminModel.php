@@ -222,6 +222,84 @@
           }
 
       }
-      
+
+      public function showshop($data)
+      {
+
+        $result= $this->db->get_where('items',$data);
+        return $result->result();
+      }   
+
+      public function addshop($data)
+      {
+        $result=$this->db->insert('items',$data);
+        if($result)
+              {
+                 return true;
+              }
+             else
+              {
+                 return false;
+              }
+      }
+
+      public function deleteshopitem($data)
+      {
+
+         $this->db->where($data);
+         
+         if($this->db->delete('items'))
+          {
+            return true;
+          }
+
+      }
+      public function deleteshop($data1)
+      {
+          $this->db->where($data1);
+         
+         if($this->db->delete('items'))
+          {
+            return true;
+          }
+      }
+
+
+      public function showitemsbyshop($data)
+      {
+        $result= $this->db->get_where('items',$data);
+        return $result->result();
+      }
+
+      public function deleteitems($data)
+      {
+        $this->db->where($data);
+         
+         if($this->db->delete('items'))
+          {
+            return true;
+          }
+      }
+
+      public function additems($data)
+      {
+        $result=$this->db->insert('items',$data);
+        if($result)
+              {
+                 return true;
+              }
+             else
+              {
+                 return false;
+              }
+      }
+
+      public function showshopname($data)
+      {
+        $result= $this->db->get_where('items',$data);
+        return $result->row_array();
+
+      }
+
    } 
 ?> 

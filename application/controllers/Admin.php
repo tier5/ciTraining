@@ -726,11 +726,83 @@ class Admin extends CI_Controller
     	return $result;
     }
     
-    public function emplunchorder()
+    public function addlunchitems()
 	{
 
-		$this->load->view('emplunchorder');
+		$this->load->view('addlunchitems');
 	}
 
+	public function showshop()
+	{
+
+		$data['parent_id']=0;
+		$result=$this->AdminModel->showshop($data);
+		foreach ($result as $row) 
+       {
+            echo $row->Lnid.",".$row->item."/";
+       }
+	}
+
+	public function addshop()
+	{
+		extract($_POST);
+		$data['item']=$addshop;
+		$data['cost']=0;
+		$data['limit']=0;
+		$data['parent_id']=0;
+		$result=$this->AdminModel->addshop($data);
+		print_r($result);
+	}
+    
+    public function deleteshop()
+    {
+    	extract($_POST);
+    	$data['parent_id']=$shopid;
+    	$data1['Lnid']=$shopid;
+    	$result=$this->AdminModel->deleteshopitem($data);
+    	$result1=$this->AdminModel->deleteshop($data1);
+    	//print_r($result);
+    	print_r($result1);
+
+    }
+
+    public function showitemsbyshop()
+    {
+    	extract($_POST);
+    	$data['parent_id']=$shopid;
+    	$result=$this->AdminModel->showitemsbyshop($data);
+        //print_r($result);
+        foreach ($result as $row) 
+       {
+            echo $row->Lnid.",".$row->item.",".$row->cost.",".$row->limit.",".$row->parent_id."/";
+       }
+    }
+
+    public function showshopname()
+    {
+    	extract($_POST);
+        $data['Lnid']=$shopid;
+        $result=$this->AdminModel->showshopname($data);
+        print_r($result['item']);
+    }
+    public function deleteitems()
+    {
+    	extract($_POST);
+    	$data['Lnid']=$itemid;
+    	$result=$this->AdminModel->deleteitems($data);
+    	print_r($result);
+    }
+
+    public function additems()
+    {
+    	extract($_POST);
+    	$data['item']=$newitems;
+    	$data['cost']=$newcost;
+    	$data['limit']=$newlimit;
+    	$data['parent_id']=$parent;
+    	$result=$this->AdminModel->additems($data);
+    	print_r($result);
+
+    }
 
 }

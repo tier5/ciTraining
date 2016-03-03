@@ -32,7 +32,7 @@
                         <a class="page-scroll" href="#todaysorder">Today's Order</a>
                     </li>
                     <li>
-                        <a href="emplunchorder">Employee's Lunch Order</a>
+                        <a href="addlunchitems">Add New Items</a>
                     </li>
                 </ul>  
             </div>
@@ -66,7 +66,7 @@
             	              <td><strong>Lunch Item</strong></td>
             	              <td><strong>Cost</strong></td>
             	              <td><strong><button id="deletallorder" class="btn btn-danger btn-md glyphicon glyphicon-trash" data-target="#cnfrmdltlunchorder" data-toggle="modal" >Delete All</button></strong></th>
-            	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print">Print All</button></strong></th>
+            	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print" data-target="#printorderall" data-toggle="modal">Print All</button></strong></th>
                           </tr>
                         </thead>
                         <tbody id="lunchlist" align="center">
@@ -111,6 +111,29 @@
             </div>
             <div class="modal-footer"></div>           
           </div>  
+        </div>
+      </div>
+
+
+
+      <div class="modal fade" id="printorderall" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title printconfirm" align="center"><strong>Print</strong></h4>
+              </div>
+              <div class="modal-body">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+
+                
+
+                </div>
+                <div class="col-sm-1"></div>
+              </div>  
+              <div class="modal-footer"></div>            
+          </div>     
         </div>
       </div>
     

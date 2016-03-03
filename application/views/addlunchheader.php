@@ -41,19 +41,13 @@
     <![endif]-->
 
     <!-- jQuery -->
-    <script src="<?php echo base_url().'application/views/js/jquery.js'?>"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url().'application/views/js/bootstrap.min.js'?>"></script>
 
     <!-- Scrolling Nav JavaScript -->
-    <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
-    <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
-
-    <script src="<?php echo base_url().'application/views/js/lateview.js'?>"></script>
-    <script src="<?php echo base_url().'application/views/js/lunchorderadmin.js'?>"></script>
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-  
-    
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/addlunch.js'?>"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/i18n/jquery-ui-i18n.min.js"></script>
 </head>
