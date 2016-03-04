@@ -33,7 +33,7 @@
                         $('#clockintime1').html('');*/
                         if($.trim(data))
                         {
-
+                          
                             data = data.split(',');
 
                             $('#clockintime').html(data[0]);

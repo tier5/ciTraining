@@ -113,10 +113,11 @@ class Dashboard extends CI_Controller {
 	}
 	public function clockin()
 	{
+
 		extract($_POST);
 		if (isset($btn)) 
 		{
-			//echo "hiii";
+			
 			//$day=date('l');
 			$date=date('d-m-y');
 			$time= date('h:i:s');
