@@ -309,6 +309,7 @@ class EmployeeModel extends CI_model
     {
         $data1['Eid']=$data['Eid'];
         $data1['date']= $data['date'];
+        $data1['status']= 0;
         $res=$this->db->get_where('lunchorder',$data1);
         if ($res->num_rows() > 0)
         {
@@ -319,6 +320,8 @@ class EmployeeModel extends CI_model
             return $result;
         } 
     }
+
+    
 }
 
 

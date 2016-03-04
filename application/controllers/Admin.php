@@ -571,6 +571,9 @@ class Admin extends CI_Controller
 	{
 		$this->load->view('lunchorderview');
 	}
+
+	
+
 	public function allLateRecord()
 	{
 		$data['status']=0;
@@ -798,6 +801,190 @@ public function deductPointCustomReason()
 
 
 }
+
+	public function addEventview()
+	{
+		//$this->load->view('eventview');
+		$result['info_event'] = $this->AdminModel->FngetAlldata('tbl_event_informations','','asc');
+		//print_r($result);
+		$result['employeeinfo'] =$this->AdminModel->fetch_data('employee');
+		$this->load->view('eventview',$result);
+	}
+
+	public function newEventInsert()
+	{
+
+		//$this->form_validation->set_rules('empId', 'Employee Name', 'required');
+		$this->form_validation->set_rules('event_info', 'Event', 'required');
+		$this->form_validation->set_rules('date', 'Date', 'required');
+
+		if ($this->form_validation->run() == TRUE)
+		{
+			if($_POST)
+			{
+				//echo'<pre>';print_r($_POST);exit;
+				$emp_id=$this->input->post('empId');
+				for($i=0;$i<count($emp_id);$i++)
+				{
+				$insert['Eid']=$emp_id[$i];
+				$insert['event_informations']=$this->input->post('event_info');
+				$insert['date']=date('Y-m-d',strtotime($this->input->post('date')));
+
+				$result = $this->AdminModel->insert('tbl_event_informations',$insert);
+                
+                }
+                if($result)
+                {
+                	$this->session->set_userdata('s_message','New Event Added');
+                	redirect('Admin/addEventview');
+                }
+
+			}
+			else
+			{
+				redirect('Admin/addEventview');
+			}
+		}
+		else
+		{
+			$this->session->set_userdata('e_message','Sorry Not Added');
+			redirect('Admin/addEventview');
+		}
+
+
+	}
+
+	public function delete_event($id)
+	{
+		//$where=array('EventId'=>$id);
+		$where['EventId'] = $id;
+		$result = $this->AdminModel->delete('tbl_event_informations',$where);
+		$this->session->set_userdata('s_message','Event Has Been Deleted');
+			redirect('Admin/addEventview');
+
+	}
+
+	public function showorder()
+    {
+    	extract($_POST);
+    	//echo $optdate;
+       $data['date']=$this->date;
+       $data['status']=0;
+       $result = $this->AdminModel->showorder($data);
+       foreach ($result as $row) 
+       {
+       	$data1['id']=$row->Eid;
+       	$name = $this->AdminModel->showName($data1);
+       	//print_r($name);
+       	echo $row->Liid.",".$row->Eid.",".$name.",".$row->date.",".$row->shopname.",".$row->items.",".$row->cost."?";
+       }
+    }
+
+    public function dltordr()
+    {
+        extract($_POST);
+    	$data['Liid']=$orderid1;
+    	$data['status']=0;
+    	$data1['status']=1;
+    	$result=$this->AdminModel->dltordr($data,$data1);
+    	if($result)
+    	{
+           print_r("Lunch Order Deleted Sucessfully");
+    	}
+    	else
+    	{
+          print_r("Something Wrong!!!!");
+    	}
+    }
+
+    public function dltallordr()
+    {
+    	//echo 'Hello';
+    	extract($_POST);
+    	$data['date']=$this->date;
+    	$result=$this->AdminModel->dltallordr($data);
+    	return $result;
+    }
+    
+    public function addlunchitems()
+	{
+
+		$this->load->view('addlunchitems');
+	}
+
+	public function showshop()
+	{
+
+		$data['parent_id']=0;
+		$result=$this->AdminModel->showshop($data);
+		foreach ($result as $row) 
+       {
+            echo $row->Lnid.",".$row->item."/";
+       }
+	}
+
+	public function addshop()
+	{
+		extract($_POST);
+		$data['item']=$addshop;
+		$data['cost']=0;
+		$data['limit']=0;
+		$data['parent_id']=0;
+		$result=$this->AdminModel->addshop($data);
+		print_r($result);
+	}
+    
+    public function deleteshop()
+    {
+    	extract($_POST);
+    	$data['parent_id']=$shopid;
+    	$data1['Lnid']=$shopid;
+    	$result=$this->AdminModel->deleteshopitem($data);
+    	$result1=$this->AdminModel->deleteshop($data1);
+    	//print_r($result);
+    	print_r($result1);
+
+    }
+
+    public function showitemsbyshop()
+    {
+    	extract($_POST);
+    	$data['parent_id']=$shopid;
+    	$result=$this->AdminModel->showitemsbyshop($data);
+        //print_r($result);
+        foreach ($result as $row) 
+       {
+            echo $row->Lnid.",".$row->item.",".$row->cost.",".$row->limit.",".$row->parent_id."/";
+       }
+    }
+
+    public function showshopname()
+    {
+    	extract($_POST);
+        $data['Lnid']=$shopid;
+        $result=$this->AdminModel->showshopname($data);
+        print_r($result['item']);
+    }
+    public function deleteitems()
+    {
+    	extract($_POST);
+    	$data['Lnid']=$itemid;
+    	$result=$this->AdminModel->deleteitems($data);
+    	print_r($result);
+    }
+
+    public function additems()
+    {
+    	extract($_POST);
+    	$data['item']=$newitems;
+    	$data['cost']=$newcost;
+    	$data['limit']=$newlimit;
+    	$data['parent_id']=$parent;
+    	$result=$this->AdminModel->additems($data);
+    	print_r($result);
+
+    }
+
 
 
 

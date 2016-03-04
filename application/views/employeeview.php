@@ -62,8 +62,8 @@
                         <div class="row">
 
                             <div class="col-sm-4">
-<!--                              <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder">Lunch Order</button>
- -->                            </div>
+                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder">Lunch Order</button>
+                            </div>
                             <div class="col-sm-4">
                                 
                                 
