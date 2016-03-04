@@ -242,6 +242,113 @@
       {
           $result = $this->db->get('tbl_event_informations');
       }*/
-      
+      public function showorder($data)
+      {
+          $result = $this->db->get_where('lunchorder',$data);
+          return $result->result();
+      }
+
+      public function dltordr($data, $data1)
+      {
+        $d=$this->db->where($data);
+          $res=$this->db->update('lunchorder',$data1);
+          if($res)
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          } 
+      }
+
+      public function dltallordr($data)
+      {
+         $this->db->where($data);
+         
+         if($this->db->delete('lunchorder'))
+          {
+            return true;
+          }
+
+      }
+
+      public function showshop($data)
+      {
+
+        $result= $this->db->get_where('items',$data);
+        return $result->result();
+      }   
+
+      public function addshop($data)
+      {
+        $result=$this->db->insert('items',$data);
+        if($result)
+              {
+                 return true;
+              }
+             else
+              {
+                 return false;
+              }
+      }
+
+      public function deleteshopitem($data)
+      {
+
+         $this->db->where($data);
+         
+         if($this->db->delete('items'))
+          {
+            return true;
+          }
+
+      }
+      public function deleteshop($data1)
+      {
+          $this->db->where($data1);
+         
+         if($this->db->delete('items'))
+          {
+            return true;
+          }
+      }
+
+
+      public function showitemsbyshop($data)
+      {
+        $result= $this->db->get_where('items',$data);
+        return $result->result();
+      }
+
+      public function deleteitems($data)
+      {
+        $this->db->where($data);
+         
+         if($this->db->delete('items'))
+          {
+            return true;
+          }
+      }
+
+      public function additems($data)
+      {
+        $result=$this->db->insert('items',$data);
+        if($result)
+              {
+                 return true;
+              }
+             else
+              {
+                 return false;
+              }
+      }
+
+      public function showshopname($data)
+      {
+        $result= $this->db->get_where('items',$data);
+        return $result->row_array();
+
+      }
    } 
 ?> 

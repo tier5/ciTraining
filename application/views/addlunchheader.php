@@ -15,13 +15,21 @@
     var BASE_URL = '<?php echo base_url(); ?>';
 
     </script>
+    
 
     <link href="<?php echo base_url().'application/views/css/scrolling-nav.css'?>" rel="stylesheet">
-
+    
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    
+     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
 
+
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/i18n/jquery-ui-i18n.min.js"></script>
     <!-- Custom CSS -->
     
 
@@ -33,18 +41,13 @@
     <![endif]-->
 
     <!-- jQuery -->
-    <script src="<?php echo base_url().'application/views/js/jquery.js'?>"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url().'application/views/js/bootstrap.min.js'?>"></script>
 
     <!-- Scrolling Nav JavaScript -->
-    <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
-    <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
-
-    <script src="<?php echo base_url().'application/views/js/lateview.js'?>"></script>
-    <script src="<?php echo base_url().'application/views/js/lunchorderadmin.js'?>"></script>
-       <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
-    
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/addlunch.js'?>"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/i18n/jquery-ui-i18n.min.js"></script>
 </head>
