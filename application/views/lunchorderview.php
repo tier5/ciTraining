@@ -56,6 +56,7 @@
           	<div class='row'>
           		 <div class="col-sm-1"></div>
                <div class="col-sm-10" id="placedordr" align="center">
+                
                     <table class="table table-bordered" >
                         <thead>
                           <tr>

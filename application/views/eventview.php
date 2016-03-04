@@ -100,7 +100,7 @@ $this->session->set_userdata('e_message',' ');
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" align="center" id="myModalLabel">Add New Event</h4>
       </div>
       <div class="modal-body">
       	<form action="newEventInsert" method="post" id="eventForm">

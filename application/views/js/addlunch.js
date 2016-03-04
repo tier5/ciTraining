@@ -34,6 +34,9 @@ $("#newitem").hide();
               if($.trim(data))
               {
                   window.location.reload();
+                  //showallshop();
+                  //alert('added shop');
+                  //showallshop();
                  // $('#errormsg').html("Shop Name Added Sucessfully!!");
               }
               else
@@ -67,7 +70,7 @@ $("#newitem").hide();
 //================= Show Items according to Shop=======================================================
     window.lunchshopid = function(shopid)
     {
-     
+      GLOBAL_SHOPID=shopid;
       var shopid=shopid;
       jQuery.noConflict();
       showallitems ="";
@@ -99,8 +102,10 @@ $("#newitem").hide();
                    //alert(shopid);
                      if($.trim(data))
                      {
-                        $('#errornew').html("Lunch Items Added Sucessfully!!");
+                        //$('#errornew').html("Lunch Items Added Sucessfully!!");
                         $("#newitem").hide();
+                        showitemsall(GLOBAL_SHOPID);
+                        $('#errornew').html("Lunch Items Added Sucessfully!!");
                      }
                      else
                      {
@@ -129,7 +134,8 @@ $("#newitem").hide();
              if($.trim(data))
             {
                 
-                      //showitemsall(shopid);  
+                      showitemsall(GLOBAL_SHOPID); 
+                      $('#errornew').html("Item Deleted Successfully!!"); 
             }
         });
     }
@@ -137,6 +143,8 @@ $("#newitem").hide();
  
 function showitemsall(shopid)
 {
+  $('#shopitems').html("");
+  var showallitems="";
   $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:shopid}, function(data){
       if($.trim(data))
           {   

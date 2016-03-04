@@ -11,6 +11,7 @@ $(document).ready(function(){
 		    	//alert(data);
 	        if($.trim(data))
 	        {
+            $('#placedordr').show();
                 var showdiv = "";
 		   	    var data1=data.split("?");
 			    for(i=0; i<data1.length-1; i++)
@@ -27,7 +28,8 @@ $(document).ready(function(){
 		    else
 		    {
 		    
-		    $('#placedordr').html('No Lunch Order!!!!');
+		      $('#lunchlist').html('');
+          $('#placedordr').hide();
 		    }
 	    });
     }
@@ -68,6 +70,7 @@ $(document).ready(function(){
         onSelect: function(date)
         {
         //alert(date);
+        $('#placedordr').show();
           $.post(BASE_URL+'Admin/showorder', {optdate:date}, function(data){
               if($.trim(data))
               {
@@ -85,7 +88,8 @@ $(document).ready(function(){
               }
               else
               {
-                $('#placedordr').html('No Lunch Order!!!!');
+                $('#lunchlist').html('');
+                $('#placedordr').hide();
               }
           });
         },
