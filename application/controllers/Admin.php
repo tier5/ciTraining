@@ -241,7 +241,15 @@ class Admin extends CI_Controller
                 <td>".$results['event_informations']."</td>
               		</tr>";
               	}
-              	echo $result;
+
+              	if(empty($event_tomorrow))
+              	{
+              	echo $result.'+'.count($event_tomorrow);
+                }
+                else
+                {
+                  echo $result.'+'.count($event_tomorrow);
+                }
 	}
 
 	public function empFbreak()

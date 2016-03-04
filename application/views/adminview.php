@@ -96,13 +96,17 @@
                             
                           </div>
                           <div class="col-sm-4">
+                            <div id='notify'>
 
-                             <?php if(!empty($event_info_tm)) 
+                             <?php 
+                           
+                            if(!empty($event_info_tm)) 
                             {
-                              echo '<img src="'.base_url().'application/views/img/bell_icon.jpg" alt=" " title="Tomorrow A new Event There!! check On the calendar!!">';
+                              echo '<img src="'.base_url().'application/views/img/bell_icon.jpg" alt=" " title="Tomorrow A new Event Is There!! check On the calendar!!">';
                             }
 
                             ?>
+                            </div>
                             <input type="button" value="Change Date" id="datepicker" class="btn btn-warning">
                             
                           </div>

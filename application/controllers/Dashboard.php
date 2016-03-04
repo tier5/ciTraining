@@ -65,17 +65,14 @@ class Dashboard extends CI_Controller {
 			//$this->load->view('adminview');
 			
 			$adminsession['adminid'] = $result['id'];
-
-			$this->session->set_userdata($adminsession);
+            $this->session->set_userdata($adminsession);
 			redirect('Admin');
-
-			
-			
-			
+	
 		}
 		else
 		{
-			echo "wrong name or password";
+			$this->session->set_userdata('e_message','Invalid Username or Password');
+			redirect('Dashboard');
 		}
 		
 	}
@@ -110,7 +107,8 @@ class Dashboard extends CI_Controller {
 		}
 		else
 		{
-			echo "wrong name or password";
+			$this->session->set_userdata('e_message','Invalid Username or Password');
+			redirect('Dashboard');
 		}
 	}
 	public function clockin()

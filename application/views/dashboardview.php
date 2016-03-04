@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <?php include 'dashboardheader.php';?>
 
 
 
 <body id="page-top">
+
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -45,6 +47,14 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
+
+                <?php
+                 if($this->session->userdata('e_message')!='')
+                 {
+                   echo '<div style="color:red;">'.$this->session->userdata('e_message').'</div>';
+                   $this->session->set_userdata('e_message','');
+                 }   
+                ?>
                 <h1>WELCOME TO Tier5</h1>
                 <hr>
                 
@@ -81,12 +91,12 @@
             </div>
             <div class="modal-body">
               
-                    <form action="<?php echo base_url().'index.php/Dashboard/adminlogin'; ?>" method="post">
+                    <form action="<?php echo base_url().'Dashboard/adminlogin'; ?>" method="post" id='admin_login'>
                         <div class="form-group">
-                            <input id="adminname" name="name" type="text" class="form-control input-lg" placeholder="user_name">
+                            <input id="adminname" name="name" type="text" class="form-control input-lg required" placeholder="user_name">
                         </div>
                         <div class="form-group">
-                            <input id="adminpassword" type="password" name="password" class="form-control input-lg" placeholder="Password">
+                            <input id="adminpassword" type="password" name="password" class="form-control input-lg required" placeholder="Password">
                         </div>
                         
                         <div class="form-group">
@@ -122,12 +132,12 @@
             </div>
             <div class="modal-body">
                 
-                    <form action="<?php echo base_url().'index.php/Dashboard/employeelogin'; ?>" method="post">
+                    <form action="<?php echo base_url().'Dashboard/employeelogin'; ?>" method="post" id='emp_login'>
                         <div class="form-group">
-                            <input id="employeename" name="name" type="text" class="form-control input-lg" placeholder="user_name">
+                            <input id="employeename" name="name" type="text" class="form-control input-lg required" placeholder="user_name">
                         </div>
                         <div class="form-group">
-                            <input password="employeepassword" name="password" type="password" class="form-control input-lg" placeholder="Password">
+                            <input password="employeepassword" name="password" type="password" class="form-control input-lg required" placeholder="Password">
                         </div>
                         
                         <div class="form-group">

@@ -50,5 +50,14 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/dashboardbuttons.js';?>"></script>
 
-
+    
+<script type="text/javascript" src='http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.js'></script>
+<script type="text/javascript">
+    
+    $( document ).ready(function() {
+     $('#admin_login').validate();
+     $('#emp_login').validate();
+     
+});
+</script>
 </head>

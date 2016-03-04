@@ -224,14 +224,34 @@ var disabledDays = [];
     	/* 03.03.2016 */
 
             $.post('Admin/empEventcheck',{optdate: date}, function(data){
-            
-            if(data.length>1)
+           // alert(data);
+            var arr=data.split('+');
+
+            if(arr[0].length>1)
             {
+            	if(arr[1]>0)
+            	{
+            	$('#notify').show();
+            	$('#notify').html('<img src="application/views/img/bell_icon.jpg" alt=" " title="Tomorrow A new Event Is There!! check On the calendar!!">');
+            	}
+            	else
+            	{
+            	$('#notify').hide();
+            	}
 			$('#event_spcl').show();
 			$('#eventdiv').html(data);
 		    }
 		    else
 		    {
+		    	if(arr[1]>0)
+            	{
+            	$('#notify').show();
+            	$('#notify').html('<img src="application/views/img/bell_icon.jpg" alt=" " title="Tomorrow A new Event Is There!! check On the calendar!!">');
+            	}
+            	else
+            	{
+            	$('#notify').hide();
+            	}
 		    	
 		    	$('#event_spcl').hide();
 		    	$('#eventdiv').html('');
