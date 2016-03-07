@@ -479,11 +479,3 @@ $("#calender").datepicker({
 
 
 
-
-
-
-
-
-
-
-

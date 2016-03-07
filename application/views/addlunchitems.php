@@ -92,12 +92,21 @@
             </div>
              <div class="modal-body" align="center">
 
+               <div class="row" align="center"> 
+                   <div class="col-sm-1"></div>
+                   <div class="col-sm-10">
+                     <button class="btn btn-danger pull-right btn-xs" id="addnewitems">Add New Items</button>
+
+                   </div>
+                   <div class="col-sm-1"></div>
+              </div>
+
               Shop Name:<span id="shopname"></span>
                   <br>
-                  <button class="btn btn-danger" id="addnewitems">Add New Items</button>
-                  <br>
-                  <br>
-              <div id="newitem" style="display:none;" >
+
+                  <div id="errornew"></div>
+            <div id="divload">
+              <div id="newitemdiv" style="display:none;" >
                          <table class="table table-bordered">
                             <thead align="center">
                               <tr>
@@ -118,7 +127,7 @@
                          </table>
                       
               </div>
-              <div id="errornew"></div>
+              
               <div id="showitem" >
                 <table class="table table-bordered">
                     <thead align="center">
@@ -134,6 +143,7 @@
                     </tbody>
                   </table>
                 </div>
+            </div>
           <div class="modal-footer">
            
           </div>

@@ -74,7 +74,7 @@
         //return $data;
         $result = $this->db->get_where('employee',$data);
 
-        $res = $result->row_array()['name'];
+        $res = $result->row_array()['propname'];
 
         return $res;
       }

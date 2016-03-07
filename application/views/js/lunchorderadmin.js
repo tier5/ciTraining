@@ -18,7 +18,7 @@ $(document).ready(function(){
 			    { 
 			      data2= data1[i].split(",");
 		          //alert(data2[0]);
-		          showdiv +='<tr><td>'+data2[3]+'</td><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[4]+'</td><td>'+data2[5]+'</td><td>'+data2[6]+'</td><td><button id="dlrlnh'+data2[0]+'" class="btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="dlt('+data2[0]+')"></button></td><td><button class="btn btn-danger btn-sm glyphicon glyphicon-print" onclick="myFunction('+data2[0]+')"></button></td></tr>';
+		          showdiv +='<tr><td id="date_'+$.trim(data2[0])+'">'+data2[3]+'</td><td >'+data2[1]+'</td><td id="name_'+$.trim(data2[0])+'">'+data2[2]+'</td><td id="shop_'+$.trim(data2[0])+'">'+data2[4]+'</td><td  id="items_'+$.trim(data2[0])+'">'+data2[5]+'</td><td id="cost_'+$.trim(data2[0])+'">'+data2[6]+'</td><td><button id="dlrlnh'+data2[0]+'" class="btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="dlt('+data2[0]+')"></button></td><td><button class="btn btn-danger btn-sm glyphicon glyphicon-print" onclick="myFunction('+data2[0]+')"></button></td></tr>';
 		          
 		          //$('#lunchlist').append('<tr><td>'+data2[1]+'</td><td>'+data2[0]+'</td><td></td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td>'+data2[4]+'</td><td></td></tr>');
 		        }
@@ -80,8 +80,8 @@ $(document).ready(function(){
                 { 
                   data2= data1[i].split(",");
                     //alert(data2[0]);
-                    showdiv +='<tr><td>'+data2[3]+'</td><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[4]+'</td><td>'+data2[5]+'</td><td>'+data2[6]+'</td><td><button id="dlrlnh'+data2[0]+'" class="btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="dlt('+data2[0]+')"></button></td><td><button class="btn btn-danger btn-sm glyphicon glyphicon-print" data-toggle="modal" data-target="#printorder"></button></td></tr>';
-                    //$('#lunchlist').append('<tr><td>'+data2[1]+'</td><td>'+data2[0]+'</td><td></td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td>'+data2[4]+'</td><td></td></tr>');
+                    showdiv +='<tr><td id="date_'+$.trim(data2[0])+'">'+data2[3]+'</td><td >'+data2[1]+'</td><td id="name_'+$.trim(data2[0])+'">'+data2[2]+'</td><td id="shop_'+$.trim(data2[0])+'">'+data2[4]+'</td><td  id="items_'+$.trim(data2[0])+'">'+data2[5]+'</td><td id="cost_'+$.trim(data2[0])+'">'+data2[6]+'</td><td><button id="dlrlnh'+data2[0]+'" class="btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="dlt('+data2[0]+')"></button></td><td><button class="btn btn-danger btn-sm glyphicon glyphicon-print" onclick="myFunction('+data2[0]+')"></button></td></tr>';
+                    
                 }
                 $('#nolunchorder').hide();
                 $('#lunchlist').html(showdiv);
@@ -97,11 +97,34 @@ $(document).ready(function(){
 
     window.myFunction = function(orderid1)
     {
-      //alert(orderid1);
-      //window.print();
-      //$("#printorder").modal();
-      $("#printorderall").modal('show');
+      $("#printsingleorder").modal('show');
+      var name=($('#name_'+orderid1).text());
+      var date=($('#date_'+orderid1).text());
+      var shop=($('#shop_'+orderid1).text());
+      var cost=($('#cost_'+orderid1).text());
+      var items=($('#items_'+orderid1).text());
+     // alert(name);
+      //alert(date);
+      //alert(shop);
+      //alert(cost);
+      //alert(items);
+      
+      $('#empname').html(name);
+      $('#emplunch').html(items);
+      $('#empdate').html(date);
+      $('#empcost').html(cost);
+      $('#empshop').html(shop);
+      
+    
     }
+
+    
+    $('#printfinal').click(function(){
+      
+
+    });
+
+  
  
 	  
 

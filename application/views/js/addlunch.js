@@ -71,62 +71,62 @@ $("#newitem").hide();
     window.lunchshopid = function(shopid)
     {
       GLOBAL_SHOPID=shopid;
-      var shopid=shopid;
+      //alert(GLOBAL_SHOPID);
       jQuery.noConflict();
+
       showallitems ="";
       $('#shopitems').html("");
       $('#additems').modal('show');
-      $("#newitem").hide();
+      $("#showitem").show();
+      $("#newitemdiv").hide();
 
       $.post(BASE_URL+'Admin/showshopname',{shopid:shopid}, function(data){
         $('#shopname').html(data);
+        
       });
-      showitemsall(shopid);
+      showitemsall(GLOBAL_SHOPID);
 
 //=====================Add New Items========================================
-       $("#addnewitems").click(function(){
-        $("#newitem").show();
-      
-             //$('#shopname').html(data);
-            $('#newitems').html("");
-            $('#newcost').html("");
-            $('#newlimit').html("");
-            $("#add").click(function(){
-               var newitems=$('#newitems').val();
-               var newcost=$('#newcost').val();
-               var newlimit=$('#newlimit').val();
+      $("#addnewitems").click(function()
+      {
+        
+        $("#newitemdiv").show();
+           
+            $('#newitems').val("");
+            $('#newcost').val("");
+            $('#newlimit').val("");
+      });
 
-               if($.trim(newitems) && $.trim(newcost) && $.trim(newlimit))
-               {
+//========================On Click On "ADD" bUTTON========================================================================
+  $("#add").click(function(){
+              var newitems=$('#newitems').val();
+              var newcost=$('#newcost').val();
+              var newlimit=$('#newlimit').val();
+                 
+                 if($.trim(newitems) && $.trim(newcost) && $.trim(newlimit))
+                 {
                   $.post(BASE_URL+'Admin/additems',{parent:shopid,newitems:newitems,newcost:newcost, newlimit:newlimit}, function(data){
                    //alert(shopid);
                      if($.trim(data))
-                     {
+                     {  
                         //$('#errornew').html("Lunch Items Added Sucessfully!!");
-                        $("#newitem").hide();
+                        $("#newitemdiv").hide();
                         showitemsall(GLOBAL_SHOPID);
                         $('#errornew').html("Lunch Items Added Sucessfully!!");
+                        $("#showitem").show(); 
+
                      }
                      else
                      {
                          $('#errornew').html("Try Again!!");
-                     }
-
-                   });
-         
-               }
-               else
-               {
-                $('#errornew').html("Fill All Fields Properly!!");
-               }
-
-            });
-         
-        
-        });  
-    }
-
-
+                     } 
+                  });
+                }
+                else
+                {
+                  $('#errornew').html("Fill All Fields Properly!!");
+                }
+  });
 //========================Delete Items====================================================================================
     window.deletitems = function(itemid)
     {
@@ -139,13 +139,14 @@ $("#newitem").hide();
             }
         });
     }
+  }
 //=======================================================================================================================
  
-function showitemsall(shopid)
+function showitemsall(GLOBAL_SHOPID)
 {
   $('#shopitems').html("");
   var showallitems="";
-  $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:shopid}, function(data){
+  $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:GLOBAL_SHOPID}, function(data){
       if($.trim(data))
           {   
                 
@@ -156,6 +157,7 @@ function showitemsall(shopid)
                       showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash" onclick="deletitems('+data2[0]+')">Delete</button></td></tr>';
                       $('#shopitems').html(showallitems);
                 }  
+
           }
          else
          {

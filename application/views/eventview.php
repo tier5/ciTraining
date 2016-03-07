@@ -6,7 +6,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-			$("#datepicker").datepicker({
+      $("#datepicker").datepicker({
         minDate: 0
       });
 $('#eventForm').validate();
@@ -44,16 +44,16 @@ $this->session->set_userdata('e_message',' ');
 ?>
 </div>
 <div class="container">
-	<div class="row">
-		<div class="col-sm-4"></div>
-		<div class="col-sm-4"><h2>Event List</h2></div>
-		<div class="col-sm-4">
+  <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4"><h2>Event List</h2></div>
+    <div class="col-sm-4">
 
-				<a data-toggle="modal" data-target="#myModal" style="cursor:pointer;">Add Event</a>
+        <a data-toggle="modal" data-target="#myModal" style="cursor:pointer;">Add Event</a>
 
-		</div>
+    </div>
 
-	</div>
+  </div>
   
  <div class="table-responsive">             
   <table class="table table-bordered">
@@ -69,27 +69,28 @@ $this->session->set_userdata('e_message',' ');
       
       <?php
 
-      		foreach ($info_event as $result) 
-      		{
-      			?>
+          foreach ($info_event as $result) 
+          {
+            ?>
 
       			<tr><td><?php echo $result['propname'];?></td>
 		        <td>
 		        	<?php echo date('d-m-Y',strtotime($result['date']));?> 
 		        </td>
 		        <td>
-            <?php echo $result['event_informations'];?>
-		        </td>
-            <td><a href='delete_event/<?php echo $result['EventId']?>' onclick="return confirm('Are You sure you want to delete this event?');">Delete</a></td>
-		      </tr>
 
-      			<?php } ?>
+            <?php echo $result['event_informations'];?>
+            </td>
+            <td><a href='delete_event/<?php echo $result['EventId']?>' onclick="return confirm('Are You sure you want to delete this event?');">Delete</a></td>
+          </tr>
+
+            <?php } ?>
       <!-- <tr>
         <td>John</td>
         <td>Doe</td>
         <td>john@example.com</td>
       </tr> -->
-     	
+      
     </tbody>
   </table>
   </div>
@@ -108,19 +109,19 @@ $this->session->set_userdata('e_message',' ');
         <h4 class="modal-title" align="center" id="myModalLabel">Add New Event</h4>
       </div>
       <div class="modal-body">
-      	<form action="newEventInsert" method="post" id="eventForm" >
+        <form action="newEventInsert" method="post" id="eventForm" >
 
         <div class="form-group">
         <label for="sel1">Select Employee:</label>
         <select name="empId[]" id="empId" class="form-control required" multiple>
-        	<option value=''>select</option>
-        	<?php
+          <option value=''>select</option>
+          <?php
 
-        		foreach ($employeeinfo as $value) { ?>
-        			<option value='<?php echo $value['id'];?>'><?php echo $value['name'];?></option>
-        		<?php }
+            foreach ($employeeinfo as $value) { ?>
+              <option value='<?php echo $value['id'];?>'><?php echo $value['name'];?></option>
+            <?php }
 
-        	 ?>
+           ?>
         </select>
         </div>
               <div class="col-md-12 col-sm-12"> 
