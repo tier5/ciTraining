@@ -877,7 +877,7 @@ public function deductPointCustomReason()
        foreach ($result as $row) 
        {
        	$data1['id']=$row->Eid;
-       	$name = $this->AdminModel->showName($data1);
+       	$name = $this->AdminModel->showpropName($data1);
        	//print_r($name);
        	echo $row->Liid.",".$row->Eid.",".$name.",".date('d/m/Y',strtotime($row->date)).",".$row->shopname.",".$row->items.",".$row->cost."?";
        }

@@ -151,24 +151,24 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title printconfirm" align="center"><strong>Print</strong></h4>
               </div>
-              <div class="modal-body">
+              <div class="modal-body" id="printdiv" >
                 <div class="col-sm-1"></div>
-                <div class="col-sm-10" id="printdiv" style="border: 2px solid black; " >
+                <div class="col-sm-10" style="border: 2px solid black;" >
                 
-                <div align="left"></div><div align="right">Shop Name:<span id="empshop"></span></div>
-                </br>
-                Employee Name:<span id="empname"></span>
-                <br>
-                <br>
-                Lunch Items:<span id="emplunch"></span><div align="right">Total Cost:<span id="empcost"></span></div>
+                      <div align="left"><img src="<?php echo base_url().'application/views/img/logo.png'?>" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"></span></div>
+                      </br>
+                      Employee Name:<span id="empname"></span>
+                      <br>
+                      <br>
+                      Lunch Items:<span id="emplunch"></span><div align="right">Total Cost:<span id="empcost"></span></div>
+                  
+                      Date:<span id="empdate"></span>
+                      </br>
+                      </br>
+                      </br>
+
+                      <div align="right"> Authorized Signature...............................................<img src="<?php echo base_url().'application/views/img/logo.png'?>" alt="" width="50px"  /></div>
                
-                Date:<span id="empdate"></span>
-               </br>
-                </br>
-                </br>
-
-                  <div align="center"> Authorized Signature............................</div>
-
                 </div>
                 <div class="col-sm-1"></div>
               </div>  

@@ -74,7 +74,7 @@
         //return $data;
         $result = $this->db->get_where('employee',$data);
 
-        $res = $result->row_array()['propname'];
+        $res = $result->row_array()['name'];
 
         return $res;
       }
@@ -349,6 +349,15 @@
         $result= $this->db->get_where('items',$data);
         return $result->row_array();
 
+      }
+       public function showpropName($data1)
+      {
+        //return $data;
+        $result = $this->db->get_where('employee',$data1);
+
+        $res = $result->row_array()['propname'];
+
+        return $res;
       }
    } 
 ?> 
