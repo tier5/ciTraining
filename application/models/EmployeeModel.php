@@ -10,7 +10,7 @@ class EmployeeModel extends CI_model
         $this->db->trans_start();
         $a = $this->db->get_where('attendance',$data2);
         $this->db->trans_complete();
-        //print_r($a->result());
+       
         if($this->db->trans_status() === FALSE)
         {
             return false;
@@ -320,6 +320,46 @@ class EmployeeModel extends CI_model
             return $result;
         } 
     }
+
+
+    public function FngetAlldata($tbl,$where=null,$orderby=null)
+      {
+        $this->db->select('tbl_event_informations.*,employee.name');
+       if($where)
+        {
+          $this->db->where($where);
+        }
+        if($orderby)
+        {
+          $this->db->order_by('date',$orderby);
+        }
+        $this->db->join('employee','employee.id =tbl_event_informations.Eid','inner');
+        $result=$this->db->get($tbl);
+        return $result->result_array();
+      // echo $this->db->last_query();exit;
+      }
+
+      public function pointalt1()
+   {
+       $date1=date('Y-m-01');
+       $date2=date('Y-m-t');
+       $this->db->where('date >= ',$date1);
+       $this->db->where('date <= ',$date2);
+        $this->db->where('status',0);
+         $this->db->where('Eid',$this->session->userdata('empid'));
+       $result= $this->db->get('tbl_late_emp');
+     //  echo $this->db->last_query();
+      // die;
+       //print_r($result->row_array());
+       if ($result->num_rows() > 0)
+       {
+           return $result->result_array();
+       }
+       else
+       {
+           return false;
+       }
+   }
 
     
 }
