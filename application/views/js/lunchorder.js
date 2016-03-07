@@ -42,35 +42,45 @@ function showfirstdiv()
 		  var totaldiv="";
 		    $('#totalitem').empty();
 		    $('#totalcost').html("00");
-	        
+	        $('.modal-body-tab1').hide();
+	        $('.modal-body-tab2').show();
 	        //var shopName=$('#selectshop_'+id).text();
-		    $.post('Employee/itemoption',{shopopt:shopid},function(data){  	
-	          	$('.modal-body-tab1').hide();
-	          	$('.modal-body-tab2').show();
-	          	var data1=data.split("/");
-	          	for(i=0; i<data1.length-1; i++)
-	          	{ 
-	          		data2= data1[i].split(',');
-	          		//alert(data2);
-	          		var arr = [data2[0],data2[2]];
-	          		console.log(arr);
-	                
-	                
-	                 var limit=data2[3];
-	                 //alert(limit);
-	                 var options="";
-	                 for(y=1;y<=limit;y++)
-	                 {
-	                 	//console.log(limit);
-	                 	options+='<option>'+y+'</option>';
-	                 	//limit--;
-	                 }
-	                 console.log('finished');
-	          		totaldiv +='<tr><td><input value="Add"  class="btn btn-warning btn-sm" type="button" id="btnadd_'+$.trim(data2[0])+'" onclick="b('+arr+')"></td><td id="itemname_'+$.trim(data2[0])+'">'+data2[1]+'</td><td id="itemcost_'+$.trim(data2[0])+'">'+data2[2]+'</td><td><select id="itemquantity_'+$.trim(data2[0])+'">'+options+'</select></td></tr>';
-	          	    $('#orderbody').html(totaldiv);
-	      
-	          	}
-	          });
+		    $.post('Employee/itemoption',{shopopt:shopid},function(data){  
+	         
+	         if($.trim(data)){
+				          	var data1=data.split("/");
+				          	for(i=0; i<data1.length-1; i++)
+				          	{ 
+				          		data2= data1[i].split(',');
+				          		//alert(data2);
+				          		var arr = [data2[0],data2[2]];
+				          		console.log(arr);
+				                
+				                
+				                 var limit=data2[3];
+				                 //alert(limit);
+				                 var options="";
+				                 for(y=1;y<=limit;y++)
+				                 {
+				                 	//console.log(limit);
+				                 	options+='<option>'+y+'</option>';
+				                 	//limit--;
+				                 }
+				                 console.log('finished');
+				          		totaldiv +='<tr><td><input value="Add"  class="btn btn-warning btn-sm" type="button" id="btnadd_'+$.trim(data2[0])+'" onclick="b('+arr+')"></td><td id="itemname_'+$.trim(data2[0])+'">'+data2[1]+'</td><td id="itemcost_'+$.trim(data2[0])+'">'+data2[2]+'</td><td><select id="itemquantity_'+$.trim(data2[0])+'">'+options+'</select></td></tr>';
+				          	    $('#orderbody').html(totaldiv);
+				      
+				          	}
+				}
+				else
+				{
+					$('#orderbody').empty();
+
+				}        
+				       
+	        });
+            
+            
 		    $.post('Employee/shopname',{shopopt:shopid},function(data){ 
 	        //alert(data);
 	        $('#shpname').text(data);
@@ -118,8 +128,9 @@ function showfirstdiv()
 		showfirstdiv();
 		$('#totalitem').empty();
 		$('#totalcost').html("00");
-		
 		$('.modal-body-tab2').hide();
+		$('#orderbody').empty();
+
 	});
 	$('#suborder').click(function(){
 		   var shopname=$('#shpname').text();
