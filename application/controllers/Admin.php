@@ -32,7 +32,7 @@ class Admin extends CI_Controller
 		}
 		else
 		{
-			$this->date = $this->date = date("d/m/Y");
+			$this->date = $this->date = date("Y-m-d");
 		}
 
 	}
@@ -492,7 +492,7 @@ class Admin extends CI_Controller
 		extract($_POST);
 
 		$data['Eid'] = $Eid;
-		$data['date']= date("d/m/Y");
+		$data['date']= date("Y-m-d");
 		
 		$data['late_time'] = 28800;
 		$data['late_in'] = "Absent";
@@ -824,6 +824,7 @@ public function deductPointCustomReason()
 			{
 				//echo'<pre>';print_r($_POST);exit;
 				$emp_id=$this->input->post('empId');
+				
 				for($i=0;$i<count($emp_id);$i++)
 				{
 				$insert['Eid']=$emp_id[$i];
@@ -833,9 +834,10 @@ public function deductPointCustomReason()
 				$result = $this->AdminModel->insert('tbl_event_informations',$insert);
                 
                 }
+
                 if($result)
                 {
-                	$this->session->set_userdata('s_message','New Event Added');
+                	$this->session->set_userdata('s_message','New Event Added Successfully.');
                 	redirect('Admin/addEventview');
                 }
 
@@ -856,6 +858,7 @@ public function deductPointCustomReason()
 
 	public function delete_event($id)
 	{
+
 		//$where=array('EventId'=>$id);
 		$where['EventId'] = $id;
 		$result = $this->AdminModel->delete('tbl_event_informations',$where);
@@ -876,7 +879,7 @@ public function deductPointCustomReason()
        	$data1['id']=$row->Eid;
        	$name = $this->AdminModel->showName($data1);
        	//print_r($name);
-       	echo $row->Liid.",".$row->Eid.",".$name.",".$row->date.",".$row->shopname.",".$row->items.",".$row->cost."?";
+       	echo $row->Liid.",".$row->Eid.",".$name.",".date('d/m/Y',strtotime($row->date)).",".$row->shopname.",".$row->items.",".$row->cost."?";
        }
     }
 

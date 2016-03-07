@@ -6,7 +6,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 
-			$("#datepicker").datepicker();
+			$("#datepicker").datepicker({
+        minDate: 0
+      });
 $('#eventForm').validate();
 
 });
@@ -53,14 +55,14 @@ $this->session->set_userdata('e_message',' ');
 
 	</div>
   
-              
+ <div class="table-responsive">             
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Action</th>
+        <th class="text-center">Name</th>
+        <th class="text-center">Date</th>
+        <th class="text-center">Event</th>
+        <th class="text-center">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -75,8 +77,10 @@ $this->session->set_userdata('e_message',' ');
 		        <td>
 		        	<?php echo date('d-m-Y',strtotime($result['date']));?> 
 		        </td>
-		        <td><?php echo $result['event_informations'];?>
-		        </td><td><a href='delete_event/<?php echo $result['EventId']?>' onclick='return confirm('Are You Sure?')'>Delete</a></td>
+		        <td>
+            <?php echo $result['event_informations'];?>
+		        </td>
+            <td><a href='delete_event/<?php echo $result['EventId']?>' onclick="return confirm('Are You sure you want to delete this event?');">Delete</a></td>
 		      </tr>
 
       			<?php } ?>
@@ -88,6 +92,7 @@ $this->session->set_userdata('e_message',' ');
      	
     </tbody>
   </table>
+  </div>
 </div>
           
 
@@ -103,8 +108,11 @@ $this->session->set_userdata('e_message',' ');
         <h4 class="modal-title" align="center" id="myModalLabel">Add New Event</h4>
       </div>
       <div class="modal-body">
-      	<form action="newEventInsert" method="post" id="eventForm">
-        <select name="empId[]" id="empId" class="required" multiple>
+      	<form action="newEventInsert" method="post" id="eventForm" >
+
+        <div class="form-group">
+        <label for="sel1">Select Employee:</label>
+        <select name="empId[]" id="empId" class="form-control required" multiple>
         	<option value=''>select</option>
         	<?php
 
@@ -114,8 +122,18 @@ $this->session->set_userdata('e_message',' ');
 
         	 ?>
         </select>
-        <input class="required" name="date" id="datepicker" type="text" placeholder="Insert Date">
-         <input class="required" name="event_info" id="event_info" type="text" placeholder="Add Event">
+        </div>
+              <div class="col-md-12 col-sm-12"> 
+                <div class="form-group col-md-6 col-sm-6">
+                <label for="usr">Event Date:</label>
+                <input class="required" name="date" id="datepicker" type="text" placeholder="Insert Date">
+                </div>
+                <div class="form-group col-md-6 col-sm-6">
+                <label for="pwd">Event Details:</label>
+               <input class="required" name="event_info" id="event_info" type="text" placeholder="Add Event">
+                </div>
+               </div>
+         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

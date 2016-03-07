@@ -28,7 +28,7 @@ class Employee extends CI_Controller
 		}
 		else
 		{
-			$this->todaydate = $this->date = date("Y-m-d");
+			$this->todaydate = $this->date = date("d/m/Y");
 		}
 
 	
@@ -37,13 +37,9 @@ class Employee extends CI_Controller
 
 	public function index()
 	{
-		$data=array();
 		if ($this->session->userdata('empid'))
 		{
-			$where=array('date'=>date('Y-m-d'));
-			$data['event_info']=$this->EmployeeModel->FngetAlldata('tbl_event_informations',$where);
-			
-			$this->load->view('employeeview',$data);
+			$this->load->view('employeeview');
 		}
 
 		else
@@ -77,15 +73,13 @@ class Employee extends CI_Controller
 		
 			//echo "hiii";
 			//$day=date('l');
-			$date=date("Y-m-d");
+			$date=date("d/m/Y");
 			$time= date("H:i:s");
 			$data['date']=$date;
 			$data['clockin']=$time;
 			$data['Eid'] = $this->session->userdata('empid');
 			$ctime=$this->EmployeeModel->clockintime($data);
 			//echo $data['date'].$data['time'];
-			//echo 'kk'.$ctime;
-			
 			if ($ctime) 
 			{
 				echo "Attendance marked @"."\n".$data['clockin'].",";
@@ -95,7 +89,7 @@ class Employee extends CI_Controller
 
 
 			}
-
+			
 		
 	}
 	public function clockout()
@@ -119,7 +113,7 @@ class Employee extends CI_Controller
 	public function endBreak()
 	{
 		$data['Eid'] = $this->session->userdata('empid');
-		$data['date'] = date("Y-m-d");
+		$data['date'] = date("d/m/Y");
 
 		$this->EmployeeModel->endBreak($data);
 
@@ -134,7 +128,7 @@ class Employee extends CI_Controller
 		$data['Eid'] = $this->session->userdata('empid');
 		$data['opt'] = $opt;
 		//$data['fbreak'] = date("H:i:s");
-		$data['date'] = date("Y-m-d");
+		$data['date'] = date("d/m/Y");
 
 		$return = $this->EmployeeModel->inBreak($data);
 
@@ -144,7 +138,7 @@ class Employee extends CI_Controller
 	public function autoChangeButton()
 	{
 		$data['Eid'] = $this->session->userdata('empid');
-		$data['date'] = date("Y-m-d");
+		$data['date'] = date("d/m/Y");
 
 		$res = $this->EmployeeModel->autoChangeButton($data);
 
@@ -161,7 +155,7 @@ class Employee extends CI_Controller
 	public function autoChangeBreakButton()
     {
         $data['Eid'] = $this->session->userdata('empid');
-		$data['date'] = date("Y-m-d");
+		$data['date'] = date("d/m/Y");
 
 		$res = $this->EmployeeModel->autoChangeButton($data);
 
@@ -180,7 +174,7 @@ class Employee extends CI_Controller
     public function showBreakName()
     {
     	$data['Eid'] = $this->session->userdata('empid');
-		$data['date'] = date("Y-m-d");
+		$data['date'] = date("d/m/Y");
 
 		$res = $this->EmployeeModel->autoChangeButton($data);
 
@@ -190,7 +184,7 @@ class Employee extends CI_Controller
     public function storeReturnTime()//store the return break time according to table whick will come as opt
     {
     	$storebreak['Eid'] = $this->session->userdata('empid');
-        $storebreak['date'] = date("Y-m-d");
+        $storebreak['date'] = date("d/m/Y");
         $storebreak['endtime'] = date("H:i:s");
 
         extract($_POST);
@@ -208,7 +202,7 @@ class Employee extends CI_Controller
 
     {
     	$data['Eid'] = $this->session->userdata('empid');
-    	$data['date'] = date("Y-m-d");
+    	$data['date'] = date("d/m/Y");
 
     	$this->EmployeeModel->autoDisableOption($data);
     }
@@ -218,7 +212,7 @@ class Employee extends CI_Controller
     {
 
     	$data['Eid'] = $this->session->userdata('empid');
-    	$data['date'] = date("Y-m-d");
+    	$data['date'] = date("d/m/Y");
 
     	$res = $this->EmployeeModel->showTimerOnLoad($data);//returns the time that the break have started
 
@@ -278,7 +272,7 @@ class Employee extends CI_Controller
 
     	//echo $opt;
     	$data['Eid'] = $this->session->userdata('empid');
-    	$data['date'] = date("Y-m-d");
+    	$data['date'] = date("d/m/Y");
 
     	$nowtime = new DateTime('now');
 
@@ -317,7 +311,7 @@ class Employee extends CI_Controller
     {
 
     	$id['Eid'] = $this->session->userdata('empid');
-    	$id['date'] = date("Y-m-d");
+    	$id['date'] = date("d/m/Y");
 
     	$clockin = $this->EmployeeModel->showClockinTime($id);
 
@@ -345,14 +339,17 @@ class Employee extends CI_Controller
 			$data['late_time']=$sum;
 
 			$data['Eid'] = $this->session->userdata('empid');
-    		$data['date'] = date("Y-m-d");
+    		$data['date'] = date("d/m/Y");
     		$data['late_in'] = "Clock In";
 
     		$result = $this->EmployeeModel->storeInLateTable($data);
 
     		print_r("You Are Late,");
     	}
-    	
+    	else
+    	{
+    		echo "Attendance marked @"."\n".$date('H:i:s').",";
+    	}
     	
     }
 
@@ -369,7 +366,7 @@ class Employee extends CI_Controller
     public function clockinLatePoints()
     {
     	$id['Eid'] = $this->session->userdata('empid');
-    	$id['date'] = date("Y-m-d");
+    	$id['date'] = date("d/m/Y");
 
     	$clockin = $this->EmployeeModel->showClockinTime($id);
 
@@ -438,7 +435,7 @@ class Employee extends CI_Controller
 
     	//echo $opt;
     	$data['Eid'] = $this->session->userdata('empid');
-    	$data['date'] = date("Y-m-d");
+    	$data['date'] = date("d/m/Y");
 
     	$nowtime = new DateTime('now');
 
@@ -505,7 +502,7 @@ class Employee extends CI_Controller
 	public function selectBreakname()
 	{
 		$data['Eid']= $this->session->userdata('empid');
-		$data['date']= date("Y-m-d");
+		$data['date']= date("d/m/Y");
 
 		$result = $this->EmployeeModel->returnBreakName($data);
 
@@ -531,7 +528,7 @@ class Employee extends CI_Controller
 		if($opt=="sbreak")
 		{
 			$data['Eid']= $this->session->userdata('empid');
-			$data['date']= date("Y-m-d");
+			$data['date']= date("d/m/Y");
 			//$updatedata['endtime'] = 1;
 			$tblname="fbreak";
 
@@ -541,7 +538,7 @@ class Employee extends CI_Controller
 			{
 				$tblname="fbreak";
 				$data['Eid']= $this->session->userdata('empid');
-				$data['date']= date("Y-m-d");
+				$data['date']= date("d/m/Y");
 				$data['starttime'] = 1;
 				$data['endtime'] = 1;
 
@@ -556,7 +553,7 @@ class Employee extends CI_Controller
 		if($opt=="lbreak")
 		{
 			$data['Eid']= $this->session->userdata('empid');
-			$data['date']= date("Y-m-d");
+			$data['date']= date("d/m/Y");
 			//$updatedata['endtime'] = 1;
 			$tblname="fbreak";
 
@@ -566,7 +563,7 @@ class Employee extends CI_Controller
 			{
 				$tblname="fbreak";
 				$data['Eid']= $this->session->userdata('empid');
-				$data['date']= date("Y-m-d");
+				$data['date']= date("d/m/Y");
 				$data['starttime'] = 1;
 				$data['endtime'] = 1;
 
@@ -584,7 +581,7 @@ class Employee extends CI_Controller
 			{
 				$tblname="sbreak";
 				$data['Eid']= $this->session->userdata('empid');
-				$data['date']= date("Y-m-d");
+				$data['date']= date("d/m/Y");
 				$data['starttime'] = 1;
 				$data['endtime'] = 1;
 
@@ -600,8 +597,7 @@ class Employee extends CI_Controller
 	  $data['Eid']=$this->session->userdata('empid');
 	  $data['status']=0;
 	  
-	 // $result = $this->EmployeeModel->pointalt($data);
-	  $result = $this->EmployeeModel->pointalt1();
+	  $result = $this->EmployeeModel->pointalt($data);
 	  if ($result)
 	  {
 		  foreach($result as $row)
@@ -667,7 +663,7 @@ class Employee extends CI_Controller
 
 			$latetbldata['Eid'] = $this->session->userdata('empid');
 
-			$latetbldata['date'] = date("Y-m-d");
+			$latetbldata['date'] = date("d/m/Y");
 
 			$latetbldata['late_time'] = $sum;
 
@@ -923,7 +919,7 @@ class Employee extends CI_Controller
 
 		extract($_POST);
 		$data['Eid']=$this->session->userdata('empid');
-		$data['date']=date("Y-m-d");
+		$data['date']=date("d/m/Y");
 		$data['shopname']=$shopname;
 		$data['items']=$lunchitm;
 		$data['cost']=$finalcost;

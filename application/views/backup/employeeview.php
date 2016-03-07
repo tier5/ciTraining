@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-sm-4">
                                 
-                                <input type="hidden" id="event_notify" value="<?php if(!empty($event_info)){ echo 1;} else {echo 2;}?>">
+                                
                                 
                                 <button class="btn btn-default btn-lg" id="clockbtn" name="clockinbtn">Clock In</button>
 
@@ -215,8 +215,8 @@
     
 
    <!-- event Modal -->
-<?php if(!empty($event_info)):?>
-    <div class="modal fade" id="event_modal" role="dialog">
+
+      <div class="modal fade" id="event_modal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
@@ -224,32 +224,7 @@
           <h4 class="modal-title error" align="center">Event Notification</h4>
         </div>
         <div class="modal-body deleteconfirm" align="center">
-          <strong id="notify_msg">
-            <?php if(count($event_info)>1){
-
-              echo "We have many people today to celebrate for!! lets check it!!";
-              echo '<br>';
-              foreach($event_info as $info)
-              {
-                echo $info['name'].'has '.$info['event_informations'];
-                echo '<br>';
-              }
-
-            } else
-            {
-               echo "<div class='cpl-md-6'>Hey Lets Congrats The special person!";
-               echo '<br>';
-              foreach($event_info as $info)
-              {
-                echo $info['name'].' has '.$info['event_informations'].' today';
-               
-              }
-              echo '</div>';
-            }
-
-            ?>
-
-          </strong>
+          <strong id="notify_msg"></strong>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -257,7 +232,7 @@
       </div>
     </div>
   </div>
-<?php endif;?>
+
  
 
 
@@ -266,14 +241,14 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" id="close_new" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title error" align="center">Late Message</h4>
         </div>
         <div class="modal-body deleteconfirm" align="center">
           <strong id="pointMsg"></strong>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="close_new_btn" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
@@ -290,7 +265,7 @@
           <strong id="returnbreakMsg"></strong>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

@@ -26,11 +26,9 @@
                 console.log('button disabled');
                 if (btn === 'Clock In') 
                 {
-                  
                     $('#breakmsg').html('');
                     $.post('Employee/clockin', function(data){
-                      
-                     //alert(data);
+
                         /*$('#clockintime').html(data);
                         $('#clockintime1').html('');*/
                         if($.trim(data))
@@ -41,46 +39,14 @@
                             $('#clockintime').html(data[0]);
                             $('#clockintime1').html('');
                             $('#clockintime').html(data[1]);
-                           
-                            var event_exists=$('#event_notify').val();
-                           /* if(event_exists==1)
-                            {
-                                $('#event_modal').modal("show");
-                            }*/
-                            
 
                             if(data[2])
                             {
-                              
-                                $('#close_new').on('click', function () {
-
-                               if(event_exists !='')
-                                   {
-                                    $('#event_modal').modal('show');
-                                   }
-                                });
-                                   
-                                $('#close_new_btn').on('click', function () {
                                 
-                                 if(event_exists !='')
-                                   {
-                                    $('#event_modal').modal('show');
-                                   }
-                                   
-                                });
-                            
                                 $("#latePoint").modal("show");
                                 $("#pointMsg").html(data[2]);
                                 showPointsOnLoad();
                             }
-                            else
-                            {
-                                  if(event_exists !='' && data[0]!='you have already clocked in today')
-                                   {
-                                    $('#event_modal').modal('show');
-                                   }
-                            }
-
 
                             
                         }
