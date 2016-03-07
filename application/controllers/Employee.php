@@ -905,7 +905,7 @@ class Employee extends CI_Controller
 		//print_r($result);
 		foreach($result as $row)
         {
-         echo $row['Lnid'].",".$row['item'].",".$row['cost'].",".$row['limit']."/";
+         echo $row['Lnid'].",".$row['item'].",".$row['cost'].",".$row['limit1']."/";
         }
 		//echo "Hello";
 

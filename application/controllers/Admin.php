@@ -931,7 +931,7 @@ public function deductPointCustomReason()
 		extract($_POST);
 		$data['item']=$addshop;
 		$data['cost']=0;
-		$data['limit']=0;
+		$data['limit1']=0;
 		$data['parent_id']=0;
 		$result=$this->AdminModel->addshop($data);
 		print_r($result);
@@ -957,7 +957,7 @@ public function deductPointCustomReason()
         //print_r($result);
         foreach ($result as $row) 
        {
-            echo $row->Lnid.",".$row->item.",".$row->cost.",".$row->limit.",".$row->parent_id."/";
+            echo $row->Lnid.",".$row->item.",".$row->cost.",".$row->limit1.",".$row->parent_id."/";
        }
     }
 
@@ -981,7 +981,7 @@ public function deductPointCustomReason()
     	extract($_POST);
     	$data['item']=$newitems;
     	$data['cost']=$newcost;
-    	$data['limit']=$newlimit;
+    	$data['limit1']=$newlimit;
     	$data['parent_id']=$parent;
     	$result=$this->AdminModel->additems($data);
     	print_r($result);
