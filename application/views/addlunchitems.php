@@ -36,7 +36,7 @@
                  <div>
                    Add New Shop:<input type="text" id="newshopname"><button id="addshopname">ADD</button>
                  </div>
-                 <div id="errormsg">
+                 <div id="errormsg" class="error">
                  </div>
               </div>
               <div class="col-sm-1"></div>
