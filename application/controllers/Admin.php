@@ -451,7 +451,7 @@ class Admin extends CI_Controller
 			$data2['id'] = $key['Eid'];
 			$resname = $this->AdminModel->showName($data2);
 
-			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id'].".";
+			echo date('d-m-Y',strtotime($key['date'])).",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id'].".";
 
 		}
 
@@ -589,7 +589,7 @@ class Admin extends CI_Controller
 			$data2['id'] = $key['Eid'];
 			$resname = $this->AdminModel->showName($data2);
 
-			echo $key['date'].",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id']."?";
+			echo date('d-m-Y',strtotime($key['date'])).",".$key['Eid'].",".$resname.",".$key['late_in'].",".$key['late_time'].",".$key['tbl_id']."?";
 
 
 		}

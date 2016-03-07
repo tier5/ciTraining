@@ -73,11 +73,12 @@ $this->session->set_userdata('e_message',' ');
           {
             ?>
 
-            <tr><td><?php echo $result['name'];?></td>
-            <td>
-              <?php echo date('d-m-Y',strtotime($result['date']));?> 
-            </td>
-            <td>
+      			<tr><td><?php echo $result['propname'];?></td>
+		        <td>
+		        	<?php echo date('d-m-Y',strtotime($result['date']));?> 
+		        </td>
+		        <td>
+
             <?php echo $result['event_informations'];?>
             </td>
             <td><a href='delete_event/<?php echo $result['EventId']?>' onclick="return confirm('Are You sure you want to delete this event?');">Delete</a></td>

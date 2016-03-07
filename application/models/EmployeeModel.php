@@ -324,7 +324,7 @@ class EmployeeModel extends CI_model
 
     public function FngetAlldata($tbl,$where=null,$orderby=null)
       {
-        $this->db->select('tbl_event_informations.*,employee.name');
+        $this->db->select('tbl_event_informations.*,employee.name,employee.propname');
        if($where)
         {
           $this->db->where($where);
