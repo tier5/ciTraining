@@ -73,7 +73,7 @@ $this->session->set_userdata('e_message',' ');
       		{
       			?>
 
-      			<tr><td><?php echo $result['name'];?></td>
+      			<tr><td><?php echo $result['propname'];?></td>
 		        <td>
 		        	<?php echo date('d-m-Y',strtotime($result['date']));?> 
 		        </td>

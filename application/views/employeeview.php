@@ -231,7 +231,7 @@
               echo '<br>';
               foreach($event_info as $info)
               {
-                echo $info['name'].'has '.$info['event_informations'];
+                echo $info['propname'].'has '.$info['event_informations'];
                 echo '<br>';
               }
 
@@ -241,7 +241,7 @@
                echo '<br>';
               foreach($event_info as $info)
               {
-                echo $info['name'].' has '.$info['event_informations'].' today';
+                echo $info['propname'].' has '.$info['event_informations'].' today';
                
               }
               echo '</div>';
