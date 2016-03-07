@@ -153,7 +153,7 @@
               </div>
               <div class="modal-body" id="printdiv" >
                 <div class="col-sm-1"></div>
-                <div class="col-sm-10" style="border: 2px solid black;" >
+                <div class="col-sm-10"  id="div1" style="border: 2px solid black;" >
                 
                       <div align="left"><img src="<?php echo base_url().'application/views/img/logo.png'?>" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"></span></div>
                       </br>
