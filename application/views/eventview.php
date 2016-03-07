@@ -94,7 +94,7 @@ $this->session->set_userdata('e_message',' ');
     </section>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -104,7 +104,7 @@ $this->session->set_userdata('e_message',' ');
       </div>
       <div class="modal-body">
       	<form action="newEventInsert" method="post" id="eventForm">
-        <select name="empId[]" id="empId" class="required" multiple>
+        <select name="empId[]" id="empId" class="required form-control" multiple>
         	<option value=''>select</option>
         	<?php
 
@@ -114,8 +114,10 @@ $this->session->set_userdata('e_message',' ');
 
         	 ?>
         </select>
-        <input class="required" name="date" id="datepicker" type="text" placeholder="Insert Date">
-         <input class="required" name="event_info" id="event_info" type="text" placeholder="Add Event">
+      </br>
+        <input class="required form-control" name="date" id="datepicker" type="text" placeholder="Insert Date">
+      </br>    
+         <input class="required form-control" name="event_info" id="event_info" type="text" placeholder="Add Event">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
