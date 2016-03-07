@@ -118,7 +118,7 @@ $this->session->set_userdata('e_message',' ');
           <?php
 
             foreach ($employeeinfo as $value) { ?>
-              <option value='<?php echo $value['id'];?>'><?php echo $value['name'];?></option>
+              <option value='<?php echo $value['id'];?>'><?php echo $value['propname'];?></option>
             <?php }
 
            ?>
