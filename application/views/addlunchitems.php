@@ -119,8 +119,8 @@
                             <tbody>
                                  <tr>
                                 <td><strong><input type="text" id="newitems" size="10"></strong></th>
-                                <td><strong><input type="number" id="newcost" size="1" maxlength="3"></strong></th>
-                                  <td><strong><input type="number" id="newlimit" size="1" maxlength="3"></strong></th>
+                                <td><strong><input type="number" id="newcost" size="1" maxlength="3" min='1'></strong></th>
+                                  <td><strong><input type="number" id="newlimit" size="1" maxlength="3" min='1'></strong></th>
                                   <td><strong><input type="button" value="ADD" id="add"></strong></th>
                                   </tr>
                             </tbody>

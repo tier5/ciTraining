@@ -47,7 +47,7 @@
 
                     
                     <li>
-                        <a  href="Admin/showAllLateview">Employee's All Late Information</a>
+                        <a  href="<?php echo base_url();?>Admin/showAllLateview">Employee's All Late Information</a>
                     </li>
 
                     <li>
