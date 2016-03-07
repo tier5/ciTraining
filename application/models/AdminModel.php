@@ -350,5 +350,14 @@
         return $result->row_array();
 
       }
+       public function showpropName($data1)
+      {
+        //return $data;
+        $result = $this->db->get_where('employee',$data1);
+
+        $res = $result->row_array()['propname'];
+
+        return $res;
+      }
    } 
 ?> 
