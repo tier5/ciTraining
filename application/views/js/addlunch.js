@@ -2,7 +2,7 @@ $(document).ready(function(){
 var arr="";
 var shopid="";
 showallshop();
-$("#newitem").hide();
+
 //=============================Showing All Shop==================================
   function showallshop()
    {
@@ -37,7 +37,7 @@ $("#newitem").hide();
                   //showallshop();
                   //alert('added shop');
                   //showallshop();
-                 // $('#errormsg').html("Shop Name Added Sucessfully!!");
+                  //$('#errormsg').html("Shop Name Added Sucessfully!!");
               }
               else
               {
@@ -73,32 +73,147 @@ $("#newitem").hide();
       GLOBAL_SHOPID=shopid;
       //alert(GLOBAL_SHOPID);
       jQuery.noConflict();
+      $( "#newitemdiv" ).hide();
+     // alert(shopid);
+      $('#errornew').html("");
+      $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:GLOBAL_SHOPID}, function(data){
+         
 
-      showallitems ="";
-      $('#shopitems').html("");
-      $('#additems').modal('show');
-      $("#showitem").show();
-      $("#newitemdiv").hide();
+      if($.trim(data))
+          {   
+                $("#showitemofshop").show();
+                $("#addnew").show();
+                
 
-      $.post(BASE_URL+'Admin/showshopname',{shopid:shopid}, function(data){
-        $('#shopname').html(data);
-        
+               //alert(data); 
+               showallitems="";
+                var data1=data.split("/");
+                for(i=0; i<data1.length-1; i++)
+                { 
+                      data2= data1[i].split(','); 
+
+                      showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash btn btn-danger" onclick="deletitems('+data2[0]+')"></button></td></tr>';
+                     // showallitems +='<tr><td>ji</td></tr>'
+                      $('#itemaccrodingshop').html(showallitems);
+                }
+          
+                
+
+          }
+          else
+          {
+            $("#addnew").show();
+            $("#showitemofshop").hide();
+          }
       });
-      showitemsall(GLOBAL_SHOPID);
 
+      $.post(BASE_URL+'Admin/showshopname', {shopid:GLOBAL_SHOPID}, function(data){
+          var spnme=data;
+          $("#shpnm").html(spnme);
+      });
+  }
+
+  //========================Delete Items====================================================================================
+    window.deletitems = function(itemid)
+    {
+        $.post(BASE_URL+'Admin/deleteitems',{itemid:itemid}, function(data){  
+             if($.trim(data))
+            {
+              $('#errornew').html("Lunch Item Deleted Sucessfully!!");
+                $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:GLOBAL_SHOPID}, function(data){
+          
+                  if($.trim(data))
+                  {   
+                    $("#showitemofshop").show();
+                    $("#addnew").show();
+                   //alert(data); 
+                   showallitems="";
+                    var data1=data.split("/");
+                    for(i=0; i<data1.length-1; i++)
+                    { 
+                          data2= data1[i].split(','); 
+
+                          showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash" onclick="deletitems('+data2[0]+')">Delete</button></td></tr>';
+                         // showallitems +='<tr><td>ji</td></tr>'
+                          $('#itemaccrodingshop').html(showallitems);
+                    }  
+                 }
+                  else
+                  {
+                    $("#addnew").show();
+                    $("#showitemofshop").hide();
+                  }
+              });
+              
+
+                      //showitemsall(GLOBAL_SHOPID); 
+                    //$('#errornew').html("Item Deleted Successfully!!"); 
+            }
+        });
+    }
 //=====================Add New Items========================================
-      $("#addnewitems").click(function()
-      {
-        
-        $("#newitemdiv").show();
-           
+$( "#addnewitems" ).click(function() {
+  
             $('#newitems').val("");
             $('#newcost').val("");
             $('#newlimit').val("");
-      });
-
+            $( "#newitemdiv" ).toggle();
+});
 //========================On Click On "ADD" bUTTON========================================================================
   $("#add").click(function(){
+
+     //alert(GLOBAL_SHOPID);
+              var newitems=$('#newitems').val();
+              var newcost=$('#newcost').val();
+              var newlimit=$('#newlimit').val();
+                 
+                 if($.trim(newitems) && $.trim(newcost) && $.trim(newlimit))
+                 {
+                  $.post(BASE_URL+'Admin/additems',{parent:GLOBAL_SHOPID,newitems:newitems,newcost:newcost, newlimit:newlimit}, function(data){
+                   //alert(shopid);
+                      if($.trim(data))
+                        {   
+                            $('#errornew').html("Lunch Items Added Sucessfully!!");
+                            $('#newitems').val("");
+                            $('#newcost').val("");
+                            $('#newlimit').val("");
+                            $( "#newitemdiv" ).toggle();
+
+                               $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:GLOBAL_SHOPID}, function(data){
+                            
+                                  if($.trim(data))
+                                  {   
+                                      $("#showitemofshop").show();
+                                      $("#addnew").show();
+                                     //alert(data); 
+                                     showallitems="";
+                                      var data1=data.split("/");
+                                      for(i=0; i<data1.length-1; i++)
+                                      { 
+                                            data2= data1[i].split(','); 
+
+                                            showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash" onclick="deletitems('+data2[0]+')">Delete</button></td></tr>';
+                                           // showallitems +='<tr><td>ji</td></tr>'
+                                            $('#itemaccrodingshop').html(showallitems);
+                                      }  
+                                   }
+                                });
+
+                     }
+                     else
+                     {
+                         $('#errornew').html("Try Again!!");
+                     } 
+                  });
+                }
+                else
+                {
+                  $('#errornew').html("Fill All Fields Properly!!");
+                }
+  });
+
+
+  /*$("#add").click(function(){
               var newitems=$('#newitems').val();
               var newcost=$('#newcost').val();
               var newlimit=$('#newlimit').val();
@@ -127,18 +242,7 @@ $("#newitem").hide();
                   $('#errornew').html("Fill All Fields Properly!!");
                 }
   });
-//========================Delete Items====================================================================================
-    window.deletitems = function(itemid)
-    {
-        $.post(BASE_URL+'Admin/deleteitems',{itemid:itemid}, function(data){  
-             if($.trim(data))
-            {
-                
-                      showitemsall(GLOBAL_SHOPID); 
-                      $('#errornew').html("Item Deleted Successfully!!"); 
-            }
-        });
-    }
+
   }
 //=======================================================================================================================
  
@@ -146,32 +250,13 @@ function showitemsall(GLOBAL_SHOPID)
 {
   $('#shopitems').html("");
   var showallitems="";
-  $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:GLOBAL_SHOPID}, function(data){
-      if($.trim(data))
-          {   
-                
-                var data1=data.split("/");
-                for(i=0; i<data1.length-1; i++)
-                { 
-                      data2= data1[i].split(','); 
-                      showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash" onclick="deletitems('+data2[0]+')">Delete</button></td></tr>';
-                      $('#shopitems').html(showallitems);
-                }  
-
-          }
-         else
-         {
-               $("#showitem").hide();
-               $('#errornew').html("No Items In The Shop!!");
-          }
-
-      });
+  
 
 
 
 
 }
-
+*/
 
 
 

@@ -227,11 +227,11 @@
           <strong id="notify_msg">
             <?php if(count($event_info)>1){
 
-              echo "We have many people today to celebrate for!! lets check it!!";
+              echo "We have many people today to celebrate for!! lets check it out!!";
               echo '<br>';
               foreach($event_info as $info)
               {
-                echo $info['propname'].'has '.$info['event_informations'];
+                echo $info['propname'].' has '.$info['event_informations'];
                 echo '<br>';
               }
 
