@@ -130,77 +130,7 @@
     </div>
   </div>
 
-<<<<<<< HEAD
-  <div class="modal fade" id="additems" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 align="center">Lunch Items</h4>
-            </div>
-             <div class="modal-body" align="center">
 
-               <div class="row" align="center"> 
-                   <div class="col-sm-1"></div>
-                   <div class="col-sm-10">
-                     <button class="btn btn-danger pull-right btn-xs" id="addnewitems">Add New Items</button>
-
-                   </div>
-                   <div class="col-sm-1"></div>
-              </div>
-
-              Shop Name:<span id="shopname"></span>
-                  <br>
-
-                  <div id="errornew"></div>
-            <div id="divload">
-              <div id="newitemdiv" style="display:none;" >
-                         <table class="table table-bordered">
-                            <thead align="center">
-                              <tr>
-                                <td><strong>Item name</strong></th>
-                                <td><strong>Cost</strong></th>
-                                  <td><strong>Limit</strong></th>
-                                  <td><strong></strong></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                 <tr>
-                                <td><strong><input type="text" id="newitems" size="10"></strong></th>
-                                <td><strong><input type="number" id="newcost" size="1" maxlength="3" min='1'></strong></th>
-                                  <td><strong><input type="number" id="newlimit" size="1" maxlength="3" min='1'></strong></th>
-                                  <td><strong><input type="button" value="ADD" id="add"></strong></th>
-                                  </tr>
-                            </tbody>
-                         </table>
-                      
-              </div>
-              
-              <div id="showitem" >
-                <table class="table table-bordered">
-                    <thead align="center">
-                      <tr>
-                        <td><strong>Item name</strong></th>
-                        <td><strong>Cost</strong></th>
-                          <td><strong>Limit</strong></th>
-                          <td><strong></strong></th>
-                      </tr>
-                    </thead>
-                    <tbody align="center" id="shopitems">
-
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-          <div class="modal-footer">
-           
-          </div>
-      </div>
-    </div>
-  </div>
-
-=======
->>>>>>> 700dac42de7e31068aa8ba14a0f8807321f7594e
 
 
 
