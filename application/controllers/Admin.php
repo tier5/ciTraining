@@ -77,6 +77,13 @@ class Admin extends CI_Controller
 
 	    //$this->load->view('adminview');
 	}
+
+	public function ShowPointHistory()
+	{
+		$data=array();
+		
+		$this->load->view('viewpointhistory',$data);
+	}
     
     public function update()
 	{

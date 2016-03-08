@@ -270,7 +270,15 @@ var disabledDays = [];
 		//convert month to 2 digits
 		var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
 		 
-		var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+		if(fullDate.getDate()<10)
+		{
+			var day='0'+fullDate.getDate();
+		} 
+		else
+		{
+			var day=fullDate.getDate();
+		}
+		var currentDate = day + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
 		/*console.log(currentDate);
 		console.log(date);*/
 
