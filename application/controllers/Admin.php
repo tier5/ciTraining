@@ -81,10 +81,56 @@ class Admin extends CI_Controller
 	public function ShowPointHistory()
 	{
 		$data=array();
-		
+
+		$data['point_history']=$this->AdminModel->FnPointmonth();
 		$this->load->view('viewpointhistory',$data);
 	}
     
+    public function Ajax_call()
+    {
+    	if($_POST)
+    	{
+    		$month=$_POST['cur_month'];
+    		$point_history=$this->AdminModel->FnPointmonth($month);
+    		if(!empty($point_history))
+    		{
+				foreach($point_history as $points)
+				{
+				if($points['points']<=0)
+				{
+				  $cls='danger';
+				}
+				else
+				{
+				if($points['points']>=3000)
+				  {
+				  $cls='success';
+				  }
+				  else
+				  {
+				  	 $cls='medium';
+				  }
+				}
+				
+				$date_exp=explode(" ",$points['time_stamp']);
+                $p_date=date('d-m-Y',strtotime($date_exp[0]));
+				echo "<tr>
+				<td class='".$cls."'>".$p_date."</td>
+				<td class='".$cls."'>".$points['propname']."</td>
+				<td class='".$cls."'>".$points['name']."</td>
+				<td class='".$cls."'>".$points['points']."</td>
+
+				</tr>";
+
+				}
+			}
+			else
+			{
+				echo '<tr><td colspan="4">No Result Found !!!!</td></tr>';
+			}
+
+    	}
+    }
     public function update()
 	{
 	    extract($_POST);

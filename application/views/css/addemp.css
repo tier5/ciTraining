@@ -35,6 +35,11 @@
 
     margin: auto;
 }
+.medium
+{
+	background:#D6D4F9;
+	color:#3C0968;
+}
 #totalcost
 {
 	font-size: 20px;

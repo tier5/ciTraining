@@ -47,4 +47,39 @@
        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
     
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+    
+      $('#change_month').on('change', function(e) {
+        
+        var cur_month = $(this).val();
+       
+        if(cur_month!='')
+         {
+
+          var month_name=$(this).find(':selected').data('title');
+          $('#cur_month').html('Month: '+month_name);
+             $.ajax({
+
+                type:'POST',
+                data:'cur_month='+cur_month,
+                url:'<?php echo base_url();?>Admin/Ajax_call',
+                success:function(result)
+                {
+                    $('#change_month_result').html(result);
+                }
+
+             });
+           }
+           else
+           {
+              $('#cur_month').html('<font color=red>Please Select A month From The select List to view the points Or Just Load the page to view the current month points.</font>');
+           }
+
+         });
+        
+    });
+</script>
+
 </head>
