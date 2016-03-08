@@ -29,36 +29,83 @@
 
     </nav>
  <section class="intro-section">  
-       <div class="container"> 
-         <div class="row" align="center"> 
-              <div class="col-sm-1"></div>
-              <div class="col-sm-10" >
-                 <div>
-                   Add New Shop:<input type="text" id="newshopname"><button id="addshopname">ADD</button>
-                 </div>
-                 <div id="errormsg" class="error">
-                 </div>
-              </div>
-              <div class="col-sm-1"></div>
-         </div>
-       </div>
-
-      <br>
       <div class="container">  
          <div class="row" align="center"> 
-              <div class="col-sm-4"></div>
-              <div class="col-sm-4" >
-                <table class="table table-bordered">
-                  <thead align="center">
-                    <tr>
-                      <td><strong>Shop Name</strong></th>
-                      <td><strong></strong></th>
-                  </thead>
-                  <tbody id ="showallshop" align="center"></tbody>
-                </table>  
+              <div class="col-sm-6">
+
+                  <div>
+                   Add New Shop:<input type="text" id="newshopname"><button id="addshopname">ADD</button>
                   </div>
+                  </br>
+                  <div id="errormsg" class="error">
+                  </div>
+
+                   <table class="table table-bordered">
+                    <thead align="center">
+                      <tr>
+                        <td><strong>Shop Name</strong></th>
+                        <td><strong></strong></th>
+                      </tr>
+                    </thead>
+                    <tbody id ="showallshop" align="center">
+                    </tbody>
+                   </table>  
               </div>
-              <div class="col-sm-4"></div>
+              <div class="col-sm-2" > 
+              </div>
+              <div class="col-sm-6" align="center">
+                    <div id="addnew" style="display:none;">
+                          <div id="shpnm"></div>
+                         <br>
+                         <button class="btn btn-danger btn-xs" id="addnewitems">Add New Item</button>
+                    
+                    </div>
+                    <div id="errornew"></div>
+    
+
+                    <div id="newitemdiv" style="display:none;" >
+                         <table class="table table-bordered">
+                            <thead align="center">
+                              <tr>
+                                <td><strong>Item name</strong></th>
+                                <td><strong>Cost</strong></th>
+                                  <td><strong>Limit</strong></th>
+                                  <td><strong></strong></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                 <tr>
+                                <td><strong><input type="text" id="newitems" size="5" ></strong></th>
+                                <td><strong><input type="number" id="newcost" size="1" maxlength="3" min="1"></strong></th>
+                                  <td><strong><input type="number" id="newlimit" size="1" maxlength="3" min="1"></strong></th>
+                                  <td><strong><input type="button" value="ADD" id="add"></strong></th>
+                                  </tr>
+                            </tbody>
+                         </table>   
+                  </div>
+                    <div id="showitemofshop" style="display:none;" align="center">
+                         
+                         <br>
+                         <br>
+
+                         <table class="table table-bordered">
+                            <thead align="center">
+                              <tr>
+                               <th><strong>Item name</strong></th>
+                               <th><strong>Cost</strong></th>
+                               <th><strong>Limit</strong></th>
+                               <th><strong></strong></th>
+                              </tr>
+                            </thead>
+                            <tbody align="center" id="itemaccrodingshop">
+                                
+                            </tbody>
+                         </table>
+                    </div>
+
+
+              </div>
+         </div>
       </div>
 
 
@@ -79,74 +126,6 @@
         <div class="modal-footer">
          
         </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="additems" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 align="center">Lunch Items</h4>
-            </div>
-             <div class="modal-body" align="center">
-
-               <div class="row" align="center"> 
-                   <div class="col-sm-1"></div>
-                   <div class="col-sm-10">
-                     <button class="btn btn-danger pull-right btn-xs" id="addnewitems">Add New Items</button>
-
-                   </div>
-                   <div class="col-sm-1"></div>
-              </div>
-
-              Shop Name:<span id="shopname"></span>
-                  <br>
-
-                  <div id="errornew"></div>
-            <div id="divload">
-              <div id="newitemdiv" style="display:none;" >
-                         <table class="table table-bordered">
-                            <thead align="center">
-                              <tr>
-                                <td><strong>Item name</strong></th>
-                                <td><strong>Cost</strong></th>
-                                  <td><strong>Limit</strong></th>
-                                  <td><strong></strong></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                 <tr>
-                                <td><strong><input type="text" id="newitems" size="10"></strong></th>
-                                <td><strong><input type="number" id="newcost" size="1" maxlength="3"></strong></th>
-                                  <td><strong><input type="number" id="newlimit" size="1" maxlength="3"></strong></th>
-                                  <td><strong><input type="button" value="ADD" id="add"></strong></th>
-                                  </tr>
-                            </tbody>
-                         </table>
-                      
-              </div>
-              
-              <div id="showitem" >
-                <table class="table table-bordered">
-                    <thead align="center">
-                      <tr>
-                        <td><strong>Item name</strong></th>
-                        <td><strong>Cost</strong></th>
-                          <td><strong>Limit</strong></th>
-                          <td><strong></strong></th>
-                      </tr>
-                    </thead>
-                    <tbody align="center" id="shopitems">
-
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-          <div class="modal-footer">
-           
-          </div>
       </div>
     </div>
   </div>
