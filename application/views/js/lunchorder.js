@@ -107,7 +107,7 @@ function showfirstdiv()
                     totalcost = totalcost + newcost;
 					$('#totalcost').text(totalcost);
 				    $('#btnadd_'+id).val('Remove');
-				    $('#totalitem').append('<span id="itm_'+id+'">'+itemname+'</span><span id="itemqty_'+id+'">['+itemquantity+']</span>');
+				    $('#totalitem').append('<span id="itemqty_'+id+'">('+itemquantity+')</span><span id="itm_'+id+'">'+itemname+'</span>');
 				    $('#itemquantity_'+id).prop('disabled', true);
 			}
 

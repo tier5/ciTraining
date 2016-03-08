@@ -133,7 +133,7 @@ showallshop();
                     { 
                           data2= data1[i].split(','); 
 
-                          showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash" onclick="deletitems('+data2[0]+')">Delete</button></td></tr>';
+                          showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash btn btn-danger" onclick="deletitems('+data2[0]+')"></button></td></tr>';
                          // showallitems +='<tr><td>ji</td></tr>'
                           $('#itemaccrodingshop').html(showallitems);
                     }  
@@ -192,7 +192,7 @@ $( "#addnewitems" ).click(function() {
                                       { 
                                             data2= data1[i].split(','); 
 
-                                            showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash" onclick="deletitems('+data2[0]+')">Delete</button></td></tr>';
+                                            showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash btn btn-danger" onclick="deletitems('+data2[0]+')"></button></td></tr>';
                                            // showallitems +='<tr><td>ji</td></tr>'
                                             $('#itemaccrodingshop').html(showallitems);
                                       }  
