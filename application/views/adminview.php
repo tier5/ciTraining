@@ -56,6 +56,9 @@
                     <li>
                         <a  href="Admin/addEventview">Event</a>
                     </li>
+                    <li>
+                        <a  href="Admin/ShowPointHistory">Point History</a>
+                    </li>
                    
                 </ul>
 

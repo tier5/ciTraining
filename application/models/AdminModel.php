@@ -359,5 +359,27 @@
 
         return $res;
       }
+
+      public function FnPointmonth($month=null)
+         {
+           if($month)
+           {
+           $curMonth=$month;
+           }
+           else
+           {
+             $curMonth=date('n');
+           }
+           $curYear=date('Y');
+           $this->db->select('point_history.*,employee.name,employee.propname');
+           $this->db->join('employee','employee.id=point_history.Eid');
+
+           $where="MONTH( `time_stamp` ) =".$curMonth." AND YEAR( `time_stamp` ) =".$curYear;
+           $this->db->where($where);
+           $res=$this->db->get('point_history');
+           return $result=$res->result_array();
+           
+           }
+
    } 
 ?> 

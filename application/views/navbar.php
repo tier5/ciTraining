@@ -45,6 +45,10 @@
                     <li>
                         <a  href="addEventview">Event</a>
                     </li>
+                    <li>
+                        <a  href="ShowPointHistory">Point History</a>
+                    </li>
+                    
                    
                 </ul>
 
