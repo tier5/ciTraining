@@ -66,8 +66,9 @@
             	              <td><strong>Shop Name</strong></td>
             	              <td><strong>Lunch Item</strong></td>
             	              <td><strong>Cost</strong></td>
-            	              <td><strong><button id="deletallorder" class="btn btn-danger btn-md glyphicon glyphicon-trash" data-target="#cnfrmdltlunchorder" data-toggle="modal" >Delete All</button></strong></th>
-            	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print" data-target="#printorderall" data-toggle="modal">Print All</button></strong></th>
+            	              <td><strong><button id="deletallorder" class="btn btn-danger btn-sm" data-target="#cnfrmdltlunchorder" data-toggle="modal" >Delete All</button></strong></th>
+            	              <td><strong><button id="printorder" class="btn btn-danger btn-sm" data-target="#printorderall" data-toggle="modal">Print All</button></strong></th>
+                            <td><strong><button id="printselected" class="btn btn-danger btn-sm" >Print Selected</button></strong></th>
                           </tr>
                         </thead>
                         <tbody id="lunchlist" align="center">
