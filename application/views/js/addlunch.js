@@ -15,7 +15,7 @@ showallshop();
   		        { 
   		            data2= data1[i].split(',');
   		            var arr = [data2[0],data2[1]];
-  		            showallshop +='<tr><td><button class="btn btn-info btn-sm pull-left" onclick="lunchshopid('+data2[0]+');">'+data2[1]+'</button><button class="btn btn-danger glyphicon glyphicon-trash btn-xs pull-right" onclick="deleteshop('+data2[0]+')" ></button></td></tr>';
+  		            showallshop +='<tr><td><button class="btn btn-primary btn-sm pull-left" onclick="lunchshopid('+data2[0]+');">'+data2[1]+'</button><button class="btn btn-danger glyphicon glyphicon-trash btn-xs pull-right" onclick="deleteshop('+data2[0]+')" ></button></td></tr>';
   		            $("#showallshop").html(showallshop);
   		        }
   		    }     

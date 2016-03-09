@@ -31,7 +31,7 @@
          <div class="row" align="center"> 
               <div class="col-sm-4">
                   <div>
-                     <p class="text-primary">Want To Add New Shop?</p>
+                     <p class="text-primary"><strong>Want To Add New Shop?</strong></p>
                      <button type="button" id="showadd" class="btn btn-primary btn-xs">Click Here!</button>
                   </div>
                   </br>
@@ -44,7 +44,7 @@
                   <div id="errormsg" class="error">
                   </div>
                   </br>
-                   <table class="table table-bordered">
+                   <table class="table table-bordered" >
                     <thead align="center">
                       <tr>
                         <td><strong>Click On Shop To See The Menu</strong></th>
@@ -57,11 +57,13 @@
               </div>
               <div class="col-sm-2" ></div>
               <div class="col-sm-8" align="center" >
-                    <div id="addnew" style="display:none;">
-                          <div id="shpnm"></div>
-                          <button class="btn btn-danger btn-xs" id="addnewitems">Add New Item</button>
+                    <div id="addnew" style="display:none;" align="center">
+                          <strong>Shop Name:<span id="shpnm" class="text-warning"></span>
+                          <p class="text-primary">Want To Add New Item ?</strong></p>
+                          <button class="btn btn-primary btn-xs" id="addnewitems">Click Here!</button>
                     </div>
                     <div id="errornew"></div>
+                    <br>
                     <div id="newitemdiv" style="display:none;" >
                         <table class="table table-bordered">
                             <thead align="center">
@@ -77,7 +79,7 @@
                                 <td><strong><input type="text" id="newitems" size="5" ></strong></th>
                                 <td><strong><input type="number" id="newcost" size="1" maxlength="3" min="1"></strong></th>
                                   <td><strong><input type="number" id="newlimit" size="1" maxlength="3" min="1"></strong></th>
-                                  <td><strong><input type="button" class="btn btn-danger btn-xs" value="ADD" id="add"></strong></th>
+                                  <td><strong><input type="button" class="btn btn-danger btn-xs" value="Click To Add Item" id="add"></strong></th>
                                   </tr>
                             </tbody>
                         </table>   
