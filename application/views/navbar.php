@@ -45,7 +45,7 @@
                     </li>
 
                     <li>
-                       <a  href="lunchorderview">Lunch Order</a>
+                       <a  href="<?php echo base_url();?>Admin/lunchorderview">Lunch Order</a>
                    </li>   
                     
 

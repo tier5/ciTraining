@@ -390,5 +390,19 @@
            return $res->result_array();
            }
 
+
+          public function selectprint($data)
+          {
+             $this->db->select('lunchorder.*,employee.propname');
+             //$result= $this->db->get_where('lunchorder',$data);
+             //return $result->row_array();
+             //return $data;
+             $this->db->where('Liid',$data);
+             $this->db->join('employee','employee.id=lunchorder.Eid');
+             $res=$this->db->get('lunchorder');
+             return $res->result_array();
+
+          }
+
    } 
 ?> 
