@@ -146,6 +146,7 @@
 
                     if($.trim(data))
                     {
+                       
                          $('#earlyclockoutMsg').html(data);
                         $("#earlyclockoutModal").modal("show");
                         showPointsOnLoad();
@@ -208,6 +209,7 @@ function calenderclockin()
 
         if($.trim(data))
         {
+
             changeCalenderInfo(data,'#clockintimeshow');
 
         }
@@ -224,6 +226,8 @@ function calenderclockout()
 
         if($.trim(data))
         {
+
+           
             changeCalenderInfo(data,'#clockouttimeshow');
 
         }
@@ -302,20 +306,33 @@ $("#calender").datepicker({
     onSelect: function (date) {
 
         //a=1;
-
-        var fullDate = new Date()
+       // alert(date);
+        var changedate=date.split('/');
+        //alert(changedate);
+        date=changedate[0]+'-'+changedate[1]+'-'+changedate[2];
+       // alert(new_date);
+       
+        var fullDate = new Date();
+       if(fullDate.getDate()<10)
+       {
+        var day='0'+fullDate.getDate();
+       }
+       else
+       {
+        var day=fullDate.getDate();
+       }
         /*console.log(fullDate);*/
         //Thu May 19 2011 17:25:38 GMT+1000 {}
          
         //convert month to 2 digits
         var twoDigitMonth = ((fullDate.getMonth().length+1) === 1)? (fullDate.getMonth()+1) : '0' + (fullDate.getMonth()+1);
          
-        var currentDate = fullDate.getDate() + "/" + twoDigitMonth + "/" + fullDate.getFullYear();
+        var currentDate = fullDate.getFullYear() + "-" + twoDigitMonth + "-" + day;
         /*console.log(currentDate);
         console.log(date);*/
 
         
-        
+       // alert(currentDate);
         
         //alert(a);
         // Your CSS changes, just in case you still need them
@@ -324,9 +341,10 @@ $("#calender").datepicker({
 //==================
 
         $.post('Employee/calenderclockinDateChk',{optdate: date, clock: 'clockin'}, function(data){
-
+         
             if($.trim(data))
             {
+
                 changeCalenderInfo(data,'#clockintimeshow');
             }
 
@@ -402,6 +420,7 @@ $("#calender").datepicker({
 
     function changeCalenderInfo(data,id)
     {
+        
         data = data.split(",");
         $(id).html("<span class="+data[1]+">"+data[0]+"</span>");
 

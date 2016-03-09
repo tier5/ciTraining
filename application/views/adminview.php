@@ -10,7 +10,7 @@
 
   
   
-  
+
 <?php include 'navbar.php';?>
     <!-- Intro Section -->
     <div id="test" data-status='opened'>
@@ -33,6 +33,9 @@
 </div>
     
 
+
+  
+  </div>
 
     <section id="intro" class="intro-section">
 <!-- get the selected date for events -->

@@ -66,10 +66,12 @@
     border: 1px solid #FFDE2E;
 }
 </style>
+
 <script>
 $(document).ready(function() {
 $('#test').BootSideMenu({side:"left", autoClose:false});
 });
 </script>
+
 
 </head>

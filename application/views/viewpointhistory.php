@@ -11,6 +11,7 @@
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
 <?php include 'navbar.php';?>
+
     <div id="test" data-status='opened'>
          <div class="user">
           <img src="http://image.priceprice.k-img.com/ph/images/common/face_japan_01.gif" alt="Esempio" class="img-thumbnail">
@@ -29,6 +30,7 @@
          
        </div>
     
+
 
   
   </div>

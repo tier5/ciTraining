@@ -244,7 +244,7 @@ function showPointsOnLoad()
 						 		{
 						 			properbreakname="Last Break";
 						 		}*/
-
+                               
 						 		switch(opt)
 						 		{
 						 			case "fbreak":
@@ -476,6 +476,7 @@ function calenderLbreak()
 
 function changeCalenderInfo(data,id)
     {
+    	
         data = data.split(",");
         $(id).html("<span class="+data[1]+">"+data[0]+"</span>");
 

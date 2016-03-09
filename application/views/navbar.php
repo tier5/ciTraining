@@ -35,7 +35,9 @@
                     </li> -->
                     <li>
       <img src="<?php echo base_url()?>images/admin.png" alt="admin" class="img-responsive user-image navbar-brand page-scroll">
-      <a  target="_blank" class="navbar-brand page-scroll">Admin</a>
+
+      <a href="<?php echo base_url();?>" class="navbar-brand page-scroll">Admin</a>
+
     </li>
                   
                  <li> <a  href="<?php echo base_url().'Admin'?>">Home</a></li>

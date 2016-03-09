@@ -48,7 +48,7 @@ class EmployeeModel extends CI_model
 	{
 
         $data1['clockout'] = date("H:i:s");
-        $data['date'] = date("d/m/Y");
+        $data['date'] = date("Y-m-d");
 		//$this->db->where('clockout', $data);
         $d=$this->db->where($data);
 		$result1=$this->db->update('attendance',$data1);
@@ -122,8 +122,9 @@ class EmployeeModel extends CI_model
 
     public function autoChangeButton($data)
     {
+          
         $res = $this->db->get_where('attendance',$data);
-
+//echo $this->db->last_query();
         return $res->row_array();
     }
 
