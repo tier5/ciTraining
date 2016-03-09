@@ -185,34 +185,27 @@ $('#printorder').click(function() {
    
    $('#printselected').click(function() {
    
-    
+    var arr=[];
     
         $('input[name="print_check[]"]:checked').each ( function() {
         var id= $(this).val();
-        //alert(id);
 
-            $.post(BASE_URL+'Admin/selectprint', {orderid:id}, function(data){
-             alert(data);
+        if(id!='')
+        {
+          arr.push(id);
+        }
 
-                   //$('#printorderall').modal('show');
-                   //$('#print_all').html(data);
-                
-            
-               
-
-
-
-
-
-
-
-
-
-
-
-
-            });
         });
+
+         if(arr)
+          {
+            $.post(BASE_URL+'Admin/selectprint', {orderid:arr}, function(data){
+              $('#printorderall').modal('show');
+               $('#print_all').html(data);
+             
+             });
+          }
+
    });
   
 });
