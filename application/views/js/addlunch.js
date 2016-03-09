@@ -15,7 +15,7 @@ showallshop();
   		        { 
   		            data2= data1[i].split(',');
   		            var arr = [data2[0],data2[1]];
-  		            showallshop +='<tr><td><button class="btn btn-info btn-sm" onclick="lunchshopid('+data2[0]+');">'+data2[1]+'</td><td><button class="btn btn-danger btn-xs" onclick="deleteshop('+data2[0]+')" >Delete Shop</button></td></tr>';
+  		            showallshop +='<tr><td><button class="btn btn-primary btn-sm pull-left" onclick="lunchshopid('+data2[0]+');">'+data2[1]+'</button><button class="btn btn-danger glyphicon glyphicon-trash btn-xs pull-right" onclick="deleteshop('+data2[0]+')" ></button></td></tr>';
   		            $("#showallshop").html(showallshop);
   		        }
   		    }     
@@ -95,15 +95,14 @@ showallshop();
                       showallitems +='<tr><td>'+data2[1]+'</td><td>'+data2[2]+'</td><td>'+data2[3]+'</td><td><button class="glyphicon glyphicon-trash btn btn-danger" onclick="deletitems('+data2[0]+')"></button></td></tr>';
                      // showallitems +='<tr><td>ji</td></tr>'
                       $('#itemaccrodingshop').html(showallitems);
-                }
-          
-                
+                }     
 
           }
           else
           {
             $("#addnew").show();
             $("#showitemofshop").hide();
+            $('#errornew').html("No Items In This Shop");
           }
       });
 
@@ -158,6 +157,7 @@ $( "#addnewitems" ).click(function() {
             $('#newcost').val("");
             $('#newlimit').val("");
             $( "#newitemdiv" ).toggle();
+            
 });
 //========================On Click On "ADD" bUTTON========================================================================
   $("#add").click(function(){
@@ -211,52 +211,11 @@ $( "#addnewitems" ).click(function() {
                   $('#errornew').html("Fill All Fields Properly!!");
                 }
   });
-
-
-  /*$("#add").click(function(){
-              var newitems=$('#newitems').val();
-              var newcost=$('#newcost').val();
-              var newlimit=$('#newlimit').val();
-                 
-                 if($.trim(newitems) && $.trim(newcost) && $.trim(newlimit))
-                 {
-                  $.post(BASE_URL+'Admin/additems',{parent:shopid,newitems:newitems,newcost:newcost, newlimit:newlimit}, function(data){
-                   //alert(shopid);
-                     if($.trim(data))
-                     {  
-                        //$('#errornew').html("Lunch Items Added Sucessfully!!");
-                        $("#newitemdiv").hide();
-                        showitemsall(GLOBAL_SHOPID);
-                        $('#errornew').html("Lunch Items Added Sucessfully!!");
-                        $("#showitem").show(); 
-
-                     }
-                     else
-                     {
-                         $('#errornew').html("Try Again!!");
-                     } 
-                  });
-                }
-                else
-                {
-                  $('#errornew').html("Fill All Fields Properly!!");
-                }
+//================On "Click Here" BUTTON CLICK================================================================================ 
+  $("#showadd").click(function(){
+    //alert('JY');
+     $( "#showaddshop" ).toggle();
   });
-
-  }
-//=======================================================================================================================
- 
-function showitemsall(GLOBAL_SHOPID)
-{
-  $('#shopitems').html("");
-  var showallitems="";
-  
-
-
-
-
-}
-*/
 
 
 
