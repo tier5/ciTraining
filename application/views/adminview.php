@@ -11,69 +11,27 @@
   
   
   
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">Home</a>
-            </div>  
-            <form action="Admin/logout" method="post">
-                
-                            <input type="submit" value="logout" class="btn btn-default pull-right">
-                        
-                        </form>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a class="page-scroll" href="#page-top"></a>
-                    </li>
-                    
-                    <li>
-                        <a class="page-scroll" href="#contact">Employee's Late</a>
-                    </li>
-                    
-                    <li>
-                        <a class="page-scroll" href="#employeelate">Show all Employee</a>
-                    </li>
-
-                    
-                    <li>
-                        <a  href="<?php echo base_url();?>Admin/showAllLateview">Employee's All Late Information</a>
-                    </li>
-
-                    <li>
-                        <a  href="Admin/lunchorderview">Lunch Order</a>
-                    </li>
-                    <li>
-                        <a  href="Admin/addEventview">Event</a>
-                    </li>
-                    <li>
-                        <a  href="Admin/ShowPointHistory">Point History</a>
-                    </li>
-                   
-                </ul>
-
-                
-                     
-                        
-                   
-                
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
+<?php include 'navbar.php';?>
     <!-- Intro Section -->
+    <div id="test" data-status='opened'>
+     <div class="user">
+      <img src="http://image.priceprice.k-img.com/ph/images/common/face_japan_01.gif" alt="Esempio" class="img-thumbnail">
+      <a target="_blank" class="navbar-link">Admin</a>
+    </div>
+    <div class="list-group">
+      <a class="list-group-item1 active"  href="<?php echo base_url()?>">Home</a>
+      <a class="list-group-item1" href="<?php echo base_url();?>Admin#contact">Employee's Late</a>
+      <a class="list-group-item1" href="<?php echo base_url();?>Admin#employeelate">Show all Employee</a>
+
+      <a  class="list-group-item1" href="<?php echo base_url();?>Admin/showAllLateview">Employee's All Late Information</a>
+      <a class="list-group-item1" href="<?php echo base_url();?>Admin/lunchorderview">Lunch Order</a>
+      <a class="list-group-item1" href="<?php echo base_url();?>Admin/addEventview">Event</a>
+      <a class="list-group-item1" href="<?php echo base_url();?>Admin/ShowPointHistory">Point History</a>
+      <a class="list-group-item1" href="logout">Logout</a>
+     
+  </div>
+</div>
+    
 
 
     <section id="intro" class="intro-section">

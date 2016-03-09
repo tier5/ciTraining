@@ -381,5 +381,14 @@
            
            }
 
+           public function FnAllorder()
+           {
+            $this->db->select('lunchorder.*,employee.propname');
+            $this->db->where('date',date('Y-m-d'));
+            $this->db->join('employee','employee.id=lunchorder.Eid');
+            $res=$this->db->get('lunchorder');
+           return $res->result_array();
+           }
+
    } 
 ?> 

@@ -41,12 +41,15 @@
     <!-- Scrolling Nav JavaScript -->
     <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
+    
 
     <script src="<?php echo base_url().'application/views/js/lateview.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/lunchorderadmin.js'?>"></script>
        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
     
+     <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/BootSideMenu.css">
+<script src="<?php echo base_url();?>application/views/js/BootSideMenu.js"></script>
 <script type="text/javascript">
     
     $(document).ready(function() {
@@ -78,7 +81,7 @@
            }
 
          });
-        
+          $('#test').BootSideMenu({side:"left", autoClose:false});
     });
 </script>
 

@@ -39,6 +39,25 @@
         </div>
 </nav>
 
+
+  <div id="test" data-status='opened'>
+         <div class="user">
+          <img src="http://image.priceprice.k-img.com/ph/images/common/face_japan_01.gif" alt="Esempio" class="img-thumbnail">
+          <a target="_blank" class="navbar-link">Admin</a>
+        </div>
+        <div class="list-group">
+          <a class="list-group-item1"  href="<?php echo base_url()?>">Home</a>
+          <a class="list-group-item1" href="<?php echo base_url();?>Admin#contact">Employee's Late</a>
+          <a class="list-group-item1" href="<?php echo base_url();?>Admin#employeelate">Show all Employee</a>
+
+          <a  class="list-group-item1" href="<?php echo base_url();?>Admin/showAllLateview">Employee's All Late Information</a>
+          <a class="list-group-item1 active" href="lunchorderview">Lunch Order</a>
+          <a class="list-group-item1" href="addEventview">Event</a>
+          <a class="list-group-item1 " href="ShowPointHistory">Point History</a>
+          <a class="list-group-item1" href="logout">Logout</a> 
+       </div>
+  </div>
+
  <div class="intro-section">
         <div class="container-fluid">
             <div class='row'>
@@ -67,8 +86,9 @@
             	              <td><strong>Lunch Item</strong></td>
             	              <td><strong>Cost</strong></td>
             	              <td><strong><button id="deletallorder" class="btn btn-danger btn-sm" data-target="#cnfrmdltlunchorder" data-toggle="modal" >Delete All</button></strong></th>
-            	              <td><strong><button id="printorder" class="btn btn-danger btn-sm" data-target="#printorderall" data-toggle="modal">Print All</button></strong></th>
+            	             <td><strong><button id="printorder" class="btn btn-danger btn-sm">Print All</button></strong></th>
                             <td><strong><button id="printselected" class="btn btn-danger btn-sm" >Print Selected</button></strong></th>
+
                           </tr>
                         </thead>
                         <tbody id="lunchlist" align="center">
@@ -130,14 +150,15 @@
               <div class="modal-body ">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-
+                     <div id='print_all'>
+                     </div>
                 
 
                 </div>
                 <div class="col-sm-1"></div>
               </div>  
               <div class="modal-footer">
-                
+                <a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>
               </div>            
           </div>     
         </div>

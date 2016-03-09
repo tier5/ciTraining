@@ -132,6 +132,8 @@ function showfirstdiv()
 		$('#orderbody').empty();
 
 	});
+
+
 	$('#suborder').click(function(){
 		   var shopname=$('#shpname').text();
 		   var lunchitm=$('#totalitem').text();
