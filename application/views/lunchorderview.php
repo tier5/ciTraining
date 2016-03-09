@@ -67,7 +67,7 @@
             	              <td><strong>Lunch Item</strong></td>
             	              <td><strong>Cost</strong></td>
             	              <td><strong><button id="deletallorder" class="btn btn-danger btn-md glyphicon glyphicon-trash" data-target="#cnfrmdltlunchorder" data-toggle="modal" >Delete All</button></strong></th>
-            	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print" data-target="#printorderall" data-toggle="modal">Print All</button></strong></th>
+            	              <td><strong><button id="printorder" class="btn btn-danger btn-md glyphicon glyphicon-print">Print All</button></strong></th>
                           </tr>
                         </thead>
                         <tbody id="lunchlist" align="center">
@@ -129,14 +129,15 @@
               <div class="modal-body ">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-
+                     <div id='print_all'>
+                     </div>
                 
 
                 </div>
                 <div class="col-sm-1"></div>
               </div>  
               <div class="modal-footer">
-                
+                <a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>
               </div>            
           </div>     
         </div>
