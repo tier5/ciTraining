@@ -545,7 +545,7 @@ class Employee extends CI_Controller
 				$data['starttime'] = 1;
 				$data['endtime'] = 1;
 
-				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
 				//print_r($result);
 
 
@@ -570,7 +570,7 @@ class Employee extends CI_Controller
 				$data['starttime'] = 1;
 				$data['endtime'] = 1;
 
-				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
 				//print_r($result);
 
 
@@ -588,7 +588,7 @@ class Employee extends CI_Controller
 				$data['starttime'] = 1;
 				$data['endtime'] = 1;
 
-				$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
+				//$result = $this->EmployeeModel->insertNonTakenBreaktbl($data,$tblname);
 				//print_r($result);
 
 
@@ -711,14 +711,15 @@ class Employee extends CI_Controller
 
 	public function calenderclockin()
 	{	
+		
 		$clock = $this->input->post('clock');
-
+       
 		$data['Eid']=$this->session->userdata('empid');
-		$data['date'] = $this->todaydate;
-
+		$data['date'] = date('Y-m-d',strtotime($this->todaydate));
+        
 		$result = $this->EmployeeModel->autoChangeButton($data);
-
-		$clockintime = strtotime($result[$clock]);
+       //print_r($result);
+		 $clockintime = strtotime($result[$clock]);
 
 		$properclockintime = strtotime(CLOCK_IN_TIME);
 
@@ -743,15 +744,56 @@ class Employee extends CI_Controller
 
 	}
 
+
+
+	public function calenderclockinChangeDate()
+	{	
+		
+		$clock = $this->input->post('clock');
+        
+        $exp_date=explode('/',$this->todaydate);
+        $date_new=$exp_date[0].'-'.$exp_date[1].'-'.$exp_date[2];
+       
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date'] = date('Y-m-d',strtotime($date_new));
+        
+		$result = $this->EmployeeModel->autoChangeButton($data);
+       //print_r($result);
+		 $clockintime = strtotime($result[$clock]);
+
+		$properclockintime = strtotime(CLOCK_IN_TIME);
+
+		if($result[$clock])
+		{
+			if($clockintime>$properclockintime)
+			{
+				$colorclass = "error";
+			}
+
+			else
+			{
+				$colorclass = "";
+			}
+
+			echo $result[$clock].",".$colorclass;
+		}
+
+		
+
+		
+
+	}
+
+
 	public function calenderclockout()
 	{
-		$clock = $this->input->post('clock');
+	    $clock = $this->input->post('clock');
 
 		$data['Eid']=$this->session->userdata('empid');
-		$data['date'] = $this->todaydate;
+		$data['date'] =date('Y-m-d',strtotime($this->todaydate));
 
 		$result = $this->EmployeeModel->autoChangeButton($data);
-
+         
 		$clockouttime = strtotime($result[$clock]);
 
 		$properclockintime = strtotime(CLOCK_OUT_TIME);
@@ -775,7 +817,7 @@ class Employee extends CI_Controller
 	public function calenderFbreak()
 	{
 		$data['Eid']=$this->session->userdata('empid');
-		$data['date'] = $this->todaydate;
+		$data['date'] = date('Y-m-d',strtotime($this->todaydate));
 		$tblname = 'fbreak';
 		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
 
@@ -805,11 +847,11 @@ class Employee extends CI_Controller
 	public function calenderSbreak()
 	{
 		$data['Eid']=$this->session->userdata('empid');
-		$data['date'] = $this->todaydate;
+		$data['date'] = date('Y-m-d',strtotime($this->todaydate));
 		$tblname = 'sbreak';
 		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
 
-		if($result['endtime'] && $result['endtime']!=1)
+		if($result['endtime'])
 		{
 			$nowtime = new DateTime($result['starttime']);
 
@@ -835,11 +877,11 @@ class Employee extends CI_Controller
 	public function calenderLbreak()
 	{
 		$data['Eid']=$this->session->userdata('empid');
-		$data['date'] = $this->todaydate;
+		$data['date'] = date('Y-m-d',strtotime($this->todaydate));
 		$tblname = 'lbreak';
 		$result = $this->EmployeeModel->allBreakTableInfo($data,$tblname);
 
-		if($result['endtime'] && $result['endtime']!=1)
+		if($result['endtime'])
 		{
 			$nowtime = new DateTime($result['starttime']);
 
@@ -865,6 +907,7 @@ class Employee extends CI_Controller
 	public function calenderclockinDateChk()
 	{
 
+		//$this->calenderclockinChangeDate();
 		$this->calenderclockin();
 	}
 
