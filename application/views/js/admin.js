@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 var a=0;
 
 $('[data-toggle="tooltip"]').tooltip();
@@ -1418,5 +1419,7 @@ function properMin(val)
 
 
 	});
+
+
 
 });

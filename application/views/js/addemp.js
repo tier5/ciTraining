@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+	
 	$('#errorAdd').html(''); //making divs empty after page ready
 	$('#confirmAdd').html(''); //making divs empty after page ready
 		$('#addemp').click(function(){

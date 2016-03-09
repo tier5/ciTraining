@@ -41,6 +41,7 @@
     <!-- Scrolling Nav JavaScript -->
     <script src="<?php echo base_url().'application/views/js/jquery.easing.min.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/scrolling-nav.js'?>"></script>
+    
 
     <script src="<?php echo base_url().'application/views/js/lateview.js'?>"></script>
     <script src="<?php echo base_url().'application/views/js/lunchorderadmin.js'?>"></script>

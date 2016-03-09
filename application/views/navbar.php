@@ -35,9 +35,12 @@
                     </li> -->
                     <li>
       <img src="<?php echo base_url()?>images/admin.png" alt="admin" class="img-responsive user-image navbar-brand page-scroll">
+
       <a href="<?php echo base_url();?>" class="navbar-brand page-scroll">Admin</a>
+
     </li>
-                    <li> <a  href="<?php echo base_url().'Admin'?>">Home</a></li>
+                  
+                 <li> <a  href="<?php echo base_url().'Admin'?>">Home</a></li>
                     
                     <li>
                         <a  href="<?php echo base_url();?>Admin/showAllLateview">Employee's All Late Information</a>
@@ -45,7 +48,10 @@
 
                     <li>
                        <a  href="lunchorderview">Lunch Order</a>
-                   </li>
+                   </li>   
+                    
+
+                    
                    <!--<li>
                        <a  href="addEventview">Event</a>
                    </li>

@@ -21,6 +21,7 @@
     <link href="<?php echo base_url().'application/views/css/bootstrap.min.css';?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url().'application/views/css/addemp.css';?>">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    
     <!-- Custom CSS -->
     
 
@@ -56,6 +57,8 @@
 
 
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/BootSideMenu.css">
+<script src="<?php echo base_url();?>application/views/js/BootSideMenu.js"></script>
 <style>
     table.ui-datepicker-calendar tbody td.highlight > a {
    background: url("images/ui-bg_inset-hard_55_ffeb80_1x100.png") repeat-x scroll 50% bottom #FF9780;
@@ -63,11 +66,12 @@
     border: 1px solid #FFDE2E;
 }
 </style>
-<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/BootSideMenu.css">
-<script src="<?php echo base_url();?>application/views/js/BootSideMenu.js"></script>
-<script type="text/javascript">
-     $(document).ready(function() {
-    $('#test').BootSideMenu({side:"left", autoClose:false});
+
+<script>
+$(document).ready(function() {
+$('#test').BootSideMenu({side:"left", autoClose:false});
 });
 </script>
+
+
 </head>
