@@ -69,7 +69,7 @@
 
 <script>
 $(document).ready(function() {
-$('#test').BootSideMenu({side:"left", autoClose:false});
+$('#test').BootSideMenu({side:"left", autoClose:true});
 });
 </script>
 

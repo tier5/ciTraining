@@ -98,7 +98,9 @@
 
 
 	$(document).on('click','.toggler', function(){
+		
 		var toggler = $(this);
+
 		var container = toggler.parent();
 		//var listaClassi = container[0].classList; //Old
 		var listaClassi = $(container[0]).attr('class').split(/\s+/); //IE9 Fix - Thanks Nicolas Renaud
