@@ -414,5 +414,21 @@
 
           }
 
+          public function cardCheck($where)
+           {
+              $result = $this->db->get_where('card', $where);
+              return $result->row_array();
+           }
+
+           public function assignCard($data,$where)
+           {
+              $this->db->where($where);
+              if($result = $this->db->update('card',$data))
+              {
+                return $result;
+              }
+
+           }
+
    } 
 ?> 

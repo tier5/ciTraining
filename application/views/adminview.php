@@ -628,6 +628,75 @@
   
 </div>
 
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="cardCheck" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>A New Card Found</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div align='center' ><strong id="cardMsg"></strong></div>
+              </br>          
+              <input class="form-control" id="idToCard" placeholder="Employee ID"/></textarea>
+               </br>
+               <button type="button" id="addEmpToCard" class="btn btn-primary" data-dismiss="modal">Add</button>
+
+              </div>
+
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+            </div>
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
+
+
+<div class="container">
+
+      <!-- Modal -->
+      <div class="modal fade" id="cardAdded" role="dialog">
+        <div class="modal-dialog modal-sm">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title deleteconfirm" align="center"><strong>Added Successfully</strong></h4>
+            </div>
+            <div class="modal-body">
+              
+              <div align='center' ><strong id="cardAddedMsg"></strong></div>
+              </br>          
+              
+              </div>
+
+            <div class="modal-footer">
+
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+            </div>
+            </div>
+                        
+            </div>
+            
+          </div>
+          
+        </div>
 
 
 

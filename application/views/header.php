@@ -73,5 +73,7 @@ $('#test').BootSideMenu({side:"left", autoClose:false});
 });
 </script>
 
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/card.js';?>"></script>
+
 
 </head>
