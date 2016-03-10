@@ -101,12 +101,15 @@
 	$(document).on('click','.toggler', function(){
 
 		var toggler = $(this);
+
 		var container = toggler.parent();
+
 		//var listaClassi = container[0].classList; //Old
 		var listaClassi = $(container[0]).attr('class').split(/\s+/); //IE9 Fix - Thanks Nicolas Renaud
 		var side = getSide(listaClassi);
 		var containerWidth = container.width();
 		var status = container.attr('data-status');
+		
 		if(status=="opened")
 		{
 			$('.navChanages').removeClass('pull-right')
@@ -152,9 +155,12 @@ function getSide(listaClassi){
 }
 //esegue l'animazione
 function doAnimation(container, containerWidth, sidebarSide, sidebarStatus){
+
 	var toggler = container.children()[1];
 	if(sidebarStatus=="opened"){
+   
 		if(sidebarSide=="left"){
+			
 			container.animate({
 				left:-(containerWidth+2)
 			});
