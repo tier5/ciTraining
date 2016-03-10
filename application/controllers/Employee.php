@@ -91,7 +91,7 @@ class Employee extends CI_Controller
 				echo "Attendance marked @"."\n".$data['clockin'].",";
 				$this->clockinLateChk();
 				$this->clockinLatePoints();
-				
+				$this->working();	
 
 
 			}
@@ -108,6 +108,7 @@ class Employee extends CI_Controller
 			if ($couttime) 
 			{
 				echo "you have clocked out";
+				$this->notWorking();
 			}
 			else
 			{
@@ -122,6 +123,7 @@ class Employee extends CI_Controller
 		$data['date'] = date("Y-m-d");
 
 		$this->EmployeeModel->endBreak($data);
+		$this->working();
 
 		
 
@@ -137,7 +139,7 @@ class Employee extends CI_Controller
 		$data['date'] = date("Y-m-d");
 
 		$return = $this->EmployeeModel->inBreak($data);
-
+		$this->notWorking();
 		print_r($return);
 	}
 
@@ -972,6 +974,22 @@ class Employee extends CI_Controller
 		$data['cost']=$finalcost;
 		$result=$this->EmployeeModel->submitorder($data);
         print_r($result);
+	}
+
+	public function working()
+	{
+		$where['Eid']=$this->session->userdata('empid');
+		$data['status']=1;
+
+		$result = $this->EmployeeModel->cardStatus($data, $where);
+	}
+
+	public function notWorking()
+	{
+		$where['Eid']=$this->session->userdata('empid');
+		$data['status']=0;
+		$result = $this->EmployeeModel->cardStatus($data, $where);
+
 	}
 }
 ?>
