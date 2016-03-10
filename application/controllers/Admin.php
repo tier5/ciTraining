@@ -1046,10 +1046,12 @@ public function deductPointCustomReason()
     public function FnfetchAllOrder()
     {
 
+
     	$data['date']=$this->input->post('date');
         $data['status']=0;
 
     	$all_order=$this->AdminModel->FnAllorder($data);
+
     	//echo '<pre>';print_r($all_order);
     	$result='';
     	if(!empty($all_order))
