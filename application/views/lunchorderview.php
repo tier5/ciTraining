@@ -16,18 +16,21 @@
             </div>
             
             <div>
-                <a class="navbar-brand page-scroll" href="<?php echo base_url().'Admin'?>"><span class="glyphicon glyphicon-circle-arrow-left"></span>Back To Home</a>
+               
                 <form action="<?php echo base_url().'Admin/logout'?>" method="post">
                     <input type="submit" value="logout" class="btn btn-default pull-right">
                 </form>
             </div>
 
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <div class="collapse navbar-collapse navbar-ex1-collapse pull-right navChanages">
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a class="page-scroll" href="#page-top"></a>
                     </li>
+                     <li>
+                     <a class="page-scroll" href="<?php echo base_url().'Admin'?>"><span class="glyphicon glyphicon-circle-arrow-left"></span>Back To Home</a>
+                      </li>
                     <li>
                         <a class="page-scroll" href="#todaysorder">Today's Order</a>
                     </li>
@@ -173,34 +176,26 @@
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h4 class="modal-title printconfirm" align="center"><strong>Print</strong></h4>
               </div>
-              <div class="modal-body" id="printdiv" >
+              <div class="modal-body ">
                 <div class="col-sm-1"></div>
-                <div class="col-sm-10"  id="div1" style="border: 2px solid black;" >
+                <div class="col-sm-10">
+                     <div id='printdiv'>
+                     </div>
                 
-                      <div align="left"><img src="<?php echo base_url().'application/views/img/logo.png'?>" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"></span></div>
-                      </br>
-                      Employee Name:<span id="empname"></span>
-                      <br>
-                      <br>
-                      Lunch Items:<span id="emplunch"></span><div align="right">Total Cost:<span id="empcost"></span></div>
-                  
-                      Date:<span id="empdate"></span>
-                      </br>
-                      </br>
-                      </br>
 
-                      <div align="right"> Authorized Signature...............................................<img src="<?php echo base_url().'application/views/img/logo.png'?>" alt="" width="50px"  /></div>
-               
                 </div>
                 <div class="col-sm-1"></div>
               </div>  
               <div class="modal-footer">
-                 <button id="printfinal" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</button>
-              
+                <a id="printfinal" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>
               </div>            
           </div>     
         </div>
       </div>
+
+
+
+    
 
 
 

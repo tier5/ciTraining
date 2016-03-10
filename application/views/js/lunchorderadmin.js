@@ -11,8 +11,24 @@ $(document).ready(function(){
 		    	//alert(data);
 	        if($.trim(data))
 	        {
+            var d = new Date();
+
+         var month = d.getMonth()+1;
+         if(month<10)
+         {
+          month='0'+month;
+         }
+         var day = d.getDate();
+         if(day<10)
+         {
+          day='0'+day;
+         }
+         var year=d.getFullYear();
+         var current_date=day+'-'+month+'-'+year;
+        
             $('#placedordr').show();
                 var showdiv = "";
+                var showdiv = "<input type='hidden' id='cur_date' name='cur_date' value='"+current_date+"'>";
 		   	    var data1=data.split("?");
 			    for(i=0; i<data1.length-1; i++)
 			    { 
@@ -77,6 +93,7 @@ $(document).ready(function(){
               if($.trim(data))
               {
                 var showdiv = "";
+                showdiv+='<input type="hidden" name="cur_date" value="'+date+'" id="cur_date">';
                 var data1=data.split("?");
                 for(i=0; i<data1.length-1; i++)
                 { 
@@ -99,13 +116,25 @@ $(document).ready(function(){
 
     window.myFunction = function(orderid1)
     {
+       $.post(BASE_URL+'Admin/Fnsingleprint', {orderid:orderid1}, function(data){
+         
+          if($.trim(data))
+              {
+                $("#printdiv").html(data);
+       
+               
+              }
+            
+       });
+        
       $("#printsingleorder").modal('show');
-      var name=($('#name_'+orderid1).text());
+     
+     /* var name=($('#name_'+orderid1).text());
       var date=($('#date_'+orderid1).text());
       var shop=($('#shop_'+orderid1).text());
       var cost=($('#cost_'+orderid1).text());
       var items=($('#items_'+orderid1).text());
-     // alert(name);
+     //alert(name);
       //alert(date);
       //alert(shop);
       //alert(cost);
@@ -115,7 +144,7 @@ $(document).ready(function(){
       $('#emplunch').html(items);
       $('#empdate').html(date);
       $('#empcost').html(cost);
-      $('#empshop').html(shop);
+      $('#empshop').html(shop);*/
       
     
     }
@@ -152,14 +181,20 @@ $(document).ready(function(){
 
 
 $('#printorder').click(function() {
+
+  var date='';
+  date=$('#cur_date').val();
+
   
    $.ajax({
 
                 type:'POST',
                 
                 url:'FnfetchAllOrder',
+                data:'date='+date,
                 success:function(result)
                 {
+                 // alert(result);
                    $('#printorderall').modal('show');
                    $('#print_all').html(result);
                 }
@@ -191,7 +226,7 @@ $('#printorder').click(function() {
     
         $('input[name="print_check[]"]:checked').each ( function() {
         var id= $(this).val();
-
+        
         if(id!='')
         {
           arr.push(id);

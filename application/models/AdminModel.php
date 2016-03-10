@@ -361,7 +361,7 @@
       }
 
       public function FnPointmonth($month=null)
-         {
+          {
            if($month)
            {
            $curMonth=$month;
@@ -381,10 +381,20 @@
            
            }
 
-           public function FnAllorder()
+           public function FnAllorder($data)
            {
+            
+
             $this->db->select('lunchorder.*,employee.propname');
+            if($data['date']=='')
+            {
             $this->db->where('date',date('Y-m-d'));
+            }
+            else
+            {
+               $this->db->where('date',date('Y-m-d',strtotime($data['date'])));
+            }
+            $this->db->where('status',$data['status']);
             $this->db->join('employee','employee.id=lunchorder.Eid');
             $res=$this->db->get('lunchorder');
            return $res->result_array();
