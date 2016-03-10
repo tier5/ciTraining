@@ -926,7 +926,7 @@ public function deductPointCustomReason()
     {
     	extract($_POST);
     	//echo $optdate;
-       $data['date']=$this->date;
+       $data['date']=date('Y-m-d',strtotime($this->date));
        $data['status']=0;
        $result = $this->AdminModel->showorder($data);
        foreach ($result as $row) 
@@ -1058,6 +1058,7 @@ public function deductPointCustomReason()
                       <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
                       </br>
                       Employee Name:<span id="empname"> '.$orders['propname'].'</span>
+                    
                       <br>
                       <br>
                       Lunch Items:<span id="emplunch"> '.$orders['items'].'</span><div align="right">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
@@ -1120,38 +1121,7 @@ public function deductPointCustomReason()
 
     	}
         echo $result;
-    	 //print_r($all_order);
-  
-         /*$result='';
-    	if(!empty($all_order))
-    	{
-    	foreach($all_order as $orders)
-    	{
-    		 $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
-                
-                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
-                      </br>
-                      Employee Name:<span id="empname"> '.$orders['propname'].'</span>
-                      <br>
-                      <br>
-                      Lunch Items:<span id="emplunch"> '.$orders['items'].'</span><div align="right">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
-                  
-                      Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span>
-                      </br>
-                      </br>
-                      </br>
-
-                      <div align="right"> Authorized Signature...............................................<img src="'.base_url().'application/views/img/logo.png" alt="" width="50px"  /></div>
-               
-                       </div>';
-
-                 $result.= '&nbsp;&nbsp;<div style="margin-top:75px;"></div>';
-
-    	}
-    	  //$result.='<a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>';
-        }
-    	echo $result;*/
-
+    	 
     
     }
 
