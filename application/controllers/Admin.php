@@ -1159,6 +1159,27 @@ public function deductPointCustomReason()
             echo $result;
     }
 
+    public function cardCheck()
+    {
+    	$where['Eid']=NULL;
+    	$result = $this->AdminModel->cardCheck($where);
+    	
+    	echo json_encode($result);
+    }
+
+    public function assignCard()
+    {
+    	$where['Cid'] = $this->input->post('Cid');
+    	$data['Eid'] = $this->input->post('empId');
+
+    	$result = $this->AdminModel->assignCard($data, $where);
+
+    	if($result)
+    	{
+    		print_r($data['Eid']);
+    	}
+    }
+
 
 
 }
