@@ -1045,6 +1045,7 @@ public function deductPointCustomReason()
 
     public function FnfetchAllOrder()
     {
+    	
     	$all_order=$this->AdminModel->FnAllorder();
     	//echo '<pre>';print_r($all_order);
     	$result='';

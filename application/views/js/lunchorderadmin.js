@@ -168,19 +168,6 @@ $('#printorder').click(function() {
  
 
    
-    window.prntselect = function(orderid2)
-    {
-         //alert(orderid2);
-         if($("#printselect_"+orderid2).prop('checked') == true)
-         {
-          //alert(orderid2);
-         }
-         else
-         {
-          //alert('kjsf')
-         }
-   }
-
 
    
    $('#printselected').click(function() {
@@ -193,18 +180,25 @@ $('#printorder').click(function() {
         if(id!='')
         {
           arr.push(id);
-        }
+        
 
-        });
-
-         if(arr)
+          if(arr)
           {
             $.post(BASE_URL+'Admin/selectprint', {orderid:arr}, function(data){
               $('#printorderall').modal('show');
-               $('#print_all').html(data);
-             
-             });
+              $('#print_all').html(data);
+            });
           }
+          
+        }
+        
+
+
+
+
+
+
+        });
 
    });
   
