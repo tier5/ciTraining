@@ -36,7 +36,11 @@ $(document).ready(function(){
 			}
 		})
 
+		$('#cardAddedConfirm').click(function(){
 
+			location.reload();
+
+		});
 
 
 
