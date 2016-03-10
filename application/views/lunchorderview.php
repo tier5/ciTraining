@@ -195,7 +195,17 @@
 
 
 
-    
+   <div aria-labelledby="mySmallModalLabel" role="dialog" tabindex="-1" class="modal fade bs-example-modal-sm in" id='smallModal'>
+   <div class="modal-dialog modal-sm"> <div class="modal-content">
+    <div class="modal-header">
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button> 
+    <h4 id="mySmallModalLabel" class="modal-title error">Error Selection</h4> 
+    </div> 
+    <div class="modal-body" id='no_select'>
+    </div> 
+    </div> 
+    </div> 
+    </div>
 
 
 

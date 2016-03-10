@@ -210,10 +210,10 @@ $('#printorder').click(function() {
    $('#printselected').click(function() {
    
     var arr=[];
-    
+  
         $('input[name="print_check[]"]:checked').each ( function() {
         var id= $(this).val();
-        
+       
         if(id!='')
         {
           arr.push(id);
@@ -222,20 +222,22 @@ $('#printorder').click(function() {
           if(arr)
           {
             $.post(BASE_URL+'Admin/selectprint', {orderid:arr}, function(data){
+
               $('#printorderall').modal('show');
               $('#print_all').html(data);
             });
           }
           
         }
+      
         
 
-
-
-
-
-
         });
+        if(arr=='')
+        {
+           $('#smallModal').modal('show');
+              $('#no_select').html('Please select atleast one item.');
+        }
 
    });
   

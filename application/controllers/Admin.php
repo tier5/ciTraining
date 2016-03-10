@@ -1092,7 +1092,7 @@ public function deductPointCustomReason()
     	//$data=$orderid;
     	//print_r($orderid);
     	$result='';
-
+      
     	for($i=0;$i<count($orderid);$i++)
     	{
     	$all_order=$this->AdminModel->selectprint($orderid[$i]);
