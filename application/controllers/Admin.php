@@ -1060,15 +1060,15 @@ public function deductPointCustomReason()
     	{
     		 $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
                 
-                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
+                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
                       </br>
-                      Employee Name:<span id="empname"> '.$orders['propname'].'</span>
+                      <div style="padding-left:10px;"> Employee Name:<span id="empname"> '.$orders['propname'].'</span></div>
                     
                       <br>
                       <br>
-                      Lunch Items:<span id="emplunch"> '.$orders['items'].'</span><div align="right">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
+                      <div style="padding-left:10px;"> Lunch Items:<span id="emplunch"> '.$orders['items'].'</span></div><div align="right" style="padding-right:10px;">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
                   
-                      Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span>
+                      <div style="padding-left:10px;"> Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span></div>
                       </br>
                       </br>
                       </br>
@@ -1102,14 +1102,14 @@ public function deductPointCustomReason()
     	{
     		 $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
                 
-                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
+                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
                       </br>
-                      Employee Name:<span id="empname"> '.$orders['propname'].'</span>
+                      <div style="padding-left:10px;"> Employee Name:<span id="empname"> '.$orders['propname'].'</span></div>
                       <br>
                       <br>
-                      Lunch Items:<span id="emplunch"> '.$orders['items'].'</span><div align="right">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
+                      <div style="padding-left:10px;">  Lunch Items:<span id="emplunch"> '.$orders['items'].'</span></div><div align="right" style="padding-right:10px;">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
                   
-                      Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span>
+                     <div style="padding-left:10px;">  Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span></div>
                       </br>
                       </br>
                       </br>
@@ -1139,14 +1139,14 @@ public function deductPointCustomReason()
           {
     	  $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
                 
-                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
+                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
                       </br>
-                      Employee Name:<span id="empname"> '.$orders['propname'].'</span>
+                      <div style="padding-left:10px;"> Employee Name:<span id="empname"> '.$orders['propname'].'</span></div>
                       <br>
                       <br>
-                      Lunch Items:<span id="emplunch"> '.$orders['items'].'</span><div align="right">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
+                      <div style="padding-left:10px;"> Lunch Items:<span id="emplunch"> '.$orders['items'].'</span></div><div align="right" style="padding-right:10px;">Total Cost:<span id="empcost"> '.$orders['cost'].'</span></div>
                   
-                      Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span>
+                     <div style="padding-left:10px;">  Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span></div>
                       </br>
                       </br>
                       </br>

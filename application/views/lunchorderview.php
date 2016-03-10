@@ -179,7 +179,7 @@
               <div class="modal-body ">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10">
-                     <div id='printdiv'>
+                     <div id='printdiv' style='padding-left:30px;padding-right:30px;'>
                      </div>
                 
 

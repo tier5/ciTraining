@@ -362,6 +362,16 @@ class EmployeeModel extends CI_model
        }
    }
 
+
+   public function cardStatus($data, $where)
+   {
+        $this->db->where($where);
+        if($this->db->update('card',$data))
+        {
+            return true;
+        }
+   }
+
     
 }
 
