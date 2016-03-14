@@ -42,7 +42,25 @@ class Employee extends CI_Controller
 		{
 			$where=array('date'=>date('Y-m-d'));
 			$data['event_info']=$this->EmployeeModel->FngetAlldata('tbl_event_informations',$where);
-			
+
+			$con=array('date'=>date('Y-m-d'),'Eid'=>$this->session->userdata('empid'),'breakstatus'=>0,'clockout'=>NULL);
+			$data['production_info']=$this->EmployeeModel->FngetAllCount('attendance',$con,'count');
+			$active='';
+			$start_in='';
+			if($data['production_info']>0)
+			{
+              
+            $con1=array('date'=>date('Y-m-d'),'Eid'=>$this->session->userdata('empid'),'status'=>1);
+			$get_info=$this->EmployeeModel->FngetAllCount('tbl_employee_productivity',$con1,'row');
+			if(count($get_info)>0)
+			{
+				$active=$get_info['type'];
+				$start_in=$get_info['startTime'];
+			}
+			}
+			$data['active']=$active;
+			$data['start_in']=$start_in;
+			//echo $this->db->last_query();
 			$this->load->view('employeeview',$data);
 		}
 
@@ -141,6 +159,62 @@ class Employee extends CI_Controller
 		$return = $this->EmployeeModel->inBreak($data);
 		$this->notWorking();
 		print_r($return);
+	}
+
+
+	public function Fnaddproduction()
+	{
+		extract($_POST);
+		$data['Eid'] = $this->session->userdata('empid');
+		$data['startTime'] = date('H:i:s');
+		$data['type'] =$type;
+		$data['status'] =1;
+		$data['date'] = date("Y-m-d");
+		$con=array('status'=>1,'Eid'=>$this->session->userdata('empid'),'date'=>date("Y-m-d"));
+		$chk_exists=$this->EmployeeModel->FngetAllCount('tbl_employee_productivity',$con,'row');
+		if(empty($chk_exists))
+		{
+		echo $ins=$this->EmployeeModel->insert('tbl_employee_productivity',$data);
+	    }
+	    else
+	    {
+	    	$where=array('emp_p_id'=>$chk_exists['emp_p_id']);
+	    	$update['status']=0;
+	    	$update['endTime']=date('H:i:s');
+	    	$update=$this->EmployeeModel->update('tbl_employee_productivity',$update,$where);
+	    	if($update)
+	    	{
+			echo $ins=$this->EmployeeModel->insert('tbl_employee_productivity',$data);
+	    	}
+	    }
+		
+	}
+
+	public function Activeproduction()
+	{
+		$where=array('date'=>date('Y-m-d'),'Eid'=>$this->session->userdata('empid'),'status'=>0);
+		$orderby='desc';
+		$info=$this->EmployeeModel->FngetAllorder('tbl_employee_productivity',$where,'row',$orderby);
+		$type=$info['type'];
+
+
+		$data['Eid'] = $this->session->userdata('empid');
+		$data['startTime'] = date('H:i:s');
+		$data['type'] =$type;
+		$data['status'] =1;
+		$data['date'] = date("Y-m-d");
+		//$ins=$this->EmployeeModel->insert('tbl_employee_productivity',$data);
+		echo $type;
+	}
+
+
+	public function removeClockout()
+	{
+		$where=array('date'=>date('Y-m-d'),'Eid'=>$this->session->userdata('empid'));
+		$update['clockout']=NULL;
+		
+		echo $update=$this->EmployeeModel->update('attendance',$update,$where);
+		
 	}
 
 	public function autoChangeButton()
@@ -990,6 +1064,14 @@ class Employee extends CI_Controller
 		$data['status']=0;
 		$result = $this->EmployeeModel->cardStatus($data, $where);
 
+	}
+
+	public function FnstopProduction()
+	{
+		$update['endTime']=date('H:i:s');
+		$update['status']=0;
+		$where=array('Eid'=>$this->session->userdata('empid'),'status'=>1);
+		$result=$this->EmployeeModel->update('tbl_employee_productivity',$update,$where);
 	}
 }
 ?>

@@ -30,6 +30,7 @@
                     $('#breakmsg').html('');
                     $.post('Employee/clockin', function(data){
                       
+                      $('#production').show();
                      //alert(data);
                         /*$('#clockintime').html(data);
                         $('#clockintime1').html('');*/
@@ -77,7 +78,13 @@
                             {
                                   if(event_exists !='' && data[0]!='you have already clocked in today')
                                    {
-                                    $('#event_modal').modal('show');
+                                     $('#event_modal').modal('show');
+                                   }
+                                   else
+                                   {
+                                   
+                                    $.post('Employee/removeClockout', function(data){
+                                    });
                                    }
                             }
 
@@ -130,6 +137,14 @@
                 $('#clockoutModal').modal('show');
 
                 $('#clockoutYes').click(function(){
+                   
+                       $.post('Employee/FnstopProduction', function(data){
+                         $('.production').removeAttr('disabled');
+                         $('#timer1').hide();
+                         $('#timer2').hide();
+                         $('#timer').hide();
+                         $('#production').hide();
+                       });
 
                     $('#clockintime1').html('Hope! You have enjoyed your office');
 
@@ -177,15 +192,90 @@
         });
 
 
+   var startTime;
+   
 
 
+ $(".production").click(function(){
 
 
+   var type_p=$(this).data('status');
+
+   $.post('Employee/Fnaddproduction',{type: type_p}, function(data){
+      //alert(data);
+      if(data)
+      {
+        $('.production').removeAttr('disabled');
+
+        $('#production'+type_p).attr('disabled', 'disabled');
+        $('.new_timer').removeClass('chktimer1');
+        $('.newtimer2').addClass('chktimer1');
+       startTime = new Date();
+       
+      setTimeout(display, 1000);
+     
+      }
+   });
+
+   
+ });
 
 
+var totaltime;
+function display() {
+  
+    // later record end time
+    var endTime = new Date();
 
+    // time difference in ms
+    var timeDiff = endTime - startTime;
 
+    // strip the miliseconds
+    timeDiff /= 1000;
 
+    // get seconds
+    var seconds = Math.round(timeDiff % 60);
+
+    // remove seconds from the date
+    timeDiff = Math.floor(timeDiff / 60);
+
+    // get minutes
+    var minutes = Math.round(timeDiff % 60);
+
+    // remove minutes from the date
+    timeDiff = Math.floor(timeDiff / 60);
+
+    // get hours
+    var hours = Math.round(timeDiff % 24);
+
+    // remove hours from the date
+    timeDiff = Math.floor(timeDiff / 24);
+
+    // the rest of timeDiff is number of days
+    var days = timeDiff;
+
+    if(hours<10)
+    {
+        hours='0'+hours;
+    }
+    if(minutes<10)
+    {
+        minutes='0'+minutes;
+    }
+    if(seconds<10)
+    {
+        seconds='0'+seconds;
+    }
+    
+
+    var colorclass = "class='text-default'";
+    totaltime = hours + ":" + minutes + ":" + seconds;
+   $('#timer1').html("<div "+colorclass+">"+totaltime+"</div>");
+    //$("#timer1").text(hours + ":" + minutes + ":" + seconds);
+
+    setTimeout(display, 1000);
+
+}
 
 
 
@@ -426,49 +516,7 @@ $("#calender").datepicker({
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    });
+ });
 
 
 

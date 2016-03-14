@@ -162,6 +162,12 @@ function showPointsOnLoad()
 				if($('#breakbtn').text()=="break")//if the button is break
 				{	
 					
+					 $.post('Employee/FnstopProduction', function(data){
+					 	 $('.production').removeAttr('disabled');
+                         $('#production').hide();
+
+                           
+                       });
 					$.post('Employee/inBreak',{opt: opt}, function(data){//inserting 1 in breakstatus and opt value in breakname
 					
 
@@ -188,9 +194,17 @@ function showPointsOnLoad()
 					{
 						totaltime = '20:00 min';
 					}
-
+                 
+                    $('.new_timer').addClass('chktimer1');
+                    $('.newtimer2').addClass('chktimer1');
 					$('#timer').html("<div class='text-default'>"+totaltime+"</div>");
+                    
+ 						
 
+ 						/*  window.clearTimeout(startTime);
+  //var millisecBeforeRedirect = 10000; 
+             startTime = window.setTimeout(function(){alert('Hello!');},10000); */
+                   
 					/*$('#timer').timer({//timer starts
             				
             				duration: totaltime,//time value
@@ -215,7 +229,9 @@ function showPointsOnLoad()
 
 				else//if the button is work
 				{	
-					
+					$('#production').show();
+
+
 					$.post('Employee/showBreakName', function(data){//fetching the breakname from database
 
 						if(opt==data)//checking if the breakname and selected option is same
@@ -228,6 +244,7 @@ function showPointsOnLoad()
 						 		$('#timer').timer('remove');
 						 		
 					 		});
+                               
 
 					 		$.post('Employee/storeReturnTime',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
 
@@ -259,12 +276,13 @@ function showPointsOnLoad()
 						 			default:
 						 				properbreakname="default";
 						 		}
-
+                    
 						 		//alert('you have successfully return from '+properbreakname);
 						 		$('#returnbreakMsg').html('you have successfully return from '+properbreakname);
 						 		$('#returnbreakModal').modal('show');
 					 		});
 
+                              
 						 	$.post('Employee/lateInBreak',{opt: opt}, function(data){//inserting 0 in breakstatus column in attendence table
 
 						 		if($.trim(data))
@@ -310,7 +328,14 @@ function showPointsOnLoad()
 					 				alert(data);
 					 			}
 
-							});					 		
+							});		
+
+
+							 $.post('Employee/Activeproduction', function(data){
+ 									  $('#production'+data).click();
+                                	
+                                    
+                                });			 		
                                 $('#msgbreak').html('');
 
                                 calenderFbreak();
@@ -483,3 +508,59 @@ function changeCalenderInfo(data,id)
     }
 
 });
+var startTime;
+
+function displaytime() {
+
+	
+    // later record end time
+    var endTime = new Date();
+
+    // time difference in ms
+    var timeDiff = endTime - startTime;
+
+    // strip the miliseconds
+    timeDiff /= 1000;
+
+    // get seconds
+    var seconds = Math.round(timeDiff % 60);
+
+    // remove seconds from the date
+    timeDiff = Math.floor(timeDiff / 60);
+
+    // get minutes
+    var minutes = Math.round(timeDiff % 60);
+
+    // remove minutes from the date
+    timeDiff = Math.floor(timeDiff / 60);
+
+    // get hours
+    var hours = Math.round(timeDiff % 24);
+
+    // remove hours from the date
+    timeDiff = Math.floor(timeDiff / 24);
+
+    // the rest of timeDiff is number of days
+    var days = timeDiff;
+
+    if(hours<10)
+    {
+        hours='0'+hours;
+    }
+    if(minutes<10)
+    {
+        minutes='0'+minutes;
+    }
+    if(seconds<10)
+    {
+        seconds='0'+seconds;
+    }
+    $(".new_timer").removeClass('chktimer1');
+
+     var colorclass = "class='text-default'";
+    totaltime = hours + ":" + minutes + ":" + seconds;
+   $('#timer1').html("<div "+colorclass+">"+totaltime+"</div>");
+   
+    setTimeout(displaytime, 1000);
+}
+

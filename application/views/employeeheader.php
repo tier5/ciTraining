@@ -62,5 +62,94 @@
     
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/usercalender.js';?>"></script>
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/lunchorder.js';?>"></script>
+ 
+
+ <script type="text/javascript">
+$(document).ready(function() {
+   var startTime;
+  
+   var d = new Date();
+   var entry_time=$('#start_timer').val();
+   var arr = entry_time.split(':'); // split it at the colons
+
+// minutes are worth 60 seconds. Hours are worth 60 minutes.
+   var startTime = (+arr[0]) * 60 * 60 + (+arr[1]) * 60 + (+arr[2]); 
+    
+
+  setTimeout(display_time, 1000);
+
+   function display_time() {
+    
+   
+    var chk_time=$('#start_timer').val();
+    var dt = new Date();
+    // later record end time
+    var endTime = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+   
+
+    
+    var a = endTime.split(':'); // split it at the colons
+
+// minutes are worth 60 seconds. Hours are worth 60 minutes.
+    var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+
+
+    // time difference in ms
+    var timeDiff = seconds - startTime;
+
+
+
+    var hours=0;
+    var minutes=0;
+    var seconds=0;
+    
+     if(timeDiff<60)
+     {
+       seconds=timeDiff;
+     }
+
+     else
+     {
+        if(timeDiff<3600)
+        {
+            minutes=Math.floor(timeDiff/60);
+            seconds=Math.floor(timeDiff%60);
+        }
+        else
+        {
+            hours=Math.floor(timeDiff/3600);
+            minutes=Math.floor((timeDiff%3600)/60); 
+            seconds=Math.floor((timeDiff%3600)%60);
+        }
+     }
+    if(hours<10)
+    {
+        hours='0'+hours;
+    }
+    if(minutes<10)
+    {
+        minutes='0'+minutes;
+    }
+    if(seconds<10)
+    {
+        seconds='0'+seconds;
+    }
+    
+    if(chk_time!=0)
+    {
+     var colorclass = "class='text-default'";
+    totaltime = hours + ":" + minutes + ":" + seconds;
+   $('#timer2').html("<div "+colorclass+">"+totaltime+"</div>");
+    }
+    setTimeout(display_time, 1000);
+   
+    }
+       });
+
+
+
+
+</script>
+
 
 </head>

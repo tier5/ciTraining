@@ -372,6 +372,67 @@ class EmployeeModel extends CI_model
         }
    }
 
+   public function FngetAllCount($tbl,$where,$type)
+   {
+    $this->db->select('*');
+    $this->db->where($where);
+    $res=$this->db->get($tbl);
+   
+    if($type=='count')
+    {
+    return $result=$res->num_rows();
+    }
+    if($type=='result')
+    {
+     return $result=$res->result_array();
+    }
+    if($type=='row')
+    {
+     return $result=$res->row_array();
+    }
+   }
+
+
+
+     public function FngetAllorder($tbl,$where,$type,$orderby=null)
+   {
+    $this->db->select('*');
+    $this->db->where($where);
+    $this->db->order_by('endTime','desc');
+    $res=$this->db->get($tbl);
+   
+    if($type=='count')
+    {
+    return $result=$res->num_rows();
+    }
+    if($type=='result')
+    {
+     return $result=$res->result_array();
+    }
+    if($type=='row')
+    {
+     return $result=$res->row_array();
+    }
+   }
+
+
+
+   public function insert($tbl,$data)
+   {
+    $this->db->insert($tbl,$data);
+    return $this->db->affected_rows();
+   }
+
+   public function update($tbl,$data,$where)
+   {
+        $this->db->where($where);
+        if($this->db->update($tbl,$data))
+        {
+           return $this->db->affected_rows();
+        }
+   }
+
+
     
 }
 

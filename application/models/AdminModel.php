@@ -81,9 +81,11 @@
 
       public function empFbreak($data)
       {
-        $result = $this->db->get_where('attendance',$data);
 
-        return $result->result_array();
+        $result = $this->db->get_where('attendance',$data);
+       
+         return $result->result_array();
+        
 
       }
 

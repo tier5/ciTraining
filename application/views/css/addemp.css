@@ -76,6 +76,13 @@
 {
     font-size: 40px;
 }
+#timer1 ,#timer2{
+  font-size: 40px;
+}
+.chktimer1
+{
+	display: none;
+}
 
 .calendername
 {

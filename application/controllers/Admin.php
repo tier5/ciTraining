@@ -214,10 +214,19 @@ class Admin extends CI_Controller
 	public function empClockIn()
 	{
 
-		$data['date'] =$this->date; //date("d/m/Y");
+		
+        $exp_date=explode('/',$this->date);
 
+       
+        if(count($exp_date)>1)
+        {
+        	 $gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+        	 $data['date'] = $gen_date;
+        }
+        else
+        {
 		$data['date'] = $this->date;
-
+   		}
 
 		$res = $this->AdminModel->empClockIn($data);
 
@@ -309,7 +318,19 @@ class Admin extends CI_Controller
 
 	public function empFbreak()
 	{
-		$data['date'] = $this->date;
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+		}
+		
 		$data['breakname'] = "fbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -318,7 +339,7 @@ class Admin extends CI_Controller
 
 		$res = $this->AdminModel->empFbreak($data);
 
-		foreach ($res as $key) 
+		 foreach ($res as $key) 
 		{
 			//print_r($key);
 
@@ -327,14 +348,18 @@ class Admin extends CI_Controller
 
 			$resclockin = $this->AdminModel->empFclockin($data1);
 
+			$resclockin = $this->AdminModel->empFclockin($data);
+			
+
 			foreach ($resclockin as $val)
 			{
 				$data2['id'] = $val['Eid'];
 				$resname = $this->AdminModel->showName($data2);
 				
 				
-				$diff = $nowtime->diff(new DateTime($val['starttime']));
 
+				$diff = $nowtime->diff(new DateTime($val['starttime']));
+				
 				$sum = ((($diff->h*60)+$diff->i)*60)+$diff->s;
 
 				$remainingtime = $totaltime - $sum;
@@ -347,7 +372,7 @@ class Admin extends CI_Controller
 			}
 
 			//
-		}
+		 } 
 
 		
 
@@ -378,7 +403,20 @@ class Admin extends CI_Controller
 
 	public function empSbreak()
 	{
-		$data['date'] = $this->date;
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		//print_r($exp_date);exit;
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+		}
+		
 		$data['breakname'] = "Sbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -386,8 +424,9 @@ class Admin extends CI_Controller
 		$totaltime = SBREAK_TIME;
 
 		$res = $this->AdminModel->empSbreak($data);
+		//echo $this->db->last_query();exit;
 
-		if($res)
+		if(empty($res))
 		{
 			foreach ($res as $key)
 			{
@@ -420,9 +459,215 @@ class Admin extends CI_Controller
 
 		
 	}
+
+
+     public function empFbreak1()
+     {
+     		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		$totaldiv='';
+		//print_r($exp_date);exit;
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+			$where=array('date'=>$gen_date);
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+
+		}
+		
+		$data['breakname'] = "Fbreak"; 
+
+		
+		$res = $this->AdminModel->fetch_data('fbreak',$where);
+		//echo $this->db->last_query();exit;
+		$totaltime = FBREAK_TIME;
+        if($res)
+        {
+        	foreach($res as $val)
+        	{
+		$data2['id'] = $val['Eid'];
+        $resname = $this->AdminModel->showName($data2);
+        $start_time=$val['starttime'];
+        $end_time=$val['endtime'];
+        $diff=strtotime($end_time)-strtotime($start_time);
+        if($diff<=$totaltime)
+        {
+        	$m=round($diff/60);
+        	$s=round($diff%60);
+        	
+        	$str='00:'.$m.':'.$s;
+        	$colorclass = "class = 'success'";
+        }
+        else
+        { 
+        	
+            $colorclass = "class = 'danger'";
+            
+            $m=round($diff/60);
+        	$s=round($diff%60);
+        	
+        	$str='00:'.$m.':'.$s;
+
+        	
+        }
+
+        $totaldiv .= "<tr ".$colorclass."><td >".$resname."</td><td>".$str."</td></tr>";
+			}
+
+    	}
+    	echo $totaldiv;
+     }
+    	public function empSbreak1()
+	{
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		$totaldiv='';
+		//print_r($exp_date);exit;
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+			$where=array('date'=>$gen_date);
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+
+		}
+		
+		$data['breakname'] = "Sbreak"; 
+
+		
+		$res = $this->AdminModel->fetch_data('sbreak',$where);
+		//echo $this->db->last_query();exit;
+		$totaltime = SBREAK_TIME;
+        if($res)
+        {
+        	foreach($res as $val)
+        	{
+		$data2['id'] = $val['Eid'];
+        $resname = $this->AdminModel->showName($data2);
+        $start_time=$val['starttime'];
+        $end_time=$val['endtime'];
+        $diff=strtotime($end_time)-strtotime($start_time);
+        if($diff<3600)
+        {
+        	$m=round($diff/60);
+        	$s=round($diff%60);
+        	
+        	$str='00:'.$m.':'.$s;
+        	$colorclass = "class = 'success'";
+        }
+        else
+        { 
+        	if($diff==3600)
+        	{
+        	$colorclass = "class = 'success'";
+            }
+            else
+            {
+            	$colorclass = "class = 'danger'";
+            }
+            $h=round($diff/3600);
+        	$m=round(($diff%3600)/60);
+        	$s=round(($diff%3600)%60);
+
+        	$str=$h.':'.$m.':'.$s;
+        }
+
+        $totaldiv .= "<tr ".$colorclass."><td >".$resname."</td><td>".$str."</td></tr>";
+			}
+
+    	}
+    	echo $totaldiv;
+		
+	}
+
+ 	public function empLbreak1()
+	{
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		$totaldiv='';
+		//print_r($exp_date);exit;
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+			$where=array('date'=>$gen_date);
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+			$where=array('date'=>$this->date);
+
+		}
+		
+		$data['breakname'] = "Lbreak"; 
+
+		
+		$res = $this->AdminModel->fetch_data('lbreak',$where);
+		//echo $this->db->last_query();exit;
+		$totaltime = LBREAK_TIME;
+        if($res)
+        {
+        	foreach($res as $val)
+        	{
+		$data2['id'] = $val['Eid'];
+        $resname = $this->AdminModel->showName($data2);
+        $start_time=$val['starttime'];
+        $end_time=$val['endtime'];
+        $diff=strtotime($end_time)-strtotime($start_time);
+        if($diff<=$totaltime)
+        {
+        	$m=round($diff/60);
+        	$s=round($diff%60);
+        	
+        	$str='00:'.$m.':'.$s;
+        	$colorclass = "class = 'success'";
+        }
+        else
+        { 
+        	
+           $colorclass = "class = 'danger'";
+            
+            
+        	$m=round($diff/60);
+        	$s=round($diff%60);
+        	
+        	$str='00:'.$m.':'.$s;
+        }
+
+        $totaldiv .= "<tr ".$colorclass."><td >".$resname."</td><td>".$str."</td></tr>";
+			}
+
+    	}
+    	echo $totaldiv;
+		
+	}
+
+
 	public function empLbreak()
 	{
-		$data['date'] = $this->date;
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+		}
+		
 		$data['breakname'] = "lbreak"; 
 
 		$nowtime = new DateTime('now');
@@ -496,7 +741,20 @@ class Admin extends CI_Controller
 
 	public function employeeLate()
 	{	
-		$data['date'] = $this->date;
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		if(count($exp_date)>1)
+		{
+			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+			$data['date'] = $gen_date;
+
+		}
+		else
+		{
+			$data['date'] = $this->date;
+		}
+		
+		//$data['date'] = $this->date;
 		$data['status'] = 0;
 		$result = $this->AdminModel->employeeLate($data);
 
@@ -669,14 +927,26 @@ public function empSbreakDateChk()
 	$this->empSbreak();
 }
 
+public function empSbreakDateChk1()
+{
+	$this->empSbreak1();
+}
 public function empFbreakDateChk()
 {
 	$this->empFbreak();
+}
+public function empFbreakDateChk1()
+{
+	$this->empFbreak1();
 }
 
 public function empLbreakDateChk()
 {
 	$this->empLbreak();
+}
+public function empLbreakDateChk1()
+{
+	$this->empLbreak1();
 }
 
 public function employeeLateDateChk()

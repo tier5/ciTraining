@@ -85,7 +85,17 @@
                          <br><br><br><br>
 
                           <hr class="intro-divider">
+                          <div id='production' <?php if($production_info==0){?>style="display:none;"<?php }?>>
+                          <button class="btn btn-default btn-lg production" id="production1" data-status='1' <?php if($active!='' && $active==1){echo 'disabled';}?>>Production</button>
+                          <button class="btn btn-default btn-lg production" id="production2" data-status='2' <?php if($active!='' && $active==2){echo 'disabled';}?>>R&amp;d</button>
+                          <button class="btn btn-default btn-lg production" id="production3" data-status='3' <?php if($active!='' && $active==3){echo 'disabled';}?>>Training</button>
+                          <button class="btn btn-default btn-lg production" id="production4" data-status='4' <?php if($active!='' && $active==4){echo 'disabled';}?>>Administrative</button>
+                          </div>
 
+
+                        
+                          <input type="hidden" id="start_timer" value='<?php if($active!='') { echo $start_in; } else { echo 0; } ?>'>
+                          
                          <br><br><br><br>
                         
                         <div class="row">
@@ -112,6 +122,10 @@
                             <div class="col-sm-4">
 
                               <div id="timer"></div>
+                                                      
+                                <div id="timer1" class="new_timer"></div>
+                                <div id="timer2" class='newtimer2'></div>
+                               
                             
                               <div id="timeinfo"></div>
                               <div id="msgbreak"></div>

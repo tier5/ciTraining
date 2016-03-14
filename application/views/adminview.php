@@ -240,7 +240,7 @@
 
                           
                             </tbody>
-                            <tbody id="lbreaktable">
+                            <tbody id="lbreaktable" class='late'>
                            
                               
 
@@ -259,7 +259,7 @@
     </section>
 
     <!-- About Section -->
-   
+   <br><br><br><br><br><br> <br><br><br><br><br><br>
     <section id="contact" class="services-section">
           <div class="container">
             <div class="row">

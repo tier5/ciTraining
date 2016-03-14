@@ -225,7 +225,7 @@ var disabledDays = [];
     	/* 03.03.2016 */
 
             $.post('Admin/empEventcheck',{optdate: date}, function(data){
-           // alert(data);
+           //alert(data);
             var arr=data.split('+');
 
             if(arr[0].length>1)
@@ -307,19 +307,20 @@ var disabledDays = [];
 		});
 
 
-		$.post('Admin/empSbreakDateChk',{optdate: date}, function(data){
+		$.post('Admin/empSbreakDateChk1',{optdate: date}, function(data){
 
+          
 			if($.trim(data))
 		{
 
 		var totaldiv = "";
 		
 
-		data = data.split(".");
+		//data = data.split(".");
 
 		//alert(data.length-1);
 
-		for(i=0;i<data.length-1;i++)
+		/*for(i=0;i<data.length-1;i++)
 		{
 			var value = data[i].split(",");
 
@@ -375,9 +376,9 @@ var disabledDays = [];
 			$("#sbreaktable").html(totaldiv);
 			
 			
-		}
+		}*/
 
-		
+		$("#sbreaktable").html(data);
 		
 		}
 
@@ -388,11 +389,12 @@ var disabledDays = [];
 		});
 
 
-		$.post('Admin/empFbreakDateChk',{optdate: date}, function(data){
-
+		$.post('Admin/empFbreakDateChk1',{optdate: date}, function(data){
+          
+          
 			if($.trim(data))
 		{
-
+   /*
 		var totaldiv = "";
 		
 		var sec;
@@ -464,9 +466,9 @@ var disabledDays = [];
 			
 			
 				
-		}
+		}*/
 
-		
+		$("#fbreaktable").html(data);
 		
 		}
 
@@ -475,12 +477,32 @@ var disabledDays = [];
 			$("#fbreaktable").html('');
 		}
 
-
+				
 		});
 
 
+		
+		$.post('Admin/empLbreakDateChk1',{optdate: date}, function(data){
+          
+        
+        
+       	if($.trim(data))
+		{
+
+		$(".late").html(data);
+		}
+		else
+		{
+			$(".late").html('');
+		}
+		
+
+				
+		});
+
 		$.post('Admin/empFbreakDateChk',{optdate: date}, function(data){
 
+/*
 			if($.trim(data))
 		{
 
@@ -557,9 +579,10 @@ var disabledDays = [];
 		else
 		{
 			$("#lbreaktable").html('');
-		}
+		}*/
 
 		$.post('Admin/employeeLateDateChk',{optdate: date}, function(data){
+			//alert(data);
 
 			var totaldiv="";
 		var breakname="";
