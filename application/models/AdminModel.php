@@ -432,5 +432,103 @@
 
            }
 
+           public function FngetProductivity($tbl,$con)
+           {
+            $this->db->select('tbl_employee_productivity.*,employee.name,employee.propname');
+            $this->db->where($con);
+            $this->db->join('employee','employee.id=tbl_employee_productivity.Eid');
+            $res=$this->db->get($tbl);
+            return $res->result_array(); 
+
+           }
+
+           function FnMonthwiseProductivity($l_time,$month)
+           {
+            $sql="SELECT `tbl_employee_productivity`.*,sum(TIME_TO_SEC(TIMEDIFF(`endTime`,`startTime` ))) AS DiffTime, `employee`.`propname` FROM `tbl_employee_productivity` JOIN `employee` ON `employee`.`id` = `tbl_employee_productivity`.`Eid`  WHERE `date` >= '2016-".$month."-01'
+            AND `date` <= '".$l_time."' and `status`='0' group by `Eid`,`type`";
+            $res=$this->db->query($sql);
+            $result=$res->result_array();
+            //echo '<pre>';print_r($result);
+            $return1='';
+            if(!empty($result))
+            {
+              $return1.=" <thead>
+                              <tr>
+
+                                <td><strong>NAME</strong></td>
+                               
+                                <td><strong>Field</strong></td>
+                                <td><strong>Total time <br>(hh:mm:ss)</strong></td>
+                               
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+                            </tr>
+                            </thead><tbody>";
+                        foreach($result as $res)
+                        {
+                          if($res['type']==1)
+                          {
+                            $field='Production';
+                          }
+                          elseif($res['type']==2)
+                          {
+                            $field='R&D';
+                          }
+                          elseif ($res['type']==3) {
+                            $field='Traning';
+                          }
+                          else
+                          {
+                            $field='Administrative';
+                          }
+
+                           if($res['DiffTime']>=3600)
+                           {
+                            $h=round($res['DiffTime']/3600);
+                            $m=round(($res['DiffTime']%3600)/60);
+                            $s=round(($res['DiffTime']%3600)%60);
+                            if($h<10)
+                            {
+                              $h='0'.$h;
+                            }
+                            if($m<10)
+                            {
+                              $m='0'.$m;
+                            }
+                            if($s<10)
+                            {
+                              $s='0'.$s;
+                            }
+                            $time=$h.':'.$m.':'.$s;
+                           }
+                           else
+                           {
+                            $h='00';
+                            $m=round($res['DiffTime']/60);
+                            $s=round($res['DiffTime']%60);
+                           
+                            if($m<10)
+                            {
+                              $m='0'.$m;
+                            }
+                            if($s<10)
+                            {
+                              $s='0'.$s;
+                            }
+                             $time=$h.':'.$m.':'.$s;
+                           }
+
+                         $return1.="<tr><td>".$res['propname']."</td><td>".$field."</td><td>".$time."</td></tr>";
+                                        
+                                        
+                         }
+                         $return1.="</tbody>";
+                         echo $return1;
+            }
+            else
+            {
+              echo "No result Found.";
+            }
+           }
+
    } 
 ?> 

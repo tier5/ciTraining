@@ -50,6 +50,9 @@
                        <a  href="<?php echo base_url();?>Admin/lunchorderview">Lunch Order</a>
                    </li>   
                     
+                     <li>
+                       <a  href="<?php echo base_url();?>Admin/empProductivity">Employee Productivity</a>
+                   </li>   
 
                     
                    <!--<li>

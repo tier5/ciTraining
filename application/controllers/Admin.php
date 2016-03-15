@@ -37,6 +37,10 @@ class Admin extends CI_Controller
 
 	}
 
+
+
+
+
 	
 	
 	public function index()
@@ -78,6 +82,158 @@ class Admin extends CI_Controller
 	    //$this->load->view('adminview');
 	}
 
+
+
+	public function empProductivity()
+	{
+		if ($this->session->userdata('adminid'))
+		{
+			$data=array();
+			
+			$where=array('tbl_employee_productivity.date'=>date('Y-m-d'));
+			$data['All_product']=$this->AdminModel->FngetProductivity('tbl_employee_productivity',$where);
+			$this->load->view('employeeproductivity',$data);
+		}
+		
+		else
+		{
+			//echo "session does not exist";
+			redirect("Dashboard");
+		}
+		
+	}
+
+
+	public function FnfetchProductivityMonth()
+	{
+		$get_month=$this->date;
+		if($get_month<10)
+		{
+			$get_month='0'.$get_month;
+		}
+		else
+		{
+			$get_month=$get_month;
+		}
+		//echo $day = date('t-'.$get_month.'-Y');
+		$query_date = date('Y').$get_month.date('d');
+
+// Last day of the month.
+        $last_day=date('Y-m-t', strtotime($query_date));
+        $tot_record=$this->AdminModel->FnMonthwiseProductivity($last_day,$get_month);
+
+	}
+
+	public function FnfetchProductivity()
+	{
+		
+		$get_date=$this->date;
+		$exp_date=explode('/',$get_date);
+		$cur_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
+		$where=array('tbl_employee_productivity.date'=>$cur_date);
+	    $All_product=$this->AdminModel->FngetProductivity('tbl_employee_productivity',$where);
+	    if(!empty($All_product))
+	    {
+	    	$result='';
+	    	foreach ($All_product as $value) { 
+
+                                if($value['type']==1)
+                                {
+                                  $dep='Production';
+                                }
+                                elseif($value['type']==2)
+                                {
+                                  $dep='R&D';
+                                }
+                                elseif($value['type']==3)
+                                {
+                                  $dep='Training';
+                                }
+                                else
+                                {
+                                  $dep='Administrative';
+                                }
+
+                                if($value['status']==0){
+                                  $diff=strtotime($value['endTime'])-strtotime($value['startTime']);
+                                  if($diff>=3600)
+                                  {
+                                    $h=round($diff/3600);
+                                    if($h<10)
+                                    {
+                                      $h='0'.$h;
+                                    }
+                                    $m=round(($diff%3600)/60);
+                                      if($m<10)
+                                    {
+                                      $m='0'.$m;
+                                    }
+                                    $s=round(($diff%3600)%60);
+                                      if($s<10)
+                                    {
+                                      $s='0'.$s;
+                                    }
+                                    $str=$h.':'.$m.':'.$s;
+                                  }
+                                  else
+                                  {
+                                    $m=round($diff/60);
+                                      if($m<10)
+                                    {
+                                      $m='0'.$m;
+                                    }
+                                    $s=round($diff%60);
+                                      if($s<10)
+                                    {
+                                      $s='0'.$s;
+                                    }
+                                   $str='00:'.$m.':'.$s; 
+                                  }
+                                }
+                                else
+                                {
+ 
+                                  $str='';
+                                }
+                                if($value['status']==0)
+                                {
+                                  $con='inactive';
+
+                                }
+                                else
+                                {
+                                  $con='active';
+                                }
+                              if($value['status']==0)
+
+                              	{ 
+                              	$n_date= date('H:i:s',strtotime($value['endTime']));
+                              	} 
+                              else {
+                              	$n_date= '---';
+                              		}
+
+                              $result.="<tr>
+								<td>".date('d-m-Y',strtotime($value['date']))."</td>
+								<td>".$value['propname']."</td>
+								<td>".$value['name']."</td>
+								<td>".date('H:i:s',strtotime($value['startTime']))."</td>
+								<td>".$n_date."
+								</td>
+								<td>".$dep."</td>
+								<td class='".$con."' value='".$value['startTime']."' id='col_".$value['Eid'].$con."'>".$str."</td>
+								</tr>";
+								
+                        }
+                        echo $result;
+	    }
+	    else
+	    {
+	    	echo '<tr><td colspan="7">No Result Found.</td></tr>';
+	    }
+	}
+
+	
 	public function ShowPointHistory()
 	{
 		$data=array();
