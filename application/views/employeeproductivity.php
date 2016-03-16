@@ -80,7 +80,7 @@
                           </select>
                           </div>
 
-                          <table class="table table-bordered" id='new_tbl'>
+                          <table class="table table-bordered tbl_old">
                             <thead>
                               <tr>
 
@@ -180,7 +180,9 @@
                           
                             </tbody>
                           </table>
-
+                                            
+                          <table class="table table-bordered" id='new_tbl'>
+                          </table>
                     
                     </div>
 

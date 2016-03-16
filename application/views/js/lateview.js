@@ -7,7 +7,8 @@ $( "#change_month_pro" ).change(function() {
 	var date=$(this).val();
 
 	$.post('FnfetchProductivityMonth',{optdate: date}, function(data){
-
+              $('.tbl_old').hide();
+              $('#new_tbl').show();
 			  $('#new_tbl').html(data);
 		      });
 })
@@ -47,7 +48,8 @@ altField: "#dateHidden",
 		else
 		{
 			 $.post('FnfetchProductivity',{optdate: date}, function(data){
-
+			 	  $('#new_tbl').hide();
+			 	  $('.tbl_old').show();
 			  $('#change_result').html(data);
 		      });
 
