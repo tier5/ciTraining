@@ -58,6 +58,8 @@ class Employee extends CI_Controller
 				$start_in=$get_info['startTime'];
 			}
 			}
+			$con2=array('date'=>date('Y-m-d'),'Eid'=>$this->session->userdata('empid'),'status'=>0);
+			$data['lunch_ord_cnt']=$this->EmployeeModel->FngetAllCount('lunchorder',$con2,'count');
 			$data['active']=$active;
 			$data['start_in']=$start_in;
 			//echo $this->db->last_query();

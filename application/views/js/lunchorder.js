@@ -21,7 +21,7 @@ function showfirstdiv()
 }
 //=================="Lunch Order" button click======================
 	$('#lunchorder').click(function(){
-
+		$('.err_msg').html('');
 		$('#lunchModal').modal('show');
 		$('.modal-body-tab1').show();
 		showfirstdiv();
@@ -41,7 +41,7 @@ function showfirstdiv()
 		
 		  var totaldiv="";
 		    $('#totalitem').empty();
-		    $('#totalcost').html("00");
+		    $('#totalcost').html("0");
 	        $('.modal-body-tab1').hide();
 	        $('.modal-body-tab2').show();
 	        //var shopName=$('#selectshop_'+id).text();
@@ -105,6 +105,16 @@ function showfirstdiv()
 			if(btnvalue=='Add')
 			{
                     totalcost = totalcost + newcost;
+                    if(totalcost>100)
+                  	{
+                  		
+                  		$('.err_msg').css('color','red');
+                  		$('.err_msg').html('Your Order Cost Cannot Be More Than 100/-');
+                  	}
+                  	else
+                  	{
+                  		$('.err_msg').html('');
+                  	}
 					$('#totalcost').text(totalcost);
 				    $('#btnadd_'+id).val('Remove');
 				    $('#totalitem').append('<span id="itemqty_'+id+'">('+itemquantity+')</span><span id="itm_'+id+'">'+itemname+'</span>');
@@ -114,6 +124,10 @@ function showfirstdiv()
 			else
 			{
                    totalcost = totalcost - newcost;
+                  	if(totalcost<=100)
+                  	{
+                  		$('.err_msg').html('');
+                  	}
                    $('#itm_'+id).remove();
                    $('#itemqty_'+id).remove();
                    $('#btnadd_'+id).val('Add');
@@ -142,20 +156,27 @@ function showfirstdiv()
 		    {
 		    	if(finalcost>100)
 		    	{
-                    $('#existcost').modal('show');
+		    		$('#lunchModal').animate({scrollTop : 0},800);
+		    		
+					$('.err_msg').css('color','red');
+					$('.err_msg').html('Your Order Cost Cannot Be More Than 100/-');
+  
+
+					
 		    	}
 		    	else
 		    	{
                   
 			        $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost },function(data){
 			       //alert(data);
+			       $('#lunchorder').prop('disabled', true);
 			         if ($.trim(data))
 			         {
 			            $('.modal-body-tab3').show();
 					    $('.modal-body-tab2').hide();
 					    $('#confirmorder').html("Lunch Order Placed Successfully!!!!!");
 					    $('#totalitem').empty();
-					    $('#totalcost').html("00");	
+					    $('#totalcost').html("0");	
 			         }
 			         else
 			         {
@@ -163,14 +184,17 @@ function showfirstdiv()
 					    $('.modal-body-tab2').hide();
 					    $('#confirmorder').html("You Have Already Placed Your Lunch Order!!!! ");	
 			            $('#totalitem').empty();
-					    $('#totalcost').html("00");	
+					    $('#totalcost').html("0");	
 			         }
 		            });
                 }
 		    }
 		    else
 		    {
-		    	$('#emptyorder').modal('show');
+		    	//$('#emptyorder').modal('show');
+		    	$('#lunchModal').animate({scrollTop : 0},800);
+		    	$('.err_msg').css('color','red');
+		    	$('.err_msg').html('Atleast Select One Item');
 		    }
 	});
 //================================================================================ 

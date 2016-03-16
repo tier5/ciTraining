@@ -62,7 +62,7 @@
                         <div class="row">
 
                             <div class="col-sm-4">
-                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder">Lunch Order</button>
+                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder" <?php if($lunch_ord_cnt>0){ echo 'disabled';}?>>Lunch Order</button>
                             </div>
                             <div class="col-sm-4">
                                 
@@ -471,6 +471,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title deleteconfirm" align="center">Place Your Lunch Order</h4>   
         </div>
+        <div class='err_msg text-center'></div>
         <div class="modal-body-tab1" align="center">
 
         </div>
@@ -519,7 +520,7 @@
                 </br>
                <div class="row" align="center">
                     <div class="col-sm-4">
-                        <button type="submit" class="btn btn-link pull-left" id="prev"><span><<</span> Prev</button>
+                        <button type="submit" class="btn btn-link pull-left" id="prev"><span></span> Prev</button>
 
                     </div>
                     

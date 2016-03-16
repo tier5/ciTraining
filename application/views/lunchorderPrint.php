@@ -61,12 +61,7 @@
        </div>
   </div>
 
-
-
-
- 
-
- <div class="intro-section" id='list_print'>
+ <div class="intro-section">
         <div class="container-fluid">
             <div class='row'>
                 <div class="col-sm-8"></div>
@@ -107,19 +102,6 @@
           	</div> 
           </div>
  </div>
-<br><br><br><br><br><br><br>
-
-
-       <div class="container" id='new_print'>
-        <div class='row'>
-        <div class="col-sm-10" style="margin-bottom:5px;"><a class="btn btn-danger" href="lunchorderview">Back</a></div>
-        <div id='print_all' class="col-md-12 col-sm-12">
-        </div>
- <a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>
-        </div></div>
-
-<br><br><br>
-
       <div class="modal fade" id="deletelunchorder" role="dialog">
         <div class="modal-dialog modal-sm">
           <div class="modal-content">
@@ -161,7 +143,7 @@
 
 
 
-      <!--<div class="modal fade" id="printorderall" role="dialog">
+      <div class="modal fade" id="printorderall" role="dialog">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
               <div class="modal-header">
@@ -183,9 +165,7 @@
               </div>            
           </div>     
         </div>
-      </div>-->
-
-      
+      </div>
       
 
 

@@ -1503,7 +1503,7 @@ public function deductPointCustomReason()
                
                        </div>';
 
-                 $result.= '&nbsp;&nbsp;<div style="margin-top:75px;"></div>';
+                 $result.= '&nbsp;&nbsp;<div style="margin-top:5px;"></div>';
 
     	}
     	  //$result.='<a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>';
@@ -1518,12 +1518,13 @@ public function deductPointCustomReason()
     	//$data=$orderid;
     	//print_r($orderid);
     	$result='';
-      
+    	
     	for($i=0;$i<count($orderid);$i++)
     	{
     	$all_order=$this->AdminModel->selectprint($orderid[$i]);
         if(!empty($all_order))
     	{
+
     	foreach($all_order as $orders)
     	{
     		 $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
@@ -1544,7 +1545,7 @@ public function deductPointCustomReason()
                
                        </div>';
 
-                 $result.= '&nbsp;&nbsp;<div style="margin-top:75px;"></div>';
+                 $result.= '&nbsp;&nbsp;<div style="margin-top:5px;"></div>';
 
     	}
     	  //$result.='<a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>';
