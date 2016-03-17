@@ -100,7 +100,7 @@ $(document).ready(function(){
                 { 
                   data2= data1[i].split(",");
                     //alert(data2[0]);
-                    showdiv +='<tr><td id="date_'+$.trim(data2[0])+'">'+data2[3]+'</td><td >'+data2[1]+'</td><td id="name_'+$.trim(data2[0])+'">'+data2[2]+'</td><td id="shop_'+$.trim(data2[0])+'">'+data2[4]+'</td><td  id="items_'+$.trim(data2[0])+'">'+data2[5]+'</td><td id="cost_'+$.trim(data2[0])+'">'+data2[6]+'</td><td><button id="dlrlnh'+data2[0]+'" class="btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="dlt('+data2[0]+')"></button></td><td><button class="btn btn-danger btn-sm glyphicon glyphicon-print" onclick="myFunction('+data2[0]+')"></button></td><td><input type="checkbox" id="printselect_'+$.trim(data2[0])+'" onclick="prntselect('+data2[0]+')" value='+data2[0]+' name="print_check[]"></td></tr>';
+                    showdiv +='<tr><td id="date_'+$.trim(data2[0])+'">'+data2[3]+'</td><td >'+data2[1]+'</td><td id="name_'+$.trim(data2[0])+'">'+data2[2]+'</td><td id="shop_'+$.trim(data2[0])+'">'+data2[4]+'</td><td  id="items_'+$.trim(data2[0])+'">'+data2[5]+'</td><td id="cost_'+$.trim(data2[0])+'">'+data2[6]+'</td><td><button id="dlrlnh'+data2[0]+'" class="btn btn-danger btn-sm glyphicon glyphicon-trash" onclick="dlt('+data2[0]+')"></button></td><td><button class="btn btn-danger btn-sm glyphicon glyphicon-print" onclick="myFunction('+data2[0]+')"></button></td><td><input type="checkbox" id="printselect_'+$.trim(data2[0])+'"  value='+data2[0]+' name="print_check[]"></td></tr>';
                     
                 }
                 $('#nolunchorder').hide();
