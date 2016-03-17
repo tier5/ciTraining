@@ -55,7 +55,7 @@
                               
                                 $('#close_new').on('click', function () {
 
-                               if(event_exists !='')
+                               if(event_exists ==1)
                                    {
                                     $('#event_modal').modal('show');
                                    }
@@ -63,7 +63,7 @@
                                    
                                 $('#close_new_btn').on('click', function () {
                                 
-                                 if(event_exists !='')
+                                 if(event_exists ==1)
                                    {
                                     $('#event_modal').modal('show');
                                    }
@@ -76,7 +76,7 @@
                             }
                             else
                             {
-                                  if(event_exists !='' && data[0]!='you have already clocked in today')
+                                  if(event_exists ==1 && data[0]!='you have already clocked in today')
                                    {
                                      $('#event_modal').modal('show');
                                    }

@@ -41,7 +41,7 @@ class Employee extends CI_Controller
 		if ($this->session->userdata('empid'))
 		{
 			$where=array('date'=>date('Y-m-d'));
-			$data['event_info']=$this->EmployeeModel->FngetAlldata('tbl_event_informations',$where);
+			$data['event_info']=$this->EmployeeModel->currentEvent();
 
 			$con=array('date'=>date('Y-m-d'),'Eid'=>$this->session->userdata('empid'),'breakstatus'=>0,'clockout'=>NULL);
 			$data['production_info']=$this->EmployeeModel->FngetAllCount('attendance',$con,'count');
@@ -1026,7 +1026,7 @@ class Employee extends CI_Controller
 		//print_r($result);
 		foreach($result as $row)
         {
-         echo $row['Lnid'].",".$row['item'].",".$row['cost'].",".$row['limit1']."/";
+         echo $row['Lnid'].",".$row['item'].",".$row['cost'].",".$row['limit1']."+";
         }
 		//echo "Hello";
 

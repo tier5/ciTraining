@@ -128,6 +128,17 @@ class EmployeeModel extends CI_model
         return $res->row_array();
     }
 
+     public function currentEvent()
+      {
+        $sql="SELECT `tbl_event_informations` . * , `employee`.`propname`,`employee`.`name`
+FROM `tbl_event_informations`
+INNER JOIN `employee` ON `employee`.`id` = `tbl_event_informations`.`Eid`
+WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
+ $result=$this->db->query($sql);
+        return $result->result_array();
+
+      }
+
     public function storeReturnTime($data)
     {
             $storebreak['Eid'] = $data['Eid'];

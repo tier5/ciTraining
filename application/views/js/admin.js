@@ -194,7 +194,6 @@ var disabledDays = [];
 
 
 
-
 //=======================DATEPICKER=============================
 	 $("#datepicker").datepicker({
     // The hidden field to receive the date
@@ -207,9 +206,10 @@ var disabledDays = [];
    
 
          beforeShowDay: function(date) {
+         	//alert(date);
             var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
             for (i = 0; i < disabledDays.length; i++) {
-                if($.inArray(y + '-' + (m+1) + '-' + d,disabledDays) != -1) {
+                if($.inArray((m+1) + '-' + d,disabledDays) != -1) {
                     //return [false];
                     return [true, 'highlight', ''];
                 }

@@ -100,7 +100,7 @@
                             <thead>
                               <tr>
                                 <th>Employee Name</th>
-                                <th>Date</th>
+                                
                                 <th>Event</th>
                                 
                               </tr>
@@ -113,9 +113,9 @@
                               foreach($event_info as $results)
                               {
                                 echo "<tr class='info'>
-                <td>".$results['name']."</td>
+                <td>".$results['propname']."</td>
 
-                <td>".date('d/m/Y',strtotime($results['date']))."</td>
+                
                 <td>".$results['event_informations']."</td>
                   </tr>";
                               }

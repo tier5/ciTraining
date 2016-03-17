@@ -76,7 +76,7 @@
                             </thead>
                             <tbody>
                                  <tr>
-                                <td><strong><input type="text" id="newitems" size="5" ></strong></th>
+                                <td><strong><input type="text" id="newitems"></strong></th>
                                 <td><strong><input type="number" id="newcost" size="1" maxlength="3" min="1"></strong></th>
                                   <td><strong><input type="number" id="newlimit" size="1" maxlength="3" min="1"></strong></th>
                                   <td><strong><input type="button" class="btn btn-danger btn-xs" value="Click To Add Item" id="add"></strong></th>

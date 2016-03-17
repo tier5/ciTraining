@@ -77,7 +77,7 @@ showallshop();
      // alert(shopid);
       $('#errornew').html("");
       $.post(BASE_URL+'Admin/showitemsbyshop', {shopid:GLOBAL_SHOPID}, function(data){
-         
+    //alert(data);
 
       if($.trim(data))
           {   
@@ -87,7 +87,7 @@ showallshop();
 
                //alert(data); 
                showallitems="";
-                var data1=data.split("/");
+                var data1=data.split("+");
                 for(i=0; i<data1.length-1; i++)
                 { 
                       data2= data1[i].split(','); 
@@ -127,7 +127,7 @@ showallshop();
                     $("#addnew").show();
                    //alert(data); 
                    showallitems="";
-                    var data1=data.split("/");
+                    var data1=data.split("+");
                     for(i=0; i<data1.length-1; i++)
                     { 
                           data2= data1[i].split(','); 
@@ -171,6 +171,7 @@ $( "#addnewitems" ).click(function() {
                  {
                   $.post(BASE_URL+'Admin/additems',{parent:GLOBAL_SHOPID,newitems:newitems,newcost:newcost, newlimit:newlimit}, function(data){
                    //alert(shopid);
+                   //alert(data);
                       if($.trim(data))
                         {   
                             $('#errornew').html("Lunch Items Added Sucessfully!!");
@@ -187,7 +188,7 @@ $( "#addnewitems" ).click(function() {
                                       $("#addnew").show();
                                      //alert(data); 
                                      showallitems="";
-                                      var data1=data.split("/");
+                                      var data1=data.split("+");
                                       for(i=0; i<data1.length-1; i++)
                                       { 
                                             data2= data1[i].split(','); 

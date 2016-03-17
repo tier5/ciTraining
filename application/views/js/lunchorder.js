@@ -48,7 +48,7 @@ function showfirstdiv()
 		    $.post('Employee/itemoption',{shopopt:shopid},function(data){  
 	         
 	         if($.trim(data)){
-				          	var data1=data.split("/");
+				          	var data1=data.split("+");
 				          	for(i=0; i<data1.length-1; i++)
 				          	{ 
 				          		data2= data1[i].split(',');

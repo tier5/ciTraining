@@ -227,18 +227,6 @@ $('#printorder').click(function() {
           arr.push(id);
         
 
-          if(arr)
-          {
-            $.post(BASE_URL+'Admin/selectprint', {orderid:arr}, function(data){
-             // alert(data);
-              $('#list_print').hide();
-              $('#new_print').show();
-              $('#print_all').show();
-              $('#print_all').html(data);
-              //$('#printorderall').modal('show');
-             // $('#print_all').html(data);
-            });
-          }
           
         }
       
@@ -249,6 +237,22 @@ $('#printorder').click(function() {
         {
            $('#smallModal').modal('show');
               $('#no_select').html('Please select atleast one item.');
+        }
+        else
+        {
+          if(arr)
+          {
+            $.post(BASE_URL+'Admin/selectprint', {orderid:arr}, function(data){
+             //alert(data);
+              $('#list_print').hide();
+              $('#new_print').show();
+              $('#print_all').show();
+              $('#print_all').html(data);
+              //$('#printorderall').modal('show');
+             // $('#print_all').html(data);
+            });
+          }
+          
         }
 
    });

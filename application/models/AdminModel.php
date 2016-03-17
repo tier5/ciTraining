@@ -240,6 +240,28 @@
       // echo $this->db->last_query();exit;
       }
 
+
+      public function FngetAlldataevent()
+      {
+         $sql="SELECT * FROM  `tbl_event_informations` WHERE  DATE_ADD(`date`, 
+                INTERVAL YEAR(CURDATE())-YEAR(`date`)
+                         + IF(DAYOFYEAR(CURDATE()) > DAYOFYEAR(`date`),1,0)
+                YEAR)  
+            BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+        $result=$this->db->query($sql);
+        return $result->result_array();
+      }
+      public function currentEvent()
+      {
+        $sql="SELECT `tbl_event_informations` . * , `employee`.`propname`,`employee`.`name`
+FROM `tbl_event_informations`
+INNER JOIN `employee` ON `employee`.`id` = `tbl_event_informations`.`Eid`
+WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
+ $result=$this->db->query($sql);
+        return $result->result_array();
+
+      }
+
       /*public function showAllEvents()
       {
           $result = $this->db->get('tbl_event_informations');
@@ -338,7 +360,7 @@
         $result=$this->db->insert('items',$data);
         if($result)
               {
-                 return true;
+                 return $this->db->affected_rows;
               }
              else
               {
@@ -415,6 +437,9 @@
              return $res->result_array();
 
           }
+
+
+         
 
           public function cardCheck($where)
            {

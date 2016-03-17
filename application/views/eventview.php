@@ -81,7 +81,7 @@ $this->session->set_userdata('e_message',' ');
     <thead>
       <tr>
         <th class="text-center">Name</th>
-        <th class="text-center">Date</th>
+        <th class="text-center">Date<br>(MM/DD/YYYY)</th>
         <th class="text-center">Event</th>
         <th class="text-center">Action</th>
       </tr>
@@ -96,7 +96,7 @@ $this->session->set_userdata('e_message',' ');
 
       			<tr><td><?php echo $result['propname'];?></td>
 		        <td>
-		        	<?php echo date('d-m-Y',strtotime($result['date']));?> 
+		        	<?php echo date('m/d/Y',strtotime($result['date']));?> 
 		        </td>
 		        <td>
 

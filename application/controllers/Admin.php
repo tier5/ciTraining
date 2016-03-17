@@ -54,20 +54,21 @@ class Admin extends CI_Controller
 			/* events data */
             foreach($event_info as $infos)
             {
-            	$date=date('Y-n-j',strtotime($infos['date']));
+            	$date=date('n-j',strtotime($infos['date']));
                 array_push($event_date,$date);
             }
             /* events data */
             $select_date=date('Y-m-d');
             $tomorrow=time()+(24*3600);
-            $date_tomorrow=date('Y-m-d',$tomorrow);
+            $day=date('d',$tomorrow);
+            $month=date('m',$tomorrow);
 
-            $where_tm=array('tbl_event_informations.date'=>$date_tomorrow);
-            $data['event_info_tm']=$this->AdminModel->FngetAlldata('tbl_event_informations',$where_tm);
+            //$where_tm=array('tbl_event_informations.date'=>$date_tomorrow);
+            $data['event_info_tm']=$this->AdminModel->FngetAlldataevent();
 
 
-            $where=array('tbl_event_informations.date'=>$select_date);
-            $data['event_info']=$this->AdminModel->FngetAlldata('tbl_event_informations',$where);
+           // $where=array('tbl_event_informations.date'=>$select_date);
+            $data['event_info']=$this->AdminModel->currentEvent();
             $data['str']=implode(',',$event_date);
 			$this->load->view('adminview',$data);
 		}
@@ -1447,7 +1448,7 @@ public function deductPointCustomReason()
         //print_r($result);
         foreach ($result as $row) 
        {
-            echo $row->Lnid.",".$row->item.",".$row->cost.",".$row->limit1.",".$row->parent_id."/";
+            echo $row->Lnid.",".$row->item.",".$row->cost.",".$row->limit1.",".$row->parent_id."+";
        }
     }
 
@@ -1474,7 +1475,7 @@ public function deductPointCustomReason()
     	$data['limit1']=$newlimit;
     	$data['parent_id']=$parent;
     	$result=$this->AdminModel->additems($data);
-    	print_r($result);
+    	print_r($data);
 
     }
 
