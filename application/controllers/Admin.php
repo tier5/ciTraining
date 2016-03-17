@@ -504,7 +504,7 @@ class Admin extends CI_Controller
 
 			$resclockin = $this->AdminModel->empFclockin($data1);
 
-			$resclockin = $this->AdminModel->empFclockin($data);
+			//$resclockin = $this->AdminModel->empFclockin($data);
 			
 
 			foreach ($resclockin as $val)
@@ -1128,7 +1128,6 @@ public function shoEmpLcompleteDateChk()
 public function shoEmpFcomplete()
 {
 	$tbl_name="fbreak";
-
 	$data['date'] = $this->date;
 
 	$result = $this->AdminModel->empFclockin($data);
