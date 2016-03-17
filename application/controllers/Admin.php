@@ -475,9 +475,10 @@ class Admin extends CI_Controller
 	public function empFbreak()
 	{
 		$get_date=$this->date;
-		$exp_date=explode('/',$get_date);
-		if(count($exp_date)>1)
+		
+		if(strpos($get_date, '/'))
 		{
+			$exp_date=explode('/',$get_date);
 			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
 			$data['date'] = $gen_date;
 
@@ -559,17 +560,22 @@ class Admin extends CI_Controller
 
 	public function empSbreak()
 	{
-		$get_date=$this->date;
-		$exp_date=explode('/',$get_date);
+
+		$get_date=$this->date;//exit;
+		
+		//echo count($exp_date);
 		//print_r($exp_date);exit;
-		if(count($exp_date)>1)
+		if(strpos($get_date, '/'))
 		{
+			
+			 $exp_date=explode('/',$get_date);
 			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
 			$data['date'] = $gen_date;
 
 		}
 		else
 		{
+			//echo 'kk1';
 			$data['date'] = $this->date;
 		}
 		
@@ -582,7 +588,7 @@ class Admin extends CI_Controller
 		$res = $this->AdminModel->empSbreak($data);
 		//echo $this->db->last_query();exit;
 
-		if(empty($res))
+		if(!empty($res))
 		{
 			foreach ($res as $key)
 			{
@@ -620,11 +626,12 @@ class Admin extends CI_Controller
      public function empFbreak1()
      {
      		$get_date=$this->date;
-		$exp_date=explode('/',$get_date);
+		
 		$totaldiv='';
 		//print_r($exp_date);exit;
-		if(count($exp_date)>1)
+		if(strpos($get_date, '/'))
 		{
+			$exp_date=explode('/',$get_date);
 			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
 			$data['date'] = $gen_date;
 			$where=array('date'=>$gen_date);
@@ -681,11 +688,12 @@ class Admin extends CI_Controller
     	public function empSbreak1()
 	{
 		$get_date=$this->date;
-		$exp_date=explode('/',$get_date);
+		
 		$totaldiv='';
 		//print_r($exp_date);exit;
-		if(count($exp_date)>1)
+		if(strpos($get_date, '/'))
 		{
+			$exp_date=explode('/',$get_date);
 			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
 			$data['date'] = $gen_date;
 			$where=array('date'=>$gen_date);
@@ -748,11 +756,12 @@ class Admin extends CI_Controller
  	public function empLbreak1()
 	{
 		$get_date=$this->date;
-		$exp_date=explode('/',$get_date);
+		
 		$totaldiv='';
 		//print_r($exp_date);exit;
-		if(count($exp_date)>1)
+		if(strpos($get_date, '/'))
 		{
+			$exp_date=explode('/',$get_date);
 			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
 			$data['date'] = $gen_date;
 			$where=array('date'=>$gen_date);
@@ -812,9 +821,10 @@ class Admin extends CI_Controller
 	public function empLbreak()
 	{
 		$get_date=$this->date;
-		$exp_date=explode('/',$get_date);
-		if(count($exp_date)>1)
+		
+		if(strpos($get_date, '/'))
 		{
+			$exp_date=explode('/',$get_date);
 			$gen_date=$exp_date[2].'-'.$exp_date[1].'-'.$exp_date[0];
 			$data['date'] = $gen_date;
 

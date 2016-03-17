@@ -1011,9 +1011,10 @@ function fbreak(){
 
 function sbreak(){
 
+
 		$.post('Admin/empSbreak', function(data){
 
-			
+			//alert(data);
 		if($.trim(data))
 		{
 
