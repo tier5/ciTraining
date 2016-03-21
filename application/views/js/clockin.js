@@ -9,7 +9,20 @@
 
     });
     }
+setInterval(Lunchbtndisable, 1000);
 
+function Lunchbtndisable()
+{
+var currentdate = new Date(); 
+var time=currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+if(time >='13:15:00')
+{
+    //alert(time);
+    $('#lunchorder').attr('disabled', 'disabled');
+}
+}
 //===============================================================
 
     

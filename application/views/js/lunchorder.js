@@ -44,6 +44,7 @@ function showfirstdiv()
 		    $('#totalcost').html("0");
 	        $('.modal-body-tab1').hide();
 	        $('.modal-body-tab2').show();
+	        $('#sel_empl').show();
 	        //var shopName=$('#selectshop_'+id).text();
 		    $.post('Employee/itemoption',{shopopt:shopid},function(data){  
 	         
@@ -101,7 +102,7 @@ function showfirstdiv()
 			totalcost = parseInt(totalcost);
 			itemquantity=parseInt(itemquantity);
 			totalitem = $('#totalitem').text();
-
+			
 			if(btnvalue=='Add')
 			{
                     totalcost = totalcost + newcost;
@@ -148,10 +149,23 @@ function showfirstdiv()
 	});
 
 
+    $('#view_btn').click(function(){
+     
+		   $.post('Employee/FnFetchOrder', function(data){
+		   	//alert(data);
+	       $('#v_order').modal('show');
+	       $('#place_order').html(data);
+	        
+		    });
+    
+    });
+
 	$('#suborder').click(function(){
 		   var shopname=$('#shpname').text();
 		   var lunchitm=$('#totalitem').text();
 		   var finalcost=$('#totalcost').text();
+
+
 		    if($.trim(lunchitm))
 		    {
 		    	if(finalcost>100)
@@ -167,24 +181,30 @@ function showfirstdiv()
 		    	else
 		    	{
                   
-			        $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost },function(data){
-			       //alert(data);
+                  var ordOthr=$("#sel_emp" ).val();
+			        $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost, ordOthr:ordOthr },function(data){
+			       //alert(data);exit;
 			       $('#lunchorder').prop('disabled', true);
+			      
 			         if ($.trim(data))
 			         {
+			         	$('#sel_empl').hide();
 			            $('.modal-body-tab3').show();
 					    $('.modal-body-tab2').hide();
 					    $('#confirmorder').html("Lunch Order Placed Successfully!!!!!");
 					    $('#totalitem').empty();
 					    $('#totalcost').html("0");	
+					    
 			         }
 			         else
 			         {
+			         	$('#sel_empl').hide();
 			            $('.modal-body-tab3').show();
 					    $('.modal-body-tab2').hide();
 					    $('#confirmorder').html("You Have Already Placed Your Lunch Order!!!! ");	
 			            $('#totalitem').empty();
 					    $('#totalcost').html("0");	
+
 			         }
 		            });
                 }
@@ -199,3 +219,14 @@ function showfirstdiv()
 	});
 //================================================================================ 
 });
+
+function del_order(o_id)
+{
+	if(confirm("Are you sure you want to delete this order!") == true)
+	{
+	$.post('Employee/Delorder',{o_id:o_id},function(data){ 
+	        //alert(data);
+	        $('#place_order').html(data);
+		    });
+    }
+}

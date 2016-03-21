@@ -251,6 +251,30 @@
         $result=$this->db->query($sql);
         return $result->result_array();
       }
+
+      public function eventbeforespecificdate($date)
+      {
+       $sql="SELECT * 
+FROM  `tbl_event_informations` 
+WHERE DATE_ADD(  `date` , INTERVAL YEAR(  '".$date."' ) - YEAR(  `date` ) + IF( DAYOFYEAR( '".$date."' ) > DAYOFYEAR(  `date` ) , 1, 0 ) YEAR ) 
+BETWEEN  '".$date."'
+AND DATE_ADD(  '".$date."', INTERVAL 1 
+DAY ) ";
+        $result=$this->db->query($sql);
+       // echo $this->db->last_query();
+        return $result->result_array();
+      }
+
+       public function evenspecificdate($date)
+      {
+       $sql="SELECT  `tbl_event_informations`. * ,  `employee`.`propname` ,  `employee`.`name` 
+FROM  `tbl_event_informations` 
+INNER JOIN  `employee` ON  `employee`.`id` =  `tbl_event_informations`.`Eid` 
+WHERE DATE_FORMAT(  `date` ,  '%m-%d' ) = DATE_FORMAT(  '".$date."',  '%m-%d' )";
+ $result=$this->db->query($sql);
+       // echo $this->db->last_query();
+        return $result->result_array();
+      }
       public function currentEvent()
       {
         $sql="SELECT `tbl_event_informations` . * , `employee`.`propname`,`employee`.`name`
@@ -418,6 +442,7 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
             {
                $this->db->where('date',date('Y-m-d',strtotime($data['date'])));
             }
+          //  $this->db->where('ord_emp',$data['ord_emp']);
             $this->db->where('status',$data['status']);
             $this->db->join('employee','employee.id=lunchorder.Eid');
             $res=$this->db->get('lunchorder');
@@ -439,7 +464,14 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
           }
 
 
-         
+         public function FngetName($id)
+         {
+            $this->db->select('*');
+            $this->db->where('id',$id);
+            
+            $res=$this->db->get('employee');
+            return $res->row_array(); 
+         }
 
           public function cardCheck($where)
            {

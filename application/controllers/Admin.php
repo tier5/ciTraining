@@ -448,17 +448,17 @@ class Admin extends CI_Controller
 		 $next_d=strtotime($select_date)+(24*3600);
 		 $date_tomorrow=date('Y-m-d',$next_d);
          $where_tm=array('tbl_event_informations.date'=>$date_tomorrow);
-         $event_tomorrow=$this->AdminModel->FngetAlldata('tbl_event_informations',$where_tm);
+         $event_tomorrow=$this->AdminModel->eventbeforespecificdate($select_date);
 		 $where=array('tbl_event_informations.date'=>$select_date);
-		 $get_all_events=$this->AdminModel->FngetAlldata('tbl_event_informations',$where);
+		 $get_all_events=$this->AdminModel->evenspecificdate($select_date);
 		 //echo '<pre>';print_r($get_all_events);
 		 $result='';
 		       foreach($get_all_events as $results)
 		       {
 				$result.= "<tr class='info'>
-                <td>".$results['name']."</td>
+                <td>".$results['propname']."</td>
 
-                <td>".date('d/m/Y',strtotime($results['date']))."</td>
+              
                 <td>".$results['event_informations']."</td>
               		</tr>";
               	}
@@ -1365,12 +1365,43 @@ public function deductPointCustomReason()
        $data['date']=date('Y-m-d',strtotime($this->date));
        $data['status']=0;
        $result = $this->AdminModel->showorder($data);
+      
+
        foreach ($result as $row) 
        {
-       	$data1['id']=$row->Eid;
+       	if($row->ord_emp=='')
+       	{
+       		$data1['id']=$row->Eid;
        	$name = $this->AdminModel->showpropName($data1);
        	//print_r($name);
        	echo $row->Liid.",".$row->Eid.",".$name.",".date('d/m/Y',strtotime($row->date)).",".$row->shopname.",".$row->items.",".$row->cost."?";
+       	}
+       	else
+       	{
+       		if(strpos($row->ord_emp, ',') !== false)
+       		{
+       			$data1['id']=$row->Eid;
+       			$n_arry=array();
+       			$n_arry_id=array();
+       			$name_str='';
+       			$id_str='';
+       			$ch_exp=explode(',',$row->ord_emp);
+       			for($i=0;$i<count($ch_exp);$i++)
+       			{
+       					$data2['id']=$ch_exp[$i];
+       					$get_name = $this->AdminModel->showpropName($data2);
+       					array_push($n_arry,$get_name);
+       					array_push($n_arry_id,$ch_exp[$i]);
+       			}
+       			$name_str=implode('-', $n_arry);
+       			$id_str=implode('-', $n_arry_id);
+       			$final_cost=(count($ch_exp))*($row->cost).'('.$row->cost.' per head)';
+       	
+       	//print_r($name);
+       	echo $row->Liid.",".$id_str.",".$name_str.",".date('d/m/Y',strtotime($row->date)).",".$row->shopname.",".$row->items.",".$final_cost."?";
+       		}
+       	}
+       	
        }
     }
 
@@ -1486,6 +1517,7 @@ public function deductPointCustomReason()
     	$data['date']=$this->input->post('date');
         $data['status']=0;
 
+
     	$all_order=$this->AdminModel->FnAllorder($data);
 
     	//echo '<pre>';print_r($all_order);
@@ -1494,6 +1526,8 @@ public function deductPointCustomReason()
     	{
     	foreach($all_order as $orders)
     	{
+    		if($orders['ord_emp']=='')
+    		{
     		 $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
                 
                       <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
@@ -1514,6 +1548,45 @@ public function deductPointCustomReason()
                        </div>';
 
                  $result.= '&nbsp;&nbsp;<div style="margin-top:5px;"></div>';
+             }
+             else
+             {
+             	if(strpos($orders['ord_emp'], ',') !== false)
+             	{
+             		 $n_exp=explode(',',$orders['ord_emp']);
+						$n_arr=array();
+						$str='';
+						for($i=0; $i<count($n_exp);$i++)
+						{
+							    $name=$this->AdminModel->FngetName($n_exp[$i]);
+								array_push($n_arr,$name['propname']);
+							
+						}
+						$str=implode(',',$n_arr);
+						$cost=count($n_exp)*$orders['cost'];
+             		$result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
+                
+                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
+                      </br>
+                      <div style="padding-left:10px;"> Employee Name:<span id="empname"> '.$str.'</span></div>
+                    
+                      <br>
+                      <br>
+                      <div style="padding-left:10px;"> Lunch Items:<span id="emplunch"> '.$orders['items'].'</span></div><div align="right" style="padding-right:10px;">Per Head Cost:<span id="empcost"> '.$orders['cost'].'</span></div><div align="right" style="padding-right:10px;">Total Cost:<span id="empcost"> '.$cost.'</span></div>
+                  
+                      <div style="padding-left:10px;"> Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span></div>
+                      </br>
+                      </br>
+                      </br>
+
+                      <div align="right"> Authorized Signature...............................................<img src="'.base_url().'application/views/img/logo.png" alt="" width="50px"  /></div>
+               
+                       </div>';
+
+                 $result.= '&nbsp;&nbsp;<div style="margin-top:5px;"></div>';
+             	}
+       		
+             }
 
     	}
     	  //$result.='<a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>';
@@ -1537,7 +1610,51 @@ public function deductPointCustomReason()
 
     	foreach($all_order as $orders)
     	{
-    		 $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
+
+    		if($orders['ord_emp']!='' && strpos($orders['ord_emp'], ',') !== false)
+    		{
+    			
+    		
+             		    $n_exp=explode(',',$orders['ord_emp']);
+						$n_arr=array();
+						$str1='';
+						for($k=0; $k<count($n_exp);$k++)
+						{
+							    $name=$this->AdminModel->FngetName($n_exp[$k]);
+								array_push($n_arr,$name['propname']);
+							
+						}
+						$str1=implode(',',$n_arr);
+						$cost=count($n_exp)*$orders['cost'];
+						
+						
+             		 $result.= '<div class="col-sm-10" style="border: 2px solid black;" >
+                
+                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
+                      </br>
+                      <div style="padding-left:10px;"> Employee Name:<span id="empname"> '.$str1.'</span></div>
+                    
+                      <br>
+                      <br>
+                      <div style="padding-left:10px;"> Lunch Items:<span id="emplunch"> '.$orders['items'].'</span></div><div align="right" style="padding-right:10px;">Per Head Cost:<span id="empcost"> '.$orders['cost'].'</span></div><div align="right" style="padding-right:10px;">Total Cost:<span id="empcost"> '.$cost.'</span></div>
+                  
+                      <div style="padding-left:10px;"> Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span></div>
+                      </br>
+                      </br>
+                      </br>
+
+                      <div align="right"> Authorized Signature...............................................<img src="'.base_url().'application/views/img/logo.png" alt="" width="50px"  /></div>
+               
+                       </div>';
+
+                  $result.= '&nbsp;&nbsp;<div style="margin-top:5px;"></div>';
+					
+
+             }
+             else
+             {
+             	
+                  $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
                 
                       <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" style="-webkit-print-color-adjust: exact;"/></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
                       </br>
@@ -1554,8 +1671,13 @@ public function deductPointCustomReason()
                       <div align="right"> Authorized Signature...............................................<img src="'.base_url().'application/views/img/logo.png" alt="" width="50px"  /></div>
                
                        </div>';
-
+																					
                  $result.= '&nbsp;&nbsp;<div style="margin-top:5px;"></div>';
+                
+    			
+
+             	
+             }
 
     	}
     	  //$result.='<a id="printfinalAll" class="btn btn-danger btn-md glyphicon glyphicon-print" >Print</a>';
@@ -1574,6 +1696,8 @@ public function deductPointCustomReason()
     	  $Fetch_Info=$this->AdminModel->selectprint($orderid);
           foreach($Fetch_Info as $orders)
           {
+          	if($orders['ord_emp']=='')
+          	{
     	  $result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
                 
                       <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
@@ -1591,6 +1715,40 @@ public function deductPointCustomReason()
                       <div align="right"> Authorized Signature...............................................<img src="'.base_url().'application/views/img/logo.png" alt="" width="50px"  /></div>
                
                        </div>';
+                   }
+                   else
+                   {
+
+		                $n_exp=explode(',',$orders['ord_emp']);
+						$n_arr=array();
+						$str='';
+						for($i=0; $i<count($n_exp);$i++)
+						{
+							    $name=$this->AdminModel->FngetName($n_exp[$i]);
+								array_push($n_arr,$name['propname']);
+							
+						}
+						$str=implode(',',$n_arr);
+						$cost=count($n_exp)*$orders['cost'];
+                   	$result.= '<div class="col-sm-10"   style="border: 2px solid black;" >
+                
+                      <div align="left"><img src="'.base_url().'application/views/img/logo.png" alt="" width="200px" /></div><div align="right" style="padding-right:10px;">Shop Name:<span id="empshop"> '.$orders['shopname'].'</span></div>
+                      </br>
+                      <div style="padding-left:10px;"> Employee Name:<span id="empname"> '.$str.'</span></div>
+                      <br>
+                      <br>
+                      <div style="padding-left:10px;"> Lunch Items:<span id="emplunch"> '.$orders['items'].'</span></div><div align="right" style="padding-right:10px;">Per head Cost:<span id="empcost"> '.$orders['cost'].'</span></div><div align="right" style="padding-right:10px;">Total Cost:<span id="empcost"> '.$cost.'</span></div>
+                  
+                     <div style="padding-left:10px;">  Date:<span id="empdate"> '.date('d/m/Y',strtotime($orders['date'])).'</span></div>
+                      </br>
+                      </br>
+                      </br>
+
+                      <div align="right"> Authorized Signature...............................................<img src="'.base_url().'application/views/img/logo.png" alt="" width="50px"  /></div>
+               
+                       </div>';
+                   }
+
             }
             
             echo $result;

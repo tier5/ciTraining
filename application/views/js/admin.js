@@ -244,6 +244,7 @@ var disabledDays = [];
 		    }
 		    else
 		    {
+		    	
 		    	if(arr[1]>0)
             	{
             	$('#notify').show();

@@ -60,11 +60,15 @@
                 <div class="col-lg-12">
                     <div class="intro-message">
                         <div class="row">
-
                             <div class="col-sm-4">
-                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder" <?php if($lunch_ord_cnt>0){ echo 'disabled';}?>>Lunch Order</button>
+                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder" <?php if($lunch_ord_cnt>0 || date('H:i:s')>='13:15:00'){ echo 'style="display:none;"';}?>>Lunch Order</button>
+                           
+                                 
+                                 <button class="btn btn-default btn-lg" id='view_btn' <?php if($lunch_ord_cnt>0 && date('H:i:s')<'13:15:00'){ ?> style='display:block;' <?php } else { ?>  style='display:none;' <?php } ?>>View Order</button>
+                              
                             </div>
                             <div class="col-sm-4">
+                           Please Place Lunch order before 1:15:00 PM. Lunchorder Will not be active after that.
                                 
                                 <input type="hidden" id="event_notify" value="<?php if(!empty($event_info)){ echo 1;} else {echo 2;}?>">
                                 
@@ -472,6 +476,16 @@
           <h4 class="modal-title deleteconfirm" align="center">Place Your Lunch Order</h4>   
         </div>
         <div class='err_msg text-center'></div>
+
+        <div id='sel_empl' style="display:none"  >
+        <label>Select Employee: </label>
+        <select name='sel_emp' id="sel_emp" multiple>
+       
+        <?php foreach($FetchAllemployee as $emp){
+              echo '<option value="'.$emp['id'].'">'.$emp['propname'].'</option>';
+         } ?>
+         </select>
+        </div>
         <div class="modal-body-tab1" align="center">
 
         </div>
@@ -553,25 +567,35 @@
   <div class="container">
 
       <!-- Modal -->
-      <div class="modal fade" id="existcost" role="dialog">
-        <div class="modal-dialog modal-sm">
+      <div class="modal fade" id="v_order" role="dialog">
+        <div class="modal-dialog modal-lg">
         
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title error " align="center"><strong>Invalid Order Cost</strong></h4>
+              <h4 class="modal-title error " align="center"><strong>View Order</strong></h4>
             </div>
             <div class="modal-body">
               
-              <p align='center'>Your Order Cost Cannot Be More Than 100/-</p>
-              
-              <div class="col-sm-4">
-                
-                
-              </div>
-              <div class="col-sm-4"></div>
-              
+             
+           <table class="table table-bordered" >
+                        <thead>
+                          <tr>
+                            <td><strong>Date</strong></td>
+                            <td><strong>Employee Id</strong></td>
+                            <td><strong>Employee Name</strong></td>
+                            <td><strong>Shop Name</strong></td>
+                            <td><strong>Lunch Item</strong></td>
+                            <td><strong>Cost</strong></td>
+                            <td><strong>Action</strong></td>
+                         
+
+                          </tr>
+                        </thead>
+                        <tbody id='place_order'>
+                        </tbody>
+                  </table>
 
               <div class="col-sm-4">
 

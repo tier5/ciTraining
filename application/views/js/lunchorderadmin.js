@@ -199,7 +199,7 @@ $('#printorder').click(function() {
                 data:'date='+date,
                 success:function(result)
                 {
-                 // alert(result);
+                 //alert(result);
                    //$('#printorderall').modal('show');
                    //$('#print_all').html(result);
               $('#list_print').hide();

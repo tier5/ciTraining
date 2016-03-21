@@ -409,6 +409,7 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
    {
     $this->db->select('*');
     $this->db->where($where);
+
     $this->db->order_by('endTime','desc');
     $res=$this->db->get($tbl);
    
@@ -442,6 +443,34 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
            return $this->db->affected_rows();
         }
    }
+
+   public function Fnfetchorder()
+   {
+        $this->db->select('lunchorder.*,employee.name,employee.propname');
+        $this->db->where('date',date('Y-m-d'));
+        $this->db->where('status',0);
+        $this->db->join('employee','employee.id=lunchorder.Eid');
+        $this->db->where('Eid',$this->session->userdata('empid'));
+        $result=$this->db->get('lunchorder');
+        return $result->result_array();
+   }
+   function FngetEmployeelunch()
+   {
+        $sql="SELECT id, name,propname
+FROM employee
+WHERE id != ".$this->session->userdata('empid')." and id NOT
+IN (
+
+SELECT Eid
+FROM lunchorder
+WHERE date = '".date('Y-m-d')."'
+AND STATUS =0
+)";
+    $res=$this->db->query($sql);
+       return $res->result_array();
+   } 
+
+   
 
 
     

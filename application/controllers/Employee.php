@@ -62,6 +62,8 @@ class Employee extends CI_Controller
 			$data['lunch_ord_cnt']=$this->EmployeeModel->FngetAllCount('lunchorder',$con2,'count');
 			$data['active']=$active;
 			$data['start_in']=$start_in;
+			
+			$data['FetchAllemployee']=$this->EmployeeModel->FngetEmployeelunch();
 			//echo $this->db->last_query();
 			$this->load->view('employeeview',$data);
 		}
@@ -75,6 +77,81 @@ class Employee extends CI_Controller
 
 		}
 		
+	}
+
+	public function FnFetchOrder()
+	{
+		$info=$this->EmployeeModel->Fnfetchorder();
+		//echo $this->db->last_query();
+		$final='';
+
+		
+                         
+		foreach($info as $result)
+		{
+			$final.='<tr><td>'.date('d/m/y',strtotime($result['date'])).'</td>
+			<td>'.$result['Eid'].'</td><td>'.$result['propname'].'</td><td>'.$result['shopname']
+			.'</td><td>'.$result['items'].'</td><td>'.$result['cost'].'</td><td><a onclick="del_order('.$result['Liid'].')" style="cursor:pointer;">delete</a></td></tr>';
+
+		}
+
+                    echo $final;
+       
+	}
+	public function Delorder()
+	{
+		extract($_POST);
+		$data['status']=2;
+		$where=array('Liid'=>$o_id);
+		$str='';
+		$info=$this->EmployeeModel->FngetAllCount('lunchorder',$where,'row');
+		
+		//echo strlen($info['ord_emp']);exit;
+		if($info['ord_emp']!=NULL && strpos($info['ord_emp'], ',') == false)
+		{
+			
+			$where1=array('Eid'=>$info['ord_emp'],'date'=>date('Y-m-d'),'status'=>0);
+			$info_main=$this->EmployeeModel->FngetAllCount('lunchorder',$where1,'row');
+			if(!empty($info_main))
+			{
+				$n_exp=explode(',',$info_main['ord_emp']);
+				$n_arr=array();
+				for($i=0; $i<count($n_exp);$i++)
+				{
+					if($n_exp[$i]!=$info['Eid'])
+					{
+						array_push($n_arr,$n_exp[$i]);
+					}
+				}
+				$str=implode(',',$n_arr);
+				$data1['ord_emp']=$str;
+				$this->EmployeeModel->update('lunchorder',$data1,$where1);
+			}
+		}
+		elseif($info['ord_emp']!=NULL && strpos($info['ord_emp'], ',') !== false)
+		{
+			
+				$e_exp=explode(',',$info['ord_emp']);
+				
+				for($j=0; $j<count($e_exp);$j++)
+				{
+					if($e_exp[$j]!=$info['Eid'])
+					{
+			$where1=array('Eid'=>$e_exp[$j],'date'=>date('Y-m-d'));
+			$info_main=$this->EmployeeModel->FngetAllCount('lunchorder',$where1,'row');
+			//echo $info_main['Liid'].'<br>';
+			$where_n=array('Liid'=>$info_main['Liid']);
+			$data_n['ord_emp']='';
+			$this->EmployeeModel->update('lunchorder',$data_n,$where_n);
+					}
+				}
+		}
+		//exit;
+		$del=$this->EmployeeModel->update('lunchorder',$data,$where);
+		if($del)
+		{
+		echo '<tr><td colspan="7">Order Deleted Successfully.Click on lunch order to give new order</td></tr>';
+		}
 	}
 
 	public function logout()
@@ -1043,13 +1120,44 @@ class Employee extends CI_Controller
 	{
 
 		extract($_POST);
+		$str='';
+		$count=1;
+		if(!empty($ordOthr))
+		{
+			$count=count($ordOthr);
+			for($k=0;$k<count($ordOthr);$k++)
+			{
+		$data['Eid']=$ordOthr[$k];
+		$data['date']=date("Y-m-d");
+		$data['shopname']=$shopname;
+		$data['items']=$lunchitm;
+		$data['cost']=$finalcost;
+		$data['ord_emp']=$this->session->userdata('empid');
+		$result=$this->EmployeeModel->submitorder($data);
+				$str.=$ordOthr[$k].',';
+			}
+		$str.=$this->session->userdata('empid');	
+		$str=rtrim($str,',');
 		$data['Eid']=$this->session->userdata('empid');
 		$data['date']=date("Y-m-d");
 		$data['shopname']=$shopname;
 		$data['items']=$lunchitm;
 		$data['cost']=$finalcost;
+		$data['ord_emp']=$str;
+		$result=$this->EmployeeModel->submitorder($data);
+			
+		}
+		else
+		{
+		$data['Eid']=$this->session->userdata('empid');
+		$data['date']=date("Y-m-d");
+		$data['shopname']=$shopname;
+		$data['items']=$lunchitm;
+		$data['cost']=$finalcost;
+		$data['ord_emp']=$str;
 		$result=$this->EmployeeModel->submitorder($data);
         print_r($result);
+    	}
 	}
 
 	public function working()
