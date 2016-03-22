@@ -6,7 +6,7 @@ class Android extends CI_Controller
 
 	public function index()
 	{
-		echo "hello";
+		echo "kingsuk";
 
 	}
 
