@@ -6,7 +6,10 @@ class Android extends CI_Controller
 
 	public function index()
 	{
-		echo "kingsuk";
+		//echo "kingsuk";
+		$name = $this->input->post('name');
+
+		echo $name;
 
 	}
 
