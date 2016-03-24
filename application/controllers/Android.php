@@ -111,14 +111,15 @@ class Android extends CI_Controller
 				$left_time=$mint.':'.$sec;
 				$brk='Last Break';
 				$data['status']=$brk;
-				if($left_time<0)
+				/*if($left_time<0)
 				{
 				$data['time_left']='Your breaktime already got overed';
 				}
 				else
 				{
 					$data['time_left']=$left_time;
-				}
+				}*/
+				$data['time_left']=$time_left;
 				$data['user_name']=$name;
 				echo json_encode($data);
 
@@ -142,14 +143,15 @@ class Android extends CI_Controller
 				$left_time=$mint.':'.$sec;
 				$brk='First Break';
 				$data['status']=$brk;
-				if($left_time<0)
+				/*if($left_time<0)
 				{
 				$data['time_left']='Your breaktime already got overed';
 				}
 				else
 				{
 					$data['time_left']=$left_time;
-				}
+				}*/
+				$data['time_left']=$time_left;
 				$data['user_name']=$name;
 				echo json_encode($data);
 
@@ -173,14 +175,15 @@ class Android extends CI_Controller
 				$left_time=$mint.':'.$sec;
 				$brk='Second Break';
 				$data['status']=$brk;
-				if($left_time<0)
+				/*if($left_time<0)
 				{
 				$data['time_left']='Your breaktime already got overed';
 				}
 				else
 				{
 					$data['time_left']=$left_time;
-				}
+				}*/
+				$data['time_left']=$time_left;
 				$data['user_name']=$name;	
 				echo json_encode($data);
 				
