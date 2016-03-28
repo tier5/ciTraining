@@ -61,10 +61,10 @@
                     <div class="intro-message">
                         <div class="row">
                             <div class="col-sm-4">
-                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder" <?php if($lunch_ord_cnt>0 || date('H:i:s')>='13:30:00'){ echo 'style="display:none;"';}?>>Lunch Order</button>
+                             <button class="btn btn-default btn-lg" id="lunchorder" name="lunchorder" <?php if($lunch_ord_cnt>0 || date('H:i:s')>='13:15:00'){ echo 'style="display:none;"';}?>>Lunch Order</button>
                            
                                  
-                                 <button class="btn btn-default btn-lg" id='view_btn' <?php if($lunch_ord_cnt>0 && date('H:i:s')<'13:30:00'){ ?> style='display:block;' <?php } else { ?>  style='display:none;' <?php } ?>>View Order</button>
+                                 <button class="btn btn-default btn-lg" id='view_btn' <?php if($lunch_ord_cnt>0 && date('H:i:s')<'13:15:00'){ ?> style='display:block;' <?php } else { ?>  style='display:none;' <?php } ?>>View Order</button>
                               
                             </div>
                             <div class="col-sm-4">
