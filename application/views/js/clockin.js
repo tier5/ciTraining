@@ -20,7 +20,7 @@ var time=currentdate.getHours() + ":"
 if(time >='13:30:00')
 {
     //alert(time);
-    $('#lunchorder').attr('disabled', 'disabled');
+   // $('#lunchorder').attr('disabled', 'disabled');
 }
 }
 //===============================================================
