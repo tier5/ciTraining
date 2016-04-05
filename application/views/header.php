@@ -51,7 +51,7 @@
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/time.js';?>"></script>
 
 
-    <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin.js';?>"></script>
+    <script type="text/javascript" src="<?php echo base_url().'application/views/js/admin1.js';?>"></script>
 
     <script type="text/javascript" src="<?php echo base_url().'application/views/js/timerlib.js';?>"></script>
 
