@@ -1394,7 +1394,7 @@ function properMin(val)
 	$('#addNewEmp').click(function(){
 
 		//alert('hello');
-		var propname=$('#empPropname').val()
+		var propname=$('#empPropname').val();
 		var username = $('#empusername').val();
 		var useremail = $('#empuseremail').val();
 		var userpassword = $('#empuserpass').val();
