@@ -366,7 +366,9 @@
               <h4 class="modal-title">Add New Employee</h4>
             </div>
             <div class="modal-body">
-              
+                        <div class="form-group">
+                            <input id="empPropname" name="empPropname" type="text" class="form-control input-lg" placeholder="Employee Proper Name">
+                        </div>
                         <div class="form-group">
                             <input id="empusername" name="name" type="text" class="form-control input-lg" placeholder="user_name">
                         </div>

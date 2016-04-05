@@ -1394,6 +1394,7 @@ function properMin(val)
 	$('#addNewEmp').click(function(){
 
 		//alert('hello');
+		var propname=$('#empPropname').val()
 		var username = $('#empusername').val();
 		var useremail = $('#empuseremail').val();
 		var userpassword = $('#empuserpass').val();
@@ -1404,7 +1405,7 @@ function properMin(val)
 		
 		if(useremail && userpassword && username)
 		{
-			$.post('Admin/addEmp',{name: username, email: useremail, pass: userpassword, btn: "submit"}, function(data)
+			$.post('Admin/addEmp',{propname:propname,name: username, email: useremail, pass: userpassword, btn: "submit"}, function(data)
 			{
                 $('#confirmAdd').html(data);
                 allemployee();

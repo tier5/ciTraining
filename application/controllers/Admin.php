@@ -335,6 +335,7 @@ class Admin extends CI_Controller
 		extract($_POST);
 		if (isset($btn)) 
 		{
+			$data['propname']=$propname;
 			$data['name']=$name;
 			//echo "$name";
 			$data['email']=$email;

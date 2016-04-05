@@ -13,7 +13,7 @@ setInterval(Lunchbtndisable, 1000);
 
 function Lunchbtndisable()
 {
-var currentdate = new Date(); 
+/*var currentdate = new Date(); 
 var time=currentdate.getHours() + ":"  
                 + currentdate.getMinutes() + ":" 
                 + currentdate.getSeconds();
@@ -21,8 +21,60 @@ if(time >='13:30:00')
 {
     //alert(time);
    // $('#lunchorder').attr('disabled', 'disabled');
+}*/
+
+
+            var startTime = '13:15 PM';
+   
+    var curr_time = getval();
+
+    if (get24Hr(curr_time) >= get24Hr(startTime)) {
+      //in between these two times
+       $('#lunchorder').attr('disabled', 'disabled');
+    } 
+
+
 }
-}
+
+
+
+    
+    function get24Hr(time){
+      var hours = Number(time.match(/^(\d+)/)[1]);
+      var AMPM = time.match(/\s(.*)$/)[1];
+      if(AMPM == "PM" && hours<12) hours = hours+12;
+      if(AMPM == "AM" && hours==12) hours = hours-12;
+
+      var minutes = Number(time.match(/:(\d+)/)[1]);
+      hours = hours*100+minutes;
+      console.log(time +" - "+hours);
+      return hours;
+ }
+
+    function getval() {
+     var currentTime = new Date()
+     var hours = currentTime.getHours()
+     var minutes = currentTime.getMinutes()
+
+     if (minutes < 10) minutes = "0" + minutes;
+
+     var suffix = "AM";
+     if (hours >= 12) {
+        suffix = "PM";
+        hours = hours - 12;
+     }
+     if (hours == 0) {
+        hours = 12;
+     }
+     var current_time = hours + ":" + minutes + " " + suffix;
+
+     return current_time;
+
+    }
+
+
+
+
 //===============================================================
 
     
