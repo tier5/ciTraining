@@ -159,7 +159,7 @@ function showfirstdiv()
 		    });
     
     });
-
+/*
 	$('#suborder').click(function(){
 		   var shopname=$('#shpname').text();
 		   var lunchitm=$('#totalitem').text();
@@ -216,7 +216,83 @@ function showfirstdiv()
 		    	$('.err_msg').css('color','red');
 		    	$('.err_msg').html('Atleast Select One Item');
 		    }
+	});*/
+
+
+
+		$('#suborder').click(function(){
+		   var shopname=$('#shpname').text();
+		   var lunchitm=$('#totalitem').text();
+		   var finalcost=$('#totalcost').text();
+
+
+		    if($.trim(lunchitm))
+		    {
+		    	if(finalcost>100)
+		    	{
+		    		$('#lunchModal').animate({scrollTop : 0},800);
+		    		
+					$('.err_msg').css('color','red');
+					$('.err_msg').html('Your Order Cost Cannot Be More Than 100/-');
+  
+
+					
+		    	}
+		    	else
+		    	{
+                  
+                  var ordOthr=$("#sel_emp" ).val();
+			        $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost, ordOthr:ordOthr },function(data){
+			       //alert(data);exit;
+			       $('#lunchorder').prop('disabled', true);
+			     if(data!=2)
+			     {
+			         if ($.trim(data))
+			         {
+			         	$('#sel_empl').hide();
+			            $('.modal-body-tab3').show();
+					    $('.modal-body-tab2').hide();
+					    $('#confirmorder').html("Lunch Order Placed Successfully!!!!!");
+					    $('#totalitem').empty();
+					    $('#totalcost').html("0");	
+					    
+			         }
+			         else
+			         {
+			         	$('#sel_empl').hide();
+			            $('.modal-body-tab3').show();
+					    $('.modal-body-tab2').hide();
+					    $('#confirmorder').html("You Have Already Placed Your Lunch Order!!!! ");	
+			            $('#totalitem').empty();
+					    $('#totalcost').html("0");	
+
+			         }
+			     }
+
+			     else
+			     {
+			     	$('#lunchModal').animate({scrollTop : 0},800);
+		    		
+					$('.err_msg').css('color','red');
+					$('.err_msg').html('cannot submit oreder as it beyond 1:15 PM.');
+  
+			     }
+		            });
+                }
+		    }
+		    else
+		    {
+		    	//$('#emptyorder').modal('show');
+		    	$('#lunchModal').animate({scrollTop : 0},800);
+		    	$('.err_msg').css('color','red');
+		    	$('.err_msg').html('Atleast Select One Item');
+		    }
 	});
+
+
+
+
+
 //================================================================================ 
 });
 

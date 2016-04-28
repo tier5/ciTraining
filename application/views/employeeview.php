@@ -478,14 +478,18 @@
         <div class='err_msg text-center'></div>
 
         <div id='sel_empl' style="display:none"  >
-        <label>Select Employee: </label>
+        <center>
+        <label>Select Employee for whome you want to place order: </label>
+        <br>
         <select name='sel_emp' id="sel_emp" multiple>
        
         <?php foreach($FetchAllemployee as $emp){
               echo '<option value="'.$emp['id'].'">'.$emp['propname'].'</option>';
          } ?>
          </select>
+         </center>
         </div>
+        </br>
         <div class="modal-body-tab1" align="center">
 
         </div>

@@ -1118,10 +1118,11 @@ class Employee extends CI_Controller
 
 	public function submitorder()
 	{
-
 		extract($_POST);
 		$str='';
 		$count=1;
+		if(date('H:i:s')<='13:15:00')
+		{
 		if(!empty($ordOthr))
 		{
 			$count=count($ordOthr);
@@ -1158,6 +1159,11 @@ class Employee extends CI_Controller
 		$result=$this->EmployeeModel->submitorder($data);
         print_r($result);
     	}
+       }
+       else
+       {
+           echo 2;
+       }
 	}
 
 	public function working()

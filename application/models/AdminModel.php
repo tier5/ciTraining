@@ -410,15 +410,32 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
 
       public function FnPointmonth($month=null)
           {
-           if($month)
+            if($month)
            {
            $curMonth=$month;
+           if($month==1)
+           {
+           $curYear=date('Y')+1;
+          }
+          else
+          {
+            $curYear=date('Y');
+          }
            }
            else
            {
-             $curMonth=date('n');
+            if(date('n')!=12)
+            {
+             $curMonth=date('n')+1;
+             $curYear=date('Y');
+            }
+            else
+            {
+              $curMonth=1;
+              $curYear=date('Y')+1;
+            }
            }
-           $curYear=date('Y');
+           
            $this->db->select('point_history.*,employee.name,employee.propname');
            $this->db->join('employee','employee.id=point_history.Eid');
 
