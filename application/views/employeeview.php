@@ -500,6 +500,7 @@
                </div>
                <div class="col-sm-4" >
                 Shop Name: <span id="shpname"></span>
+                <span id="shpid" style="display:none"></span>
                </div>
                <div class="col-sm-4" >
                </div>

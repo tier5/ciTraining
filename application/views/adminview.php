@@ -13,24 +13,8 @@
 
 <?php include 'navbar.php';?>
     <!-- Intro Section -->
-    <div id="test" data-status='opened'>
-     <div class="user">
-      <img src="http://image.priceprice.k-img.com/ph/images/common/face_japan_01.gif" alt="Esempio" class="img-thumbnail">
-      <a target="_blank" class="navbar-link">Admin</a>
-    </div>
-    <div class="list-group">
-      <a class="list-group-item1 active"  href="<?php echo base_url()?>">Home</a>
-      <a class="list-group-item1" href="<?php echo base_url();?>Admin#contact">Employee's Late</a>
-      <a class="list-group-item1" href="<?php echo base_url();?>Admin#employeelate">Show all Employee</a>
-
-      <a  class="list-group-item1" href="<?php echo base_url();?>Admin/showAllLateview">Employee's All Late Information</a>
-      <a class="list-group-item1" href="<?php echo base_url();?>Admin/lunchorderview">Lunch Order</a>
-      <a class="list-group-item1" href="<?php echo base_url();?>Admin/addEventview">Event</a>
-      <a class="list-group-item1" href="<?php echo base_url();?>Admin/ShowPointHistory">Point History</a>
-      <a class="list-group-item1" href="logout">Logout</a>
-     
-  </div>
-</div>
+    <?php include 'sideber.php';?>
+    
     
 
 

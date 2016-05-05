@@ -1131,6 +1131,7 @@ class Employee extends CI_Controller
 		$data['Eid']=$ordOthr[$k];
 		$data['date']=date("Y-m-d");
 		$data['shopname']=$shopname;
+		$data['shop_id']=$shopid;
 		$data['items']=$lunchitm;
 		$data['cost']=$finalcost;
 		$data['ord_emp']=$this->session->userdata('empid');
@@ -1142,6 +1143,7 @@ class Employee extends CI_Controller
 		$data['Eid']=$this->session->userdata('empid');
 		$data['date']=date("Y-m-d");
 		$data['shopname']=$shopname;
+		$data['shop_id']=$shopid;
 		$data['items']=$lunchitm;
 		$data['cost']=$finalcost;
 		$data['ord_emp']=$str;
@@ -1153,6 +1155,7 @@ class Employee extends CI_Controller
 		$data['Eid']=$this->session->userdata('empid');
 		$data['date']=date("Y-m-d");
 		$data['shopname']=$shopname;
+		$data['shop_id']=$shopid;
 		$data['items']=$lunchitm;
 		$data['cost']=$finalcost;
 		$data['ord_emp']=$str;

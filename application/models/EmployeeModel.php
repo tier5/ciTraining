@@ -327,6 +327,7 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
         {
             return false;
         }
+        else
         {
             $result=$this->db->insert('lunchorder',$data);
             return $result;

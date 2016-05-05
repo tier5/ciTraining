@@ -296,10 +296,10 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
           return $result->result();
       }
 
-      public function dltordr($data, $data1)
+      public function dltordr($data)
       {
-        $d=$this->db->where($data);
-          $res=$this->db->update('lunchorder',$data1);
+          $this->db->where($data);
+          $res=$this->db->delete('lunchorder');
           if($res)
           {
             return true;
@@ -446,6 +446,7 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
            
            }
 
+
            public function FnAllorder($data)
            {
             
@@ -515,6 +516,38 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
             return $res->result_array(); 
 
            }
+           public function fetchinfo($tbl,$con,$type)
+          {
+            $this->db->select('*');
+            if($con)
+            {
+            $this->db->where($con);
+            }
+            $res=$this->db->get($tbl);
+            if($type=="row")
+            {
+            return  $result=$res->row_array();
+            }
+             if($type=="count")
+            {
+            return  $result=$res->num_rows();
+            }
+             if($type=="result")
+            {
+            return  $result=$res->result_array();
+            }
+
+          }
+
+           public function fetchallemployee()
+          {
+
+          $this->db->select('*');
+        
+          $res=$this->db->get('employee');
+          return $res->result_array();
+
+          }
 
            function FnMonthwiseProductivity($l_time,$month)
            {
@@ -603,6 +636,49 @@ WHERE date_format( `date` , '%m-%d' ) = date_format( curdate( ) , '%m-%d' )";
               echo "No result Found.";
             }
            }
+
+
+
+
+      public function allordercost($shop_id,$start_date,$end_date)
+      {
+ 
+        $cost_per_shop="";
+        
+        $this->db->select('cost');
+        $this->db->where('shop_id',$shop_id);
+        //$this->db->where('status',0);
+        $this->db->where('date BETWEEN "'. date('Y-m-d', strtotime($start_date)). '" and "'. date('Y-m-d', strtotime($end_date)).'"');
+        $res = $this->db->get('lunchorder');
+         $return = $res->result_array();
+      
+        foreach ($return as $value) 
+        {
+           $cost_per_shop=$cost_per_shop+$value['cost'];
+        
+        
+        }
+        return $cost_per_shop; 
+      }
+      
+      function emp_lunch_bonus($user_id,$start_date,$end_date)
+      {
+      //return $user_id;
+      
+      //$start_date=date("m/d/Y", strtotime(date('m').'/01/'.date('Y')));
+      //$end_date=date("Y-m-d");
+
+        $this->db->select('Lunch_bonus');
+        $this->db->where('Eid',$user_id);
+        $this->db->where('last_update BETWEEN "'. date('Y-m-d', strtotime($start_date)). '" and "'. date('Y-m-d', strtotime($end_date)).'"');
+        $res = $this->db->get('lunch_bonus');
+        return $res->row('Lunch_bonus');
+      }
+
+
+
+     
+
 
    } 
 ?> 

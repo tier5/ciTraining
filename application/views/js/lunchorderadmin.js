@@ -53,12 +53,16 @@ $(document).ready(function(){
     
     window.dlt = function(orderid)
 	  {
+      var conf=confirm("You sure you want to delete this!");
+            if(conf)
+            {
         //alert(orderid);
         $.post(BASE_URL+'Admin/dltordr',{orderid1:orderid}, function(data){
           //$('#deletelunchorder').modal('show');
           //$('#lunchdeletmsg').html(data);
           allorder();
         });
+      }
     }
 
     $('#yesdltall').click(function(){

@@ -85,6 +85,7 @@ function showfirstdiv()
 		    $.post('Employee/shopname',{shopopt:shopid},function(data){ 
 	        //alert(data);
 	        $('#shpname').text(data);
+	        $('#shpid').text(shopid);
 		    });
 		    
 
@@ -221,6 +222,7 @@ function showfirstdiv()
 
 
 		$('#suborder').click(function(){
+		   var shopid=$('#shpid').text();
 		   var shopname=$('#shpname').text();
 		   var lunchitm=$('#totalitem').text();
 		   var finalcost=$('#totalcost').text();
@@ -242,7 +244,7 @@ function showfirstdiv()
 		    	{
                   
                   var ordOthr=$("#sel_emp" ).val();
-			        $.post('Employee/submitorder',{shopname:shopname, lunchitm:lunchitm, finalcost:finalcost, ordOthr:ordOthr },function(data){
+			        $.post('Employee/submitorder',{shopname:shopname, shopid:shopid, lunchitm:lunchitm, finalcost:finalcost, ordOthr:ordOthr },function(data){
 			       //alert(data);exit;
 			       $('#lunchorder').prop('disabled', true);
 			     if(data!=2)

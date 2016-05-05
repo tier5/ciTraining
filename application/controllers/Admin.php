@@ -10,6 +10,7 @@ class Admin extends CI_Controller
 		$this->load->helper('url');
 		$this->load->database();
 		$this->load->model('AdminModel');
+		$this->load->helper('custom');
 		$this->load->library('session');
 		extract($_POST);
 		$q=$this->input->post('datepicker');
@@ -103,6 +104,9 @@ class Admin extends CI_Controller
 		}
 		
 	}
+
+
+	
 
 
 	public function FnfetchProductivityMonth()
@@ -301,7 +305,7 @@ class Admin extends CI_Controller
 			$data['points'] = $points;
 
 			//print_r($data1);
-	      	$update=$this->AdminModel->updateEmp($data1, $data);
+	      	$update=$this->AdminModel->updateEmp($con, $data);
 	      	if ($update) 
 				{
 					echo "Employee updated Sucessfully!!";
@@ -1051,6 +1055,7 @@ class Admin extends CI_Controller
 
 	public function lunchorderview()
 	{
+
 		$this->load->view('lunchorderview');
 	}
 
@@ -1411,9 +1416,9 @@ public function deductPointCustomReason()
     {
         extract($_POST);
     	$data['Liid']=$orderid1;
-    	$data['status']=0;
-    	$data1['status']=1;
-    	$result=$this->AdminModel->dltordr($data,$data1);
+    	//$data['status']=0;
+    	//$data1['status']=1;
+    	$result=$this->AdminModel->dltordr($data);
     	if($result)
     	{
            print_r("Lunch Order Deleted Sucessfully");
@@ -1437,6 +1442,205 @@ public function deductPointCustomReason()
 	{
 
 		$this->load->view('addlunchitems');
+	}
+	public function attendance_bonus()
+	{
+          if ($this->session->userdata('adminid'))
+		{
+            if($_POST)
+		    {
+		        
+		    	if($this->input->post('datecheck'))
+		    	{
+		    		 $todaydate= strtotime(date("d-m-Y"));
+		    		 $start_date=strtotime($this->input->post('datecheck'));
+		    		 $end_date=strtotime($this->input->post('endofmonth'));
+		    		if($todaydate >= $start_date && $todaydate <= $end_date)
+		    		{
+		    			 $data['current']=$this->input->post('myDate');
+                         $result="";
+						 $total_attendence_bonus="";
+						 $con=array('points >='=>3000);
+						 $attendance_bonus=$this->AdminModel->fetchinfo('employee',$con,'result');
+                         
+							 foreach ($attendance_bonus as $value) 
+							 {
+				                $result.="<tr><td>".$value['propname']."</td><td>".$value['points']."</td></tr>";
+							    $total_attendence_bonus=$total_attendence_bonus+$value['points'];
+							 }
+						 
+						 $data['allemployee']=$result;
+				         $data['total_attendence_bonus']=$total_attendence_bonus;
+				         $this->load->view('attendancebonus',$data);
+		    		}
+		    		else
+		    		{     
+
+		    			 $data['current']=$this->input->post('myDate');
+
+                          $result="";
+						 $total_attendence_bonus="";
+			             $d = new DateTime( $this->input->post('datecheck') );
+	                     $d->modify( 'first day of +1 month' );
+	                     $getdate= $d->format( 'm-Y' );
+	                     
+	                     $datearray=explode('-', $getdate);
+	                    
+                         $month=$datearray[0];
+                         $year=$datearray[1];
+	                      $con=array('points>='=>3000,'MONTH( time_stamp)='=>$month, 'YEAR( time_stamp )='=>$year);
+	                    
+						
+						 $attendance_bonus=$this->AdminModel->fetchinfo('point_history',$con,'result');
+
+						 
+						 foreach ($attendance_bonus as $value) 
+						 {
+						 	$name=findname($value['Eid']);
+
+			                $result.="<tr><td>".$name['propname']."</td><td>".$value['points']."</td></tr>";
+						    $total_attendence_bonus=$total_attendence_bonus+$value['points'];
+						 }
+						 $data['allemployee']=$result;
+				         $data['total_attendence_bonus']=$total_attendence_bonus;
+				         $this->load->view('attendancebonus',$data);
+		    		}
+		    	     
+				}
+				else
+				{    
+                     $data['current']=$this->input->post('myDate');
+					 $result="";
+					 $total_attendence_bonus="";
+					 $con=array('points >='=>3000);
+					 $attendance_bonus=$this->AdminModel->fetchinfo('employee',$con,'result');
+
+					 foreach ($attendance_bonus as $value) 
+					 {
+		                $result.="<tr><td>".$value['propname']."</td><td>".$value['points']."</td></tr>";
+					    $total_attendence_bonus=$total_attendence_bonus+$value['points'];
+					 }
+					 $data['allemployee']=$result;
+			         $data['total_attendence_bonus']=$total_attendence_bonus;
+			         $this->load->view('attendancebonus',$data);
+
+				}	 
+		    }
+		    else
+		    {
+			         $data['current']=date("M Y");
+                     $result="";
+					 $total_attendence_bonus="";
+					 $con=array('points >='=>3000);
+					 $attendance_bonus=$this->AdminModel->fetchinfo('employee',$con,'result');
+
+					 foreach ($attendance_bonus as $value) 
+					 {
+		                $result.="<tr><td>".$value['propname']."</td><td>".$value['points']."</td></tr>";
+					    $total_attendence_bonus=$total_attendence_bonus+$value['points'];
+					 }
+					 $data['allemployee']=$result;
+			         $data['total_attendence_bonus']=$total_attendence_bonus;
+			         $this->load->view('attendancebonus',$data);
+		   }
+			//$con=array('points')
+			//$this->load->view('attendancebonus');
+		}
+		
+		else
+		{
+			//echo "session does not exist";
+			redirect("Dashboard");
+		}
+	}
+
+    public function placelunchorder()
+	{
+		if ($this->session->userdata('adminid'))
+		{   
+			$con=array('parent_id'=>0);
+            $data['allshop']=$this->AdminModel->fetchinfo('items',$con,'result');
+			$data['allemployee']=$this->AdminModel->fetchallemployee();
+			$this->load->view('placelunchorder',$data);
+		}
+		
+		else
+		{
+			//echo "session does not exist";
+			redirect("Dashboard");
+		}
+		
+	}
+
+	public function Lunchcost()
+	{ 
+		if($_POST)
+		{
+          
+           $starting_date=$this->input->post('datecheck');
+           $ending_date=$this->input->post('endofmonth');
+           $data['current']=$this->input->post('myDate');
+            if( $starting_date && $ending_date)
+            {
+            	$start_date=$this->input->post('datecheck');
+                $end_date=$this->input->post('endofmonth');
+            }
+            else
+            {
+            	$start_date=date("m/d/Y", strtotime(date('m').'/01/'.date('Y')));
+                $end_date=date("Y-m-d");
+            }
+           //$end_date=$this->input->post('start_date');
+		}
+		else
+		{
+			$start_date=date("m/d/Y", strtotime(date('m').'/01/'.date('Y')));
+            $end_date=date("Y-m-d");
+            $data['current']=date("M Y");
+		}
+
+		$total_lunchbonus="";
+		$total_vendor_cost="";
+		$con=array('parent_id'=>0);
+		$data['allemp']=$this->AdminModel->fetchallemployee();
+		$allemp=$this->AdminModel->fetchallemployee();
+		$data['allshop']=$this->AdminModel->fetchinfo('items',$con,'result');
+        $allshop=$this->AdminModel->fetchinfo('items',$con,'result');
+        $result="";
+        foreach ($allshop as $value) 
+                          {
+                          	$per_vendor_cost=$this->AdminModel->allordercost($value['Lnid'],$start_date,$end_date);
+	                           if($per_vendor_cost)
+	                           {
+		                            $total_vendor_cost=$total_vendor_cost+$per_vendor_cost;
+		                                       
+		                            $result.="<tr>
+		                           <td>".$value['item']."</td>
+		                           <td>".$per_vendor_cost."</td>
+		                           </tr>";
+	                           }
+                          }
+        $data['result']=$result;
+        $data['total_vendor_cost']=$total_vendor_cost;
+
+
+        $lunch_bonus="";
+        foreach ($allemp as $employee) 
+        {
+        	$bonus=$this->AdminModel->emp_lunch_bonus($employee['id'],$start_date,$end_date);
+            
+            if($bonus)
+            {
+	            $total_lunchbonus=$total_lunchbonus+$bonus; 
+	        	$lunch_bonus.="<tr>
+	                           <td>".$employee['propname']."</td>
+	                           <td>".$bonus."</td>
+	                           </tr>";
+            }
+        }
+        $data['bonus']=$lunch_bonus;
+        $data['total_lunchbonus']=$total_lunchbonus;
+		$this->load->view('lunchcost',$data);
 	}
 
 	public function showshop()
@@ -1776,6 +1980,91 @@ public function deductPointCustomReason()
     		print_r($data['Eid']);
     	}
     }
+   
+   public function getitembyshop()
+   {
+	    extract($_POST);
+	    $items="";
+	    //print_r($_POST);
+	    $data['parent_id']=$this->input->post('shopid');
+	    $result=$this->AdminModel->fetchinfo('items',$data,'result');
+	    foreach ($result as $value)
+	    {
+            $condition="";
+            $condition=($value['limit1']+$value['item']);
+	    	$options="";
+		    for($y=1;$y<=$value['limit1'];$y++)
+		    {
+				                 
+			$options.='<option id="limit_'.$value['Lnid'].'" value="'.$y.'">'.$y.'</option>';
+				                 	
+			}
+	    	//print_r($value['item']);
+	    	$items.= "<tr><td id='item_name_".$value['Lnid']."'>".$value['item']."</td><td id='item_cost_".$value['Lnid']."'>".$value['cost']."</td><td><select id='item_limit_".$value['Lnid']."'>".$options."</select></td><td><input type='button' value='Add' id='btnadd_".$value['Lnid']."' onclick='add(".$value['Lnid'].",".$value['cost'].")' ></td></tr>";
+	    }
+	    echo $items;
+   }
+
+   public function submitlunchorder()
+   {
+     extract($_POST);
+     //echo "posted lunch";
+     $data['Eid']=$this->input->post('employee_id');
+     $con=array('Lnid'=>$this->input->post('selectshop_id'));
+     $result=$this->AdminModel->fetchinfo('items',$con,'row');
+     $data['shopname']=$result['item'];
+     $data['date']=date("Y-m-d");
+     $data['ord_emp']="";
+     $data['shop_id']=$this->input->post('selectshop_id');
+     $data['items']=trim($this->input->post('total_item_lunch1'));
+     $data['cost']=trim($this->input->post('total_cost_lunch1'));
+     $data['status']=0;
+
+     if($data['Eid'] && $data['shopname']  && $data['date'] && $data['shop_id'] && $data['items'] && $data['cost'] )
+     {
+
+       if($data['cost']<=100)
+       {
+               
+               $con1['date']=date("Y-m-d");
+               $con1['Eid']=$data['Eid'];
+               $placed_order=$this->AdminModel->fetchinfo('lunchorder',$con1,'count');
+	       	    if($placed_order>0)
+                {
+                	 $this->session->set_userdata('err_msg','This Employee Is Already Placed Lunch Order For Today');
+			         redirect('Admin/placelunchorder');
+
+                }
+                else
+                {
+		       	   $result = $this->AdminModel->insert('lunchorder',$data);
+			       if($result)
+			       {
+				        $this->session->set_userdata('succ_msg','Successfully Places The Order');
+				        redirect('Admin/placelunchorder');
+			       }
+			       else
+			       {
+				       	 $this->session->set_userdata('err_msg','Something Wrong!!! Try Again');
+				         redirect('Admin/placelunchorder');
+			       }
+		       }
+       }
+       else
+       {
+       	             $this->session->set_userdata('err_msg','Order Is More Than 100 Rs/-');
+			         redirect('Admin/placelunchorder');
+       }
+       
+     }
+     else
+     {
+     	$this->session->set_userdata('err_msg','All Fields Are Require');
+     	redirect('Admin/placelunchorder');
+     }
+   }
+
+  
 
 
 
