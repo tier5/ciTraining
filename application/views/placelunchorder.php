@@ -106,7 +106,7 @@
                     
                  </table>
 
-             <!--     <input type="button" value="Check Reset" onclick="check_reset();">
+                 <!-- <input type="button" value="Check Reset" onclick="check_reset();">
                  <input type="button" value="Lunch Update" onclick="lunch_update();"> -->
               </div>
           </div>

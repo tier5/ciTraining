@@ -297,8 +297,8 @@ class Admin extends CI_Controller
     public function update()
 	{
 	    extract($_POST);
-	    
-	      	$data1=array('id'=>$id);
+	        
+	      	$con=array('id'=>$id);
 			$data['name']= $newname;
 			$data['email']= $newemail;
 			$data['password']= $newpass;
